@@ -1,5 +1,12 @@
 #  2D 로그라이크 프로잭트
 
+## ■ Code Conventions
+
+- private(지역) 변수는 파스칼 표기법으로 작성하도록 한다. (ex. private myName)
+- public(전역) 변수는 카멜 표기법으로 작성하도록 한다. (ex. public MyName)
+
+- 매서드(함수)의 이름은 카멜 표기법으로 작성하도록 한다.
+
 ## ■ Commit Conventions
 
 |유형|내용|
