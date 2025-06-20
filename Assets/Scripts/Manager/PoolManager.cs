@@ -66,6 +66,7 @@ public class PoolManager : Singleton<PoolManager>
             }
         }
     }
+
     public void StopPoolCleanupRoutine()
     {
         StopCoroutine(poolCleanupRoutine);
