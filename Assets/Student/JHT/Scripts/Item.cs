@@ -7,7 +7,7 @@ public class Item : ScriptableObject
 {
     public int ID;
     public int size;
-    public string name;
+    public string itmeName;
     public GameObject model;
     [TextArea] public string description = null;
     public Sprite icon = null;
