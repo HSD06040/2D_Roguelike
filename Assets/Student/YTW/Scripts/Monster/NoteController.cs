@@ -29,7 +29,7 @@ public class NoteController : MonoBehaviour
         {
             // PlayerHealth 스크립트가 있다고 가정
             // other.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-            Debug.Log("플레이어에게 음표 명중!");
+            Debug.Log("플레이어에게 음표 명중");
             Destroy(gameObject);
         }
         else if (!other.CompareTag("Monster"))
