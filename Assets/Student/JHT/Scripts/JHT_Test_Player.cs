@@ -30,9 +30,4 @@ public class JHT_Test_Player : MonoBehaviour
         }
     }
 
-    //private void AddWeapon(MusicWeapon _musicWeapon)
-    //{
-    //    musicWeapon.Add(_musicWeapon);
-    //    weaponTransform[]
-    //}
 }

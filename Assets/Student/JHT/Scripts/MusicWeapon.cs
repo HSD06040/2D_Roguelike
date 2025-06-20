@@ -24,24 +24,32 @@ public class MusicWeapon : MonoBehaviour
         OnUpgrade -= SetWeaponNormalParticle;
     }
 
+
     private void Start()
     {
-        weaponImage.sprite = weaponData.icon;
-
         for (int i = 0; i < weaponData.weaponParticle.Length; i++)
         {
             particles[i] = weaponData.weaponParticle[i];
         }
     }
+    public void Init(Weapon _weaponData, Transform _particlePos, Sprite weaponSprite)
+    {
+        weaponData = _weaponData;
+        weaponImage.sprite = weaponSprite;
+        ParticlePos = _particlePos;
+    }
 
 
-    public void Spawn(Transform playerTransform)
+    public GameObject Spawn(Transform playerTransform)
     {
         if (weaponData.model != null)
         {
             GameObject weapon = Instantiate(weaponData.model, playerTransform);
+            return weapon;
         }
         //animator.runtimeAnimatorController = weaponOverride;
+
+        return null;
     }
 
     public void CheckOldWeapon() // 파라미터 Player

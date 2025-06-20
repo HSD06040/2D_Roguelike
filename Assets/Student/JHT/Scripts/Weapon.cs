@@ -14,8 +14,6 @@ public class Weapon : Item
     public int weaponMaxCount;
     public GameObject[] weaponParticle;
 
-
-
     public float GetDamage()
     {
         return power;

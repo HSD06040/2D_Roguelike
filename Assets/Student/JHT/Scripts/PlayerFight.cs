@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerFight : MonoBehaviour
@@ -20,27 +21,32 @@ public class PlayerFight : MonoBehaviour
         int notSet = 0;
 
 
-        if (!weaponList.Contains(_musicWeapon.weaponData.itmeName))
+        if (!weaponList.Contains(_musicWeapon.weaponData.itemName))
         {
-            weaponList.Add(_musicWeapon.weaponData.itmeName);
+            weaponList.Add(_musicWeapon.weaponData.itemName);
 
             for(int i=0; i< weaponList.Count; i++)
             {
-                if (weaponList[i] == null)
+                if (weaponList[i] != null)
+                {
+                    continue;
+                }
+                else
                 {
                     notSet = i;
-                    break;
                 }
             }
 
-            _musicWeapon.Spawn(weaponSpawnPos[notSet]);
+            MusicWeapon weapon = _musicWeapon.Spawn(weaponSpawnPos[notSet]).GetOrAddComponent<MusicWeapon>();
+            weapon.Init(_musicWeapon.weaponData, _musicWeapon.ParticlePos, _musicWeapon.weaponData.icon);
             //_musicWeapon.SetWeaponNormalParticle(notSet);
         }
         else 
         {
+            if (_musicWeapon == null) return;
             for (int i = 0; i < weaponList.Count; i++)
             {
-                if (weaponList[i] == _musicWeapon.weaponData.itmeName)
+                if (weaponList[i] == _musicWeapon.weaponData.itemName)
                 {
                     notSet = i;
                     break;

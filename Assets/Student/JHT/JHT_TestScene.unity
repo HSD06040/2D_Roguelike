@@ -175,7 +175,7 @@ MonoBehaviour:
   musicWeaponList: []
   weapon: {fileID: 4169003378020017399, guid: bfa3034479061504d9afbd85932d63ff, type: 3}
   weapon2: {fileID: 4169003378020017399, guid: 0853d4f6a263dc34ab555fae6df62213, type: 3}
-  weapon3: {fileID: 0}
+  weapon3: {fileID: 4169003378020017399, guid: b22de0e3562c1a7478fccdee15489b0c, type: 3}
 --- !u!212 &95239663
 SpriteRenderer:
   m_ObjectHideFlags: 0
