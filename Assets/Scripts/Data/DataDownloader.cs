@@ -50,7 +50,7 @@ public class DataDownloader
 
             if (weapon != null)
             {
-                weapon.power = damage;                                
+                weapon.AttackDamage = damage;                                
             }
         }
     }
