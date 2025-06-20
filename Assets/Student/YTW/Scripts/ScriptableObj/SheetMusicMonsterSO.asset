@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b89365d7585bc94d95bcd9141467c6c, type: 3}
-  m_Name: MusicStandMonsterData
+  m_Script: {fileID: 11500000, guid: e322a7fccb2560c46976026c3c6f5cb1, type: 3}
+  m_Name: SheetMusicMonsterSO
   m_EditorClassIdentifier: 
-  monsterName: "\uBAAC\uC2A4\uD130"
-  health: 100
+  health: 50
   attackPower: 10
-  moveSpeed: 3.5
-  projectilePrefab: {fileID: 0}
-  attackRange: 10
+  moveSpeed: 5
+  chaseRange: 2
+  attackRange: 1.5
+  rangedAttackRange: 3
   attackCooldown: 2
+  rangedAttackCooldown: 3
+  notePrefab: {fileID: 2898062982127329723, guid: 6ccaf59052af6f5438987b115831c1c9, type: 3}
+  noteSpeed: 5
