@@ -41,9 +41,10 @@ public class PlayerFight : MonoBehaviour
             weapon.Init(_musicWeapon.weaponData, _musicWeapon.ParticlePos, _musicWeapon.weaponData.icon);
             //_musicWeapon.SetWeaponNormalParticle(notSet);
         }
-        else 
+        else
         {
             if (_musicWeapon == null) return;
+
             for (int i = 0; i < weaponList.Count; i++)
             {
                 if (weaponList[i] == _musicWeapon.weaponData.itemName)

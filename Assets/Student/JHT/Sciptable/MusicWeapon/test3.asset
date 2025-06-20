@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   size: 3
-  itmeName: test3
+  itemName: test3
   model: {fileID: 5727087395937455113, guid: 4f6595ca0758a99449e6d607fc1209b6, type: 3}
   description: dfwqfwef
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 76f74844618fb124ca9d9807d988de0f, type: 3}
   power: 10
   weaponOverride: {fileID: 0}
   attackRange: 5

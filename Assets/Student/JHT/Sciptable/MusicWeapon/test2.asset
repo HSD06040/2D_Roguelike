@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   size: 2
-  itmeName: mmmmmmm
+  itemName: test2
   model: {fileID: 5727087395937455113, guid: 4f6595ca0758a99449e6d607fc1209b6, type: 3}
   description: dfwqfwef
   icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
