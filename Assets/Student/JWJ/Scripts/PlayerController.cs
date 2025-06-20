@@ -42,10 +42,11 @@ public class PlayerController : MonoBehaviour
         WeaponSwap();
     }
 
-    public void AddWeapon(GameObject weapon)
+    public void AddWeapon(GameObject weaponPrefab)
     {
-        ownedWeapons.Add(weapon);
-        Debug.Log("무기추가" +  weapon.name);
+        GameObject newWeapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+        ownedWeapons.Add(newWeapon);
+        Debug.Log("무기추가" + newWeapon.name);
     }
 
     private void WeaponSwap()
@@ -55,8 +56,13 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i)) //자동 키 할당
             {
                 SelectWeapon(i); //SelectWeapon에 매게변수 넘겨줌
-                Debug.Log(i + "번 악기 선택");
-            }
+                Debug.Log((i + 1) + "번 악기 선택");
+            } 
+        }
+
+        if (ownedWeapons.Count == 0) //무기가 없을땐 currentWeapon = null 처리해서 기본무기 사용
+        {
+            currentWeapon = null;
         }
     }
 
@@ -68,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
 
         currentWeapon = ownedWeapons[index];  //선택한 무기 = currentWeapon
-        Debug.Log(index + "번 무기 사용중");
+        Debug.Log((index +1) + "번 무기 사용중");
 
     }
 
