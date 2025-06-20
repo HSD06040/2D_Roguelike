@@ -4,23 +4,19 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerController : DamageSystemExample
-{
+public class PlayerController : MonoBehaviour
+{  //스페이스바 대쉬 구현해야함
+
     [Header("플레이어")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float playerStrength;
-
-    [Header("발사체")]
-    [SerializeField] private GameObject firePoint;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float bulletSpeed;
-
-    private Bullet bulletScript;
     private Rigidbody2D rigid;
     private Vector2 movemoent;
     Camera cam;
-    
 
+    [Header("무기")]
+    [SerializeField] private GameObject defaultWeapon;
+    private List<GameObject> ownedWeapons = new List<GameObject>(); //획득한 악기 리스트
+    private GameObject currentWeapon;
 
     private void Start()
     {
@@ -30,10 +26,50 @@ public class PlayerController : DamageSystemExample
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Fire();
+            if (currentWeapon != null)
+            {
+                // 선택중인 악기의 공격;
+            }
+
+            else
+            {
+                // 기본무기의 공격;
+            }
         }
+
+        WeaponSwap();
+    }
+
+    public void AddWeapon(GameObject weapon)
+    {
+        ownedWeapons.Add(weapon);
+        Debug.Log("무기추가" +  weapon.name);
+    }
+
+    private void WeaponSwap()
+    {
+        for (int i = 0; i < ownedWeapons.Count; i++) //소지한 악기의 개수만큼 키 할당
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i)) //자동 키 할당
+            {
+                SelectWeapon(i); //SelectWeapon에 매게변수 넘겨줌
+                Debug.Log(i + "번 악기 선택");
+            }
+        }
+    }
+
+    private void SelectWeapon(int index)
+    {
+        if (index >= ownedWeapons.Count)  //가진수보다 큰 숫자의 키를 누르면 리턴
+        {
+            return;
+        }
+
+        currentWeapon = ownedWeapons[index];  //선택한 무기 = currentWeapon
+        Debug.Log(index + "번 무기 사용중");
+
     }
 
     private void FixedUpdate()
@@ -48,28 +84,4 @@ public class PlayerController : DamageSystemExample
         rigid.velocity = movemoent.normalized * moveSpeed;
     }
 
-    private void Fire()
-    {
-        Vector3 mouseDirection = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cam.transform.position.z));
-        //ScreenToWorldPoint() 화면좌표에서 월드 좌표로 변환하는 함수
-        Vector2 fireDir = (mouseDirection - transform.position).normalized; //발사 방향 
-        GameObject bullet = Instantiate(bulletPrefab); 
-        bullet.transform.position = firePoint.transform.position; // firePoint 로 프리팹 위치지정
-
-        bulletScript = bullet.GetComponent<Bullet>();
-        bulletScript.setDamage(playerStrength); //총알 데미지에 플레이어 공격력 넣기
-
-        bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(fireDir * bulletSpeed, ForceMode2D.Impulse); // 총알 발사
-    }
-
-    public void Attack(DamageSystemExample target)
-    {
-        float totalDamage = playerStrength;
-        GiveDamage(target, totalDamage);
-    }
-
-    public void Damaged(float amount)
-    {
-        base.TakeDamage(amount);
-    }
 }

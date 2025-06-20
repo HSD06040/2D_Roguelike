@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    PlayerController player;
 
     private float damage;
-
-    private void Start()
+    public void setDamage(float damageAmount)
     {
-        player = FindObjectOfType<PlayerController>();
-    }
-    public void setDamage(float playerStrength)
-    {
-        damage = playerStrength;
+        damage = damageAmount;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       if(collision.collider.CompareTag("Monster"))
-       {
-            DamageSystemExample target = collision.collider.GetComponent<DamageSystemExample>();
-            player.Attack(target);
+       StatusController target = collision.gameObject.GetComponent<StatusController>();
+        if(target != null)
+        {
+            target.TakeDamage(damage);
+            Debug.Log(target.gameObject.name + "에게" + damage + "대미지 줌");
             Destroy(gameObject);
-
-            Debug.Log(target.name + "에게" + damage + "의 데미지");
-       }
-        
+        }
     }
 }
