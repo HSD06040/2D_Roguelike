@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,69 +7,72 @@ using UnityEngine.UI;
 public class MusicWeapon : MonoBehaviour
 {
     public Weapon weaponData;
-    public Sprite weaponSprite;
     public Image weaponImage;
+    private int count;
+    private GameObject[] particles;
+    public Transform ParticlePos;
 
-    private List<string> weaponList;
+    public event Action<int> OnUpgrade;
 
-    private void Awake()
+    private void OnEnable()
     {
-        weaponSprite = GetComponent<Sprite>();
+        OnUpgrade += SetWeaponNormalParticle;
     }
+
+    private void OnDisable()
+    {
+        OnUpgrade -= SetWeaponNormalParticle;
+    }
+
+
     private void Start()
     {
-        weaponList = new List<string>(6);
-        Init(weaponData);
+        for (int i = 0; i < weaponData.weaponParticle.Length; i++)
+        {
+            particles[i] = weaponData.weaponParticle[i];
+        }
     }
-
-    public void Init(Weapon _weaponData) //Player player
+    public void Init(Weapon _weaponData, Transform _particlePos, Sprite weaponSprite)
     {
         weaponData = _weaponData;
-        //gameObject.trasform = player.transform + 
-        SetWeapon(_weaponData); //이전 무기가 있을경우 +particle? or 
+        weaponImage.sprite = weaponSprite;
+        ParticlePos = _particlePos;
     }
 
-    private void SetWeapon(Weapon weaponData)
+
+    public GameObject Spawn(Transform playerTransform)
     {
-        if(weaponData == null)
+        if (weaponData.model != null)
         {
-            return;
+            GameObject weapon = Instantiate(weaponData.model, playerTransform);
+            return weapon;
         }
+        //animator.runtimeAnimatorController = weaponOverride;
 
-        if (!weaponList.Contains(weaponData.name)) //(fightManager.count  < weaponData.weaponMaxCount)
-        {
-            weaponList.Add(weaponData.name);
-            weaponData.Spawn(transform);
-            SetWeaponNormalParticle();
-            //playerPower += weaponPower;
-        }
-        else //(fightManager.count > weaponData.weaponMaxCount)
-        {
-            weaponData.CheckOldWeapon();
-            SetWeaponUpgradeParticle();
-            //playerPower += weaponPlusPower;
-            //fightManager.count //어디서든 무기당 count만들고 MaxCount이상이 될 경우
-        }
+        return null;
     }
 
-
-   
-
-
-    private void SetWeaponNormalParticle()
+    public void CheckOldWeapon() // 파라미터 Player
     {
-        weaponImage.sprite = weaponData.icon;
-        weaponImage.color = Color.white;
-        //weaponData.SetParticle(); 파라미터로 fightManager.Count를 받아와야함
+        count++;
+        if(count > weaponData.weaponMaxCount)
+        {
+            OnUpgrade?.Invoke(count); //이거 count아님 notSet가져와야함
+        }
     }
 
-    private void SetWeaponUpgradeParticle()
+
+
+
+    public void SetWeaponNormalParticle(int num)
     {
-         //weaponData.DestroyOldParticle();
-         weaponImage.sprite = weaponData.icon;
-         weaponImage.color = Color.red;
-         //weaponData.SetParticle();
+        Instantiate(particles[num], ParticlePos);
     }
-
-
+    
+    public void SetWeaponUpgradeParticle(int num)
+    {
+        Instantiate(particles[num], ParticlePos);
+        Destroy(particles[num - 1]);
+    }
+    
 }
