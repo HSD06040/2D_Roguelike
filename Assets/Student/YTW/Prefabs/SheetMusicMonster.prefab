@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358508249434552966}
   - component: {fileID: 2602469506194064482}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6624221058568258746}
   - component: {fileID: 7744044694550524593}
   - component: {fileID: 1330819642976789910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SheetMusicMonster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.7
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
