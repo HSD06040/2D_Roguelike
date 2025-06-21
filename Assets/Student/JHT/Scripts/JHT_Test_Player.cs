@@ -8,9 +8,13 @@ public class JHT_Test_Player : MonoBehaviour
     public MusicWeapon Weapon;
     public MusicWeapon Weapon2;
     public MusicWeapon Weapon3;
+
+    Camera camera;
+    private Vector3 mousePosition;
     private void Start()
     {
         playerFight = GetComponent<PlayerFight>();
+        camera = Camera.main.GetComponent<Camera>();
     }
 
     private void Update()
@@ -26,6 +30,15 @@ public class JHT_Test_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             playerFight.AddMusicWeapon(Weapon3);
+        }
+
+        //마우스 포인터
+        if(Input.GetMouseButtonDown(0))
+        {
+            mousePosition = Input.mousePosition;
+            mousePosition = camera.ScreenToWorldPoint(mousePosition);
+
+            playerFight.GoProjectile(Weapon,mousePosition);
         }
     }
 

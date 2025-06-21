@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 8248238522223263823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.741438, y: 0.8981453, z: -0.02395761}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -77,4 +77,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponData: {fileID: 11400000, guid: a06d8341f03394d45afc5864537967c7, type: 2}
+  Count: 0
   ParticlePos: {fileID: 925590345895541289}
