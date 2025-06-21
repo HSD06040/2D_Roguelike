@@ -9,7 +9,6 @@ public class MusicWeapon : MonoBehaviour
     public Weapon WeaponData;
     public int Count;
     private List<GameObject> particles;
-    public Transform ParticlePos;
 
     private GameObject curParticle;
     private GameObject prevParticle;
@@ -49,6 +48,10 @@ public class MusicWeapon : MonoBehaviour
             GameObject weapon = Instantiate(WeaponData.model, playerTransform);
             return weapon;
         }
+        else
+        {
+            Debug.Log("MusicWeapon Spawn : null");
+        }
         //animator.runtimeAnimatorController = weaponOverride;
 
         return null;
@@ -67,18 +70,6 @@ public class MusicWeapon : MonoBehaviour
         curParticle = Instantiate(particles[num], transform.parent);
     }
 
-    //public void SetWeaponParticle(int num)
-    //{
-    //    GameObject curParticle = null;
-    //    if(count < WeaponData.WeaponMaxCount)
-    //    {
-    //        curParticle = Instantiate(particles[num], transform.parent);
-    //    }
-    //    else if(count >= WeaponData.WeaponMaxCount)
-    //    {
-    //        prevParticle = curParticle;
-    //        curParticle = Instantiate()
-    //    }
-    //}
+    public virtual void Attack(Vector3 mousePosition) { }
     
 }

@@ -6,8 +6,8 @@ public class JHT_Test_Player : MonoBehaviour
 {
     PlayerFight playerFight;
     public MusicWeapon Weapon;
-    public MusicWeapon Weapon2;
-    public MusicWeapon Weapon3;
+
+    public MusicWeapon curWeapon;
 
     Camera camera;
     private Vector3 mousePosition;
@@ -23,34 +23,43 @@ public class JHT_Test_Player : MonoBehaviour
         {
             playerFight.AddMusicWeapon(Weapon);
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            playerFight.AddMusicWeapon(Weapon2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            playerFight.AddMusicWeapon(Weapon3);
-        }
+        //if(Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    playerFight.AddMusicWeapon(Weapon2);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    playerFight.AddMusicWeapon(Weapon3);
+        //}
 
+        curWeapon = Weapon;
         //마우스 포인터
-        SetProjectile(Weapon2);
+        if(curWeapon != null) 
+         SetProjectile(curWeapon);
     }
 
     private void SetProjectile(MusicWeapon musicWeapon)
     {
+        if(musicWeapon == null)
+        {
+            Debug.Log("player : musicWeapon null");
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             mousePosition = Input.mousePosition;
             mousePosition = camera.ScreenToWorldPoint(mousePosition);
 
-            if (musicWeapon == Weapon)
-            {
-                playerFight.GoProjectile(musicWeapon, mousePosition);
-            }
-            else
-            {
-                playerFight.GoAreaProjectile(musicWeapon, mousePosition);
-            }
+            Debug.Log($"player : {musicWeapon.name}");
+            Debug.Log($"player : {mousePosition}");
+
+            //musicWeapon.Attack(mousePosition - transform.position);
+            musicWeapon.Attack(mousePosition);
+            //else
+            //{
+            //    playerFight.GoAreaProjectile(musicWeapon, mousePosition);
+            //}
         }
     }
 
