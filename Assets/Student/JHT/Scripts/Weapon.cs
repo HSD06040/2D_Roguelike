@@ -13,5 +13,6 @@ public class Weapon : Item
     public float AttackRadius;
     public int WeaponMaxCount;
     public GameObject[] WeaponParticle;
-    public Projectile Projectile;
+    public Projectile Projectile = null;
+    public AreaProjectile AreaProjectile = null;
 }

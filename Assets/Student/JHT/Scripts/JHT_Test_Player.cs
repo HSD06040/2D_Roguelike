@@ -33,12 +33,24 @@ public class JHT_Test_Player : MonoBehaviour
         }
 
         //마우스 포인터
-        if(Input.GetMouseButtonDown(0))
+        SetProjectile(Weapon2);
+    }
+
+    private void SetProjectile(MusicWeapon musicWeapon)
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             mousePosition = Input.mousePosition;
             mousePosition = camera.ScreenToWorldPoint(mousePosition);
 
-            playerFight.GoProjectile(Weapon,mousePosition);
+            if (musicWeapon == Weapon)
+            {
+                playerFight.GoProjectile(musicWeapon, mousePosition);
+            }
+            else
+            {
+                playerFight.GoAreaProjectile(musicWeapon, mousePosition);
+            }
         }
     }
 
