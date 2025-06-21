@@ -13,9 +13,10 @@ public class DataDownloader
 
     public IEnumerator DownloadData()
     {
-        yield return LoadCSV(URL, SetupWeapon);
-
-        OnDataSetupCompleted?.Invoke();
+        yield return null;
+        //yield return LoadCSV(URL, SetupWeapon);
+        //
+        //OnDataSetupCompleted?.Invoke();
     }
 
     private IEnumerator LoadCSV(string url, Action<string[][]> onParsed)

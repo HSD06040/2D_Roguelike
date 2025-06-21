@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
     [SerializeField] private int damage;
     StatusController target = null;
-
     [SerializeField] private float maxTime;
-    [SerializeField] private GameObject bulletModel;
-    [SerializeField] private float Speed = 1;
+    [SerializeField] private float speed = 3;
     private Rigidbody rigid;
     private Transform startPos;
     public bool IsPass;
@@ -18,36 +17,33 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();  
     }
-    public void Init(Transform _projectilePos, Vector3 _targetPos)
+
+    public void Init(Vector3 _targetPos)
     {
-        GameObject obj = Instantiate(bulletModel, _projectilePos);
-        targetPos = _targetPos;
-        startPos = _projectilePos.transform;
+        //targetPos = _targetPos;
+        rigid.velocity = _targetPos * speed;
     }
     
-    private void Update()
-    {
-        //점찍은 방향으로 이동
-
-        //끝까지 감
-        //transform.position += targetPos.normalized * Time.deltaTime * Speed;
-
-        //해당 위치에서 없어짐
-        transform.position = Vector3.MoveTowards(startPos.position, targetPos, 0.1f);
-
-        if (transform.position == targetPos)
-        {
-            Destroy(this.gameObject, 0.3f); // PooledObject.ReturnPool()자리
-        }
-    }
+    //private void Update()
+    //{
+    //    //점찍은 방향으로 이동
+    //
+    //    //끝까지 감
+    //    //transform.position += targetPos.normalized * Time.deltaTime * Speed;
+    //
+    //    //해당 위치에서 없어짐
+    //    transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.1f);
+    //
+    //    if (transform.position == targetPos)
+    //    {
+    //        Destroy(this.gameObject, 0.3f); // PooledObject.ReturnPool()자리
+    //    }
+    //}
 
     //파티클 생성 위치
-    private Transform SetParticlePos()
-    {
-        return null;
-    }
+
 
     //다시
     private void OnTriggerEnter(Collider other)
@@ -59,7 +55,7 @@ public class Projectile : MonoBehaviour
         if (target == null) return; //죽었을경우 return;
 
         target.TakeDamage(damage);
-        Destroy(gameObject, 0.3f);
+        Destroy(gameObject, maxTime);
         
         //particle
     }

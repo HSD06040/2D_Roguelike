@@ -43,7 +43,7 @@ public class PlayerFight : MonoBehaviour
                 }
             }
 
-            // 기존 무기를 찾기 (예: WeaponSpawnPos에 자식으로 존재하는 무기)
+            // 기존 무기를 찾기 : WeaponSpawnPos에 자식으로 존재하는 무기
             Transform slot = WeaponSpawnPos[notSet];
             musicWeapon = slot.GetComponentInChildren<MusicWeapon>(); // 기존 무기 할당
 
@@ -67,30 +67,30 @@ public class PlayerFight : MonoBehaviour
         }
     }
 
-    public void GoProjectile(MusicWeapon weapon,Vector3 targetPos)
-    {
-        if (weapon == null)
-        {
-            Debug.Log("Go Weapon null");
-            return;
-        }
-        Debug.Log($"Go : {weapon.transform.name}");
-        Projectile projectile = weapon.GetComponent<MusicWeapon>().WeaponData.Projectile;
-        Projectile inst = Instantiate(projectile);
-        inst.Init(inst.transform, targetPos);
-    }
+    //public void GoProjectile(MusicWeapon weapon,Vector3 targetPos)
+    //{
+    //    if (weapon == null)
+    //    {
+    //        Debug.Log("Go Weapon null");
+    //        return;
+    //    }
+    //    Debug.Log($"Go : {weapon.transform.name}");
+    //    Projectile projectile = Instantiate(weapon.GetComponent<MusicWeapon>().WeaponData.Projectile);
+    //    inst.Init((targetPos - transform.position).normalized); 
+    //}
 
-    public void GoAreaProjectile(MusicWeapon weapon,Vector3 targetPos)
-    {
-        if (weapon == null)
-        {
-            Debug.Log("Area Weapon null");
-            return;
-        }
 
-        Debug.Log($"Area : {weapon.transform.name}");
-        AreaProjectile areaProjectile = weapon.GetComponent<MusicWeapon>().WeaponData.AreaProjectile;
-        AreaProjectile inst = Instantiate(areaProjectile);
-        inst.Init(inst.transform, targetPos);
-    }
+    //public void GoAreaProjectile(MusicWeapon weapon,Vector3 targetPos)
+    //{
+    //    if (weapon == null)
+    //    {
+    //        Debug.Log("Area Weapon null");
+    //        return;
+    //    }
+    //
+    //    Debug.Log($"Area : {weapon.transform.name}");
+    //    AreaProjectile areaProjectile = weapon.GetComponent<MusicWeapon>().WeaponData.AreaProjectile;
+    //    AreaProjectile inst = Instantiate(areaProjectile);
+    //    inst.Init(inst.transform, targetPos);
+    //}
 }
