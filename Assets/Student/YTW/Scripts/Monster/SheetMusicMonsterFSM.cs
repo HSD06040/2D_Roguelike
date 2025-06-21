@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SheetMusicMonsterFSM : MonsterFSM
 {
     [field: SerializeField] public SheetMusicMonsterSO SO { get; private set; }
 
+    public NavMeshAgent Agent { get; private set; }
     public SheetMusic_IdleState IdleState { get; private set; }
     public SheetMusic_ChaseState ChaseState { get; private set; }
     public SheetMusic_RangedAttackState RangedAttackState { get; private set; }
@@ -17,6 +19,12 @@ public class SheetMusicMonsterFSM : MonsterFSM
     {
         base.Awake();
 
+        Agent = GetComponent<NavMeshAgent>();
+
+        Agent.updateRotation = false;
+        Agent.updateUpAxis = false;
+
+        Agent.speed = SO.moveSpeed;
         Owner.SetStats(SO.health);
 
         IdleState = new SheetMusic_IdleState(this);
@@ -79,6 +87,10 @@ public class SheetMusic_ChaseState : BaseState
     public override void Enter()
     {
         // 추격 애니메이션
+
+        // 추격 상태에 진입하면 NavMeshAgent 활성화
+        _sheetFSM.Agent.isStopped = false;
+        _sheetFSM.Agent.speed = _sheetFSM.SO.moveSpeed;
     }
 
     public override void Update()
@@ -86,26 +98,35 @@ public class SheetMusic_ChaseState : BaseState
         _fsm.Owner.Flip(_fsm.Player);
         float sqrDistance = _fsm.GetSqrDistanceToPlayer();
 
+        // 공격범위에 들어오면 공격 상태로 전환
         if (sqrDistance <= _sheetFSM.SO.rangedAttackRange * _sheetFSM.SO.rangedAttackRange)
         {
             _fsm.StateMachine.ChangeState(_sheetFSM.RangedAttackState);
             return;
         }
 
+        // 추격 범위를 벗어나면 대기 상태로 전환
         if (sqrDistance > _sheetFSM.SO.chaseRange * _sheetFSM.SO.chaseRange)
         {
             _fsm.StateMachine.ChangeState(_sheetFSM.IdleState);
             return;
         }
 
-        // rangedAttackRange에 도달하기 전까지 계속 플레이어를 향해 이동
-        Vector2 direction = (_fsm.Player.position - _fsm.Owner.transform.position).normalized;
-        _fsm.Owner.Rb.velocity = direction * _sheetFSM.SO.moveSpeed;
+        // 플레이어의 위치를 목적지로 계속 설정하여 추적
+        if (_fsm.Player != null)
+        {
+            _sheetFSM.Agent.SetDestination(_fsm.Player.position);
+        }
     }
 
     public override void Exit()
     {
-        _fsm.Owner.Rb.velocity = Vector2.zero; // 상태를 나갈 때 속도를 0으로 초기화
+        // 추격 상태를 벗어날 때 Agent의 움직임을 멈춤
+        if (_sheetFSM.Agent.isActiveAndEnabled)
+        {
+            _sheetFSM.Agent.isStopped = true;
+            _sheetFSM.Agent.ResetPath(); // 경로 초기화
+        }
     }
 }
 
@@ -119,8 +140,12 @@ public class SheetMusic_RangedAttackState : BaseState
     }
     public override void Enter()
     {
-        // 원거리 공격 상태에 진입하면 즉시 멈춤
-        _fsm.Owner.Rb.velocity = Vector2.zero;
+        // 공격 상태 진입 시 NavMeshAgent를 정지시켜 제자리에 멈추게 함
+        if (_sheetFSM.Agent.isActiveAndEnabled)
+        {
+            _sheetFSM.Agent.isStopped = true;
+            _sheetFSM.Agent.ResetPath(); // 경로 초기화
+        }
     }
 
     public override void Update()
@@ -128,14 +153,13 @@ public class SheetMusic_RangedAttackState : BaseState
         _fsm.Owner.Flip(_fsm.Player);
         float sqrDistance = _fsm.GetSqrDistanceToPlayer();
 
-        // rangedAttackRange를 벗어나면 다시 Chase 상태로 전환
+        // 공격 범위를 벗어나면 다시 추격 상태로 전환
         if (sqrDistance > _sheetFSM.SO.rangedAttackRange * _sheetFSM.SO.rangedAttackRange)
         {
             _fsm.StateMachine.ChangeState(_sheetFSM.ChaseState);
             return;
         }
 
-        // 쿨타임이 되면 원거리 공격 실행
         if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.rangedAttackCooldown)
         {
             FireNote();
