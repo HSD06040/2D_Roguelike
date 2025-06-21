@@ -154,12 +154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d0dc30dfa3dbd4cae40f4e56795f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSpawnPos:
+  WeaponSpawnPos:
   - {fileID: 185971439}
   - {fileID: 1731965369}
   - {fileID: 889455923}
   - {fileID: 180745827}
-  weaponList: []
+  WeaponList: []
 --- !u!114 &95239662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,10 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38efcdb9350d08d4db5bee3f58e731d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicWeaponList: []
-  weapon: {fileID: 4169003378020017399, guid: bfa3034479061504d9afbd85932d63ff, type: 3}
-  weapon2: {fileID: 4169003378020017399, guid: 0853d4f6a263dc34ab555fae6df62213, type: 3}
-  weapon3: {fileID: 4169003378020017399, guid: b22de0e3562c1a7478fccdee15489b0c, type: 3}
+  Weapon: {fileID: 4169003378020017399, guid: bfa3034479061504d9afbd85932d63ff, type: 3}
+  Weapon2: {fileID: 4169003378020017399, guid: 0853d4f6a263dc34ab555fae6df62213, type: 3}
+  Weapon3: {fileID: 4169003378020017399, guid: b22de0e3562c1a7478fccdee15489b0c, type: 3}
 --- !u!212 &95239663
 SpriteRenderer:
   m_ObjectHideFlags: 0

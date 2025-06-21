@@ -77,8 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06db4ac9701078941acecfd709da3c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: bead36579296b4741890a910190e8c2c, type: 2}
-  weaponImage: {fileID: 0}
+  WeaponData: {fileID: 11400000, guid: bead36579296b4741890a910190e8c2c, type: 2}
   ParticlePos: {fileID: 2424267519053695940}
 --- !u!212 &3109775776545185397
 SpriteRenderer:

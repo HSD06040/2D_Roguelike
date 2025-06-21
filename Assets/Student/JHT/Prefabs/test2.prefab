@@ -76,6 +76,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06db4ac9701078941acecfd709da3c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: a06d8341f03394d45afc5864537967c7, type: 2}
-  weaponImage: {fileID: 0}
+  WeaponData: {fileID: 11400000, guid: a06d8341f03394d45afc5864537967c7, type: 2}
   ParticlePos: {fileID: 925590345895541289}

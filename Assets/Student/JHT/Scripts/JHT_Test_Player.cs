@@ -5,10 +5,9 @@ using UnityEngine;
 public class JHT_Test_Player : MonoBehaviour
 {
     PlayerFight playerFight;
-    public List<MusicWeapon> musicWeaponList = new();
-    public MusicWeapon weapon;
-    public MusicWeapon weapon2;
-    public MusicWeapon weapon3;
+    public MusicWeapon Weapon;
+    public MusicWeapon Weapon2;
+    public MusicWeapon Weapon3;
     private void Start()
     {
         playerFight = GetComponent<PlayerFight>();
@@ -18,15 +17,15 @@ public class JHT_Test_Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            playerFight.AddMusicWeapon(weapon);
+            playerFight.AddMusicWeapon(Weapon);
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            playerFight.AddMusicWeapon(weapon2);
+            playerFight.AddMusicWeapon(Weapon2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            playerFight.AddMusicWeapon(weapon3);
+            playerFight.AddMusicWeapon(Weapon3);
         }
     }
 

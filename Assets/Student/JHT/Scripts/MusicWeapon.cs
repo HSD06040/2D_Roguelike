@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class MusicWeapon : MonoBehaviour
 {
-    public Weapon weaponData;
-    public Image weaponImage;
-    private int count;
-    private GameObject[] particles;
+    public Weapon WeaponData;
+    public int Count;
+    private List<GameObject> particles;
     public Transform ParticlePos;
 
-    public event Action<int> OnUpgrade;
+    private GameObject curParticle;
+    private GameObject prevParticle;
+
+    public Action<int> OnUpgrade;
 
     private void OnEnable()
     {
@@ -27,24 +29,24 @@ public class MusicWeapon : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < weaponData.weaponParticle.Length; i++)
+        particles = new();
+
+        for (int i = 0; i < WeaponData.WeaponParticle.Length; i++)
         {
-            particles[i] = weaponData.weaponParticle[i];
+            particles.Add(WeaponData.WeaponParticle[i]);
         }
     }
-    public void Init(Weapon _weaponData, Transform _particlePos, Sprite weaponSprite)
+    public void Init(Weapon _weaponData)
     {
-        weaponData = _weaponData;
-        weaponImage.sprite = weaponSprite;
-        ParticlePos = _particlePos;
+        WeaponData = _weaponData;
     }
 
 
     public GameObject Spawn(Transform playerTransform)
     {
-        if (weaponData.model != null)
+        if (WeaponData.model != null)
         {
-            GameObject weapon = Instantiate(weaponData.model, playerTransform);
+            GameObject weapon = Instantiate(WeaponData.model, playerTransform);
             return weapon;
         }
         //animator.runtimeAnimatorController = weaponOverride;
@@ -52,27 +54,31 @@ public class MusicWeapon : MonoBehaviour
         return null;
     }
 
-    public void CheckOldWeapon() // 파라미터 Player
-    {
-        count++;
-        if(count > weaponData.weaponMaxCount)
-        {
-            OnUpgrade?.Invoke(count); //이거 count아님 notSet가져와야함
-        }
-    }
-
-
 
 
     public void SetWeaponNormalParticle(int num)
     {
-        Instantiate(particles[num], ParticlePos);
+        curParticle = Instantiate(particles[num], transform.parent);
     }
     
     public void SetWeaponUpgradeParticle(int num)
     {
-        Instantiate(particles[num], ParticlePos);
-        Destroy(particles[num - 1]);
+        Destroy(curParticle);
+        curParticle = Instantiate(particles[num], transform.parent);
     }
+
+    //public void SetWeaponParticle(int num)
+    //{
+    //    GameObject curParticle = null;
+    //    if(count < WeaponData.WeaponMaxCount)
+    //    {
+    //        curParticle = Instantiate(particles[num], transform.parent);
+    //    }
+    //    else if(count >= WeaponData.WeaponMaxCount)
+    //    {
+    //        prevParticle = curParticle;
+    //        curParticle = Instantiate()
+    //    }
+    //}
     
 }
