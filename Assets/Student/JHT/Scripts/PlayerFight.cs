@@ -69,15 +69,28 @@ public class PlayerFight : MonoBehaviour
 
     public void GoProjectile(MusicWeapon weapon,Vector3 targetPos)
     {
-        
         if (weapon == null)
         {
-            Debug.Log("Weapon null");
+            Debug.Log("Go Weapon null");
             return;
         }
-        Debug.Log($"{weapon.transform.name}");
+        Debug.Log($"Go : {weapon.transform.name}");
         Projectile projectile = weapon.GetComponent<MusicWeapon>().WeaponData.Projectile;
         Projectile inst = Instantiate(projectile);
+        inst.Init(inst.transform, targetPos);
+    }
+
+    public void GoAreaProjectile(MusicWeapon weapon,Vector3 targetPos)
+    {
+        if (weapon == null)
+        {
+            Debug.Log("Area Weapon null");
+            return;
+        }
+
+        Debug.Log($"Area : {weapon.transform.name}");
+        AreaProjectile areaProjectile = weapon.GetComponent<MusicWeapon>().WeaponData.AreaProjectile;
+        AreaProjectile inst = Instantiate(areaProjectile);
         inst.Init(inst.transform, targetPos);
     }
 }
