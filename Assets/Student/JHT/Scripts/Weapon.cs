@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MusicWeapon", menuName = "MusicWeapon/Basic", order = 0)]
 public class Weapon : Item
 {
+    public MusicWeaponType Type;
     public int AttackDamage;
     public AnimatorOverrideController WeaponOverride = null;
     public float AttackRange;
@@ -13,5 +14,13 @@ public class Weapon : Item
     public float AttackRadius;
     public int WeaponMaxCount;
     public GameObject[] WeaponParticle;
-    public GameObject Projectile = null;
+    public Projectile Projectile = null;
+    public Projectile[] Projectiles = null;
+    
+}
+
+public enum MusicWeaponType
+{
+    Gun,
+    Trumpet
 }
