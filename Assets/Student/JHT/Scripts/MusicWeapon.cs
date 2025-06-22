@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MusicWeapon : MonoBehaviour
 {
+    //[SerializeField] private GameObject gunPrefab = null;
+    //[SerializeField] private GameObject trumpetPrefab = null;
+
     public Weapon WeaponData;
     public int Count;
+    public int Level;
     private List<GameObject> particles;
 
     private GameObject curParticle;
@@ -35,28 +40,32 @@ public class MusicWeapon : MonoBehaviour
             particles.Add(WeaponData.WeaponParticle[i]);
         }
     }
-    public void Init(Weapon _weaponData)
-    {
-        WeaponData = _weaponData;
-    }
 
-
-    public GameObject Spawn(Transform playerTransform)
-    {
-        if (WeaponData.model != null)
-        {
-            GameObject weapon = Instantiate(WeaponData.model, playerTransform);
-            return weapon;
-        }
-        else
-        {
-            Debug.Log("MusicWeapon Spawn : null");
-        }
-        //animator.runtimeAnimatorController = weaponOverride;
-
-        return null;
-    }
-
+    //public GameObject Spawn(Transform playerTransform)
+    //{
+    //    //switch(type)
+    //    //{
+    //    //    case MusicWeaponType.Gun:
+    //    //        return Instantiate(gunPrefab, playerTransform).GetComponent<MusicWeapon>();
+    //    //    case MusicWeaponType.Trumpet:
+    //    //        return Instantiate(trumpetPrefab, playerTransform).GetComponent<MusicWeapon>();
+    //    //    default:
+    //    //        return null;
+    //    //}
+    //
+    //    if (WeaponData.model != null)
+    //    {
+    //        GameObject weapon = Instantiate(WeaponData.model, playerTransform);
+    //        return weapon;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("MusicWeapon Spawn : null");
+    //    }
+    //    //animator.runtimeAnimatorController = weaponOverride;
+    //
+    //    return null;
+    //}
 
 
     public void SetWeaponNormalParticle(int num)
@@ -70,6 +79,9 @@ public class MusicWeapon : MonoBehaviour
         curParticle = Instantiate(particles[num], transform.parent);
     }
 
+    
+    //플레이어에서 curWeapon에 대한 정보를 기반으로 오기때문에 따로 설정안해도됨
+    //Projectile을 상속받은 하위Projectile에서 해당 오브젝트의 특징을 만들어주자
     public virtual void Attack(Vector3 mousePosition) { }
     
 }

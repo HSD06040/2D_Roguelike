@@ -5,8 +5,9 @@ using UnityEngine;
 public class JHT_Test_Player : MonoBehaviour
 {
     PlayerFight playerFight;
-    public MusicWeapon Weapon;
 
+    public MusicWeapon Gun;
+    public MusicWeapon trumpet;
     public MusicWeapon curWeapon;
 
     Camera camera;
@@ -14,28 +15,28 @@ public class JHT_Test_Player : MonoBehaviour
     private void Start()
     {
         playerFight = GetComponent<PlayerFight>();
-        camera = Camera.main.GetComponent<Camera>();
+        camera = Camera.main;
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            playerFight.AddMusicWeapon(Weapon);
-        }
-        //if(Input.GetKeyDown(KeyCode.Alpha2))
-        //{
-        //    playerFight.AddMusicWeapon(Weapon2);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    playerFight.AddMusicWeapon(Weapon3);
-        //}
+            playerFight.AddMusicWeapon(trumpet);
 
-        curWeapon = Weapon;
+            curWeapon = trumpet;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            playerFight.AddMusicWeapon(Gun);
+            curWeapon = Gun;
+        }
         //마우스 포인터
-        if(curWeapon != null) 
-         SetProjectile(curWeapon);
+        if(curWeapon != null)
+        {
+            SetProjectile(curWeapon);
+        }
+        
     }
 
     private void SetProjectile(MusicWeapon musicWeapon)
@@ -55,11 +56,11 @@ public class JHT_Test_Player : MonoBehaviour
             Debug.Log($"player : {mousePosition}");
 
             //musicWeapon.Attack(mousePosition - transform.position);
-            musicWeapon.Attack(mousePosition);
-            //else
+            //if(playerFight.WeaponList.Contains(musicWeapon.WeaponData.itemName))
             //{
-            //    playerFight.GoAreaProjectile(musicWeapon, mousePosition);
+            //    musicWeapon.Attack(musicWeapon.WeaponData, mousePosition);
             //}
+            musicWeapon.Attack(mousePosition);
         }
     }
 

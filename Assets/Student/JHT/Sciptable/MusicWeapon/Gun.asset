@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 051b18f7085c9a548bfe30e6dc8154d5, type: 3}
-  m_Name: Basic
+  m_Name: Gun
   m_EditorClassIdentifier: 
   ID: 1
   size: 1
-  itemName: test1
+  itemName: Gun
   model: {fileID: 5727087395937455113, guid: 9f95147d390fc29458216062817d28e1, type: 3}
   description: dddd
   icon: {fileID: 21300000, guid: 76f74844618fb124ca9d9807d988de0f, type: 3}
@@ -27,4 +27,6 @@ MonoBehaviour:
   - {fileID: 499010178548250081, guid: 08a665cb9e369f641ae02f3c757e2cd8, type: 3}
   - {fileID: 8472133573239423094, guid: cb235c927c88f4546bde0acd5bca8298, type: 3}
   - {fileID: 5470499818708082747, guid: d3defe44ccca3814c8937d173f9677a4, type: 3}
-  Projectile: {fileID: 4015629574521340218, guid: 0343448d799568c40b3c7d718aa03449, type: 3}
+  Projectile: {fileID: 6854513664456107259, guid: 3faeea3489bf32745b571cf4e7d49865, type: 3}
+  Projectiles: []
+  IsMany: 0
