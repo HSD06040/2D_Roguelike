@@ -25,10 +25,6 @@ public class Monster : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Update()
-    {
-        StateMachine?.Update();
-    }
 
     public virtual void Flip(Transform target)
     {
