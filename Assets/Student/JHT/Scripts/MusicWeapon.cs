@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class MusicWeapon : MonoBehaviour
 {
-    //[SerializeField] private GameObject gunPrefab = null;
-    //[SerializeField] private GameObject trumpetPrefab = null;
-
     public Weapon WeaponData;
     public int Count = 0;
     public int Level = 0;
@@ -40,33 +37,6 @@ public class MusicWeapon : MonoBehaviour
             particles.Add(WeaponData.WeaponParticle[i]);
         }
     }
-
-    //public GameObject Spawn(Transform playerTransform)
-    //{
-    //    //switch(type)
-    //    //{
-    //    //    case MusicWeaponType.Gun:
-    //    //        return Instantiate(gunPrefab, playerTransform).GetComponent<MusicWeapon>();
-    //    //    case MusicWeaponType.Trumpet:
-    //    //        return Instantiate(trumpetPrefab, playerTransform).GetComponent<MusicWeapon>();
-    //    //    default:
-    //    //        return null;
-    //    //}
-    //
-    //    if (WeaponData.model != null)
-    //    {
-    //        GameObject weapon = Instantiate(WeaponData.model, playerTransform);
-    //        return weapon;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("MusicWeapon Spawn : null");
-    //    }
-    //    //animator.runtimeAnimatorController = weaponOverride;
-    //
-    //    return null;
-    //}
-
 
     public void SetWeaponParticle(int num)
     {
