@@ -438,8 +438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  dashForce: 0
-  dashCooldown: 0
   defaultWeapon: {fileID: 62918719}
 --- !u!114 &298603954
 MonoBehaviour:
@@ -455,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 5
   attackPower: 0
+  playerDamageCoolDown: 1
 --- !u!60 &298603955
 PolygonCollider2D:
   m_ObjectHideFlags: 0
