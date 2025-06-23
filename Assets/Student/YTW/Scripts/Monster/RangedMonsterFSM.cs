@@ -20,12 +20,14 @@ public class RangedMonsterFSM : MonsterFSM
         base.Awake();
         Agent = GetComponent<NavMeshAgent>();
 
-        Agent.speed = SO.moveSpeed;
-        Agent.stoppingDistance = 0.1f; 
+        
+        Agent.stoppingDistance = 0.1f;
+        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
 
+        Agent.speed = SO.moveSpeed;
         Owner.SetStats(SO.health);
 
         IdleState = new Ranged_IdleState(this);
