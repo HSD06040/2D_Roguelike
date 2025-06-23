@@ -16,14 +16,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("무기")]
     [SerializeField] private GameObject defaultWeapon;
-    private List<GameObject> ownedWeapons = new List<GameObject>(); //획득한 악기 리스트
+    [SerializeField] private GameObject[] weaponSlots = new GameObject[4];
     private GameObject currentWeapon;
-    [SerializeField] private int weaponLimit = 4;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        currentWeapon = null;
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentWeapon != null)
             {
-                // 선택중인 악기의 공격;
+                // 선택중인 악기의 공격호출;
             }
 
             else
@@ -41,48 +41,49 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        WeaponSwap();
+        WeaponSwitch();
     }
 
     public void AddWeapon(GameObject weaponPrefab)
     {
-        if(ownedWeapons.Count >= weaponLimit)
+        for(int i = 0; i < weaponSlots.Length; i++)
         {
-            Debug.Log("무기 소지 한도 도달 현재무기 수: " + ownedWeapons.Count );
-            return;
+            if (weaponSlots[i] == null)
+            {
+                GameObject newWeapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+                weaponSlots[i] = newWeapon;
+                Debug.Log(newWeapon.name + "를" + (i +1) + "번 슬롯에 추가");
+                return;
+            }
         }
-
-        GameObject newWeapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
-        ownedWeapons.Add(newWeapon);
-        Debug.Log("무기추가" + newWeapon.name);
+        Debug.Log("무기 슬롯이 가득 찼습니다");
     }
 
-    private void WeaponSwap()
+    private void WeaponSwitch()
     {
-        for (int i = 0; i < ownedWeapons.Count; i++) //소지한 악기의 개수만큼 키 할당
+        for (int i = 0; i < weaponSlots.Length; i++) //슬롯의 수만큼 키 할당
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i)) //자동 키 할당
             {
                 SelectWeapon(i); //SelectWeapon에 매게변수 넘겨줌
                 Debug.Log((i + 1) + "번 악기 선택");
+                break;
             } 
-        }
-
-        if (ownedWeapons.Count == 0) //무기가 없을땐 currentWeapon = null 처리해서 기본무기 사용
-        {
-            currentWeapon = null;
         }
     }
 
     private void SelectWeapon(int index)
     {
-        if (index >= ownedWeapons.Count)  //가진수보다 큰 숫자의 키를 누르면 리턴
+        if (weaponSlots[index] != null)
         {
-            return;
+            currentWeapon = weaponSlots[index];  //선택한 무기 = currentWeapon
+            Debug.Log((index + 1) + "번 무기 사용중. 이름: " + currentWeapon.name);
+        }
+        else 
+        {
+            Debug.Log((index + 1)+" 슬롯은 비어있음");
         }
 
-        currentWeapon = ownedWeapons[index];  //선택한 무기 = currentWeapon
-        Debug.Log((index +1) + "번 무기 사용중");
 
     }
 
