@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class PlayerStatusController : StatusController
 {
-    private void Start()
+    [SerializeField] private float playerDamageCoolDown;
+    private bool hasDamaged = false;
+
+    private new void Start()
     {
         base.Start();
     }
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
+        if(!hasDamaged)
+        {  
+            hasDamaged=true;
+            base.TakeDamage(damage);
+
+            StartCoroutine(PlayerDamageCoolDown());
+        }
+    }
+
+    private IEnumerator PlayerDamageCoolDown()  //플레이어 대미지 쿨타임 설정
+    {
+        yield return new WaitForSeconds(playerDamageCoolDown);
+        hasDamaged = false;
     }
 }

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("플레이어")]
     [SerializeField] private float moveSpeed;
+
     private Rigidbody2D rigid;
     private Vector2 movemoent;
     Camera cam;
