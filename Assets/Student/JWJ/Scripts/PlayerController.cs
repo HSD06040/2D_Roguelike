@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject defaultWeapon;
     private List<GameObject> ownedWeapons = new List<GameObject>(); //획득한 악기 리스트
     private GameObject currentWeapon;
+    [SerializeField] private int weaponLimit = 4;
 
     private void Start()
     {
@@ -45,6 +46,12 @@ public class PlayerController : MonoBehaviour
 
     public void AddWeapon(GameObject weaponPrefab)
     {
+        if(ownedWeapons.Count >= weaponLimit)
+        {
+            Debug.Log("무기 소지 한도 도달 현재무기 수: " + ownedWeapons.Count );
+            return;
+        }
+
         GameObject newWeapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
         ownedWeapons.Add(newWeapon);
         Debug.Log("무기추가" + newWeapon.name);
