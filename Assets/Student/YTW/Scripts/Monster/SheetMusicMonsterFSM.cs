@@ -156,14 +156,14 @@ public class SheetMusic_MeleeAttackState : BaseState
         float sqrDistance = _fsm.GetSqrDistanceToPlayer();
 
         // 공격 범위를 벗어나면 다시 추격 상태로 전환
-        if (sqrDistance > _sheetFSM.SO.meleeAttackRange * _sheetFSM.SO.meleeAttackRange) // meleeAttackRange로 변경
+        if (sqrDistance > _sheetFSM.SO.meleeAttackRange * _sheetFSM.SO.meleeAttackRange)
         {
             _fsm.StateMachine.ChangeState(_sheetFSM.ChaseState);
             return;
         }
 
         // 쿨타임이 되면 근접 공격 실행
-        if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown) // meleeAttackCooldown으로 변경
+        if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown)
         {
             PerformMeleeAttack();
         }
