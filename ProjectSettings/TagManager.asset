@@ -42,6 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Monster
+    uniqueID: 4162278897
+    locked: 0
+  - name: Projectile
+    uniqueID: 305960425
+    locked: 0
+  - name: Player
+    uniqueID: 2493935759
+    locked: 0
+  - name: FX
+    uniqueID: 783316077
+    locked: 0
   - name: ShockWave
     uniqueID: 1783176045
     locked: 0

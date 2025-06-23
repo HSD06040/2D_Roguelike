@@ -6,9 +6,6 @@ public class Cymbals : MusicWeapon
 {
     public override void Attack(Vector2 mousePosition)
     {
-        Projectile obj = Instantiate(WeaponData.Projectile);
-        obj.Init(mousePosition);
-        obj.transform.position = mousePosition;
+        Instantiate(WeaponData.Projectile, mousePosition, Quaternion.identity);
     }
-
 }
