@@ -5,32 +5,25 @@ using UnityEngine;
 public class CymbalsProjectile : Projectile
 {
     [SerializeField] private SpriteRenderer cymbalsSprite;
+    
+    private float time = 0;    
+    private float speed;
 
-    public float LivingTime;
-    private float time = 0;
-    private float changeShaderValue;
-
-
-    public override void Init(Vector2 _targetPos, int _damage, float _speed){}
+    public override void Init(Vector2 _targetPos, int _damage, float _speed)
+    { 
+        damage = _damage; 
+        speed = _speed;
+    }
 
     private void Update()
     {
-        time += Time.deltaTime;
-        float value = Mathf.Lerp(0, 1, time);
-        Debug.Log(cymbalsSprite.material.GetFloat("_WaveDistanceFromCenter"));
+        time += Time.deltaTime * speed;
+        float value = Mathf.Lerp(0, 1, time);        
         cymbalsSprite.material.SetFloat("_WaveDistanceFromCenter", value);
 
-        if(time > LivingTime)
+        if(1 == cymbalsSprite.material.GetFloat("_WaveDistanceFromCenter"))
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            //TakeDamage
         }
     }
 }

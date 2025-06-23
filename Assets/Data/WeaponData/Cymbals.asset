@@ -20,6 +20,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 76f74844618fb124ca9d9807d988de0f, type: 3}
   Type: 2
   AttackDamage: 3
+  AttackSpeed: 1
   WeaponOverride: {fileID: 0}
   AttackRange: 3
   AttackRadius: 3

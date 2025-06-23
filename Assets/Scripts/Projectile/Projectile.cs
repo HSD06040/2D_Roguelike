@@ -6,7 +6,7 @@ using UnityEngine.U2D;
 
 public class Projectile : MonoBehaviour
 {
-    private int damage = 0;
+    protected int damage;
     [SerializeField] private float maxTime;
     public bool IsPass;
     [SerializeField] private Rigidbody2D rigid;

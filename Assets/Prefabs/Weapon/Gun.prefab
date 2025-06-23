@@ -157,6 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54de136fd8da9d142bcc4d2e225641d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponData: {fileID: 11400000, guid: bead36579296b4741890a910190e8c2c, type: 2}
+  WeaponData: {fileID: 11400000, guid: 6d094087b81ba8b4f86ecfdf03baa92d, type: 2}
   Count: 0
   Level: 0
