@@ -17,6 +17,5 @@ MonoBehaviour:
   moveSpeed: 5
   chaseRange: 20
   meleeAttackRange: 2
-  meleeAttackCooldown: 3
-  notePrefab: {fileID: 2898062982127329723, guid: 6ccaf59052af6f5438987b115831c1c9, type: 3}
-  noteSpeed: 7
+  meleeAttackAngle: 90
+  meleeAttackCooldown: 2
