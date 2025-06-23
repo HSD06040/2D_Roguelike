@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5563445032939612744}
   - component: {fileID: 5582514810806517612}
   - component: {fileID: -1299478581240112786}
+  - component: {fileID: 747377143171295564}
   m_Layer: 0
   m_Name: TrumpetProjectile2
   m_TagString: Untagged
@@ -100,7 +101,31 @@ MonoBehaviour:
   maxTime: 0
   speed: 3
   IsPass: 1
-  AddProjectile:
-  - {fileID: 4737048126755557511, guid: 838103fcc1bd36a43a3fe829029da052, type: 3}
-  - {fileID: 4737048126755557511, guid: 838103fcc1bd36a43a3fe829029da052, type: 3}
-  - {fileID: 4737048126755557511, guid: 838103fcc1bd36a43a3fe829029da052, type: 3}
+  rigid: {fileID: 747377143171295564}
+--- !u!50 &747377143171295564
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292824511582685207}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

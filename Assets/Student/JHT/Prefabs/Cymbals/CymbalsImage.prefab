@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5457364408438706483}
   - component: {fileID: 4946147419010394630}
   m_Layer: 0
-  m_Name: WeaponSample 2
+  m_Name: CymbalsImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

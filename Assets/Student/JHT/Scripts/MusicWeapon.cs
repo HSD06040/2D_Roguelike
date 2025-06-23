@@ -87,6 +87,6 @@ public class MusicWeapon : MonoBehaviour
     
     //플레이어에서 curWeapon에 대한 정보를 기반으로 오기때문에 따로 설정안해도됨
     //Projectile을 상속받은 하위Projectile에서 해당 오브젝트의 특징을 만들어주자
-    public virtual void Attack(Vector3 mousePosition) { }
+    public virtual void Attack(Vector2 mousePosition) { }
     
 }

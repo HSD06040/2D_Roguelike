@@ -10,13 +10,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float maxTime;
     [SerializeField] private float speed = 3;
     public bool IsPass;
-
+    [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
 
 
-    public void Init(Vector3 _targetPos)
+    public virtual void Init(Vector2 _targetPos)
     {
-        targetPos = _targetPos;
+        rigid.velocity = _targetPos * speed;
+        //targetPos.z = 0;
     }
 
 
