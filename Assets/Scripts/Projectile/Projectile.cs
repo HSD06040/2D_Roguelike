@@ -8,16 +8,15 @@ public class Projectile : MonoBehaviour
 {
     private int damage = 0;
     [SerializeField] private float maxTime;
-    [SerializeField] private float speed = 3;
     public bool IsPass;
     [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
 
 
-    public virtual void Init(Vector2 _targetPos, int _damage)
+    public virtual void Init(Vector2 _targetPos, int _damage, float _speed)
     {        
-        rigid.velocity = _targetPos * speed;
         damage = _damage;        
+        rigid.velocity = _targetPos * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

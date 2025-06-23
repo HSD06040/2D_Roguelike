@@ -11,7 +11,7 @@ public class PlayerStatusController : StatusController
     private new void Start()
     {
         base.Start();
-        heartUI.InicialHearts(maxHp); //馬闘 持失
+        //heartUI.InicialHearts(maxHp); //馬闘 持失
     }
     public override void TakeDamage(int damage)
     {

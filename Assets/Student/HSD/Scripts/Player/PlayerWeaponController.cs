@@ -23,6 +23,7 @@ public class PlayerWeaponController : MonoBehaviour
         WeaponList = new List<string>(4);
         cam = Camera.main;
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
+        defaultWeapon.Init(transform);
     }
 
     private void Update()

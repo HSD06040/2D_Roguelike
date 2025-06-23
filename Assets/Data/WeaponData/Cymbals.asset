@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 051b18f7085c9a548bfe30e6dc8154d5, type: 3}
-  m_Name: Gun
+  m_Name: Cymbals
   m_EditorClassIdentifier: 
-  ID: 1
-  size: 1
-  itemName: Gun
-  model: {fileID: 5727087395937455113, guid: 9f95147d390fc29458216062817d28e1, type: 3}
-  description: dddd
+  ID: 3
+  size: 3
+  itemName: Cymbals
+  model: {fileID: 5727087395937455113, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
+  description: Cymbals
   icon: {fileID: 21300000, guid: 76f74844618fb124ca9d9807d988de0f, type: 3}
-  Type: 0
-  AttackDamage: 1
-  AttackSpeed: 10
+  Type: 2
+  AttackDamage: 3
   WeaponOverride: {fileID: 0}
-  AttackRange: 1
-  AttackRadius: 1
-  WeaponMaxCount: 1
+  AttackRange: 3
+  AttackRadius: 3
+  WeaponMaxCount: 3
   WeaponParticle:
   - {fileID: 499010178548250081, guid: 08a665cb9e369f641ae02f3c757e2cd8, type: 3}
   - {fileID: 8472133573239423094, guid: cb235c927c88f4546bde0acd5bca8298, type: 3}
   - {fileID: 5470499818708082747, guid: d3defe44ccca3814c8937d173f9677a4, type: 3}
-  Projectile: {fileID: 6854513664456107259, guid: 3faeea3489bf32745b571cf4e7d49865, type: 3}
+  Projectile: {fileID: 1447947333167568233, guid: 5e8c6730a581b4e49bfdc248774aed1c, type: 3}
   Projectiles: []

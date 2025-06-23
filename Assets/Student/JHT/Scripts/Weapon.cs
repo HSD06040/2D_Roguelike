@@ -8,6 +8,7 @@ public class Weapon : Item
 {
     public MusicWeaponType Type;
     public int AttackDamage;
+    public float AttackSpeed;
     public AnimatorOverrideController WeaponOverride = null;
     public float AttackRange;
     public float AttackDelay { get; private set;}
