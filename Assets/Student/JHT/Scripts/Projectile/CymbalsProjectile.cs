@@ -16,8 +16,8 @@ public class CymbalsProjectile : Projectile
     private void Update()
     {
         time += Time.deltaTime;
-        //changeShaderValue = time;
-        float value = Mathf.Lerp(0, 1, changeShaderValue);
+        float value = Mathf.Lerp(0, 1, time);
+        Debug.Log(cymbalsSprite.material.GetFloat("_WaveDistanceFromCenter"));
         cymbalsSprite.material.SetFloat("_WaveDistanceFromCenter", value);
 
         if(time > LivingTime)

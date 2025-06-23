@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Init(Vector2 _targetPos)
     {
+        Debug.Log(_targetPos);
         rigid.velocity = _targetPos * speed;
         //targetPos.z = 0;
     }
