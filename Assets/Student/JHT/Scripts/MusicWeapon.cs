@@ -11,8 +11,8 @@ public class MusicWeapon : MonoBehaviour
     //[SerializeField] private GameObject trumpetPrefab = null;
 
     public Weapon WeaponData;
-    public int Count;
-    public int Level;
+    public int Count = 0;
+    public int Level = 0;
     private List<GameObject> particles;
 
     private GameObject curParticle;
@@ -22,12 +22,12 @@ public class MusicWeapon : MonoBehaviour
 
     private void OnEnable()
     {
-        OnUpgrade += SetWeaponNormalParticle;
+        OnUpgrade += SetWeaponParticle;
     }
 
     private void OnDisable()
     {
-        OnUpgrade -= SetWeaponNormalParticle;
+        OnUpgrade -= SetWeaponParticle;
     }
 
 
@@ -68,9 +68,14 @@ public class MusicWeapon : MonoBehaviour
     //}
 
 
-    public void SetWeaponNormalParticle(int num)
+    public void SetWeaponParticle(int num)
     {
-        curParticle = Instantiate(particles[num], transform.parent);
+        if (Level >= 4) return;
+        if (curParticle != null)
+        {
+            Destroy(curParticle);
+        }
+        curParticle = Instantiate(particles[num-1], transform.parent);
     }
     
     public void SetWeaponUpgradeParticle(int num)

@@ -12,6 +12,7 @@ public class JHT_Test_Player : MonoBehaviour
 
     Camera camera;
     private Vector3 mousePosition;
+
     private void Start()
     {
         playerFight = GetComponent<PlayerFight>();
@@ -22,21 +23,18 @@ public class JHT_Test_Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            playerFight.AddMusicWeapon(trumpet);
+            curWeapon = playerFight.AddMusicWeapon(trumpet);
 
-            curWeapon = trumpet;
         }
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            playerFight.AddMusicWeapon(Gun);
-            curWeapon = Gun;
+            curWeapon = playerFight.AddMusicWeapon(Gun);
         }
-        //마우스 포인터
+        
         if(curWeapon != null)
         {
             SetProjectile(curWeapon);
         }
-        
     }
 
     private void SetProjectile(MusicWeapon musicWeapon)
@@ -52,8 +50,6 @@ public class JHT_Test_Player : MonoBehaviour
             mousePosition = Input.mousePosition;
             mousePosition = camera.ScreenToWorldPoint(mousePosition);
 
-            Debug.Log($"player : {musicWeapon.name}");
-            Debug.Log($"player : {mousePosition}");
 
             //musicWeapon.Attack(mousePosition - transform.position);
             //if(playerFight.WeaponList.Contains(musicWeapon.WeaponData.itemName))
@@ -63,5 +59,4 @@ public class JHT_Test_Player : MonoBehaviour
             musicWeapon.Attack(mousePosition);
         }
     }
-
 }
