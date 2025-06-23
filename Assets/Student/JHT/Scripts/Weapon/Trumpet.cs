@@ -7,15 +7,15 @@ public class Trumpet : MusicWeapon
     Coroutine weaponCor;
     WaitForSeconds delay = new WaitForSeconds(0.2f);
 
-    public override void Attack(Vector3 mousePosition)
+    public override void Attack(Vector2 mousePosition)
     {
+        Vector2 pos = mousePosition.normalized;
         if (weaponCor == null)
         {
-            weaponCor = StartCoroutine(WeaponCor(mousePosition));
+            weaponCor = StartCoroutine(WeaponCor(pos));
         }
     }
 
-    // Coroutine Error°¡ ¶ß´Â ÄÚµå
     IEnumerator WeaponCor(Vector3 mousePosition)
     {
         Projectile obj0 = Instantiate(WeaponData.Projectiles[0]);

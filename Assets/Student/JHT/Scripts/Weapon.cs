@@ -22,5 +22,6 @@ public class Weapon : Item
 public enum MusicWeaponType
 {
     Gun,
-    Trumpet
+    Trumpet,
+    Cymbals
 }

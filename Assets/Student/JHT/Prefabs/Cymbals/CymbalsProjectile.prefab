@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5563445032939612744}
   - component: {fileID: 5582514810806517612}
-  - component: {fileID: 6854513664456107259}
-  - component: {fileID: -3077913776961787904}
+  - component: {fileID: -6229726346729069643}
   m_Layer: 0
-  m_Name: GunProjectile1
+  m_Name: CymbalsProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.65316486, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6854513664456107259
+--- !u!114 &-6229726346729069643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,37 +94,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3292824511582685207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24af8a8a63668a4bbe1fdda401fba98, type: 3}
+  m_Script: {fileID: 11500000, guid: d43278eede9ce1242a082a5929a0c204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 0
   speed: 3
   IsPass: 0
-  rigid: {fileID: -3077913776961787904}
---- !u!50 &-3077913776961787904
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3292824511582685207}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  LivingTime: 2

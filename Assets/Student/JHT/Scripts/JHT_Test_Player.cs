@@ -8,10 +8,13 @@ public class JHT_Test_Player : MonoBehaviour
 
     public MusicWeapon Gun;
     public MusicWeapon trumpet;
+    public MusicWeapon Cymbals;
+    public MusicWeapon Violin;
+
     public MusicWeapon curWeapon;
 
     Camera camera;
-    private Vector3 mousePosition;
+    private Vector2 mousePosition;
 
     private void Start()
     {
@@ -30,8 +33,16 @@ public class JHT_Test_Player : MonoBehaviour
         {
             curWeapon = playerFight.AddMusicWeapon(Gun);
         }
-        
-        if(curWeapon != null)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            curWeapon = playerFight.AddMusicWeapon(Cymbals);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            curWeapon = playerFight.AddMusicWeapon(Violin);
+        }
+
+        if (curWeapon != null)
         {
             SetProjectile(curWeapon);
         }
@@ -51,12 +62,13 @@ public class JHT_Test_Player : MonoBehaviour
             mousePosition = camera.ScreenToWorldPoint(mousePosition);
 
 
-            //musicWeapon.Attack(mousePosition - transform.position);
+            //musicWeapon.Attack((mousePosition - (Vector2)transform.position).normalized);
+            musicWeapon.Attack(mousePosition - (Vector2)transform.position);
             //if(playerFight.WeaponList.Contains(musicWeapon.WeaponData.itemName))
             //{
             //    musicWeapon.Attack(musicWeapon.WeaponData, mousePosition);
             //}
-            musicWeapon.Attack(mousePosition);
+            //musicWeapon.Attack(mousePosition);
         }
     }
 }
