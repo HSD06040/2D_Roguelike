@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusController : MonoBehaviour
+public class StatusController : MonoBehaviour, IDamagable
 {
     [SerializeField] protected int maxHp;
     [SerializeField] protected int attackPower;
-    protected int currentHp;
+    [SerializeField] protected int currentHp;
 
     protected void Start()
     {
         currentHp = maxHp;
     }
+
     public virtual void TakeDamage(int damage) //대미지 받기
     {
         currentHp -= damage;

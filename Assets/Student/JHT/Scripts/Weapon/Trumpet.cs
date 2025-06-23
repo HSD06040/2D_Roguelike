@@ -19,13 +19,13 @@ public class Trumpet : MusicWeapon
     IEnumerator WeaponCor(Vector3 mousePosition)
     {
         Projectile obj0 = Instantiate(WeaponData.Projectiles[0]);
-        obj0.Init(mousePosition);
+        obj0.Init(mousePosition, WeaponData.AttackDamage);
         yield return delay;
         Projectile obj1 = Instantiate(WeaponData.Projectiles[1]);
-        obj1.Init(mousePosition);
+        obj1.Init(mousePosition, WeaponData.AttackDamage);
         yield return delay;
         Projectile obj2 = Instantiate(WeaponData.Projectiles[2]);
-        obj2.Init(mousePosition);
+        obj2.Init(mousePosition, WeaponData.AttackDamage);
 
         yield return null;
 

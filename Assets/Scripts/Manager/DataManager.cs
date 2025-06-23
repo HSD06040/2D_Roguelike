@@ -7,6 +7,7 @@ public class DataManager : Singleton<DataManager>
 {
     public Weapon[] WeaponDatas;
     private DataDownloader downloader;
+    private PlayerStatusController playerStatus;
 
     private void Awake()
     {

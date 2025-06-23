@@ -14,14 +14,19 @@ public class Projectile : MonoBehaviour
     protected Vector3 targetPos;
 
 
-    public virtual void Init(Vector2 _targetPos)
-    {
-        Debug.Log(_targetPos);
+    public virtual void Init(Vector2 _targetPos, int _damage)
+    {        
         rigid.velocity = _targetPos * speed;
-        //targetPos.z = 0;
+        damage = _damage;        
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Monster"))
+        {
+            collision.GetComponent<IDamagable>().TakeDamage(damage);
+        }
+    }
 
 
     //´Ù½Ã

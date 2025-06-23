@@ -11,7 +11,7 @@ public class CymbalsProjectile : Projectile
     private float changeShaderValue;
 
 
-    public override void Init(Vector2 _targetPos){}
+    public override void Init(Vector2 _targetPos, int _damage){}
 
     private void Update()
     {

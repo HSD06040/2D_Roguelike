@@ -11,6 +11,7 @@ public class MusicWeapon : MonoBehaviour
     public int Count = 0;
     public int Level = 0;
     private List<GameObject> particles;
+    protected Transform player;
 
     private GameObject curParticle;
     private GameObject prevParticle;
@@ -38,6 +39,10 @@ public class MusicWeapon : MonoBehaviour
         }
     }
 
+
+    public void Init(Transform playerTransform) => player = playerTransform;
+
+
     public void SetWeaponParticle(int num)
     {
         if (Level >= 4) return;
@@ -54,8 +59,5 @@ public class MusicWeapon : MonoBehaviour
         curParticle = Instantiate(particles[num], transform.parent);
     }
 
-    
-    //플레이어에서 curWeapon에 대한 정보를 기반으로 오기때문에 따로 설정안해도됨
-    //Projectile을 상속받은 하위Projectile에서 해당 오브젝트의 특징을 만들어주자
     public virtual void Attack(Vector2 mousePosition) { }
 }

@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SheetMusicMonsterSO", menuName = "SO/Monsters/SheetMusicMonster")]
-public class SheetMusicMonsterSO : ScriptableObject
+public class SheetMusicMonsterSO : MonsterStat
 {
-    [Header("스탯")]
-    public float health = 50f;
-    public float attackPower = 10f;
-    public float moveSpeed = 5f;
-
     [Header("사정거리")]
     public float chaseRange = 5f; // 이 거리 안으로 들어오면 돌진
     public float meleeAttackRange = 1.5f; // 근접 공격 사거리

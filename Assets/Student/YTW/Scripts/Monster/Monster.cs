@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
-    public float CurrentHealth { get; protected set; }
-
+    public MonsterStatusController monsterStatusCon {  get; private set; }
     public StateMachine StateMachine { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public int FacingDirection { get; protected set; } = 1;
 
-    public virtual void SetStats(float maxHealth)
-    {
-        MaxHealth = maxHealth;
-        CurrentHealth = maxHealth;
-    }
-
     protected virtual void Awake()
     {
-        CurrentHealth = MaxHealth;
+        monsterStatusCon = GetComponent<MonsterStatusController>();
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
     }
@@ -37,16 +29,6 @@ public class Monster : MonoBehaviour
         {
             FacingDirection = direction;
             transform.localScale = new Vector3(FacingDirection, 1, 1);
-        }
-    }
-
-    public virtual void TakeDamage(float damage)
-    {
-        CurrentHealth -= damage;
-        Debug.Log($"{name}가 데미지 {damage} 받음. 현재 hp : {CurrentHealth}");
-        if (CurrentHealth <= 0)
-        {
-            Die();
         }
     }
 

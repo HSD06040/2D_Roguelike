@@ -28,7 +28,6 @@ public class RangedMonsterFSM : MonsterFSM
         Agent.updateUpAxis = false;
 
         Agent.speed = SO.moveSpeed;
-        Owner.SetStats(SO.health);
 
         IdleState = new Ranged_IdleState(this);
         RepositionState = new Ranged_RepositionState(this);
