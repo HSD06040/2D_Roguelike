@@ -1201,10 +1201,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1330819642976789910, guid: 4004bedd66787b744af88c8f9db6c3e7, type: 3}
-      propertyPath: m_AutoBraking
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4942239965411752318, guid: 4004bedd66787b744af88c8f9db6c3e7, type: 3}
       propertyPath: m_Name
       value: SheetMusicMonster
