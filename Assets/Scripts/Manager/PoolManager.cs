@@ -20,6 +20,7 @@ public class PoolManager : Singleton<PoolManager>
     private const float poolCleanupDelay = 30;
 
     public void Init()
+
     {
         poolDic = new();
         parentDic = new();
@@ -27,7 +28,7 @@ public class PoolManager : Singleton<PoolManager>
 
         parent = new GameObject("Pools").transform;
 
-        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());
+        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());        
     }
 
     IEnumerator PoolCleanupRoutine()
