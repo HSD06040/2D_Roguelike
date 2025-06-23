@@ -310,8 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12343b20e0caa2458a9ce84088d7d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  attackPower: 10
+  maxHp: 10
+  attackPower: 1
 --- !u!1 &282788591
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,8 +451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576aaa4a2ccde284aa2b6b4ef06c2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 5
   attackPower: 0
+  playerDamageCoolDown: 1
 --- !u!60 &298603955
 PolygonCollider2D:
   m_ObjectHideFlags: 0
