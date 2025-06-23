@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e322a7fccb2560c46976026c3c6f5cb1, type: 3}
+  m_Name: SheetMusicMonsterSO
+  m_EditorClassIdentifier: 
+  health: 50
+  attackPower: 10
+  moveSpeed: 5
+  chaseRange: 20
+  meleeAttackRange: 2
+  meleeAttackCooldown: 3
+  notePrefab: {fileID: 2898062982127329723, guid: 6ccaf59052af6f5438987b115831c1c9, type: 3}
+  noteSpeed: 7
