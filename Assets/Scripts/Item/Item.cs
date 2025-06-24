@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     public int size;
     public string itemName;
     public GameObject model;
-    [TextArea] public string description = null;
-    public Sprite icon = null;
-    
+    [TextArea] 
+    public string description;
+    public Sprite icon; 
 }

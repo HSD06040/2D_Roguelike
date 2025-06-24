@@ -17,9 +17,10 @@ MonoBehaviour:
   itemName: Violin
   model: {fileID: 0}
   description: Violin
-  icon: {fileID: 0}
-  Type: 0
+  icon: {fileID: 21300000, guid: 666b737749017194ea5fc01a3868ac57, type: 3}
+  Type: 3
   AttackDamage: 3
+  AttackSpeed: 0
   WeaponOverride: {fileID: 0}
   AttackRange: 0
   AttackRadius: 0
