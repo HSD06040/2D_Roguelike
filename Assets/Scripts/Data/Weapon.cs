@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MusicWeapon", menuName = "MusicWeapon/Basic", order = 0)]
 public class Weapon : Item
 {
+    [Header("Weapon")]
     public MusicWeaponType Type;
     public int AttackDamage;
     public float AttackSpeed;

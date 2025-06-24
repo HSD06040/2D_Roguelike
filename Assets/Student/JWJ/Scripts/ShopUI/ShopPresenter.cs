@@ -1,59 +1,50 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class ShopPresenter
 {
-    private ShopModel shopModel;
     private ShopView shopView;
-    private MoneyModel moneyModel;
+    private List<Item> items = new();
 
-    private List<KeyValuePair<string, int>> currentItems = new List<KeyValuePair<string, int>>();
-
-    public ShopPresenter(ShopModel shopModel, ShopView shopView, MoneyModel moneyModel)
+    public ShopPresenter(ShopView shopView)
     {
-        this.shopModel = shopModel;
         this.shopView = shopView;
-        this.moneyModel = moneyModel;
     }
 
     public void ShopSetting()
     {
-        // 랜덤으로 3개 아이템 뽑아서 리스트로 변환 
-        currentItems = shopModel.ItemPriceInfo 
-            .OrderBy(g => Guid.NewGuid())
-            .Take(3)
-            .ToList();
+        items.Clear();
 
-        shopView.DisplayItems(currentItems); // view 에게 디스플레이할 아이템 리스트 전달
+        int random;
+
+        for (int i = 0; i < 3; i++)
+        {
+            random = Random.Range(0, 4);
+            items.Add(Manager.Data.musicWeapons[random].WeaponData);
+        }
+
+        shopView.DisplayItems(items.ToArray()); // view 에게 디스플레이할 아이템 리스트 전달      
     }
 
-    public void TryToBuy(string itemId)
+    public void TryToBuy(int _idx)
     {
-        var item = currentItems.Find(x => x.Key == itemId);
-        int itemPrice = item.Value;
+        var item = items[_idx];
+        int itemPrice = item.Price;
     
-        if(moneyModel.currentMoney < itemPrice)
+        if(!Manager.Data.IsHaveGold(item.Price))
         {
             shopView.ShowMessage("재화가 부족합니다!");
             return;
         }
         else
         {
-            moneyModel.SpendMoney(itemPrice);
-            //shopview.UpdateMoneyDisplay();
-            Debug.Log(itemId + "  " +itemPrice + "에 구매");
-            shopView.CloseTheShop();
+            Manager.Data.RemoveGold(item.Price);
+            //shopview.UpdateMoneyDisplay();            
+            shopView.Close();
         }
     }
-
-    public int GetCurrentMoney()
-    {
-        return moneyModel.currentMoney;
-    }
-
-
 }

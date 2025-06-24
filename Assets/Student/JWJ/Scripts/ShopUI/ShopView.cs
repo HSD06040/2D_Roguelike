@@ -5,15 +5,15 @@ using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopView : MonoBehaviour
+public class ShopView : AnimationUI_Base
 {
     [SerializeField] private ShopSlotUI[] slotUIs;
     [SerializeField] private Button buyButton;
-    [SerializeField] private GameObject shopUI;
+    [SerializeField] private GameObject background;
     //[SerializeField] private TMP_Text moneyText;
 
     private ShopPresenter shopPresenter;
-    private List<KeyValuePair<string, int>> currentItems;
+    private Item[] currentItems;
     private int selectedIndex = -1;
 
     public void _Start(ShopPresenter presenter)
@@ -24,14 +24,13 @@ public class ShopView : MonoBehaviour
         //UpdateMoneyDisplay();
     }
 
-    public void DisplayItems(List<KeyValuePair<string, int>> items) //아이템들 슬롯에 표시
+    public void DisplayItems(Item[] items) //아이템들 슬롯에 표시
     {
         currentItems = items;
 
         slotUIs[0].SetData(items[0], 0, this);
         slotUIs[1].SetData(items[1], 1, this);
         slotUIs[2].SetData(items[2], 2, this);
-
     }
 
     public void onSlotSelected(int index)
@@ -41,8 +40,7 @@ public class ShopView : MonoBehaviour
 
     private void OnBuyButtonClicked()
     {
-        string itemId = currentItems[selectedIndex].Key;
-        shopPresenter.TryToBuy(itemId);
+        shopPresenter.TryToBuy(selectedIndex);
     }
 
     //public void UpdateMoneyDisplay()
@@ -56,13 +54,14 @@ public class ShopView : MonoBehaviour
         Debug.Log(message);
     }
 
-    public void CloseTheShop()
+    public override void Open()
     {
-        shopUI.SetActive(false);
+        base.Open();
+        background.SetActive(true);
     }
-
-    public void ShopCloseButtonClicked()  //인스펙터 버튼에서 처리
+    public override void Close()
     {
-        shopUI.SetActive(false);
+        base.Close();
+        background.SetActive(false);
     }
 }

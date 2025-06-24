@@ -10,4 +10,14 @@ public class GoldPresenter
     {
         goldPanel = _goldPanel;
     }
+
+    public void AddEvent()
+    {
+        Manager.Data.Gold.AddEvent(goldPanel.UpdateGold);
+    }
+
+    public void RemoveEvent()
+    {
+        Manager.Data.Gold.RemoveEvent(goldPanel.UpdateGold);
+    }
 }

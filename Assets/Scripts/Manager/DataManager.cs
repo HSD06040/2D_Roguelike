@@ -27,4 +27,19 @@ public class DataManager : Singleton<DataManager>
     {
         playerStatus.AddBindEvent();
     }
+
+    public bool IsHaveGold(int amount)
+    {
+        return Gold.Value >= amount;
+    }
+
+    public void RemoveGold(int amount)
+    {
+        if(IsHaveGold(amount))
+        {
+            Gold.Value -= amount;
+        }
+    }
+
+    public void AddGold(int amount) => Gold.Value += amount;    
 }
