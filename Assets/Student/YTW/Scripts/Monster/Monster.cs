@@ -13,6 +13,9 @@ public class Monster : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public int FacingDirection { get; protected set; } = 1;
 
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     public virtual void SetStats(float maxHealth, float attackPower)
     {
         MaxHealth = maxHealth;
@@ -26,6 +29,12 @@ public class Monster : MonoBehaviour
         CurrentHealth = MaxHealth;
         Animator = GetComponentInChildren<Animator>();
         Rb = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
     }
 
 
@@ -49,21 +58,29 @@ public class Monster : MonoBehaviour
         Debug.Log($"{name}가 데미지 {damage} 받음. 현재 hp : {CurrentHealth}");
         if (CurrentHealth > 0)
         {
-            Animator.SetTrigger("Hit");
+            if (CurrentHealth > 0)
+            {
+                StopCoroutine(HitFlashCoroutine());
+                StartCoroutine(HitFlashCoroutine());
+            }
         }
-
-        if (CurrentHealth <= 0)
-        {
-            Die();
-        }
-        
     }
 
-    protected virtual void Die()
+    private IEnumerator HitFlashCoroutine()
     {
-        Debug.Log($"{name} 사망");
-        Destroy(gameObject);
+        // TODO : 아직 데미지 테스트 못함
+        // 색상을 빨간색으로 변경
+        spriteRenderer.color = Color.red;
+
+        // 0.15초 동안 대기 (깜빡이는 시간)
+        yield return new WaitForSeconds(0.15f);
+
+        // 원래 색상으로 복구
+        spriteRenderer.color = originalColor;
+
+        // 여기에 나중에 이동속도 감소 로직 추가 가능
     }
+
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {

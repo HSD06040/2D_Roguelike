@@ -7,7 +7,6 @@ public class RangedMonsterFSM : MonsterFSM
 {
     [field: SerializeField] public RangedMonsterSO SO { get; private set; }
 
-    public NavMeshAgent Agent { get; private set; }
 
     public Ranged_IdleState IdleState { get; private set; }
     public Ranged_RepositionState RepositionState { get; private set; }
@@ -18,14 +17,9 @@ public class RangedMonsterFSM : MonsterFSM
     protected override void Awake()
     {
         base.Awake();
-        Agent = GetComponent<NavMeshAgent>();
 
         
         Agent.stoppingDistance = 0.1f;
-        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-
-        Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
 
         Agent.speed = SO.moveSpeed;
         Owner.SetStats(SO.health, SO.attackPower);
