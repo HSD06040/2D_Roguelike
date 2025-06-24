@@ -27,7 +27,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
         Agent.speed = SO.moveSpeed;
-        Owner.SetStats(SO.health);
+        Owner.SetStats(SO.health, SO.attackPower);
 
         IdleState = new SheetMusic_IdleState(this);
         ChaseState = new SheetMusic_ChaseState(this);
