@@ -52,12 +52,6 @@ public class MusicWeapon : MonoBehaviour
         }
         curParticle = Instantiate(particles[num-1], transform.parent);
     }
-    
-    public void SetWeaponUpgradeParticle(int num)
-    {
-        Destroy(curParticle);
-        curParticle = Instantiate(particles[num], transform.parent);
-    }
 
     public virtual void Attack(Vector2 mousePosition) { }
 }

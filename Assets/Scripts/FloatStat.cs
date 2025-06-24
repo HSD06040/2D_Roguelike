@@ -23,6 +23,8 @@ public class FloatStat
     private bool isChanged;
     private float lastValue;
 
+    private Action<float> OnChanged;
+
     public float Value 
     { 
         get 
@@ -47,13 +49,17 @@ public class FloatStat
     {
         modifiers.Add(new Modifier<float>(value, source));
         isChanged = true;
+        OnChanged?.Invoke(Value);
     }
 
     public void RemoveModifier(string source)
     {
         modifiers.RemoveAll(modifier => modifier.source == source);
         isChanged = true;
+        OnChanged?.Invoke(Value);
     }
+
+    public void SetBaseStat(float value) => this.value = value;
 
     public void Clear() => modifiers.Clear();
 }

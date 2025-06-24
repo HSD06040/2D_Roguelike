@@ -17,9 +17,11 @@ MonoBehaviour:
   itemName: Trumpet
   model: {fileID: 4433685329174123603, guid: 9a9f7bbc10170644ea3b743a64feaf56, type: 3}
   description: dfwqfwef
-  icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  Type: 1
+  icon: {fileID: 21300000, guid: f95f7576d00bf6248b7cce341e0bac73, type: 3}
+  Price: 42
+  Type: 2
   AttackDamage: 2
+  AttackSpeed: 0
   WeaponOverride: {fileID: 0}
   AttackRange: 5
   AttackRadius: 60

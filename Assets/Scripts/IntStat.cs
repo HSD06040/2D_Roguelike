@@ -6,10 +6,12 @@ using UnityEngine;
 [Serializable]
 public class IntStat
 {
-    private int value;
-    private List<Modifier<int>> modifiers = new List<Modifier<int>>();
+    [SerializeField] private int value;
+    [SerializeField] private List<Modifier<int>> modifiers = new List<Modifier<int>>();
     private bool isChanged;
     private int lastValue;
+
+    private Action<int> OnChanged;
 
     public int Value
     {
@@ -35,13 +37,17 @@ public class IntStat
     {
         modifiers.Add(new Modifier<int>(value, source));
         isChanged = true;
+        OnChanged.Invoke(Value);
     }
 
     public void RemoveModifier(string source)
     {
         modifiers.RemoveAll(modifier => modifier.source == source);
         isChanged = true;
+        OnChanged.Invoke(Value);
     }
+
+    public void SetBaseStat(int value) => this.value = value;
 
     public void Clear() => modifiers.Clear();
 }

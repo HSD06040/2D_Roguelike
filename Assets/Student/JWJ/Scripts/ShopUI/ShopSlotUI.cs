@@ -8,18 +8,19 @@ public class ShopSlotUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemPriceText;
+    [SerializeField] private Image itemIcon;
     [SerializeField] private Button slotButton;
-
 
     private int slotIndex;
     private ShopView shopView;
 
-    public void SetData(KeyValuePair<string, int> item, int index, ShopView view)
+    public void SetData(Item item, int index, ShopView view)
     {
-        Debug.Log("SetData »£√‚µ : " + item.Key);
+        Debug.Log("SetData »£√‚µ : " + item.itemName);
 
-        itemNameText.text = item.Key;
-        itemPriceText.text = item.Value.ToString();
+        itemNameText.text = item.itemName;
+        itemPriceText.text = item.Price.ToString("N0");
+        itemIcon.sprite = item.icon;
 
         slotIndex = index;
         shopView = view;

@@ -7,18 +7,39 @@ public class DataManager : Singleton<DataManager>
 {
     public Property<int> Gold = new();
 
-    public PlayerStatus playerStatus;
+    public PlayerStatus playerStatus = new();
 
     public Weapon[] WeaponDatas;
+    public MusicWeapon[] musicWeapons;
+
     private DataDownloader downloader;    
 
     private void Awake()
     {
-        playerStatus = new PlayerStatus();
-
         WeaponDatas = Resources.LoadAll<Weapon>("Data/Weapon");
+        musicWeapons = Resources.LoadAll<MusicWeapon>("Weapon");
 
         downloader = new DataDownloader();
         StartCoroutine(downloader.DownloadData());        
     }
+
+    private void Start()
+    {
+        playerStatus.AddBindEvent();
+    }
+
+    public bool IsHaveGold(int amount)
+    {
+        return Gold.Value >= amount;
+    }
+
+    public void RemoveGold(int amount)
+    {
+        if(IsHaveGold(amount))
+        {
+            Gold.Value -= amount;
+        }
+    }
+
+    public void AddGold(int amount) => Gold.Value += amount;    
 }

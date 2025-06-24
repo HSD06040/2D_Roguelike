@@ -10,15 +10,15 @@ public class Demo : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
-            controller.AddMusicWeapon(weapons[0]);
+            Manager.Data.playerStatus.AddWeapon(MusicWeaponType.Gun);
 
         if (Input.GetKeyDown(KeyCode.X))
-            controller.AddMusicWeapon(weapons[1]);
+            Manager.Data.playerStatus.AddWeapon(MusicWeaponType.Trumpet);
 
         if (Input.GetKeyDown(KeyCode.C))
-            controller.AddMusicWeapon(weapons[2]);
+            Manager.Data.playerStatus.AddWeapon(MusicWeaponType.Violin);
 
         if (Input.GetKeyDown(KeyCode.V))
-            controller.AddMusicWeapon(weapons[3]);
+            Manager.Data.playerStatus.AddWeapon(MusicWeaponType.Cymbals);
     }
 }
