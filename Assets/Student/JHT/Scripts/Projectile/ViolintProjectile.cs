@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestLaserProjectile : MonoBehaviour
+public class ViolintProjectile : Projectile
 {
-    public Camera cam;
     public LineRenderer lineRenderer;
     public Transform firePoint;
-    void Start()
+
+    private void Start()
     {
         DisableLaser();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Init(Vector2 _targetPos)
     {
-        if (Input.GetButtonDown("Fire1"))
+        targetPos = _targetPos;
+    }
+
+    private void Update()
+    {
+        if(targetPos.magnitude > 0.1)
         {
             EnableLaser();
-        }
-
-        if(Input.GetButton("Fire1"))
-        {
             UpdateLaser();
         }
 
-        if(Input.GetButtonUp("Fire1"))
+        if(targetPos.magnitude < 0.1)
         {
             DisableLaser();
         }
@@ -38,15 +38,12 @@ public class TestLaserProjectile : MonoBehaviour
 
     private void UpdateLaser()
     {
-        var mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
-
         lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, targetPos);
 
-        lineRenderer.SetPosition(1, mousePos);
-
-        Vector2 direction = mousePos - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
-    
+        Vector2 direction = (Vector2)targetPos - (Vector2)transform.position;
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position,direction.normalized,direction.magnitude);
+        
         if(hit)
         {
             lineRenderer.SetPosition(1, hit.point);
