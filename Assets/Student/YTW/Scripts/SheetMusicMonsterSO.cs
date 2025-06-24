@@ -15,6 +15,5 @@ public class SheetMusicMonsterSO : ScriptableObject
     public float meleeAttackRange = 1.5f; // 근접 공격 사거리
 
     [Header("공격 설정")]
-    [Range(0, 360)] public float meleeAttackAngle = 90f; // 부채꼴 공격 각도
     public float meleeAttackCooldown = 2f; // 공격 쿨타임
 }
