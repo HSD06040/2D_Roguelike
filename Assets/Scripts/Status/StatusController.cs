@@ -7,9 +7,11 @@ public class StatusController : MonoBehaviour, IDamagable
     [SerializeField] protected int maxHp;
     [SerializeField] protected int attackPower;
     [SerializeField] protected int currentHp;
+    protected EntityFX fx;
 
     protected void Start()
     {
+        fx = GetComponent<EntityFX>();
         currentHp = maxHp;
     }
 
@@ -17,6 +19,7 @@ public class StatusController : MonoBehaviour, IDamagable
     {
         currentHp -= damage;
         Debug.Log(gameObject.name + "이" + damage + "의 피해를 받음. 현재 HP:" + currentHp);
+        fx.CreatePopupText(damage);
 
         if (currentHp <= 0)
         {
@@ -31,6 +34,4 @@ public class StatusController : MonoBehaviour, IDamagable
             target.TakeDamage(attackPower);
         }
     }
-
-
 }

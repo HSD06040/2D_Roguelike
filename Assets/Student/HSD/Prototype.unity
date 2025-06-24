@@ -9089,6 +9089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SheetMusicMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 2520881143947464913, guid: 031dcac93896caa4aa0cf9d068d7f313, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9096,6 +9100,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2520881143947464913, guid: 031dcac93896caa4aa0cf9d068d7f313, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1504482198}
+    - targetCorrespondingSourceObject: {fileID: 2520881143947464913, guid: 031dcac93896caa4aa0cf9d068d7f313, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1504482199}
   m_SourcePrefab: {fileID: 100100000, guid: 031dcac93896caa4aa0cf9d068d7f313, type: 3}
 --- !u!1 &883718557
 GameObject:
@@ -11834,7 +11841,7 @@ Transform:
   m_GameObject: {fileID: 1080889320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -19.74, z: 0}
+  m_LocalPosition: {x: -0.02, y: -19.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11895,6 +11902,7 @@ MonoBehaviour:
   maxHp: 0
   attackPower: 0
   currentHp: 0
+  fx: {fileID: 0}
   playerDamageCoolDown: 0
   heartUI: {fileID: 0}
 --- !u!50 &1080889326
@@ -15099,6 +15107,74 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1337727389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337727392}
+  - component: {fileID: 1337727391}
+  - component: {fileID: 1337727390}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1337727390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337727389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1337727391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337727389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1337727392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337727389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338267140
 GameObject:
   m_ObjectHideFlags: 0
@@ -15359,6 +15435,20 @@ MonoBehaviour:
   maxHp: 100
   attackPower: 0
   currentHp: 0
+  fx: {fileID: 1504482199}
+--- !u!114 &1504482199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504482191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
 --- !u!1 &1523727948
 GameObject:
   m_ObjectHideFlags: 0
@@ -24191,6 +24281,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
+  - {fileID: 1337727392}
   - {fileID: 1387265920}
   - {fileID: 1080889322}
   - {fileID: 893779686}

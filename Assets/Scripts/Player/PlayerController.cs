@@ -10,11 +10,10 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어")]
     [SerializeField] private float moveSpeed;
 
-    private PlayerStatusController status;
+    public PlayerStatusController status;
     private PlayerWeaponController weaponCon;
     private Rigidbody2D rigid;
     private Vector2 movemoent;
-    
 
     private void Start()
     {

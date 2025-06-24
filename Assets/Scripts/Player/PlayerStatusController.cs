@@ -6,11 +6,16 @@ public class PlayerStatusController : StatusController
 {
     [SerializeField] private float playerDamageCoolDown;
     [SerializeField] private HealthHeart heartUI;
+
+    public PlayerStatus status;
+
     private bool hasDamaged = false;
 
     private new void Start()
     {
         base.Start();
+
+        status = Manager.Data.playerStatus;
         //heartUI.InicialHearts(maxHp); //하트 생성
     }
     public override void TakeDamage(int damage)
