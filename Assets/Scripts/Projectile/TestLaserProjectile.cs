@@ -43,6 +43,14 @@ public class TestLaserProjectile : MonoBehaviour
         lineRenderer.SetPosition(0, firePoint.position);
 
         lineRenderer.SetPosition(1, mousePos);
+
+        Vector2 direction = mousePos - (Vector2)transform.position;
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
+    
+        if(hit)
+        {
+            lineRenderer.SetPosition(1, hit.point);
+        }
     }
 
     private void DisableLaser()
