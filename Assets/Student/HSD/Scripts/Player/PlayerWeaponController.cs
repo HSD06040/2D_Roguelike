@@ -23,6 +23,7 @@ public class PlayerWeaponController : MonoBehaviour
         WeaponList = new List<string>(4);
         cam = Camera.main;
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
+        defaultWeapon.Init(transform);
     }
 
     private void Update()
@@ -58,7 +59,7 @@ public class PlayerWeaponController : MonoBehaviour
 
             MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[notSet]);
             //_musicWeapon.Spawn(WeaponSpawnPos[notSet]).GetOrAddComponent<MusicWeapon>();
-
+            weapon.Init(transform);
             musicWeapon = weapon; // 새 무기 할당
             return weapon;
         }

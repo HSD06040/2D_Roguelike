@@ -15,10 +15,10 @@ public static class Manager
     private static void Init()
     {
         GameManager.CreateManager();
-        PoolManager.CreateManager();
+        UI_Manager.CreateManager();
         ResourcesManager.CreateManager();
         AudioManager.CreateManager();
-        UI_Manager.CreateManager();
+        PoolManager.CreateManager();
         DataManager.CreateManager();
     }
 }
