@@ -18,12 +18,10 @@ public class TestLaserProjectile : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             EnableLaser();
+            
         }
 
-        if(Input.GetButton("Fire1"))
-        {
-            UpdateLaser();
-        }
+        UpdateLaser();
 
         if(Input.GetButtonUp("Fire1"))
         {
@@ -38,15 +36,16 @@ public class TestLaserProjectile : MonoBehaviour
 
     private void UpdateLaser()
     {
+        if (!lineRenderer.enabled) return;
         var mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
 
         lineRenderer.SetPosition(0, firePoint.position);
 
         lineRenderer.SetPosition(1, mousePos);
-
+        
         Vector2 direction = mousePos - (Vector2)transform.position;
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude);
-    
+        Debug.Log($"targetPos : {mousePos.x}, {mousePos.y}");
         if(hit)
         {
             lineRenderer.SetPosition(1, hit.point);
@@ -57,4 +56,5 @@ public class TestLaserProjectile : MonoBehaviour
     {
         lineRenderer.enabled = false;
     }
+
 }
