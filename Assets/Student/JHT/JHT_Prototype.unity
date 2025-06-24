@@ -9331,6 +9331,7 @@ GameObject:
   - component: {fileID: 893779686}
   - component: {fileID: 893779685}
   - component: {fileID: 893779684}
+  - component: {fileID: 893779687}
   m_Layer: 0
   m_Name: Demo
   m_TagString: Untagged
@@ -9345,7 +9346,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893779683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a2be34cbcbac54dac071d28473176a, type: 3}
   m_Name: 
@@ -9353,7 +9354,7 @@ MonoBehaviour:
   controller: {fileID: 1080889323}
   weapons:
   - {fileID: -9161120505125623197, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
-  - {fileID: -9161120505125623197, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
+  - {fileID: 8148039345072905975, guid: 10191432e16f2f54eb49b96934cc3523, type: 3}
   - {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
   - {fileID: -6233792134857671220, guid: 9a9f7bbc10170644ea3b743a64feaf56, type: 3}
 --- !u!212 &893779685
@@ -9423,6 +9424,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893779687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893779683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7f06377a32a84ab1c41f91e4a6444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1080889327}
+  weapons:
+  - {fileID: -9161120505125623197, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
+  - {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  - {fileID: -6233792134857671220, guid: 9a9f7bbc10170644ea3b743a64feaf56, type: 3}
+  - {fileID: 8148039345072905975, guid: 10191432e16f2f54eb49b96934cc3523, type: 3}
 --- !u!1 &920135073
 GameObject:
   m_ObjectHideFlags: 0
@@ -11164,10 +11183,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1080889322}
   - component: {fileID: 1080889321}
+  - component: {fileID: 1080889326}
   - component: {fileID: 1080889325}
   - component: {fileID: 1080889324}
   - component: {fileID: 1080889323}
-  - component: {fileID: 1080889326}
+  - component: {fileID: 1080889327}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11253,7 +11273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080889320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 196d307ab4b3c0746a5fed05de9255e5, type: 3}
   m_Name: 
@@ -11290,7 +11310,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080889320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576aaa4a2ccde284aa2b6b4ef06c2308, type: 3}
   m_Name: 
@@ -11326,6 +11346,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1080889327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080889320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cbf032edccdf864eb85a356cb76b083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponSpawnPos:
+  - {fileID: 1523727949}
+  - {fileID: 675080591}
+  - {fileID: 255437018}
+  - {fileID: 965351417}
+  WeaponList: []
+  defaultWeapon: {fileID: 0}
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentWeapon: {fileID: 0}
 --- !u!1 &1096647145
 GameObject:
   m_ObjectHideFlags: 0
@@ -14688,10 +14733,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 4.84, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
