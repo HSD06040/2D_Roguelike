@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
         rigid.velocity = _targetPos * _speed;
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Monster"))

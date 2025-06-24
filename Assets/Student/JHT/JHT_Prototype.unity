@@ -5807,6 +5807,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 4433685329174123603, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9436,7 +9440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c7f06377a32a84ab1c41f91e4a6444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1080889327}
+  controller: {fileID: 0}
   weapons:
   - {fileID: -9161120505125623197, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
   - {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
@@ -11187,7 +11191,6 @@ GameObject:
   - component: {fileID: 1080889325}
   - component: {fileID: 1080889324}
   - component: {fileID: 1080889323}
-  - component: {fileID: 1080889327}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11273,7 +11276,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080889320}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 196d307ab4b3c0746a5fed05de9255e5, type: 3}
   m_Name: 
@@ -11303,6 +11306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
+  status: {fileID: 0}
 --- !u!114 &1080889325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11310,15 +11314,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080889320}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576aaa4a2ccde284aa2b6b4ef06c2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0
   attackPower: 0
+  currentHp: 0
   playerDamageCoolDown: 0
   heartUI: {fileID: 0}
+  status: {}
 --- !u!50 &1080889326
 Rigidbody2D:
   serializedVersion: 4
@@ -11346,31 +11352,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1080889327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080889320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbf032edccdf864eb85a356cb76b083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponSpawnPos:
-  - {fileID: 1523727949}
-  - {fileID: 675080591}
-  - {fileID: 255437018}
-  - {fileID: 965351417}
-  WeaponList: []
-  defaultWeapon: {fileID: 0}
-  weaponSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CurrentWeapon: {fileID: 0}
 --- !u!1 &1096647145
 GameObject:
   m_ObjectHideFlags: 0
@@ -11387,7 +11368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1096647146
 Transform:
   m_ObjectHideFlags: 0
