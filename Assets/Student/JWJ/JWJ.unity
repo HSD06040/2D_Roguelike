@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 282788594}
   - component: {fileID: 282788593}
   - component: {fileID: 282788592}
+  - component: {fileID: 282788595}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -539,6 +540,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282788595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282788591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &283077554
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopView: {fileID: 1563521094}
-  moneyModel: {fileID: 298603959}
   shopUI: {fileID: 1563521089}
 --- !u!1 &284672589
 GameObject:
@@ -871,6 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690715a6b3685646946ba8e64b0e148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 298603957}
   statusCon: {fileID: 298603954}
 --- !u!114 &298603954
 MonoBehaviour:
@@ -931,8 +976,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.04, y: 4.51}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1012,7 +1057,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -493653389, guid: 6cec908052df2994bb8326bdb18990c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1324,6 +1369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNameText: {fileID: 284672591}
   itemPriceText: {fileID: 774439637}
+  itemIcon: {fileID: 0}
   slotButton: {fileID: 412928453}
 --- !u!1 &446489163
 GameObject:
@@ -1809,6 +1855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNameText: {fileID: 512891477}
   itemPriceText: {fileID: 1480086377}
+  itemIcon: {fileID: 0}
   slotButton: {fileID: 739019171}
 --- !u!114 &739019171
 MonoBehaviour:
@@ -2660,7 +2707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1563521090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2761,7 +2808,7 @@ MonoBehaviour:
   - {fileID: 1950772999}
   - {fileID: 0}
   buyButton: {fileID: 1683107824}
-  shopUI: {fileID: 1563521089}
+  background: {fileID: 0}
 --- !u!1 &1683107822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNameText: {fileID: 2091906483}
   itemPriceText: {fileID: 1849263906}
+  itemIcon: {fileID: 0}
   slotButton: {fileID: 1950773000}
 --- !u!114 &1950773000
 MonoBehaviour:
@@ -3737,7 +3785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2008808740
 MonoBehaviour:
   m_ObjectHideFlags: 0
