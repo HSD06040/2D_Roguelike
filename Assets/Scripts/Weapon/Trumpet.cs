@@ -9,7 +9,7 @@ public class Trumpet : MusicWeapon
 
     public override void Attack(Vector2 mousePosition)
     {
-        Vector2 pos = mousePosition.normalized;
+        Vector2 pos = (mousePosition - (Vector2)player.position).normalized;
         if (weaponCor == null)
         {
             Debug.Log($"{gameObject.name}");

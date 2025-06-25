@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Condition
 {
-    Equal, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqualOrEqual
+    Equal, Greater, GreaterOrEqual, Less, LessOrEqual
 }
 
 public class PassiveEffect : ItemEffect
@@ -18,22 +18,48 @@ public class PassiveEffect : ItemEffect
     [Header("Modifier")]
     [SerializeField] private StatType modifierStat;
     [SerializeField] private float modifierValue;
-    private bool isAdding;
+    public bool isAdding;
 
-    public override void Active(string source)
+    public override void Active(string _source, int _upgrade)
     {
         if (isAdding) return;
 
+        Manager.Data.PlayerStatus.AddStat(modifierStat, value, _source);
+
+        isAdding = true;
+    }
+
+    public override void Check(string _source, int _upgrade)
+    {
         float currentStat = Manager.Data.PlayerStatus.GetStat(statType);
 
-        switch (condition)
+        if (IsConditionMet(currentStat))
         {
-            case Condition.Equal:
-                if(currentStat == value)
-                {
-
-                }
-                break;
+            Active($"{_source}_{_upgrade}", _upgrade);
         }
+        else if (isAdding)
+        {
+            DeActive($"{_source}_{_upgrade}", _upgrade);
+        }
+    }
+
+    private bool IsConditionMet(float currentStat)
+    {
+        return condition switch
+        {
+            Condition.Equal => Mathf.Approximately(currentStat, value),
+            Condition.Greater => currentStat > value,
+            Condition.Less => currentStat < value,
+            Condition.GreaterOrEqual => currentStat >= value,
+            Condition.LessOrEqual => currentStat <= value,
+            _ => false
+        };
+    }
+
+    public override void DeActive(string _source, int _upgrade)
+    {
+        if (!isAdding) return;
+
+        isAdding = false;
     }
 }
