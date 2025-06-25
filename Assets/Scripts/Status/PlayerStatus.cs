@@ -31,6 +31,7 @@ public class PlayerStatus
 
     public Action<int, MusicWeapon> OnChangedWeapon;
     public Action<int> OnCurrentWeaponChanged;
+    public Action OnPlayerDead;
 
     public void AddWeapon(MusicWeaponType musicWeaponType)
     {

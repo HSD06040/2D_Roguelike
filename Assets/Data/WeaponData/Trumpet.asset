@@ -21,7 +21,7 @@ MonoBehaviour:
   Price: 42
   Type: 2
   AttackDamage: 2
-  AttackSpeed: 0
+  AttackSpeed: 3
   WeaponOverride: {fileID: 0}
   AttackRange: 5
   AttackRadius: 60
