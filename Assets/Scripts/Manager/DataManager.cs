@@ -7,7 +7,7 @@ public class DataManager : Singleton<DataManager>
 {
     public Property<int> Gold = new();
 
-    public PlayerStatus playerStatus = new();
+    public PlayerStatus PlayerStatus = new();
 
     public Weapon[] WeaponDatas;
     public MusicWeapon[] musicWeapons;
@@ -27,7 +27,7 @@ public class DataManager : Singleton<DataManager>
 
     private void Start()
     {
-        playerStatus.AddBindEvent();
+        PlayerStatus.AddBindEvent();
     }
 
     public bool IsHaveGold(int amount)

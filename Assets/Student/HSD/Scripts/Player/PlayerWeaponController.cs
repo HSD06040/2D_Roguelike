@@ -19,19 +19,19 @@ public class PlayerWeaponController : MonoBehaviour
         cam = Camera.main;
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
         defaultWeapon.Init(transform);
-        weaponSlots = Manager.Data.playerStatus.PlayerWeapons;       
+        weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;       
     }
 
     private void OnEnable()
     {
-        Manager.Data.playerStatus.OnChangedWeapon += AddMusicWeapon;
-        Manager.Data.playerStatus.OnCurrentWeaponChanged += WeaponSwitch;
+        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
+        Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
     }
 
     private void OnDisable()
     {
-        Manager.Data.playerStatus.OnChangedWeapon -= AddMusicWeapon;
-        Manager.Data.playerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
+        Manager.Data.PlayerStatus.OnChangedWeapon -= AddMusicWeapon;
+        Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
     }
 
     private void Update()

@@ -40,6 +40,6 @@ public class WeaponSlot : MonoBehaviour
         if (_weapon == null) return;
         
         weaponImages[_idx].sprite = _weapon.WeaponData.icon;
-        weaponImages[_idx].color = Manager.Data.playerStatus.currentWeaponIdx == _idx ? Color.white : Color.black;
+        weaponImages[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.black;
     }
 }
