@@ -6,7 +6,7 @@ public class ViolinProjectile : Projectile
 {
     public LineRenderer LineRender;
 
-    [SerializeField][Range(50,100)] private int pointSize; //점의 갯수
+    [SerializeField][Range(1,50)] private int pointSize; //점의 갯수
     [SerializeField] private float vibration = 0.8f;
     [SerializeField] private LayerMask targetLayer;
 
@@ -39,14 +39,15 @@ public class ViolinProjectile : Projectile
         Vector2 end = targetPos;
 
         Vector2 direction = end - start;
-        float directionDistance = direction.magnitude;
         Vector2 directionNormal = direction.normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(start, directionNormal, directionDistance,targetLayer);
-
-        //쭉 날라간다 하면 이거 필요없음
-        //if (directionDistance < 5) pointSize = 10;
-        //else if (directionDistance < 10 && directionDistance > 5) pointSize = 15;
+        RaycastHit2D hit = Physics2D.Raycast(start, directionNormal, 100,targetLayer);
+        Vector2 rayPos = Vector2.zero;
+        if(hit)
+        {
+            rayPos = hit.collider.transform.position;
+            Debug.Log($"hitPos : {hit.collider.name} , {hit.collider.transform.position}");
+        }
 
 
         for (int i = 0; i < pointSize; i++)
@@ -72,10 +73,7 @@ public class ViolinProjectile : Projectile
             }
             else if (i == pointSize - 1)
             {
-                LineRender.SetPosition(pointSize - 1, targetPos);
-            }
-            else if(hit)
-            {
+                //hit.point가 적 또는 wall layer일경우 멈춤
                 LineRender.SetPosition(pointSize - 1, hit.point);
             }
             else
@@ -107,3 +105,4 @@ public class ViolinProjectile : Projectile
     }
 
 }
+ 
