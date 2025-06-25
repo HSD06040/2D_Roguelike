@@ -15,7 +15,7 @@ public class PlayerStatusController : StatusController
     {
         base.Start();
 
-        status = Manager.Data.playerStatus;
+        status = Manager.Data.PlayerStatus;
         //heartUI.InicialHearts(maxHp); //하트 생성
     }
     public override void TakeDamage(int damage)

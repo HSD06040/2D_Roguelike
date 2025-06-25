@@ -13,13 +13,13 @@ public class WeaponSlotPresenter
 
     public void AddEvent()
     {
-        Manager.Data.playerStatus.OnChangedWeapon += weaponSlot.UpdateWeaponSlot;
-        Manager.Data.playerStatus.OnCurrentWeaponChanged += weaponSlot.ChangeSlot;
+        Manager.Data.PlayerStatus.OnChangedWeapon += weaponSlot.UpdateWeaponSlot;
+        Manager.Data.PlayerStatus.OnCurrentWeaponChanged += weaponSlot.ChangeSlot;
     }
 
     public void RemoveEvent()
     {
-        Manager.Data.playerStatus.OnChangedWeapon -= weaponSlot.UpdateWeaponSlot;
-        Manager.Data.playerStatus.OnCurrentWeaponChanged -= weaponSlot.ChangeSlot;
+        Manager.Data.PlayerStatus.OnChangedWeapon -= weaponSlot.UpdateWeaponSlot;
+        Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= weaponSlot.ChangeSlot;
     }
 }
