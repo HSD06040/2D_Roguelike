@@ -23,4 +23,6 @@ public class Property<T>
             OnChanged -= action;
         }
     }
+
+
 }
