@@ -66,7 +66,12 @@ MonoBehaviour:
   maxTime: 0
   IsPass: 0
   rigid: {fileID: 6089548101021931945}
-  LineRenderer: {fileID: 4345575494730030453}
+  LineRender: {fileID: 4345575494730030453}
+  pointSize: 16
+  vibration: 0.8
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 576
 --- !u!50 &6089548101021931945
 Rigidbody2D:
   serializedVersion: 4
@@ -201,10 +206,18 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 4.75, y: 0, z: 1}
+  - {x: 1, y: 0.37, z: 1}
+  - {x: 2, y: -0.39, z: 1}
+  - {x: 3, y: 0.15, z: 1}
+  - {x: 4, y: 0, z: 1}
+  - {x: 5, y: 0, z: 1}
+  - {x: 6, y: 0, z: 1}
+  - {x: 7, y: 0, z: 1}
+  - {x: 8, y: 0, z: 1}
+  - {x: 9, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
