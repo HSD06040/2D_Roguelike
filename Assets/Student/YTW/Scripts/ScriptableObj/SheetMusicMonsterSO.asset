@@ -15,7 +15,7 @@ MonoBehaviour:
   health: 50
   attackPower: 10
   moveSpeed: 3
-  chaseRange: 15
+  chaseRange: 5
   meleeAttackRange: 1.5
   meleeAttackAngle: 90
   meleeAttackCooldown: 2
