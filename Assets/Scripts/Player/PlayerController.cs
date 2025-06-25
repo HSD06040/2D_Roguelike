@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
 {  //스페이스바 대쉬 구현해야함
 
     [Header("플레이어")]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public SpriteRenderer spriteRenderer;
     [SerializeField] private float dashSpeed; //대시스피드
-    [SerializeField] private float dashDuration; //대시시간
+    [SerializeField] public float dashDuration; //대시시간
     [SerializeField] private float dashCoolDown;
 
+    private Afterimage afterimage;
     private bool isDashing = false;
     private bool canDash = true;
 
@@ -26,7 +27,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {        
         weaponCon = GetComponent<PlayerWeaponController>();
-        rigid = GetComponent<Rigidbody2D>();       
+        rigid = GetComponent<Rigidbody2D>();
+        afterimage = GetComponent<Afterimage>();
     }
 
     private void Update()
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        afterimage.DashAfterImageOn();
         isDashing = true;
         canDash = false;
 
