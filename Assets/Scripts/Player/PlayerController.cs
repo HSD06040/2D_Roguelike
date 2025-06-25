@@ -10,6 +10,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("플레이어")]
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float dashSpeed; //대시스피드
+    [SerializeField] private float dashDuration; //대시시간
+    [SerializeField] private float dashCoolDown;
+
+    private bool isDashing = false;
+    private bool canDash = true;
 
     public PlayerStatusController statusCon;    
 
@@ -26,11 +32,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         LookAtMouse();
+        PlayerDash();
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if(!isDashing)
+        {
+            Move();
+        }
+
     }
 
     private void Move()  //플레이어 이동 함수
@@ -54,5 +65,30 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    private void PlayerDash()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && canDash && !isDashing && movemoent != Vector2.zero)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        isDashing = true;
+        canDash = false;
+
+        Vector2 dasDir = movemoent.normalized;
+        rigid.velocity = dasDir * dashSpeed;
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCoolDown);
+
+        canDash = true;
     }
 }

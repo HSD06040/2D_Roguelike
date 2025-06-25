@@ -14322,6 +14322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1080889321}
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCoolDown: 1
   statusCon: {fileID: 1080889325}
 --- !u!114 &1080889325
 MonoBehaviour:
