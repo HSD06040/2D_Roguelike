@@ -23,6 +23,6 @@ public class AnimationEventProxy : MonoBehaviour
 
     public void OnAttackEndEvent()
     {
-        (attackHandler as SheetMusicMonsterFSM)?.OnAttackAnimationFinished();
+        attackHandler?.OnAttackAnimationFinished();
     }
 }

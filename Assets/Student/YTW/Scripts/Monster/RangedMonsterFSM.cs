@@ -1,23 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
 
 public class RangedMonsterFSM : MonsterFSM
 {
     [field: SerializeField] public RangedMonsterSO SO { get; private set; }
 
-
     public Ranged_IdleState IdleState { get; private set; }
     public Ranged_RepositionState RepositionState { get; private set; }
     public Ranged_AttackState AttackState { get; private set; }
+    public Ranged_DieState DieState { get; private set;}
 
     public float lastAttackTime; 
 
     protected override void Awake()
     {
         base.Awake();
-
         
         Agent.stoppingDistance = 0.1f;
 
@@ -27,12 +29,34 @@ public class RangedMonsterFSM : MonsterFSM
         IdleState = new Ranged_IdleState(this);
         RepositionState = new Ranged_RepositionState(this);
         AttackState = new Ranged_AttackState(this);
+        DieState = new Ranged_DieState(this);
     }
 
     private void Start()
     {
+        lastAttackTime = -SO.attackCooldown;
         StateMachine.Initialize(IdleState);
     }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(Owner.CurrentHealth <= 0 && !(StateMachine.CurrentState is Ranged_DieState))
+        {
+            StateMachine.ChangeState(DieState);
+        }
+    }
+
+    public override void AnimationAttackTrigger()
+    {
+        (StateMachine.CurrentState as Ranged_AttackState)?.TriggerAttack();
+    }
+
+    public override void OnAttackAnimationFinished()
+    {
+        StateMachine.ChangeState(RepositionState);
+    }
+
     public void FindAndSetNewWanderPosition()
     {
         if (Player == null) return;
@@ -71,73 +95,96 @@ public class RangedMonsterFSM : MonsterFSM
 
 public class Ranged_IdleState : BaseState
 {
-    private RangedMonsterFSM _fsm;
-    public Ranged_IdleState(RangedMonsterFSM fsm) : base(fsm) => _fsm = fsm;
+    private RangedMonsterFSM _rangedFSM;
+    public Ranged_IdleState(RangedMonsterFSM fsm) : base(fsm) => _rangedFSM = fsm;
+
+    public override void Enter()
+    {
+        _rangedFSM.Owner.Animator.SetBool("IsChasing", false);
+    }
 
     public override void Update()
     {
         // 플레이어가 탐지 범위 안에 들어왔다면
-        if (_fsm.GetSqrDistanceToPlayer() <= _fsm.SO.detectionRange * _fsm.SO.detectionRange)
+        if (_rangedFSM.GetSqrDistanceToPlayer() <= _rangedFSM.SO.detectionRange * _rangedFSM.SO.detectionRange)
         {
             // 다음 행동(위치 변경) 상태로 전환
-            _fsm.StateMachine.ChangeState(_fsm.RepositionState);
+            _rangedFSM.StateMachine.ChangeState(_rangedFSM.RepositionState);
         }
     }
 }
 
 public class Ranged_RepositionState : BaseState
 {
-    private RangedMonsterFSM _fsm;
-    public Ranged_RepositionState(RangedMonsterFSM fsm) : base(fsm) => _fsm = fsm;
+    private RangedMonsterFSM _rangedFSM;
+    public Ranged_RepositionState(RangedMonsterFSM fsm) : base(fsm) => _rangedFSM = fsm;
 
     public override void Enter()
     {
-        _fsm.Agent.isStopped = false;
-        _fsm.FindAndSetNewWanderPosition(); 
+        _rangedFSM.Agent.isStopped = false;
+        _rangedFSM.Owner.Animator.SetBool("IsChasing", true);
+        _rangedFSM.FindAndSetNewWanderPosition(); 
     }
 
     public override void Update()
     {
-        _fsm.Owner.Flip(_fsm.Player);
+        _rangedFSM.Owner.Flip(_rangedFSM.Player);
 
         // 목적지에 거의 도착했고 공격 쿨타임이 다 되었다면 공격 상태로 전환
-        if (!_fsm.Agent.pathPending && _fsm.Agent.remainingDistance <= _fsm.Agent.stoppingDistance)
+        if (!_rangedFSM.Agent.pathPending && _rangedFSM.Agent.remainingDistance <= _rangedFSM.Agent.stoppingDistance)
         {
-            if (Time.time >= _fsm.lastAttackTime + _fsm.SO.attackCooldown)
+            if (Time.time >= _rangedFSM.lastAttackTime + _rangedFSM.SO.attackCooldown)
             {
-                _fsm.StateMachine.ChangeState(_fsm.AttackState);
+                _rangedFSM.StateMachine.ChangeState(_rangedFSM.AttackState);
+            }
+            else
+            {
+                _rangedFSM.FindAndSetNewWanderPosition();
             }
         }
     }
 }
 public class Ranged_AttackState : BaseState
 {
-    private RangedMonsterFSM _fsm;
-    public Ranged_AttackState(RangedMonsterFSM fsm) : base(fsm) => _fsm = fsm;
+    private RangedMonsterFSM _rangedFSM
+        ;
+    public Ranged_AttackState(RangedMonsterFSM fsm) : base(fsm) => _rangedFSM = fsm;
 
     public override void Enter()
     {
-        _fsm.Agent.isStopped = true;
-        _fsm.Agent.ResetPath();
-
-        _fsm.Owner.Flip(_fsm.Player); 
-
-        FireNote();
-
-        _fsm.lastAttackTime = Time.time;
-
-        _fsm.StateMachine.ChangeState(_fsm.RepositionState);
+        _rangedFSM.Agent.isStopped = true;
+        _rangedFSM.Agent.ResetPath();
+        _rangedFSM.Owner.Flip(_rangedFSM.Player);
+        _rangedFSM.Owner.Animator.SetTrigger("Attack");
+        _rangedFSM.lastAttackTime = Time.time;
     }
 
-    private void FireNote()
+    public void TriggerAttack()
     {
-        if (_fsm.SO.notePrefab == null || _fsm.Player == null) return;
+        if (_rangedFSM.SO.notePrefab == null || _rangedFSM.Player == null) return;
 
-        GameObject note = Object.Instantiate(_fsm.SO.notePrefab, _fsm.transform.position, Quaternion.identity);
+        GameObject note = UnityEngine.Object.Instantiate(_rangedFSM.SO.notePrefab, _rangedFSM.transform.position, Quaternion.identity);
         NoteController noteController = note.GetComponent<NoteController>();
+        Vector2 direction = (_rangedFSM.Player.position - _rangedFSM.transform.position).normalized;
+        noteController.Initialize(direction, _rangedFSM.SO.noteSpeed, _rangedFSM.SO.attackPower);
+    }
+}
 
-        Vector2 direction = (_fsm.Player.position - _fsm.transform.position).normalized;
+public class Ranged_DieState : BaseState
+{
+    private RangedMonsterFSM _rangedFSM;
+    public Ranged_DieState(RangedMonsterFSM fsm) : base(fsm) => _rangedFSM = fsm;
 
-        noteController.Initialize(direction, _fsm.SO.noteSpeed, _fsm.SO.attackPower);
+    public override void Enter()
+    {
+        _rangedFSM.Agent.isStopped = true;
+        if (_rangedFSM.Owner.TryGetComponent<Collider2D>(out var collider))
+        {
+            collider.enabled = false;
+        }
+
+        _rangedFSM.Owner.Animator.SetTrigger("Die");
+
+        // 코인 드랍 예정
     }
 }

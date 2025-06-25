@@ -5,13 +5,15 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
-    [field: SerializeField] public float AttackPower { get; protected set; } = 10f; 
+    [field: SerializeField] public float AttackPower { get; protected set; } = 10f;
+
+
     public float CurrentHealth { get; protected set; }
 
     public StateMachine StateMachine { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
-    public int FacingDirection { get; protected set; } = 1;
+    public int FacingDirection { get; protected set; }
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;

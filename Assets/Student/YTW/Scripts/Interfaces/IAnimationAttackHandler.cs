@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IAnimationAttackHandler
 {
     void AnimationAttackTrigger();
+    void OnAttackAnimationFinished();
 }

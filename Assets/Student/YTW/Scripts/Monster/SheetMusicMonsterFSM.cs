@@ -51,7 +51,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
         (StateMachine.CurrentState as SheetMusic_MeleeAttackState)?.TriggerAttack();
     }
 
-    public void OnAttackAnimationFinished()
+    public override void OnAttackAnimationFinished()
     {
         StateMachine.ChangeState(ChaseState);
     }
@@ -90,12 +90,12 @@ public class SheetMusic_IdleState : BaseState
     public override void Update()
     {
         if (_fsm.Player == null) return;
-        _fsm.Owner.Flip(_fsm.Player);
+        _sheetFSM.Owner.Flip(_sheetFSM.Player);
 
-        float sqrDistance = _fsm.GetSqrDistanceToPlayer();
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
         if (sqrDistance <= _sheetFSM.ChaseRangeSqr)
         {
-            _fsm.StateMachine.ChangeState(_sheetFSM.ChaseState);
+            _sheetFSM.StateMachine.ChangeState(_sheetFSM.ChaseState);
         }
     }
 }
@@ -111,15 +111,15 @@ public class SheetMusic_ChaseState : BaseState
 
     public override void Update()
     {
-        if (_fsm.Player == null)
+        if (_sheetFSM.Player == null)
         {
-            _fsm.StateMachine.ChangeState(_sheetFSM.IdleState);
+            _sheetFSM.StateMachine.ChangeState(_sheetFSM.IdleState);
             return;
         }
 
-        _fsm.Owner.Flip(_fsm.Player);
+        _sheetFSM.Owner.Flip(_sheetFSM.Player);
 
-        float sqrDistance = _fsm.GetSqrDistanceToPlayer();
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
 
         // 플레이어가 공격 범위 안에 있을 때
         if (sqrDistance <= _sheetFSM.AttackRangeSqr)
@@ -132,7 +132,7 @@ public class SheetMusic_ChaseState : BaseState
             if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown)
             {
                 // 쿨타임이 끝났다면 공격 상태로 전환
-                _fsm.StateMachine.ChangeState(_sheetFSM.MeleeAttackState);
+                _sheetFSM.StateMachine.ChangeState(_sheetFSM.MeleeAttackState);
             }
             // 쿨타임 중이라면, 이 상태에 머무르며 제자리에서 대기합니다 (Idle 상태).
         }
@@ -142,12 +142,12 @@ public class SheetMusic_ChaseState : BaseState
             // 추격을 시작
             _sheetFSM.Agent.isStopped = false;
             _sheetFSM.Owner.Animator.SetBool("IsChasing", true);
-            _sheetFSM.Agent.SetDestination(_fsm.Player.position);
+            _sheetFSM.Agent.SetDestination(_sheetFSM.Player.position);
 
             // 만약 플레이어가 추격 범위마저 벗어났다면, 비전투 Idle 상태로
             if (sqrDistance > _sheetFSM.ChaseRangeSqr)
             {
-                _fsm.StateMachine.ChangeState(_sheetFSM.IdleState);
+                _sheetFSM.StateMachine.ChangeState(_sheetFSM.IdleState);
             }
         }
     }
@@ -168,22 +168,23 @@ public class SheetMusic_MeleeAttackState : BaseState
     {
         _sheetFSM.Agent.isStopped = true;
         _sheetFSM.lastAttackTime = Time.time;
-        _fsm.Owner.Animator.SetTrigger("Attack");
+        _sheetFSM.Owner.Animator.SetTrigger("Attack");
+        if (_sheetFSM.Player != null)
+        {
+            _sheetFSM.Owner.Flip(_sheetFSM.Player);
+        }
     }
 
     public override void Update()
     {
-        if (_fsm.Player != null)
-        {
-            _fsm.Owner.Flip(_fsm.Player);
-        }
+       
     }
 
     public void TriggerAttack()
     {
-        float sqrDistance = _fsm.GetSqrDistanceToPlayer();
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
 
-        if (sqrDistance <= _sheetFSM.AttackRangeSqr && _fsm.Player != null)
+        if (sqrDistance <= _sheetFSM.AttackRangeSqr && _sheetFSM.Player != null)
         {
             Debug.Log($"플레이어에게 {_sheetFSM.SO.attackPower} 데미지를 입혔습니다");
             // TODO : 실제 플레이어에게 데미지를 주는 코드를 여기에 작성 예정
@@ -210,12 +211,12 @@ public class SheetMusic_DieState : BaseState
     {
         // 죽는 순간 모든 상호작용 비활성화
         _sheetFSM.Agent.isStopped = true;
-        if (_fsm.Owner.TryGetComponent<Collider2D>(out var collider))
+        if (_sheetFSM.Owner.TryGetComponent<Collider2D>(out var collider))
         {
             collider.enabled = false;
         }
 
-        _fsm.Owner.Animator.SetTrigger("Die");
+        _sheetFSM.Owner.Animator.SetTrigger("Die");
 
         //  아이템 드랍 로직
         DropItems();
