@@ -22,7 +22,8 @@ public class DataManager : Singleton<DataManager>
         downloader = new DataDownloader();
         StartCoroutine(downloader.DownloadData());
 
-        playerStatus.Speed.SetBaseStat(5);
+        PlayerStatus.Speed.SetBaseStat(5);
+        PlayerStatus.MaxHp.SetBaseStat(10); //플레이어 최대체력 추가
     }
 
     private void Start()
