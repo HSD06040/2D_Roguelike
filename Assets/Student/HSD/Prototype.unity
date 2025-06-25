@@ -14215,6 +14215,7 @@ GameObject:
   - component: {fileID: 1080889323}
   - component: {fileID: 1080889326}
   - component: {fileID: 1080889327}
+  - component: {fileID: 1080889328}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -14284,7 +14285,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: -19.88, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 462950723}
@@ -14322,6 +14323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1080889321}
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCoolDown: 1
   statusCon: {fileID: 1080889325}
 --- !u!114 &1080889325
 MonoBehaviour:
@@ -14419,6 +14423,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0372883, y: 1.804}
   m_EdgeRadius: 0
+--- !u!114 &1080889328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080889320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716ca9dc7b6cf064fa0441525a69afc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 8473563375115027891, guid: 9b97e77643439614e9ea5903234eb0db, type: 3}
+  playerPos: {fileID: 1080889322}
+  numberOfImages: 10
+  fadeDuration: 0.2
 --- !u!1 &1108278054
 GameObject:
   m_ObjectHideFlags: 0

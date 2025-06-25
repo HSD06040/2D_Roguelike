@@ -21,7 +21,7 @@ public class PlayerStatusController : StatusController
         //heartUI.InicialHearts((int)status.MaxHp.Value); //최대체력만큼 하트 생성
         //status.CurtHp.Value = (int)status.MaxHp.Value;
 
-        status.CurtHp.AddEvent(heartUI.HeartUpdate);
+        //status.CurtHp.AddEvent(heartUI.HeartUpdate);
 
     
     }
