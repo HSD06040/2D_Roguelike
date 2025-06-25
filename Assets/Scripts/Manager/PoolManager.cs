@@ -148,7 +148,7 @@ public class PoolManager : Singleton<PoolManager>
             {
                 Destroy(go);
             },
-            maxSize: 5
+            maxSize: 10
         );
 
         poolDic.Add(name, pool);

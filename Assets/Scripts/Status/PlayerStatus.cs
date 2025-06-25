@@ -18,7 +18,7 @@ public class PlayerStatus
     public FloatStat Speed { get; private set; } = new(); // 스피드 값
     public FloatStat AttackSpeed { get; private set; } = new(); // 퍼센트
 
-    public Property<int> CurtHp;
+    public Property<int> CurtHp = new Property<int>();
 
     public bool Invincible;
     // 플레이어가 현재 가지고 있는 무기 (나중에 추가)

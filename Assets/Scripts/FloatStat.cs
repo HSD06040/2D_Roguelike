@@ -23,7 +23,7 @@ public class FloatStat
     private bool isChanged;
     private float lastValue;
 
-    private Action<float> OnChanged;
+    public Action<float> OnChanged;
 
     public float Value
     {

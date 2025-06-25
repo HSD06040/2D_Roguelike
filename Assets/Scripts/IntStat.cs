@@ -11,7 +11,7 @@ public class IntStat
     private bool isChanged;
     private int lastValue;
 
-    private Action<int> OnChanged;
+    public Action<int> OnChanged;
 
     public int Value
     {
@@ -47,7 +47,13 @@ public class IntStat
         OnChanged.Invoke(Value);
     }
 
-    public void SetBaseStat(int value) => this.value = value;
+    public void SetBaseStat(int value)
+    {
+        this.value = value;
+        isChanged = true;
+    }
+    
+
 
     public void Clear() => modifiers.Clear();
 }
