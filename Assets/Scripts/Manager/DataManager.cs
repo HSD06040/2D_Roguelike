@@ -20,7 +20,9 @@ public class DataManager : Singleton<DataManager>
         musicWeapons = Resources.LoadAll<MusicWeapon>("Weapon");
 
         downloader = new DataDownloader();
-        StartCoroutine(downloader.DownloadData());        
+        StartCoroutine(downloader.DownloadData());
+
+        playerStatus.Speed.SetBaseStat(5);
     }
 
     private void Start()

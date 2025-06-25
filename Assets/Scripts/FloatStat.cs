@@ -25,11 +25,11 @@ public class FloatStat
 
     private Action<float> OnChanged;
 
-    public float Value 
-    { 
-        get 
-        {  
-            if(isChanged)
+    public float Value
+    {
+        get
+        {
+            if (isChanged)
             {
                 lastValue = value;
 
@@ -42,7 +42,7 @@ public class FloatStat
             }
 
             return lastValue;
-        } 
+        }
     }
 
     public void AddModifier(float value, string source)
@@ -59,7 +59,12 @@ public class FloatStat
         OnChanged?.Invoke(Value);
     }
 
-    public void SetBaseStat(float value) => this.value = value;
+    public void SetBaseStat(float value)
+    {
+        this.value = value;
+        isChanged = true;
+    }
+   
 
     public void Clear() => modifiers.Clear();
 }
