@@ -1,67 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEditor;
 
 public class SheetMusicMonsterFSM : MonsterFSM
 {
     [field: SerializeField] public SheetMusicMonsterSO SO { get; private set; }
 
-    public NavMeshAgent Agent { get; private set; }
+    public float ChaseRangeSqr { get; private set; }
+    public float AttackRangeSqr { get; private set; }
     public SheetMusic_IdleState IdleState { get; private set; }
     public SheetMusic_ChaseState ChaseState { get; private set; }
-    public SheetMusic_MeleeAttackState MeleeAttackState { get; private set; } 
-    public bool IsPlayerInAttackRange { get; private set; } = false;
+    public SheetMusic_MeleeAttackState MeleeAttackState { get; private set; }
+    public SheetMusic_DieState DieState { get; private set; }
 
     public float lastAttackTime;
-
 
     protected override void Awake()
     {
         base.Awake();
-        Agent = GetComponent<NavMeshAgent>();
 
-        Agent.stoppingDistance = SO.meleeAttackRange;
-        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
         Agent.speed = SO.moveSpeed;
+        Agent.stoppingDistance = SO.meleeAttackRange;
+        Owner.SetStats(SO.health, SO.attackPower);
+
+        ChaseRangeSqr = SO.chaseRange * SO.chaseRange;
+        AttackRangeSqr = SO.meleeAttackRange * SO.meleeAttackRange;
 
         IdleState = new SheetMusic_IdleState(this);
         ChaseState = new SheetMusic_ChaseState(this);
         MeleeAttackState = new SheetMusic_MeleeAttackState(this);
+        DieState = new SheetMusic_DieState(this);
     }
 
     private void Start()
     {
+        lastAttackTime = -SO.meleeAttackCooldown;
         StateMachine.Initialize(IdleState);
     }
+    protected override void Update()
+    {
+        base.Update();
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        if (Owner.CurrentHealth <= 0 && !(StateMachine.CurrentState is SheetMusic_DieState))
         {
-            IsPlayerInAttackRange = true;
+            StateMachine.ChangeState(DieState);
         }
     }
-    private void OnTriggerExit2D(Collider2D other)
+
+    // ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+    public override void AnimationAttackTrigger()
     {
-        if (other.CompareTag("Player"))
-        {
-            IsPlayerInAttackRange = false;
-        }
+        (StateMachine.CurrentState as SheetMusic_MeleeAttackState)?.TriggerAttack();
     }
+
+    public override void OnAttackAnimationFinished()
+    {
+        StateMachine.ChangeState(ChaseState);
+    }
+
+    // ---0--------------------
+
 
     private void OnDrawGizmosSelected()
     {
         if (SO == null) return;
 
-        // Ãß°Ý ¹üÀ§ (³ë¶õ»ö ¿ø)
+        // ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, SO.chaseRange);
 
-        // °ø°Ý ¹üÀ§ (»¡°£»ö ¿ø)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, SO.meleeAttackRange);
     }
@@ -75,15 +81,21 @@ public class SheetMusic_IdleState : BaseState
     {
         _sheetFSM = fsm;
     }
+    public override void Enter()
+    {
+        _sheetFSM.Agent.isStopped = true;
+        _sheetFSM.Owner.Animator.SetBool("IsChasing", false);
+    }
 
     public override void Update()
     {
-        _fsm.Owner.Flip(_fsm.Player);
+        if (_fsm.Player == null) return;
+        _sheetFSM.Owner.Flip(_sheetFSM.Player);
 
-        float sqrDistance = _fsm.GetSqrDistanceToPlayer();
-        if (sqrDistance <= _sheetFSM.SO.chaseRange * _sheetFSM.SO.chaseRange)
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
+        if (sqrDistance <= _sheetFSM.ChaseRangeSqr)
         {
-            _fsm.StateMachine.ChangeState(_sheetFSM.ChaseState);
+            _sheetFSM.StateMachine.ChangeState(_sheetFSM.ChaseState);
         }
     }
 }
@@ -97,42 +109,56 @@ public class SheetMusic_ChaseState : BaseState
         _sheetFSM = fsm;
     }
 
-    public override void Enter()
-    {
-        _sheetFSM.Agent.isStopped = false; 
-        _sheetFSM.Agent.speed = _sheetFSM.SO.moveSpeed;
-    }
-
     public override void Update()
     {
-        _fsm.Owner.Flip(_fsm.Player);
-
-        if (_fsm.Player != null)
+        if (_sheetFSM.Player == null)
         {
-            _sheetFSM.Agent.SetDestination(_fsm.Player.position);
-        }
-
-        //  ÇÃ·¹ÀÌ¾î°¡ °ø°Ý ¹üÀ§ Æ®¸®°Å ¾È¿¡ µé¾î¿À¸é °ø°Ý »óÅÂ·Î ÀüÈ¯
-        if (_sheetFSM.IsPlayerInAttackRange)
-        {
-            _fsm.StateMachine.ChangeState(_sheetFSM.MeleeAttackState);
+            _sheetFSM.StateMachine.ChangeState(_sheetFSM.IdleState);
             return;
         }
 
-        // Ãß°Ý ¹üÀ§¸¦ ¹þ¾î³ª¸é ´ë±â »óÅÂ·Î ÀüÈ¯
-        float sqrDistance = _fsm.GetSqrDistanceToPlayer();
-        if (sqrDistance > _sheetFSM.SO.chaseRange * _sheetFSM.SO.chaseRange)
+        _sheetFSM.Owner.Flip(_sheetFSM.Player);
+
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
+
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        if (sqrDistance <= _sheetFSM.AttackRangeSqr)
         {
-            _fsm.StateMachine.ChangeState(_sheetFSM.IdleState);
+            // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            _sheetFSM.Agent.isStopped = true;
+            _sheetFSM.Owner.Animator.SetBool("IsChasing", false);
+
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+            if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown)
+            {
+                // ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
+                _sheetFSM.StateMachine.ChangeState(_sheetFSM.MeleeAttackState);
+            }
+            // ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½ (Idle ï¿½ï¿½ï¿½ï¿½).
+        }
+        // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        else
+        {
+            // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            _sheetFSM.Agent.isStopped = false;
+            _sheetFSM.Owner.Animator.SetBool("IsChasing", true);
+            _sheetFSM.Agent.SetDestination(_sheetFSM.Player.position);
+
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½Ù¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Idle ï¿½ï¿½ï¿½Â·ï¿½
+            if (sqrDistance > _sheetFSM.ChaseRangeSqr)
+            {
+                _sheetFSM.StateMachine.ChangeState(_sheetFSM.IdleState);
+            }
         }
     }
+    public override void Exit()
+    {
+        _sheetFSM.Agent.isStopped = true;
+    }
 }
-
 public class SheetMusic_MeleeAttackState : BaseState
 {
     private SheetMusicMonsterFSM _sheetFSM;
-    private float _attackStartTime;
-
     public SheetMusic_MeleeAttackState(SheetMusicMonsterFSM fsm) : base(fsm)
     {
         _sheetFSM = fsm;
@@ -140,40 +166,29 @@ public class SheetMusic_MeleeAttackState : BaseState
 
     public override void Enter()
     {
-        _sheetFSM.Agent.isStopped = true; // °ø°Ý Áß¿¡´Â ÀÌµ¿ ¸ØÃã
+        _sheetFSM.Agent.isStopped = true;
+        _sheetFSM.lastAttackTime = Time.time;
+        _sheetFSM.Owner.Animator.SetTrigger("Attack");
+        if (_sheetFSM.Player != null)
+        {
+            _sheetFSM.Owner.Flip(_sheetFSM.Player);
+        }
     }
 
     public override void Update()
     {
-        _fsm.Owner.Flip(_fsm.Player);
-
-        // [¼öÁ¤] ÇÃ·¹ÀÌ¾î°¡ °ø°Ý ¹üÀ§¸¦ ¹þ¾î³ª¸é Áï½Ã ´Ù½Ã Ãß°Ý »óÅÂ·Î ÀüÈ¯
-        if (!_sheetFSM.IsPlayerInAttackRange)
-        {
-            _fsm.StateMachine.ChangeState(_sheetFSM.ChaseState);
-            return;
-        }
-
-        // °ø°Ý ÄðÅ¸ÀÓÀÌ ´Ù µÇ¾ú´Ù¸é °ø°Ý ½ÇÇà
-        if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown)
-        {
-            PerformAttack();
-        }
+       
     }
 
-    private void PerformAttack()
+    public void TriggerAttack()
     {
-        _sheetFSM.lastAttackTime = Time.time;
+        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
 
-        // °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç, »ç¿îµå, µ¥¹ÌÁö Ã³¸® ·ÎÁ÷
-        // °ø°Ý ¿¹½Ã
-        // 1. °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (Animator.SetTrigger("Attack"))
-        // 2. °ø°Ý È¿°úÀ½ Àç»ý (AudioSource.PlayOneShot(attackSound))
-        // 3. ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö Àü´Þ
-        //  PlayerHealth playerHealth = _fsm.Player.GetComponent<PlayerHealth>();
-        //    
-        //  player.TakeDamage(_sheetFSM.SO.attackPower);
-        Debug.Log("°ø°Ý ½ÇÇà");
+        if (sqrDistance <= _sheetFSM.AttackRangeSqr && _sheetFSM.Player != null)
+        {
+            Debug.Log($"ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ {_sheetFSM.SO.attackPower} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
+            // TODO : ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½â¿¡ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        }
     }
 
     public override void Exit()
@@ -181,6 +196,39 @@ public class SheetMusic_MeleeAttackState : BaseState
         if (_sheetFSM.Agent.isActiveAndEnabled)
         {
             _sheetFSM.Agent.isStopped = false;
+        }
+    }
+}
+public class SheetMusic_DieState : BaseState
+{
+    private SheetMusicMonsterFSM _sheetFSM;
+    public SheetMusic_DieState(SheetMusicMonsterFSM fsm) : base(fsm)
+    {
+        _sheetFSM = fsm;
+    }
+
+    public override void Enter()
+    {
+        // ï¿½×´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+        _sheetFSM.Agent.isStopped = true;
+        if (_sheetFSM.Owner.TryGetComponent<Collider2D>(out var collider))
+        {
+            collider.enabled = false;
+        }
+
+        _sheetFSM.Owner.Animator.SetTrigger("Die");
+
+        //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        DropItems();
+
+        // ï¿½Ä±ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½, ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ò°ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½??
+    }
+
+    private void DropItems()
+    {
+        if (_sheetFSM.SO.dropItemPrefab != null)
+        {
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½\
         }
     }
 }

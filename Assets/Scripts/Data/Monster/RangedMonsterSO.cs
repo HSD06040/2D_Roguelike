@@ -14,4 +14,6 @@ public class RangedMonsterSO : MonsterStat
     public float attackCooldown = 3f; // 공격 쿨타임 (이 시간동안 이동)
     public GameObject notePrefab;     // 발사할 노트 프리팹 (NoteController를 가진)
     public float noteSpeed = 12f;     // 노트 발사 속도
+
+    
 }

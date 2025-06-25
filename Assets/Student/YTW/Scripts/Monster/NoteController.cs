@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     private Rigidbody2D _rb;
+    private float damage;
 
     private void Awake()
     {
@@ -15,24 +16,25 @@ public class NoteController : MonoBehaviour
     public void Initialize(Vector2 direction, float speed, float damage)
     {
         _rb.velocity = direction.normalized * speed;
+        this.damage = damage;
 
-        // 충돌 시 데미지를 주기 위해 임시로 데미지 정보를 저장할 수 있음
-        // 이 예제에서는 간단하게 처리
-        // this.damage = damage; 
+        // 방향벡터 라디안 계산 후 각도로 변환
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         Destroy(gameObject, 5f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             // PlayerHealth 스크립트가 있다고 가정
             // other.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             Debug.Log("플레이어에게 음표 명중");
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Monster"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
             Destroy(gameObject);
         }
