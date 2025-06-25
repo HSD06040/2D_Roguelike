@@ -32,7 +32,6 @@ public class Monster : MonoBehaviour
         CurrentHealth = MaxHealth;
         Animator = GetComponentInChildren<Animator>();
         monsterStatusCon = GetComponent<MonsterStatusController>();
-        Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
