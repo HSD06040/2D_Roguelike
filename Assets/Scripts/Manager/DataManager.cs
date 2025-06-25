@@ -22,7 +22,7 @@ public class DataManager : Singleton<DataManager>
         downloader = new DataDownloader();
         StartCoroutine(downloader.DownloadData());
 
-        playerStatus.Speed.SetBaseStat(5);
+        PlayerStatus.Speed.SetBaseStat(5);
     }
 
     private void Start()

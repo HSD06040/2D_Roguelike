@@ -14,23 +14,29 @@ public class PlayerStatus
 {
     // 플레이어스텟        
     public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
-    public IntStat Damage { get; private set; } = new(); // 데미지 값
+    public FloatStat Damage { get; private set; } = new(); // 데미지 값
     public FloatStat Speed { get; private set; } = new(); // 스피드 값
     public FloatStat AttackSpeed { get; private set; } = new(); // 퍼센트
 
     public Property<int> CurtHp;
 
+    public bool Invincible;
     // 플레이어가 현재 가지고 있는 무기 (나중에 추가)
     private const int weaponCount = 4;
+    private const int accessoriesCount = 2;
 
+    [Header("Accessories")]
+    public Accessories[] PlayerAccessories = new Accessories[accessoriesCount];
+
+    [Header("Weapon")]
     private MusicWeapon weapon;
-    public int currentWeaponIdx = 0;
-
-    public MusicWeapon[] PlayerWeapons = new MusicWeapon[4];
+    public int currentWeaponIdx;
+    public MusicWeapon[] PlayerWeapons = new MusicWeapon[weaponCount];
     private List<string> WeaponList = new List<string>(4);
 
     public Action<int, MusicWeapon> OnChangedWeapon;
     public Action<int> OnCurrentWeaponChanged;
+
     public Action OnPlayerDead;
 
     public void AddWeapon(MusicWeaponType musicWeaponType)
@@ -124,7 +130,7 @@ public class PlayerStatus
         switch (type)
         {
             case StatType.MaxHp: MaxHp.AddModifier((int)amount, source); break;
-            case StatType.Damage: Damage.AddModifier((int)amount, source); break;
+            case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
         }
@@ -139,5 +145,18 @@ public class PlayerStatus
             case StatType.AttackSpeed: AttackSpeed.RemoveModifier(source); break;
             case StatType.Speed: Speed.RemoveModifier(source); break;
         }
+    }
+
+    public bool DecreaseHealth(int amount)
+    {
+        CurtHp.Value -= amount;
+
+        if(CurtHp.Value <= 0)
+        {
+            OnPlayerDead?.Invoke();
+            return true;
+        }
+
+        return false;
     }
 }

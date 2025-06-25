@@ -23,11 +23,7 @@ public class PlayerStatusController : StatusController
         if(!hasDamaged)
         {  
             hasDamaged=true;
-            status.CurtHp.Value -= damage;
-            if(status.CurtHp.Value <= 0)
-            {
-                 status.OnPlayerDead?.Invoke();
-            }
+            base.TakeDamage(damage);
 
             heartUI.HeartUpdate(currentHp);
 
@@ -46,6 +42,4 @@ public class PlayerStatusController : StatusController
         yield return new WaitForSeconds(playerDamageCoolDown);
         hasDamaged = false;
     }
-
-   
 }

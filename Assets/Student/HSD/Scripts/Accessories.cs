@@ -12,13 +12,13 @@ public class Accessories : Item
     public float Speed;
 
     [Header("Upgrade")]
-    private const int maxUpgrade = 4;
+    private const int maxUpgrade = 3;
     private int upgradeIdx;
 
     public void Upgrade()
     {
-        Effect.DeActive(itemName, upgradeIdx);
+        Effect.Revoke(itemName, upgradeIdx);
         upgradeIdx++;
-        Effect.Active(itemName, upgradeIdx);
+        Effect.Execute(itemName, upgradeIdx);
     }
 }

@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private void LookAtMouse()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
-        Vector2 dir = mousePos - transform.position; //플레이어에서 마우스 방향
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
+        Vector2 dir = mousePos - (Vector2)transform.position; //플레이어에서 마우스 방향
 
         if (dir.x >= 0)
         {
