@@ -41,13 +41,7 @@ public class ViolinProjectile : Projectile
         Vector2 direction = end - start;
         Vector2 directionNormal = direction.normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(start, directionNormal, 100,targetLayer);
-        Vector2 rayPos = Vector2.zero;
-        if(hit)
-        {
-            rayPos = hit.collider.transform.position;
-            Debug.Log($"hitPos : {hit.collider.name} , {hit.collider.transform.position}");
-        }
+        RaycastHit2D hit = Physics2D.Raycast(start, directionNormal, 30,targetLayer);
 
 
         for (int i = 0; i < pointSize; i++)
@@ -74,7 +68,15 @@ public class ViolinProjectile : Projectile
             else if (i == pointSize - 1)
             {
                 //hit.point°¡ Àû ¶Ç´Â wall layerÀÏ°æ¿ì ¸ØÃã
-                LineRender.SetPosition(pointSize - 1, hit.point);
+                if(hit.point != null)
+                {
+                    LineRender.SetPosition(pointSize - 1, hit.point);
+                }
+                else
+                {
+                    LineRender.SetPosition(pointSize - 1, targetPos);
+                }
+                
             }
             else
             {
