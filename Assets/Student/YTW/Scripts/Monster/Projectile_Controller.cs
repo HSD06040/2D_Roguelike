@@ -27,10 +27,12 @@ public class Projectile_Controller : MonoBehaviour
         if (other.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
             // 자기 자신을 발사한 몬스터를 공격하지 않도록 예외 처리
-            if (other.gameObject.layer != LayerMask.NameToLayer("Monster"))
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 damageable.TakeDamage(damage);
                 Debug.Log($"{other.name}에게 원거리 공격 명중. 데미지 : {damage}");
+                Destroy(gameObject);
+                return;
             }
         }
 

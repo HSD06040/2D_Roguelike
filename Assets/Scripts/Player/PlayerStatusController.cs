@@ -36,7 +36,6 @@ public class PlayerStatusController : StatusController
                  status.OnPlayerDead?.Invoke();
             }
 
-            status.CurtHp.Value -= damage;
 
             StartCoroutine(PlayerDamageCoolDown());
         }
