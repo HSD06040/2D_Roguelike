@@ -19,5 +19,5 @@ MonoBehaviour:
   minRepositionDistance: 7
   maxRepositionDistance: 12
   attackCooldown: 3
-  notePrefab: {fileID: 0}
-  noteSpeed: 12
+  notePrefab: {fileID: 6989595354463527841, guid: da2b2e7bdbefb7e428095b1a4be6a7d0, type: 3}
+  noteSpeed: 8
