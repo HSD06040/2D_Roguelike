@@ -3,7 +3,6 @@ using UnityEngine;
 public class SheetMusicMonsterFSM : MonsterFSM
 {
     [field: SerializeField] public SheetMusicMonsterSO SO { get; private set; }
-
     public float ChaseRangeSqr { get; private set; }
     public float AttackRangeSqr { get; private set; }
     public SheetMusic_IdleState IdleState { get; private set; }
@@ -175,19 +174,24 @@ public class SheetMusic_MeleeAttackState : BaseState
         }
     }
 
-    public override void Update()
-    {
-       
-    }
-
     public void TriggerAttack()
     {
-        float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
+        LayerMask playerLayer = LayerMask.GetMask("Player");
 
-        if (sqrDistance <= _sheetFSM.AttackRangeSqr && _sheetFSM.Player != null)
+        Collider2D hit = Physics2D.OverlapCircle(
+            _sheetFSM.transform.position,
+            _sheetFSM.SO.meleeAttackRange,
+            playerLayer
+        );
+
+        if (hit != null)
         {
-            Debug.Log($"�÷��̾�� {_sheetFSM.SO.attackPower} �������� �������ϴ�");
-            // TODO : ���� �÷��̾�� �������� �ִ� �ڵ带 ���⿡ �ۼ� ����
+            // TryGetComponent는 Player가 IDamagable을 가지고 있다면 true를 반환하고 damageable 변수에 값을 할
+            if (hit.TryGetComponent<IDamagable>(out IDamagable damageable))
+            {
+                damageable.TakeDamage(_sheetFSM.SO.attackPower);
+                Debug.Log($"{hit.name}에게 근접 공격으로 {_sheetFSM.SO.attackPower} 데미지!");
+            }
         }
     }
 

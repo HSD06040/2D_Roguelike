@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private float damage;
+    private int damage;
 
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class NoteController : MonoBehaviour
         _rb.gravityScale = 0;
     }
 
-    public void Initialize(Vector2 direction, float speed, float damage)
+    public void Initialize(Vector2 direction, float speed, int damage)
     {
         _rb.velocity = direction.normalized * speed;
         this.damage = damage;
@@ -22,19 +22,23 @@ public class NoteController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.TryGetComponent<IDamagable>(out IDamagable damageable))
         {
-            // PlayerHealth 스크립트가 있다고 가정
-            // other.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-            Debug.Log("플레이어에게 음표 명중");
-            Destroy(gameObject);
+            // 자기 자신을 발사한 몬스터를 공격하지 않도록 예외 처리
+            if (other.gameObject.layer != LayerMask.NameToLayer("Monster"))
+            {
+                damageable.TakeDamage(damage);
+                Debug.Log($"{other.name}에게 원거리 공격 명중. 데미지 : {damage}");
+            }
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
+
+        // 몬스터가 아닌 벽이나 다른 오브젝트에 닿아도 파괴
+        if (other.gameObject.layer != LayerMask.NameToLayer("Monster"))
         {
             Destroy(gameObject);
         }

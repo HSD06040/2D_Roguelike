@@ -6,6 +6,6 @@ public class MonsterStat : ScriptableObject
 {
     [Header("Ω∫≈»")]
     public float health = 50f;
-    public float attackPower = 10f;
+    public int attackPower = 10;
     public float moveSpeed = 5f;
 }

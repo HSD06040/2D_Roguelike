@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamagable
 {
     [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
     [field: SerializeField] public float AttackPower { get; protected set; } = 10f;
@@ -18,6 +18,10 @@ public class Monster : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
+
+    private float delay = 0.15f;
+
+    private bool isHitCoroutineRunning = false;
 
     public virtual void SetStats(float maxHealth, float attackPower)
     {
@@ -56,7 +60,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
         Debug.Log($"{name}�� ������ {damage} ����. ���� hp : {CurrentHealth}");
@@ -64,8 +68,10 @@ public class Monster : MonoBehaviour
         {
             if (CurrentHealth > 0)
             {
-                StopCoroutine(HitFlashCoroutine());
-                StartCoroutine(HitFlashCoroutine());
+                if (!isHitCoroutineRunning)
+                {
+                    StartCoroutine(HitFlashCoroutine());
+                }
             }
         }
     }
@@ -74,15 +80,13 @@ public class Monster : MonoBehaviour
     {
         // TODO : ���� ������ �׽�Ʈ ����
         // ������ ���������� ����
+        isHitCoroutineRunning = true;
+
         spriteRenderer.color = Color.red;
-
-        // 0.15�� ���� ��� (�����̴� �ð�)
-        yield return new WaitForSeconds(0.15f);
-
-        // ���� �������� ����
+        yield return new WaitForSeconds(delay);
         spriteRenderer.color = originalColor;
 
-        // ���⿡ ���߿� �̵��ӵ� ���� ���� �߰� ����
+        isHitCoroutineRunning = false;
     }
 
 
