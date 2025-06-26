@@ -7,10 +7,7 @@ public class PlayerStatusController : StatusController
     [SerializeField] private float playerDamageCoolDown;
     [SerializeField] private HealthHeart heartUI;
 
-
     public PlayerStatus status;
-
-    private bool hasDamaged = false;
 
     private new void Start()
     {
@@ -18,40 +15,22 @@ public class PlayerStatusController : StatusController
 
         status = Manager.Data.PlayerStatus;
         
-        //heartUI.InicialHearts((int)status.MaxHp.Value); //ÃÖ´ëÃ¼·Â¸¸Å­ ÇÏÆ® »ı¼º
-        //status.CurtHp.Value = (int)status.MaxHp.Value;
+        heartUI.InicialHearts(status.MaxHp.Value); //ÃƒÃ–Â´Ã«ÃƒÂ¼Â·Ã‚Â¸Â¸Ã…Â­ Ã‡ÃÃ†Â® Â»Ã½Â¼Âº
+        status.CurtHp.Value = status.MaxHp.Value;
 
-        //status.CurtHp.AddEvent(heartUI.HeartUpdate);
-
-    
+        status.CurtHp.AddEvent(heartUI.HeartUpdate);
     }
+
     public override void TakeDamage(int damage)
     {
-        if(!hasDamaged)
-        {  
-            hasDamaged=true;
-            status.CurtHp.Value -= damage;
-            if(status.CurtHp.Value <= 0)
-            {
-                 status.OnPlayerDead?.Invoke();
-            }
-
-            status.CurtHp.Value -= damage;
-
-            StartCoroutine(PlayerDamageCoolDown());
-        }
+        if(status.DecreaseHealth(damage))
+        {
+            Die();
+        }        
     }
 
-    public void Heal(int amount)
+    public void Die()
     {
-        status.CurtHp.Value += amount;
-    }
 
-    private IEnumerator PlayerDamageCoolDown()  //ÇÃ·¹ÀÌ¾î ´ë¹ÌÁö ÄğÅ¸ÀÓ ¼³Á¤
-    {
-        yield return new WaitForSeconds(playerDamageCoolDown);
-        hasDamaged = false;
     }
-
-   
 }
