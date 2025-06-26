@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PassiveEffectController : MonoBehaviour
+{
+    private Coroutine invincibleRoutine;
+
+    public OrbitController orbitController;
+
+    private Accessories[] accessories;
+
+    private void Start()
+    {
+        accessories = Manager.Data.PlayerStatus.PlayerAccessories;
+
+        orbitController = FindObjectOfType<OrbitController>();
+    }
+
+    public void PlayerInvincible(float delay)
+    {
+        if (invincibleRoutine != null)
+        {
+            StopCoroutine(invincibleRoutine);
+            invincibleRoutine = null;
+        }
+        invincibleRoutine = StartCoroutine(PlayerInvincibleRoutine(delay));
+    }
+
+    public void StopPlayerInvincible()
+    {
+        if (invincibleRoutine != null)
+        {
+            StopCoroutine(invincibleRoutine);
+            invincibleRoutine = null;
+        }
+    }
+
+    private IEnumerator PlayerInvincibleRoutine(float delay)
+    {
+        Manager.Data.PlayerStatus.Invincible = true;
+        yield return new WaitForSeconds(delay);
+        Manager.Data.PlayerStatus.Invincible = false;
+    }
+
+    public void StartSkillCoroutine(GameObject prefab, string key, float delay)
+    {
+        CoroutineUtile.SetCoroutine(key, StartCoroutine(DelayRoutine(delay, prefab)));
+    }
+
+    public void StopSkillCoroutine(string key)
+    {
+        if (CoroutineUtile.GetCoroutine(key) != null)
+            StopCoroutine(CoroutineUtile.GetCoroutine(key));
+    }
+
+    private IEnumerator DelayRoutine(float delay, GameObject prefab)
+    {
+        while(true)
+        {
+            Instantiate(prefab, orbitController.transform.position, Quaternion.identity);
+            yield return CoroutineUtile.GetWait(delay);
+        }
+    }
+
+    //public void TriggerPassiveEffects(PassiveTriggerType triggerType)
+    //{
+    //    if (accessories.Length <= 0) return;
+
+    //    for (int i = 0; i < accessories.Length; i++)
+    //    {
+    //        if (accessories[i].Effect.passiveTriggerType == triggerType)
+    //            accessories[i].Effect.Execute(accessories[i].itemName, accessories[i].UpgradeIdx);
+    //    }
+    //}
+}

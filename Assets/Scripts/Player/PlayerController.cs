@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    public PlayerStatusController statusCon;    
+    public PlayerStatusController statusCon;
+    public Vector2 MousePos;
 
     private PlayerWeaponController weaponCon;
     private Rigidbody2D rigid;
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
-
     }
 
     private void Move()  //플레이어 이동 함수
@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private void LookAtMouse()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
-        Vector2 dir = mousePos - transform.position; //플레이어에서 마우스 방향
+        MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
+        Vector2 dir = MousePos - (Vector2)transform.position; //플레이어에서 마우스 방향
 
         if (dir.x >= 0)
         {
