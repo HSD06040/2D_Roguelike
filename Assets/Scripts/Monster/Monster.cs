@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour, IDamagable
 {
+    [Header("피격 효과 설정")]
+    [SerializeField] private Material whiteFlashMaterial;
+    [SerializeField] private float hitEffectDuration = 0.15f;
+
     [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
-    [field: SerializeField] public float AttackPower { get; protected set; } = 10f;
+    [field: SerializeField] public int AttackPower { get; protected set; } = 10;
 
 
     public float CurrentHealth { get; protected set; }
@@ -18,12 +22,10 @@ public class Monster : MonoBehaviour, IDamagable
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-
-    private float delay = 0.15f;
-
+    private Material originalMaterial;
     private bool isHitCoroutineRunning = false;
 
-    public virtual void SetStats(float maxHealth, float attackPower)
+    public virtual void SetStats(float maxHealth, int attackPower)
     {
         MaxHealth = maxHealth;
         CurrentHealth = maxHealth;
@@ -42,6 +44,7 @@ public class Monster : MonoBehaviour, IDamagable
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
+            originalMaterial = spriteRenderer.material;
         }
     }
 
@@ -78,12 +81,15 @@ public class Monster : MonoBehaviour, IDamagable
 
     private IEnumerator HitFlashCoroutine()
     {
-        // TODO : ���� ������ �׽�Ʈ ����
-        // ������ ���������� ����
         isHitCoroutineRunning = true;
 
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(delay);
+        if (whiteFlashMaterial != null)
+        {
+            spriteRenderer.material = whiteFlashMaterial;
+        }
+        yield return new WaitForSeconds(hitEffectDuration);
+
+        spriteRenderer.material = originalMaterial;
         spriteRenderer.color = originalColor;
 
         isHitCoroutineRunning = false;
@@ -92,11 +98,13 @@ public class Monster : MonoBehaviour, IDamagable
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // �浹�� ������Ʈ�� "Player" �±׸� ������ �ִ��� Ȯ��
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            // �÷��̾��� ü�� ������Ʈ�� �����ͼ� ������ ó�� ����
-            Debug.Log($"�÷��̾�� �����Ͽ� ������ {AttackPower} ���� ");
+            if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damageable))
+            {
+                damageable.TakeDamage(AttackPower);
+                Debug.Log($"{collision.gameObject.name}와 충돌하여 데미지 : {AttackPower}");
+            }
         }
     }
 }
