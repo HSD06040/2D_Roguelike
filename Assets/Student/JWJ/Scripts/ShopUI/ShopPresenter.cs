@@ -24,7 +24,7 @@ public class ShopPresenter
         for (int i = 0; i < 3; i++)
         {
             random = Random.Range(0, 4);
-            items.Add(Manager.Data.musicWeapons[random].WeaponData);
+            items.Add(Manager.Data.MusicWeapons[random].WeaponData);
         }
 
         shopView.DisplayItems(items.ToArray()); // view 에게 디스플레이할 아이템 리스트 전달      
