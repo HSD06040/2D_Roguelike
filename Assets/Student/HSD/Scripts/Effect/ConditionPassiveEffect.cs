@@ -17,30 +17,44 @@ public class ConditionPassiveEffect : ItemEffect
     [Tooltip("OnHit(피격 시), OnAttack(공격 시), OnTime(일정시간 마다), OnKill(처치 했을 때)")]
     public PassiveTriggerType passiveTriggerType;
 
+    public bool IsDiff;
+    [SerializeField] private PassiveFunc passiveFunc;
+
     [Header("Condition")]
     public bool IsCondition;
-    [SerializeField] private StatType statType;
-    [SerializeField] private float value;
-    [SerializeField] private Condition condition;
+    [SerializeField, Tooltip("어떤 스텟을 조건으로 달 것인가요?")] 
+    private StatType statType;
+    [SerializeField, Tooltip("얼마의 값을 조건으로 달 것인가요?")] 
+    private float value;
+    [SerializeField, Tooltip("어떤 조건으로 설정하실 건가요?")] 
+    private Condition condition;
 
     [Header("Object Spawn")]
+    [Tooltip("오브젝트를 스폰하실 건가요?")]
     public bool IsObjectSpawn;
-    [SerializeField] private GameObject spawnObject;
-    [SerializeField] private float delay;
-    [SerializeField] private Vector3 spawnOffset;
+    [SerializeField, Tooltip("어떤 오브젝트를 스폰하실 건가요?")] 
+    private GameObject spawnObject;
+    [SerializeField, Tooltip("몇 초후에 생성될 건가요?")] 
+    private float delay;
+    [SerializeField, Tooltip("플레이어에서 Offset은 얼마나 되나요?")] 
+    private Vector3 spawnOffset;
 
     [Header("Stat Modifier")]
+    [Tooltip("스텟을 추가하실 것 인가요?")] 
     public bool IsStatModifier;
-    [SerializeField] private StatType modifierStat;
-    [SerializeField] private float modifierValue;
+    [SerializeField, Tooltip("어떤 스텟을 추가하실 건가요?")] 
+    private StatType modifierStat;
+    [SerializeField, Tooltip("얼마나 추가하실 건가요?")] 
+    private float modifierValue;
     private bool isAdd;
 
     [Header("Chance")]
     public bool IsChance;
-    [SerializeField, ] private float chance;
+    [SerializeField, Range(0,100), Tooltip("확률은 얼마나 되나요?")] 
+    private float chance;
 
     [Header("OnTime")]
-    [Tooltip("몇초 마다")] 
+    [Tooltip("몇초 마다 실행될 것 인가요?")] 
     public float duration;
 
     public override void Execute(string _source, int _upgrade)
@@ -68,7 +82,7 @@ public class ConditionPassiveEffect : ItemEffect
         {
             if (IsChance)
             {
-                if (Random.Range(0, 100) > chance)
+                if (Random.Range(0, 100) < chance)
                 {
                     Instantiate(spawnObject);
                 }
@@ -103,7 +117,7 @@ public class ConditionPassiveEffect : ItemEffect
     {
         if (!isAdd) return;
 
-        Manager.Data.PlayerStatus.RemoveStat(statType, $"{_source}_{_upgrade}");
+        Manager.Data.PlayerStatus.RemoveStat(modifierStat, $"{_source}_{_upgrade}");
         isAdd = false;
     }
 }

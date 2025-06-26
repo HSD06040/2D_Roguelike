@@ -6,6 +6,9 @@ using UnityEngine;
 [CustomEditor(typeof(ConditionPassiveEffect))]
 public class ConditionPassiveEffectEditor : Editor
 {
+    SerializedProperty IsDiff;
+    SerializedProperty passiveFunc;
+
     SerializedProperty isCondition;
     SerializedProperty statType;
     SerializedProperty value;
@@ -28,6 +31,9 @@ public class ConditionPassiveEffectEditor : Editor
 
     private void OnEnable()
     {
+        IsDiff = serializedObject.FindProperty("IsDiff");
+        passiveFunc = serializedObject.FindProperty("passiveFunc");
+
         isCondition = serializedObject.FindProperty("IsCondition");
         statType = serializedObject.FindProperty("statType");
         value = serializedObject.FindProperty("value");
@@ -52,6 +58,14 @@ public class ConditionPassiveEffectEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+
+        EditorGUILayout.PropertyField(IsDiff);
+        if(IsDiff.boolValue)
+        {
+            EditorGUILayout.PropertyField(passiveFunc);
+            serializedObject.ApplyModifiedProperties();
+            return;
+        }        
 
         EditorGUILayout.PropertyField(passiveTriggerType);
         if ((PassiveTriggerType)passiveTriggerType.enumValueIndex == PassiveTriggerType.OnTime)
