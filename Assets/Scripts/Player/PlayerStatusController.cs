@@ -15,7 +15,7 @@ public class PlayerStatusController : StatusController
 
         status = Manager.Data.PlayerStatus;
         
-        heartUI.InicialHearts(status.MaxHp.Value); //�ִ�ü�¸�ŭ ��Ʈ ����
+        heartUI.InicialHearts(status.MaxHp.Value); //ÃÖ´ëÃ¼·Â¸¸Å­ ÇÏÆ® »ý¼º
         status.CurtHp.Value = status.MaxHp.Value;
 
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
