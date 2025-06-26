@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5699cfc49c4fe46a920666591d2a55, type: 3}
   m_Name: RangedMonster
   m_EditorClassIdentifier: 
-  health: 30
+  health: 10
   attackPower: 5
-  moveSpeed: 4
+  moveSpeed: 3
   detectionRange: 15
-  repositionBoxWidth: 10
-  repositionBoxHeight: 10
+  minRepositionDistance: 2
+  maxRepositionDistance: 4
   attackCooldown: 2.5
   notePrefab: {fileID: 7431734696087755504, guid: ccf4618d8628d3b448c524d15f18f46a, type: 3}
   noteSpeed: 12

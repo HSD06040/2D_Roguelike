@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e322a7fccb2560c46976026c3c6f5cb1, type: 3}
   m_Name: SheetMusicMonsterSO
   m_EditorClassIdentifier: 
-  health: 50
+  health: 10
   attackPower: 10
   moveSpeed: 3
-  chaseRange: 5
+  chaseRange: 10
   meleeAttackRange: 1.5
   meleeAttackAngle: 90
   meleeAttackCooldown: 2
+  dropItemPrefab: {fileID: 0}
+  dropItemCount: 1
