@@ -1,15 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-public enum Condition
-{
-    Equal, Greater, GreaterOrEqual, Less, LessOrEqual
-}
-
-public enum PassiveTriggerType
-{
-    OnHit, OnAttack, OnTime, OnKill
-}
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
 //[CreateAssetMenu(menuName = "Effect/Condition")]
 //public class ConditionPassiveEffect : ItemEffect

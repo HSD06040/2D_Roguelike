@@ -19,25 +19,13 @@ public class StatEffect : AccessoriesEffect
     [SerializeField, Tooltip("!! 4개 까지 설정")] 
     private StatEffectStruct[] stats;
 
-    public override void Active1(Accessories accessories)
-    {
-        AddStat(accessories);
-    }
+    public override void Active1(Accessories accessories) => AddStat(accessories);
 
-    public override void Active2(Accessories accessories)
-    {
-        AddStat(accessories);
-    }
+    public override void Active2(Accessories accessories) => AddStat(accessories);
 
-    public override void Active3(Accessories accessories)
-    {
-        AddStat(accessories);
-    }
+    public override void Active3(Accessories accessories) => AddStat(accessories);
 
-    public override void Active4(Accessories accessories)
-    {
-        AddStat(accessories);
-    }
+    public override void Active4(Accessories accessories) => AddStat(accessories);
 
     public override void Revoke(Accessories accessories)
     {

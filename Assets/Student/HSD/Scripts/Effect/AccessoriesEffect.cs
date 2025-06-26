@@ -2,6 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum Condition
+{
+    Equal, Greater, GreaterOrEqual, Less, LessOrEqual
+}
+
+public enum PassiveTriggerType
+{
+    OnEquip ,OnHit, OnAttack, OnTime, OnKill, OnSetGold, 
+}
 
 public abstract class AccessoriesEffect : ScriptableObject
 {
@@ -16,13 +25,15 @@ public abstract class AccessoriesEffect : ScriptableObject
 
     [SerializeField] private List<PassiveTriggerType> triggerTyps;
     protected bool isActive;
+    private bool isSubscribe;
+    private Accessories registeredAccessories;
 
     public virtual void Execute(Accessories accessories)
     {
-        if(IsCondition)        
-            if (IsConditionMet(Manager.Data.PlayerStatus.GetStat(statType))) return;        
+        if (IsCondition && !IsConditionMet(Manager.Data.PlayerStatus.GetStat(statType)))
+            return;
 
-        switch(accessories.UpgradeIdx)
+        switch (accessories.UpgradeIdx)
         {
             case 0: Active1(accessories); break;
             case 1: Active2(accessories); break;
@@ -49,29 +60,39 @@ public abstract class AccessoriesEffect : ScriptableObject
         };
     }
 
-    public void RegisterEvents()
+    private void ExcuteHandler()
     {
-        if (triggerTyps.Count <= 0) return;
+        Execute(registeredAccessories);
+    }
+
+    public void RegisterEvents(Accessories accessories)
+    {
+        registeredAccessories = accessories;
+
+        if (triggerTyps.Count <= 0 || isSubscribe) return;
 
         foreach (var trigger in triggerTyps)
         {
             switch(trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += EventTrigger; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += ExcuteHandler; break;
+                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.AddEvent(_ => ExcuteHandler()); break;
             }
         }
+        isSubscribe = true;
     }
 
     public void UnregisterEvents()
     {
+        if (triggerTyps.Count <= 0 || !isSubscribe) return;
+
         foreach (var trigger in triggerTyps)
         {
             switch (trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -= EventTrigger; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -= ExcuteHandler; break;
             }
         }
+        isSubscribe = false;
     }
-
-    protected virtual void EventTrigger() { }
 }

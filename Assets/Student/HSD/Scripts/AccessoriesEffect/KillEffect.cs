@@ -11,35 +11,25 @@ public class KillEffect : AccessoriesEffect
 
     private int currentMonsterCount = 0;
 
-    public override void Active1(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active1(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active2(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active2(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active3(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active3(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active4(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active4(Accessories accessories) => TryAddPlayerStat(accessories);
 
     public override void Revoke(Accessories accessories)
     {
         Manager.Data.PlayerStatus.RemoveStat(statEffects[accessories.UpgradeIdx].statType, accessories.itemName);
     }
 
-    protected override void EventTrigger()
+    public override void Execute(Accessories accessories)
     {
+        base.Execute(accessories);
         currentMonsterCount++;
     }
+
     private void TryAddPlayerStat(Accessories accessories)
     {
         if (currentMonsterCount == monsterCounts[accessories.UpgradeIdx])

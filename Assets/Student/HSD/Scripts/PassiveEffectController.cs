@@ -5,11 +5,16 @@ using UnityEngine;
 public class PassiveEffectController : MonoBehaviour
 {
     private Coroutine invincibleRoutine;
+
+    public OrbitController orbitController;
+
     private Accessories[] accessories;
 
     private void Start()
     {
         accessories = Manager.Data.PlayerStatus.PlayerAccessories;
+
+        orbitController = FindObjectOfType<OrbitController>();
     }
 
     public void PlayerInvincible(float delay)

@@ -7,25 +7,13 @@ public class GoldEffect : AccessoriesEffect
     [SerializeField] private int[] goldCount;
     [SerializeField] private StatEffectStruct[] stats;
 
-    public override void Active1(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active1(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active2(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active2(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active3(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active3(Accessories accessories) => TryAddPlayerStat(accessories);
 
-    public override void Active4(Accessories accessories)
-    {
-        TryAddPlayerStat(accessories);
-    }
+    public override void Active4(Accessories accessories) => TryAddPlayerStat(accessories);
 
     public override void Revoke(Accessories accessories)
     {
