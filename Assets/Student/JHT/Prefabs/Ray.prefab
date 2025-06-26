@@ -67,7 +67,7 @@ MonoBehaviour:
   IsPass: 0
   rigid: {fileID: 6089548101021931945}
   LineRender: {fileID: 4345575494730030453}
-  pointSize: 16
+  pointSize: 21
   vibration: 0.8
   targetLayer:
     serializedVersion: 2

@@ -9361,7 +9361,7 @@ MonoBehaviour:
   controller: {fileID: 1080889327}
   weapons:
   - {fileID: -9161120505125623197, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
-  - {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  - {fileID: 1719639778386745222, guid: adb7e247475b39949ab799b67c9dae41, type: 3}
   - {fileID: -6233792134857671220, guid: 9a9f7bbc10170644ea3b743a64feaf56, type: 3}
   - {fileID: 8148039345072905975, guid: 10191432e16f2f54eb49b96934cc3523, type: 3}
 --- !u!1 &920135073
@@ -11211,11 +11211,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080889320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690715a6b3685646946ba8e64b0e148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  dashSpeed: 0
+  dashDuration: 0
+  dashCoolDown: 0
   statusCon: {fileID: 1080889325}
 --- !u!114 &1080889325
 MonoBehaviour:
