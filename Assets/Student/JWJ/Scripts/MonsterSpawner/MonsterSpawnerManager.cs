@@ -22,16 +22,13 @@ public class MonsterSpawnerManager : MonoBehaviour
     [Header("범위 태두리 여유공간")]
     [SerializeField] public float margin = 0.5f;
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            SpawnMonsters();
-        }
-    }
+    private int spawnCount;
+    public int SpawnCount => spawnCount;
 
-    private void SpawnMonsters()
+    public void SpawnMonsters()
     {
+        spawnCount = 0;
+
         int randomPosMonsterNum = spawnMonsterNum - fixedSpawnPositions.Length;
 
         if (randomPosMonsterNum < 0)
@@ -39,6 +36,7 @@ public class MonsterSpawnerManager : MonoBehaviour
             Debug.Log("소환할 총 몬스터의 수 보다 고정 위치의 수가 많습니다.");
             return;
         }
+
         else 
         {
             SpawnFixedPosMonsters();
@@ -48,7 +46,7 @@ public class MonsterSpawnerManager : MonoBehaviour
 
     }
 
-    private void SpawnFixedPosMonsters()
+    private void SpawnFixedPosMonsters()  //고정위치 몬스터 소환
     {
         for (int i = 0; i < fixedSpawnPositions.Length; i++)
         {
@@ -56,10 +54,12 @@ public class MonsterSpawnerManager : MonoBehaviour
             GameObject spawnMonster = fixedPosMonsterprefabs[random];
 
             Instantiate(spawnMonster, fixedSpawnPositions[i].position, Quaternion.identity);
+            spawnCount++;
+            Debug.Log("현재 몬스터 수: " + spawnCount);
         }
     }
 
-    public void spawnRandomPosMonsters(int randomPosMonsterNum)
+    public void spawnRandomPosMonsters(int randomPosMonsterNum)  //랜덤위치 몬스터 소환
     {
         for (int i = 0; i < randomPosMonsterNum; i++)
         {
@@ -69,6 +69,8 @@ public class MonsterSpawnerManager : MonoBehaviour
 
             Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정
             Instantiate(spawnMonster, spawnPoint, Quaternion.identity); //몬스터 스폰
+            spawnCount++;
+            Debug.Log("현재 몬스터 수: " + spawnCount);
         }
     }
 
