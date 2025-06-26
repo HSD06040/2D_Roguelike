@@ -10,15 +10,17 @@ public static class Manager
     public static AudioManager Audio => AudioManager.GetInstance();
     public static UI_Manager UI => UI_Manager.GetInstance();
     public static DataManager Data => DataManager.GetInstance();
+    public static InputManager Input => InputManager.GetInstance();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
         GameManager.CreateManager();
-        PoolManager.CreateManager();
+        InputManager.CreateManager();
+        UI_Manager.CreateManager();
         ResourcesManager.CreateManager();
         AudioManager.CreateManager();
-        UI_Manager.CreateManager();
+        PoolManager.CreateManager();
         DataManager.CreateManager();
     }
 }

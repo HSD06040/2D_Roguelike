@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5031a820a6f7574c927b01fe9f1f769, type: 3}
+  m_Name: New Condition Passive Effect
+  m_EditorClassIdentifier: 
+  passiveTriggerType: 0
+  IsDiff: 0
+  passiveFunc: {fileID: 0}
+  IsCondition: 0
+  statType: 0
+  value: 0
+  condition: 0
+  IsObjectSpawn: 0
+  spawnObject: {fileID: 0}
+  delay: 0
+  spawnOffset: {x: 0, y: 0, z: 0}
+  IsStatModifier: 0
+  modifierStat: 0
+  modifierValue: 0
+  IsChance: 1
+  chance: 0
+  duration: 0

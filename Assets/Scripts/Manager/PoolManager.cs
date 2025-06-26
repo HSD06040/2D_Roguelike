@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -11,16 +12,19 @@ public class PoolManager : Singleton<PoolManager>
     private Dictionary<string, Transform> parentDic;
     private Dictionary<string, float> lastUseTimeDic;
 
+    [Header("PopupText")]
+    private Transform popupCanvas;
+    private Transform popupParent;
+    private ObjectPool<GameObject> popUpPool;
+
     private Transform parent;
-    private Transform popUpParent;
 
     private Coroutine poolCleanupRoutine;
 
     private const float poolCleanupTime = 60;
     private const float poolCleanupDelay = 30;
 
-    public void Init()
-
+    public void Start()
     {
         poolDic = new();
         parentDic = new();
@@ -28,7 +32,43 @@ public class PoolManager : Singleton<PoolManager>
 
         parent = new GameObject("Pools").transform;
 
-        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());        
+        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());
+
+        popupCanvas = Manager.UI.WorldCanvas.transform;
+        popupParent = new GameObject("PopupTextParent").transform;
+        popupParent.parent = popupCanvas;
+    }
+
+    private ObjectPool<GameObject> CreatePopUpTextPool(GameObject popUp)
+    {
+        ObjectPool<GameObject> pool = new ObjectPool<GameObject>(
+            () =>
+            {
+                var obj = Instantiate(popUp, popupParent);
+                obj.name = popUp.name;
+                return obj;
+            },
+            obj =>
+            {
+                obj.SetActive(true);
+            },
+            obj =>
+            {
+                obj.SetActive(false);
+            },
+            obj =>
+            {
+                Destroy(obj);
+            },
+            maxSize: 15
+        );
+
+        for (int i = 0; i < 15; i++)
+        {
+            pool.Get().SetActive(false);
+        }
+
+        return pool;
     }
 
     IEnumerator PoolCleanupRoutine()
@@ -101,18 +141,29 @@ public class PoolManager : Singleton<PoolManager>
             },
             actionOnRelease: (GameObject go) =>
             {
-                go.SetActive(false);
                 go.transform.parent = root;
+                go.SetActive(false);
             },
             actionOnDestroy: (GameObject go) =>
             {
                 Destroy(go);
             },
-            maxSize: 5
+            maxSize: 10
         );
 
         poolDic.Add(name, pool);
         return pool;
+    }
+
+    public GameObject GetPopup(GameObject go, Vector3 position)
+    {
+        if (popUpPool == null)
+            popUpPool = CreatePopUpTextPool(go);
+
+        GameObject obj = popUpPool.Get();
+        obj.transform.position = position;
+
+        return obj;
     }
 
     public T Get<T> (T original, Vector3 position, Quaternion rotation, Transform parent) where T : Object
@@ -146,6 +197,14 @@ public class PoolManager : Singleton<PoolManager>
     public T Get<T>(T original, Vector3 position, Transform parent) where T : Object
     {
         return Get<T>(original, position, Quaternion.identity, parent);
+    }
+
+    public void PopupRelease<T> (T original) where T : Object
+    {
+        GameObject obj = original as GameObject;
+
+        if(obj.activeSelf)
+            popUpPool.Release(obj);
     }
 
     public void Release<T> (T original) where T : Object
