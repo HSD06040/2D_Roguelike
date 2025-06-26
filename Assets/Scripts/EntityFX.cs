@@ -7,6 +7,7 @@ public class EntityFX : MonoBehaviour
 {
     private const float duration = .5f;
     [SerializeField] private GameObject popupTextPrefab;
+    [SerializeField] private SpriteRenderer playerSpriteRender;
 
     private Coroutine playerTakeDamageCor;
     private WaitForSeconds delay = new WaitForSeconds(0.2f);
@@ -17,29 +18,29 @@ public class EntityFX : MonoBehaviour
         obj.GetComponent<DamagePopupText>().Init(damage.ToString());
     }
 
-    public void CreateTakeDamageMaterial(SpriteRenderer _playerSprite)
+    public void CreateTakeDamageMaterial()
     {
         if(playerTakeDamageCor == null)
         {
-            playerTakeDamageCor = StartCoroutine(HitRoutine(_playerSprite));
+            playerTakeDamageCor = StartCoroutine(HitRoutine());
         }
     }
 
-    private IEnumerator HitRoutine(SpriteRenderer _playerSprite)
+    private IEnumerator HitRoutine()
     {
-        Color playerColor = _playerSprite.color;
+        Color playerColor = playerSpriteRender.color;
         yield return null;
-        _playerSprite.material.color = Color.red;
+        playerSpriteRender.material.color = Color.red;
         yield return delay;
-        _playerSprite.material.color = playerColor;
+        playerSpriteRender.material.color = playerColor;
         yield return delay;
-        _playerSprite.material.color = Color.red;
+        playerSpriteRender.material.color = Color.red;
         yield return delay;
-        _playerSprite.material.color = playerColor;
+        playerSpriteRender.material.color = playerColor;
         yield return delay;
-        _playerSprite.material.color = Color.red;
+        playerSpriteRender.material.color = Color.red;
         yield return delay;
-        _playerSprite.material.color = playerColor;
+        playerSpriteRender.material.color = playerColor;
 
         if(playerTakeDamageCor != null)
         {
