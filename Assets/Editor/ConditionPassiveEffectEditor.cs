@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ConditionPassiveEffect))]
 public class ConditionPassiveEffectEditor : Editor
 {
     SerializedProperty IsDiff;

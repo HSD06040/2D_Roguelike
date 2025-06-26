@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Accessories : Item
 {
-    public ConditionPassiveEffect Effect;
+    public AccessoriesEffect Effect;
 
     [Header("Stat")]
     public int Damage;
@@ -12,13 +12,13 @@ public class Accessories : Item
     public float Speed;
 
     [Header("Upgrade")]
-    private const int maxUpgrade = 3;
+    private const int maxUpgrade = 4;
     public int UpgradeIdx;
 
     public void Upgrade()
-    {
-        Effect.Revoke(itemName, UpgradeIdx);
+    {        
+        Effect.Revoke(this);
         UpgradeIdx++;
-        Effect.Execute(itemName, UpgradeIdx);
+        Effect.Execute(this);
     }
 }

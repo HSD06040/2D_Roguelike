@@ -154,7 +154,7 @@ public class PlayerStatus
     {
         if (PlayerAccessories[_idx] == null) return;
 
-        PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx].itemName, PlayerAccessories[_idx].UpgradeIdx);
+        //PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx].itemName, PlayerAccessories[_idx].UpgradeIdx);
         PlayerAccessories[_idx] = null;
     }
 

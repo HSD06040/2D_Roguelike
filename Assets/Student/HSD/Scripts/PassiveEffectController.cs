@@ -22,6 +22,15 @@ public class PassiveEffectController : MonoBehaviour
         invincibleRoutine = StartCoroutine(PlayerInvincibleRoutine(delay));
     }
 
+    public void StopPlayerInvincible()
+    {
+        if (invincibleRoutine != null)
+        {
+            StopCoroutine(invincibleRoutine);
+            invincibleRoutine = null;
+        }
+    }
+
     private IEnumerator PlayerInvincibleRoutine(float delay)
     {
         Manager.Data.PlayerStatus.Invincible = true;
@@ -29,14 +38,14 @@ public class PassiveEffectController : MonoBehaviour
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
-    public void TriggerPassiveEffects(PassiveTriggerType triggerType)
-    {
-        if (accessories.Length <= 0) return;
+    //public void TriggerPassiveEffects(PassiveTriggerType triggerType)
+    //{
+    //    if (accessories.Length <= 0) return;
 
-        for (int i = 0; i < accessories.Length; i++)
-        {
-            if (accessories[i].Effect.passiveTriggerType == triggerType)
-                accessories[i].Effect.Execute(accessories[i].itemName, accessories[i].UpgradeIdx);
-        }
-    }
+    //    for (int i = 0; i < accessories.Length; i++)
+    //    {
+    //        if (accessories[i].Effect.passiveTriggerType == triggerType)
+    //            accessories[i].Effect.Execute(accessories[i].itemName, accessories[i].UpgradeIdx);
+    //    }
+    //}
 }
