@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpawner : MonoBehaviour
+public class RandomPositionMonsterSpawner : MonoBehaviour
 {
-    [SerializeField] private RectTransform spawnArea;
+    [Header("스폰범위")]
+    [SerializeField] private RectTransform[] spawnAreas;
+
+    [Header("소환될 몬스터 목록")]
     [SerializeField] private GameObject[] monsterPrefabs;
+
+    [Header("소환할 몬스터 수")]
     [SerializeField] private int spawnMonsterNum;
+
+    [Header("범위 태두리 여유공간")]
     [SerializeField] private float space; //태두리 안쪽으로 여유공간
 
     private void Update()
@@ -21,15 +28,16 @@ public class MonsterSpawner : MonoBehaviour
     {
         for (int i = 0; i < spawnMonsterNum; i++)
         {
-            int random = Random.Range(0, monsterPrefabs.Length);
-            GameObject spawnMonster = monsterPrefabs[random];
+            RectTransform spawnArea = spawnAreas[Random.Range(0, spawnAreas.Length)]; //SpawnArea중 하나를 랜덤으로 뽑음
+            int random = Random.Range(0, monsterPrefabs.Length);  //몬스터 index길이중 랜덤한 숫자를 뽑음
+            GameObject spawnMonster = monsterPrefabs[random]; //랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
 
-            Vector3 spawnPoint = RandomPosition();
-            Instantiate(spawnMonster, spawnPoint, Quaternion.identity);
+            Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정
+            Instantiate(spawnMonster, spawnPoint, Quaternion.identity); //몬스터 스폰
         } 
     }
 
-    private Vector3 RandomPosition()
+    private Vector3 RandomPosition(RectTransform spawnArea)
     {
         Vector3[] rectCorners = new Vector3[4];  //0: 왼쪽아래, 1: 왼쪽 위, 2: 오른쪽 위, 3: 오른쪽 아래
         spawnArea.GetWorldCorners(rectCorners);
