@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteController : MonoBehaviour
+public class Projectile_Controller : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private int damage;
@@ -15,12 +15,9 @@ public class NoteController : MonoBehaviour
 
     public void Initialize(Vector2 direction, float speed, int damage)
     {
-        _rb.velocity = direction.normalized * speed;
         this.damage = damage;
-
-        // 방향벡터 라디안 계산 후 각도로 변환
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        _rb.velocity = direction.normalized * speed;
+        transform.up = direction;
 
         Destroy(gameObject, 2f);
     }

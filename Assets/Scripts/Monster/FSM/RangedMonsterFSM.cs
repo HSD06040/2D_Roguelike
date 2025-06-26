@@ -167,7 +167,7 @@ public class Ranged_AttackState : BaseState
         if (_rangedFSM.SO.notePrefab == null || _rangedFSM.Player == null) return;
 
         GameObject note = UnityEngine.Object.Instantiate(_rangedFSM.SO.notePrefab, _rangedFSM.transform.position, Quaternion.identity);
-        NoteController noteController = note.GetComponent<NoteController>();
+        Projectile_Controller noteController = note.GetComponent<Projectile_Controller>();
         Vector2 direction = (_rangedFSM.Player.position - _rangedFSM.transform.position).normalized;
         noteController.Initialize(direction, _rangedFSM.SO.noteSpeed, _rangedFSM.SO.attackPower);
     }
