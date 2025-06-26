@@ -60,7 +60,7 @@ public class RangedMonsterFSM : MonsterFSM
     public void FindAndSetNewWanderPosition()
     {
         if (Player == null) return;
-        for (int i = 0; i < 10; i++) // 최대 10번 시도하여 유효한 위치를 찾음
+        for (int i = 0; i < 10; i++) 
         {
             float randomAngle = Random.Range(0, 2 * Mathf.PI);
             float randomDistance = Random.Range(SO.minRepositionDistance, SO.maxRepositionDistance);
@@ -72,7 +72,7 @@ public class RangedMonsterFSM : MonsterFSM
             if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas))
             {
                 Agent.SetDestination(hit.position);
-                return; // 유효한 위치를 찾았으면 함수 종료
+                return; 
             }
         }
     }

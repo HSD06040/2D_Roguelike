@@ -200,17 +200,17 @@ public class SheetMusic_MeleeAttackState : BaseState
 
     public void TriggerAttack()
     {
-        // 1. 플레이어 오브젝트가 존재하는지 먼저 확인
+        // 플레이어 오브젝트가 존재하는지 먼저 확인
         if (_sheetFSM.Player == null) return;
 
         Transform playerTransform = _sheetFSM.Player;
         Transform monsterTransform = _sheetFSM.transform;
 
-        // 2. 플레이어가 공격 반경 안에 있는지 확인 (1차 필터링)
+        // 플레이어가 공격 반경 안에 있는지 확인 (1차 필터링)
         float sqrDistance = (playerTransform.position - monsterTransform.position).sqrMagnitude;
         if (sqrDistance <= _sheetFSM.AttackRangeSqr)
         {
-            // 3. 플레이어가 공격 각도 안에 있는지 확인 (2차 필터링)
+            // 플레이어가 공격 각도 안에 있는지 확인 (2차 필터링)
             Vector2 targetDir = (playerTransform.position - monsterTransform.position).normalized;
             Vector2 monsterForward = monsterTransform.right * _sheetFSM.Owner.FacingDirection;
 
@@ -219,7 +219,7 @@ public class SheetMusic_MeleeAttackState : BaseState
             // 내적 값이 미리 계산해둔 코사인 값보다 크면 부채꼴 안에 있음
             if (dot >= _sheetFSM.AttackAngleCosine)
             {
-                // 4. 모든 조건을 통과하면 데미지 처리
+                // 모든 조건을 통과하면 데미지 처리
                 if (playerTransform.TryGetComponent<IDamagable>(out IDamagable damageable))
                 {
                     damageable.TakeDamage(_sheetFSM.SO.attackPower);
