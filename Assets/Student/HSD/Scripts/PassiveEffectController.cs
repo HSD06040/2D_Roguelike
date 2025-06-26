@@ -43,6 +43,26 @@ public class PassiveEffectController : MonoBehaviour
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
+    public void StartSkillCoroutine(GameObject prefab, string key, float delay)
+    {
+        CoroutineUtile.SetCoroutine(key, StartCoroutine(DelayRoutine(delay, prefab)));
+    }
+
+    public void StopSkillCoroutine(string key)
+    {
+        if (CoroutineUtile.GetCoroutine(key) != null)
+            StopCoroutine(CoroutineUtile.GetCoroutine(key));
+    }
+
+    private IEnumerator DelayRoutine(float delay, GameObject prefab)
+    {
+        while(true)
+        {
+            Instantiate(prefab, orbitController.transform.position, Quaternion.identity);
+            yield return CoroutineUtile.GetWait(delay);
+        }
+    }
+
     //public void TriggerPassiveEffects(PassiveTriggerType triggerType)
     //{
     //    if (accessories.Length <= 0) return;

@@ -23,6 +23,9 @@ public abstract class AccessoriesEffect : ScriptableObject
     [SerializeField, Tooltip("어떤 조건으로 설정하실 건가요?")]
     private Condition condition;
 
+    [Header("OnTime")]
+    [SerializeField] protected float[] delays;
+
     [SerializeField] private List<PassiveTriggerType> triggerTyps;
     protected bool isActive;
     private bool isSubscribe;
