@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "InvincibleEffect", menuName = "Item/Accessories/Effect/InvincibleEffect")]
 public class InvincibleEffect : AccessoriesEffect
 {
+    [Header("Invincible Effect")]
     [SerializeField] private float[] invincibleTimes;
 
     public override void Active1(Accessories accessories) => Playerinvincible(accessories.UpgradeIdx);

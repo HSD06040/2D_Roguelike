@@ -6,6 +6,7 @@ public class Demo : MonoBehaviour
 {
     [SerializeField] private PlayerWeaponController controller;
     [SerializeField] private MusicWeapon[] weapons;
+    [SerializeField] private Accessories Accessories;
 
     private void Update()
     {
@@ -20,5 +21,8 @@ public class Demo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
             Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Cymbals);
+
+        if (Input.GetKeyDown(KeyCode.Q))
+            Manager.Data.PlayerStatus.TryEquipAccessories(Accessories);
     }
 }

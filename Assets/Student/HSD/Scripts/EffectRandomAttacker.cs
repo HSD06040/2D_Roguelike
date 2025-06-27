@@ -1,0 +1,60 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EffectRandomAttacker : MonoBehaviour
+{
+    private GameObject prefab;
+    private int monsterCount;
+    private float damage;
+    private float offset;
+    private List<int> usedIndexes = new List<int>();
+    private List<Collider2D> selected = new List<Collider2D>();
+
+    public void Init(int _monsterCount, float _damage, GameObject _prefab, float _offset)
+    {        
+        usedIndexes.Clear();
+        selected.Clear();
+
+        offset = _offset;
+        monsterCount = _monsterCount;
+        damage = Manager.Data.PlayerStatus.curWeapon.WeaponData.AttackDamage * _damage;
+        prefab = _prefab;
+        
+        Attack();
+
+        Manager.Resources.Destroy(gameObject, 2);
+    }
+
+    private void Attack()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 30f, 1 << 6);
+
+        if (cols.Length <= monsterCount)
+        {
+            for (int i = 0; i < cols.Length; i++)
+            {
+                Manager.Resources.Instantiate(prefab, (Vector2)cols[i].transform.position + new Vector2(0, offset), Quaternion.identity, true)
+                    .GetComponent<PassiveProjectile>().Init(damage, 1);
+            }
+
+            return;
+        }
+
+        while (selected.Count < monsterCount)
+        {
+            int randIdx = Random.Range(0, cols.Length);
+            if (!usedIndexes.Contains(randIdx))
+            {
+                usedIndexes.Add(randIdx);
+                selected.Add(cols[randIdx]);
+            }
+
+            Debug.Log(selected.Count);
+        }
+
+        for (int i = 0; i < cols.Length; i++)
+        {
+            Manager.Resources.Instantiate(prefab, (Vector2)cols[i].transform.position + new Vector2(0, offset), Quaternion.identity);
+        }
+    }
+}

@@ -18,6 +18,7 @@ public class PlayerStatus
     public FloatStat Damage { get; private set; } = new(); // 데미지 값
     public FloatStat Speed { get; private set; } = new(); // 스피드 값
     public FloatStat AttackSpeed { get; private set; } = new(); // 퍼센트
+    public FloatStat Evasion { get; private set; } = new(); // 회피율
 
     public Property<int> CurtHp = new Property<int>();
 
@@ -29,9 +30,12 @@ public class PlayerStatus
     [Header("Accessories")]
     public Accessories[] PlayerAccessories = new Accessories[accessoriesCount];
 
+    public Action<int, Accessories> OnAccessoriesChanged;
+
     [Header("Weapon")]
     private MusicWeapon weapon;
     public int currentWeaponIdx;
+    public MusicWeapon curWeapon => PlayerWeapons[currentWeaponIdx];
     public MusicWeapon[] PlayerWeapons = new MusicWeapon[weaponCount];
     private List<string> WeaponList = new List<string>(4);
 
@@ -118,12 +122,14 @@ public class PlayerStatus
     #endregion
 
     #region Accessories
-    public void EquipAccessories(Accessories accessories)
+    public void TryEquipAccessories(Accessories accessories)
     {
         Accessories match = null;
 
         foreach (var item in PlayerAccessories)
         {
+            if (item == null) continue;
+
             if(item.itemName == accessories.itemName)
             {
                 match = item;
@@ -146,15 +152,23 @@ public class PlayerStatus
         }
         else
         {
-            PlayerAccessories[slotIdx] = accessories;
+            EquipSlotAccessories(accessories, slotIdx);
         }
+    }
+
+    public void EquipSlotAccessories(Accessories accessories, int slotIdx)
+    {
+        PlayerAccessories[slotIdx] = accessories;
+        PlayerAccessories[slotIdx].Effect.RegisterEvents(PlayerAccessories[slotIdx]);
+        OnAccessoriesChanged?.Invoke(slotIdx, accessories);
     }
 
     public void UnEquipAccessories(int _idx)
     {
         if (PlayerAccessories[_idx] == null) return;
 
-        //PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx].itemName, PlayerAccessories[_idx].UpgradeIdx);
+        PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
+        PlayerAccessories[_idx].Effect.UnregisterEvents();
         PlayerAccessories[_idx] = null;
     }
 
@@ -170,7 +184,7 @@ public class PlayerStatus
 
     private void UpgradeAccessories(Accessories accessories)
     {
-
+        accessories.Upgrade();
     }
     #endregion
 
@@ -213,13 +227,19 @@ public class PlayerStatus
 
     public bool DecreaseHealth(int amount)
     {
+        if (Evasion.Value != 0)
+        {
+            if (UnityEngine.Random.Range(0, 100) < Evasion.Value)
+                return true;
+        }
+
         CurtHp.Value -= amount;
 
         if(CurtHp.Value <= 0)
         {
             OnPlayerDead?.Invoke();
-            return true;
-        }
+            return false;
+        }     
 
         return false;
     }
