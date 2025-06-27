@@ -8,7 +8,22 @@ using UnityEngine.UI;
 public class Property<T>
 {
     private T _value;
-    public T Value { get { return _value; } set { if (_value.Equals(value)) return; _value = value; OnChanged.Invoke(_value); } }
+    public T Value 
+    { 
+        get 
+        { 
+            return _value; 
+        } 
+        set 
+        { 
+            if (_value.Equals(value)) 
+                return; 
+
+            _value = value;
+            
+            OnChanged?.Invoke(_value); 
+        } 
+    }
 
     private event Action<T> OnChanged;
 
