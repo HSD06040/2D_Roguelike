@@ -12,10 +12,10 @@ public class EntityFX : MonoBehaviour
     private Coroutine playerTakeDamageCor;
     private WaitForSeconds delay = new WaitForSeconds(0.2f);
 
-    public void CreatePopupText(int damage)
+    public void CreatePopupText(float damage)
     {
         GameObject obj = Manager.Pool.GetPopup(popupTextPrefab, transform.position);      
-        obj.GetComponent<DamagePopupText>().Init(damage.ToString());
+        obj.GetComponent<DamagePopupText>().Init(damage.ToString("F1"));
     }
 
     public void CreateTakeDamageMaterial()
