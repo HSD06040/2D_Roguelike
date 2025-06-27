@@ -24,15 +24,16 @@ public class JHT_PlayerWeapon : MonoBehaviour
         WeaponList = new List<string>(4);
         cam = Camera.main;
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
-        defaultWeapon.Init(transform);
+        //defaultWeapon.Init(transform);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (currentWeapon != null)
             {
+                Debug.Log("GetWeapon");
                 SetProjectile(currentWeapon);
                 if(currentWeapon.WeaponData.itemName == "Violin")
                 {
@@ -45,7 +46,7 @@ public class JHT_PlayerWeapon : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (currentWeapon != null && currentWeapon.WeaponData.itemName == "Violin")
             {
