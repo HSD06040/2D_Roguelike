@@ -6,7 +6,11 @@ using UnityEngine;
 public class MonsterSpawnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject doors;
+    [SerializeField] private GameObject portal;
+    [SerializeField] private bool isLastRoomOfStage = false;
+
     [SerializeField] private float monsterSpawnDelayTime = 2f;
+    
 
     private MonsterSpawnerManager monsterSpawnerManager;
 
@@ -70,6 +74,12 @@ public class MonsterSpawnTrigger : MonoBehaviour
             Debug.Log("방 클리어");
             isRoomCleared = true;
             UnlockDoors();
+
+            if(isLastRoomOfStage)
+            {
+                portal.SetActive(true);
+            }
+
         }
     }
 }    

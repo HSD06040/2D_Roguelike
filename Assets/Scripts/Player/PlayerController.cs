@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
-{  //스페이스바 대쉬 구현해야함
+{ 
 
     [Header("플레이어")]
     [SerializeField] public SpriteRenderer spriteRenderer;
-    [SerializeField] private float dashSpeed; //대시스피드
-    [SerializeField] public float dashDuration; //대시시간
+    [SerializeField] private float dashSpeed; //대쉬스피드
+    [SerializeField] public float dashDuration; //대쉬시간
     [SerializeField] private float dashCoolDown;
 
     private Afterimage afterimage;
@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     private Vector2 movemoent;
 
+    private IInteractable interactableTarget;
+
     private void Start()
     {        
         weaponCon = GetComponent<PlayerWeaponController>();
@@ -36,6 +38,11 @@ public class PlayerController : MonoBehaviour
     {
         LookAtMouse();
         PlayerDash();
+
+        if (Input.GetKeyDown(KeyCode.E) && interactableTarget != null)
+        {
+            interactableTarget.Interact();
+        }
     }
 
     private void FixedUpdate()
@@ -93,5 +100,31 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashCoolDown);
 
         canDash = true;
+    }
+
+    ////interaction
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            interactableTarget = interactable;
+            interactableTarget.UiOn();
+            Debug.Log("E키로 상호작용 가능한 타겟: ");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<IInteractable>(out IInteractable interactable))
+        {
+            if(interactableTarget == interactable)
+            {
+                interactableTarget.UiOff();
+                interactableTarget = null;
+                Debug.Log("멀어져서 상호작용 불가능해진 타겟: ");
+            }
+            
+        }
     }
 }

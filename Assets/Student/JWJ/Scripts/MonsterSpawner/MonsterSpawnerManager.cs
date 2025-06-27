@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MonsterSpawnerManager : MonoBehaviour
 {
-    [Header("총 소환할 몬스터 수")]
-    [SerializeField] private int spawnMonsterNum;
-
     [Header("고정 소환위치")]
     [SerializeField] public Transform[] fixedSpawnPositions;
 
-    [Header("고정 소환위치 몬스터목록")]
-    [SerializeField] public GameObject[] fixedPosMonsterprefabs;
-
     [Header("랜덤 소환영역")]
     [SerializeField] public RectTransform[] randomSpawnAreas;
+
+    [Header("랜던 소환영역별 몬스터 수")]
+    [SerializeField] public int[] randomSpawnMonsterNum;
+
+    [Header("고정 소환위치 몬스터목록")]
+    [SerializeField] public GameObject[] fixedPosMonsterprefabs;
 
     [Header("랜덤 소환영역 몬스터목록")]
     [SerializeField] public GameObject[] randomePosMonsterprefabs;
@@ -29,19 +29,15 @@ public class MonsterSpawnerManager : MonoBehaviour
     {
         spawnCount = 0;
 
-        int randomPosMonsterNum = spawnMonsterNum - fixedSpawnPositions.Length;
+        SpawnFixedPosMonsters();
 
-        if (randomPosMonsterNum < 0)
+        for(int i = 0; i < randomSpawnAreas.Length; i++)
         {
-            Debug.Log("소환할 총 몬스터의 수 보다 고정 위치의 수가 많습니다.");
-            return;
+            int spawnNum = randomSpawnMonsterNum[i]; // 인덱스에 넣은 소환할 몬스터 숫자
+            spawnRandomPosMonsters(randomSpawnAreas[i], spawnNum); // 각각 영역별로 소환할 숫자전달
         }
-
-        else 
-        {
-            SpawnFixedPosMonsters();
-            spawnRandomPosMonsters(randomPosMonsterNum);
-        }
+        
+        
         
 
     }
@@ -59,12 +55,11 @@ public class MonsterSpawnerManager : MonoBehaviour
         }
     }
 
-    public void spawnRandomPosMonsters(int randomPosMonsterNum)  //랜덤위치 몬스터 소환
+    public void spawnRandomPosMonsters(RectTransform spawnArea, int spawnNum)  //랜덤위치 몬스터 소환
     {
-        for (int i = 0; i < randomPosMonsterNum; i++)
+        for (int i = 0; i < spawnNum; i++) //스폰 수만큼 반복
         {
-            RectTransform spawnArea = randomSpawnAreas[Random.Range(0, randomSpawnAreas.Length)]; //SpawnArea중 하나를 랜덤으로 뽑음
-            int random = Random.Range(0, randomePosMonsterprefabs.Length);  //몬스터 index길이중 랜덤한 숫자를 뽑음
+            int random = Random.Range(0, randomePosMonsterprefabs.Length);
             GameObject spawnMonster = randomePosMonsterprefabs[random]; //랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
 
             Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정

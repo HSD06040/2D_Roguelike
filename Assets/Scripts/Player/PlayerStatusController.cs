@@ -23,10 +23,6 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(int damage)
     {
-        if(status.DecreaseHealth(damage))
-        {
-            Die();
-        }        
 
     }
 
