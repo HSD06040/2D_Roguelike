@@ -5,23 +5,9 @@ using UnityEngine;
 
 public static class CoroutineUtile
 {
-    private static readonly Dictionary<string, Coroutine> effectCoroutineDic = new Dictionary<string, Coroutine>();
     private static readonly Dictionary<float, WaitForSeconds> effectDelayDic = new Dictionary<float, WaitForSeconds>();
 
-    public static Coroutine GetCoroutine(string key)
-    {
-        if (!effectCoroutineDic.ContainsKey(key))
-            return null;
-        
-        return effectCoroutineDic[key];
-    }
-
-    public static void SetCoroutine(string key, Coroutine coroutine)
-    {
-        effectCoroutineDic[key] = coroutine;
-    }
-
-    public static WaitForSeconds GetWait(float dealy)
+    public static WaitForSeconds GetDelay(float dealy)
     {
         if (!effectDelayDic.ContainsKey(dealy))
             effectDelayDic[dealy] = new WaitForSeconds(dealy);

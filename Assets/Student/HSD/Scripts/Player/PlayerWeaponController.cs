@@ -42,11 +42,12 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 SetProjectile(currentWeapon);
             }
-
             else
             {
                 defaultWeapon.Attack(GetMousePos());
             }
+
+            Manager.Game.OnPlayerAttack?.Invoke();
         }
     }
 

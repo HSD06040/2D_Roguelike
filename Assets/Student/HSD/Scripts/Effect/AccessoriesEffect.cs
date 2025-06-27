@@ -9,13 +9,13 @@ public enum Condition
 
 public enum PassiveTriggerType
 {
-    OnEquip ,OnHit, OnAttack, OnTime, OnKill, OnSetGold, 
+    OnEquip ,OnHit, OnAttack, OnInterval, OnKill, OnSetGold, 
 }
 
 public abstract class AccessoriesEffect : ScriptableObject
 {
     [Header("Condition")]
-    public bool IsCondition;
+    [SerializeField] private bool isCondition;
     [SerializeField, Tooltip("어떤 스텟을 조건으로 달 것인가요?")]
     private StatType statType;
     [SerializeField, Tooltip("얼마의 값을 조건으로 달 것인가요?")]
@@ -23,17 +23,24 @@ public abstract class AccessoriesEffect : ScriptableObject
     [SerializeField, Tooltip("어떤 조건으로 설정하실 건가요?")]
     private Condition condition;
 
-    [Header("OnTime")]
-    [SerializeField] protected float[] delays;
+    [Header("OnInterval")]
+    [SerializeField, Tooltip("몇초 마다")] 
+    public float[] intervals;
+    [Space]
 
-    [SerializeField] private List<PassiveTriggerType> triggerTyps;
+    public List<PassiveTriggerType> triggerTypes;
     protected bool isActive;
     private bool isSubscribe;
     private Accessories registeredAccessories;
 
+    private void OnEnable()
+    {
+        isSubscribe = false;
+    }
+
     public virtual void Execute(Accessories accessories)
     {
-        if (IsCondition && !IsConditionMet(Manager.Data.PlayerStatus.GetStat(statType)))
+        if (isCondition && !IsConditionMet(Manager.Data.PlayerStatus.GetStat(statType)))
             return;
 
         switch (accessories.UpgradeIdx)
@@ -71,29 +78,36 @@ public abstract class AccessoriesEffect : ScriptableObject
     public void RegisterEvents(Accessories accessories)
     {
         registeredAccessories = accessories;
-
-        if (triggerTyps.Count <= 0 || isSubscribe) return;
-
-        foreach (var trigger in triggerTyps)
-        {
-            switch(trigger)
+        Debug.Log(isSubscribe);
+        if (triggerTypes.Count <= 0 || isSubscribe) return;
+        
+        foreach (var trigger in triggerTypes)
+        {            
+            switch (trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += ExcuteHandler; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += _ => ExcuteHandler(); break;
                 case PassiveTriggerType.OnSetGold: Manager.Data.Gold.AddEvent(_ => ExcuteHandler()); break;
+                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit += _ => ExcuteHandler(); break;
+                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack += ExcuteHandler; break;
+                case PassiveTriggerType.OnEquip: Execute(accessories); break;
             }
         }
+
         isSubscribe = true;
     }
 
     public void UnregisterEvents()
     {
-        if (triggerTyps.Count <= 0 || !isSubscribe) return;
+        if (triggerTypes.Count <= 0 || !isSubscribe) return;
 
-        foreach (var trigger in triggerTyps)
+        foreach (var trigger in triggerTypes)
         {
             switch (trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -= ExcuteHandler; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -= _ => ExcuteHandler(); break;
+                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.RemoveEvent(_ => ExcuteHandler()); break;
+                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit -= _ => ExcuteHandler(); break;
+                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack -= ExcuteHandler; break;
             }
         }
         isSubscribe = false;

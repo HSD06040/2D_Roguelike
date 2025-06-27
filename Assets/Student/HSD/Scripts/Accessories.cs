@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Accessories", menuName = "Item/AccessoriesItem")]
 public class Accessories : Item
 {
     public AccessoriesEffect Effect;
@@ -12,13 +13,29 @@ public class Accessories : Item
     public float Speed;
 
     [Header("Upgrade")]
-    private const int maxUpgrade = 4;
+    private const int maxUpgrade = 3;
+    private bool isAttack;
     public int UpgradeIdx;
 
+    private void OnEnable()
+    {
+        UpgradeIdx = 0;
+    }
+
     public void Upgrade()
-    {        
+    {
+        if (UpgradeIdx >= maxUpgrade) return;
+
         Effect.Revoke(this);
         UpgradeIdx++;
-        Effect.Execute(this);
+
+        foreach (var type in Effect.triggerTypes)
+        {
+            if (type == PassiveTriggerType.OnAttack)
+                isAttack = true;
+        }
+
+        if(!isAttack)
+            Effect.Execute(this);
     }
 }

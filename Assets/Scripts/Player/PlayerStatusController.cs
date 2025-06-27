@@ -15,21 +15,17 @@ public class PlayerStatusController : StatusController
 
         status = Manager.Data.PlayerStatus;
         
-        heartUI.InicialHearts(status.MaxHp.Value); //ÃÖ´ëÃ¼·Â¸¸Å­ ÇÏÆ® »ý¼º
+        heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
 
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
-        if(status.DecreaseHealth(damage))
-        {
-            Die();
-        }        
     }
 
-    public void Die()
+    private void Die()
     {
 
     }

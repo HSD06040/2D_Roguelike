@@ -12,6 +12,11 @@ public class Property<T>
 
     private event Action<T> OnChanged;
 
+    public Property()
+    {
+        _value = default;
+    }
+
     public void AddEvent(Action<T> action) => OnChanged += action;
 
     public void RemoveEvent(Action<T> action) => OnChanged -= action;
@@ -23,6 +28,4 @@ public class Property<T>
             OnChanged -= action;
         }
     }
-
-
 }

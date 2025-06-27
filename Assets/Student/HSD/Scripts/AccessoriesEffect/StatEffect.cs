@@ -16,7 +16,8 @@ public struct StatEffectStruct
 [CreateAssetMenu(fileName = "StatEffect", menuName = "Item/Accessories/Effect/StatEffect")]
 public class StatEffect : AccessoriesEffect
 {
-    [SerializeField, Tooltip("!! 4개 까지 설정")] 
+    [Header("Stat Effect")]
+    [SerializeField, Tooltip("!! 4개 까지 설정")]
     private StatEffectStruct[] stats;
 
     public override void Active1(Accessories accessories) => AddStat(accessories);

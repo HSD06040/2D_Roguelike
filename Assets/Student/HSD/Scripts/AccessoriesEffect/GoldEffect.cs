@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "GoldStatEffect", menuName = "Item/Accessories/Effect/GoldStatEffect")]
 public class GoldEffect : AccessoriesEffect
 {
+    [Header("Gold Stat Effect")]
     [SerializeField] private int[] goldCount;
     [SerializeField] private StatEffectStruct[] stats;
 

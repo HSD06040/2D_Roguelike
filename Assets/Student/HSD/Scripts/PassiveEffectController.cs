@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
 public class PassiveEffectController : MonoBehaviour
 {
     private Coroutine invincibleRoutine;
+    private static readonly Dictionary<string, Coroutine> effectCoroutineDic = new Dictionary<string, Coroutine>();
 
     public OrbitController orbitController;
 
@@ -39,27 +41,35 @@ public class PassiveEffectController : MonoBehaviour
     private IEnumerator PlayerInvincibleRoutine(float delay)
     {
         Manager.Data.PlayerStatus.Invincible = true;
-        yield return new WaitForSeconds(delay);
+        yield return CoroutineUtile.GetDelay(delay);
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
-    public void StartSkillCoroutine(GameObject prefab, string key, float delay)
+
+    public void StartSkillCoroutine(GameObject prefab, string key, float interval, int count, float delay, float damage, float radius)
     {
-        CoroutineUtile.SetCoroutine(key, StartCoroutine(DelayRoutine(delay, prefab)));
+        effectCoroutineDic[key] = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));            
     }
 
     public void StopSkillCoroutine(string key)
     {
-        if (CoroutineUtile.GetCoroutine(key) != null)
-            StopCoroutine(CoroutineUtile.GetCoroutine(key));
+        if(effectCoroutineDic.ContainsKey(key))
+        {
+            StopCoroutine(effectCoroutineDic[key]);
+        }
     }
 
-    private IEnumerator DelayRoutine(float delay, GameObject prefab)
+    private IEnumerator DelayRoutine(GameObject prefab, float interval, int count, float delay, float damage, float radius)
     {
         while(true)
         {
-            Instantiate(prefab, orbitController.transform.position, Quaternion.identity);
-            yield return CoroutineUtile.GetWait(delay);
+            for (int i = 0; i < count; i ++)
+            {
+                Instantiate(prefab, orbitController.transform.position, Quaternion.identity).GetComponent<PassiveObject>().Init(damage, radius);
+                yield return CoroutineUtile.GetDelay(delay);
+            }
+            
+            yield return CoroutineUtile.GetDelay(interval);
         }
     }
 
