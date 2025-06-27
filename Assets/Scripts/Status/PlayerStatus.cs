@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public enum StatType
 {
-    MaxHp,Damage,Speed,AttackSpeed,CurrentHP
+    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, AttackSize, Evasion, DamageMultifly, SpeedMultifly
 }
 
 [Serializable]
@@ -17,14 +17,20 @@ public class PlayerStatus
     // 플레이어스텟        
     public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
     public FloatStat Damage { get; private set; } = new(); // 데미지 값
-    public FloatStat Speed { get; private set; } = new(); // 스피드 값
-    public FloatStat AttackSpeed { get; private set; } = new(); // 퍼센트
-    public FloatStat Evasion { get; private set; } = new(); // 회피율
+    public FloatStat DamageMultifly { get; private set; } = new(); // 데미지 퍼센트
 
+    public FloatStat Speed { get; private set; } = new(); // 스피드 값
+    public FloatStat SpeedMultifly { get; private set; } = new(); // 스피드 값
+
+    public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
+
+    public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
+    public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
+     
     public Property<int> CurtHp = new Property<int>();
 
     public bool Invincible;
-    // 플레이어가 현재 가지고 있는 무기 (나중에 추가)
+    
     private const int weaponCount = 4;
     private const int accessoriesCount = 2;
 
@@ -220,6 +226,10 @@ public class PlayerStatus
             case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
+            case StatType.AttackSize: AttackSize.AddModifier(amount, source); break;
+            case StatType.Evasion: Evasion.AddModifier(amount, source); break;
+            case StatType.DamageMultifly: DamageMultifly.AddModifier(amount, source); break;
+            case StatType.SpeedMultifly: SpeedMultifly.AddModifier(amount, source); break;
         }
     }
 
