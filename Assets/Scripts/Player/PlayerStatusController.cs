@@ -23,10 +23,9 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(int damage)
     {
-<<<<<<< Feat/Monster
-        if(!hasDamaged)
-        {  
-            hasDamaged=true;
+       //if(!hasDamaged)
+       //{  
+       //    hasDamaged=true;
             status.CurtHp.Value -= damage;
             if(status.CurtHp.Value <= 0)
             {
@@ -34,14 +33,14 @@ public class PlayerStatusController : StatusController
             }
 
 
-            StartCoroutine(PlayerDamageCoolDown());
-        }
-=======
+       //     StartCoroutine(PlayerDamageCoolDown());
+       // }
+
         if(status.DecreaseHealth(damage))
         {
             Die();
         }        
->>>>>>> develop
+
     }
 
     public void Die()
