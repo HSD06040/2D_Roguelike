@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1171416818809543689}
   - component: {fileID: 288286253138440341}
   - component: {fileID: 5022885290245071055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NoteAsset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,8 +118,8 @@ GameObject:
   - component: {fileID: 190082499957277624}
   - component: {fileID: 7810493130364108212}
   - component: {fileID: 5996684409507708014}
-  m_Layer: 0
-  m_Name: Projectile_Slime
+  m_Layer: 8
+  m_Name: Projectile_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
