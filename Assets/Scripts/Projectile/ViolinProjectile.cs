@@ -27,6 +27,7 @@ public class ViolinProjectile : Projectile
 
     private void Update()
     {
+        targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         UpdateLaser();
     }
 
