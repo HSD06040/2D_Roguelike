@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.InputSystem;
 
 public enum StatType
 {
@@ -46,19 +47,13 @@ public class PlayerStatus
 
     #region Bind
     public void AddBindEvent()
-    {
-        Manager.Input.GetPlayerBind("Weapon1").AddStartedEvent(() => WeaponChanged(0));
-        Manager.Input.GetPlayerBind("Weapon2").AddStartedEvent(() => WeaponChanged(1));
-        Manager.Input.GetPlayerBind("Weapon3").AddStartedEvent(() => WeaponChanged(2));
-        Manager.Input.GetPlayerBind("Weapon4").AddStartedEvent(() => WeaponChanged(3));
+    {        
+        Manager.Input.GetPlayerBind("WeaponSelect").AddStartedEvent(OnWeaponSelect);  
     }
 
     public void DisableWeaponBind()
     {
-        Manager.Input.GetPlayerBind("Weapon1").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon2").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon3").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon4").ActionDisable();
+        Manager.Input.GetPlayerBind("WeaponSelect").RemoveStartedEvent(OnWeaponSelect);
     }
     #endregion
 
@@ -99,6 +94,21 @@ public class PlayerStatus
                 weapon.Count = 0;
             }
         }
+    }
+
+    private void OnWeaponSelect(InputAction.CallbackContext ctx)
+    {
+        int idx = ctx.control.name switch
+        {
+            "1" => 0,
+            "2" => 1,
+            "3" => 2,
+            "4" => 3,
+            _ => -1
+        };
+
+        if (idx >= 0)
+            WeaponChanged(idx);
     }
 
     private void WeaponChanged(int _idx)

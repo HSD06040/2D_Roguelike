@@ -17,7 +17,7 @@ public class PassiveObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Monster"))
+        if((1 << 6 & (1 << collision.gameObject.layer)) != 0)
         {
             collision.GetComponent<IDamagable>().TakeDamage(damage);
         }

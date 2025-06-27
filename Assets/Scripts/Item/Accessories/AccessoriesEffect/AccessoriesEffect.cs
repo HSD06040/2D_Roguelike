@@ -33,7 +33,7 @@ public abstract class AccessoriesEffect : ScriptableObject
     private bool isSubscribe;
     private Accessories registeredAccessories;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         isSubscribe = false;
     }
@@ -70,7 +70,11 @@ public abstract class AccessoriesEffect : ScriptableObject
         };
     }
 
-    private void ExcuteHandler()
+    private void ExecuteHandler()
+    {
+        Execute(registeredAccessories);
+    }
+    private void ExecuteHandler(int i)
     {
         Execute(registeredAccessories);
     }
@@ -85,10 +89,10 @@ public abstract class AccessoriesEffect : ScriptableObject
         {            
             switch (trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += _ => ExcuteHandler(); break;
-                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.AddEvent(_ => ExcuteHandler()); break;
-                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit += _ => ExcuteHandler(); break;
-                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack += ExcuteHandler; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill += ExecuteHandler; break;
+                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.AddEvent(ExecuteHandler); break;
+                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit += ExecuteHandler; break;
+                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack += ExecuteHandler; break;
                 case PassiveTriggerType.OnEquip: Execute(accessories); break;
             }
         }
@@ -104,10 +108,10 @@ public abstract class AccessoriesEffect : ScriptableObject
         {
             switch (trigger)
             {
-                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -= _ => ExcuteHandler(); break;
-                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.RemoveEvent(_ => ExcuteHandler()); break;
-                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit -= _ => ExcuteHandler(); break;
-                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack -= ExcuteHandler; break;
+                case PassiveTriggerType.OnKill: Manager.Game.OnMonsterKill -=  ExecuteHandler; break;
+                case PassiveTriggerType.OnSetGold: Manager.Data.Gold.RemoveEvent(ExecuteHandler); break;
+                case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit -= ExecuteHandler; break;
+                case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack -= ExecuteHandler; break;
             }
         }
         isSubscribe = false;

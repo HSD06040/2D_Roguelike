@@ -5,7 +5,6 @@ using UnityEngine;
 public class Demo : MonoBehaviour
 {
     [SerializeField] private PlayerWeaponController controller;
-    [SerializeField] private MusicWeapon[] weapons;
     [SerializeField] private Accessories Accessories;
 
     private void Update()

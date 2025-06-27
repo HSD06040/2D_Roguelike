@@ -7,7 +7,7 @@ public class EffectRandomAttacker : MonoBehaviour
     private int monsterCount;
     private float damage;
     private float offset;
-    private List<int> usedIndexes = new List<int>();
+    private HashSet<int> usedIndexes = new HashSet<int>();
     private List<Collider2D> selected = new List<Collider2D>();
 
     public void Init(int _monsterCount, float _damage, GameObject _prefab, float _offset)
@@ -22,7 +22,7 @@ public class EffectRandomAttacker : MonoBehaviour
         
         Attack();
 
-        Manager.Resources.Destroy(gameObject, 2);
+        Destroy(gameObject, 2);
     }
 
     private void Attack()
@@ -33,8 +33,9 @@ public class EffectRandomAttacker : MonoBehaviour
         {
             for (int i = 0; i < cols.Length; i++)
             {
+                if (cols[i] == null) continue;
                 Manager.Resources.Instantiate(prefab, (Vector2)cols[i].transform.position + new Vector2(0, offset), Quaternion.identity, true)
-                    .GetComponent<PassiveProjectile>().Init(damage, 1);
+                    .GetComponent<PassiveObject>().Init(damage, 1);
             }
 
             return;
@@ -43,18 +44,17 @@ public class EffectRandomAttacker : MonoBehaviour
         while (selected.Count < monsterCount)
         {
             int randIdx = Random.Range(0, cols.Length);
-            if (!usedIndexes.Contains(randIdx))
+            if (usedIndexes.Add(randIdx))
             {
-                usedIndexes.Add(randIdx);
                 selected.Add(cols[randIdx]);
             }
-
-            Debug.Log(selected.Count);
         }
 
-        for (int i = 0; i < cols.Length; i++)
+        foreach (var col in selected)
         {
-            Manager.Resources.Instantiate(prefab, (Vector2)cols[i].transform.position + new Vector2(0, offset), Quaternion.identity);
+            if (col == null) continue;
+            Manager.Resources.Instantiate(prefab, (Vector2)col.transform.position + new Vector2(0, offset), Quaternion.identity, true)
+                .GetComponent<PassiveObject>().Init(damage, 1);
         }
     }
 }
