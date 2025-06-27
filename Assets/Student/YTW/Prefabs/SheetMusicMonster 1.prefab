@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8968509513497587604}
   - component: {fileID: 6573378017608404268}
   - component: {fileID: 1839902317567932738}
-  - component: {fileID: 5550400933262727388}
   - component: {fileID: 603558021940145013}
+  - component: {fileID: 882327706766807530}
   m_Layer: 6
   m_Name: SheetMusicMonster 1
   m_TagString: Monster
@@ -123,20 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SO>k__BackingField: {fileID: 11400000, guid: 6e6e4941483dd6d408c3df22c5555688, type: 2}
   lastAttackTime: 0
---- !u!114 &5550400933262727388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2567443852576989649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6135f4deec33d343b1828a2961815af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <AttackPower>k__BackingField: 10
 --- !u!195 &603558021940145013
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -159,6 +145,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &882327706766807530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567443852576989649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6135f4deec33d343b1828a2961815af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteFlashMaterial: {fileID: 2100000, guid: 121c359814f09ea479aeaa3ed80d5cbe, type: 2}
+  hitEffectDuration: 0.15
+  <MaxHealth>k__BackingField: 100
+  <AttackPower>k__BackingField: 10
 --- !u!1 &4722463184709793323
 GameObject:
   m_ObjectHideFlags: 0

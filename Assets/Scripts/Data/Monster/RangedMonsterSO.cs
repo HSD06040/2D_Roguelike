@@ -6,14 +6,16 @@ using UnityEngine;
 public class RangedMonsterSO : MonsterStat
 {
     [Header("탐지 및 이동 범위")]
-    public float detectionRange = 15f; // 이 거리 안으로 플레이어가 들어오면 행동 시작
-    public float repositionBoxWidth = 10f; // 랜덤 이동을 할 사각형 범위의 너비
-    public float repositionBoxHeight = 10f; // 랜덤 이동을 할 사각형 범위의 높이
+    public float detectionRange = 15f;
+    public float minRepositionDistance = 7f;  // 플레이어로부터 유지할 최소 거리
+    public float maxRepositionDistance = 12f; // 플레이어로부터 벗어나지 않을 최대 거리
 
     [Header("공격 설정")]
-    public float attackCooldown = 3f; // 공격 쿨타임 (이 시간동안 이동)
-    public GameObject notePrefab;     // 발사할 노트 프리팹 (NoteController를 가진)
-    public float noteSpeed = 12f;     // 노트 발사 속도
+    public float attackCooldown = 3f; // 공격 쿨타임 
+    public GameObject projectilePrefab;     // 발사할 발사체 프리팹
+    public float projectileSpeed = 12f;     // 발사체 속도
 
-    
+    [Header("보상")]
+    public GameObject dropItemPrefab;
+    public int dropItemCount = 1;
 }

@@ -60,17 +60,20 @@ public class RangedMonsterFSM : MonsterFSM
     public void FindAndSetNewWanderPosition()
     {
         if (Player == null) return;
-
-        float halfWidth = SO.repositionBoxWidth / 2;
-        float halfHeight = SO.repositionBoxHeight / 2;
-
-        Vector3 randomPoint = Player.position + new Vector3(Random.Range(-halfWidth, halfWidth), Random.Range(-halfHeight, halfHeight), 0);
-
-        NavMeshHit hit;
-
-        if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
+        for (int i = 0; i < 10; i++) 
         {
-            Agent.SetDestination(hit.position);
+            float randomAngle = Random.Range(0, 2 * Mathf.PI);
+            float randomDistance = Random.Range(SO.minRepositionDistance, SO.maxRepositionDistance);
+
+            Vector2 offset = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * randomDistance;
+            Vector3 randomPoint = Player.position + (Vector3)offset;
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas))
+            {
+                Agent.SetDestination(hit.position);
+                return; 
+            }
         }
     }
 
@@ -86,9 +89,9 @@ public class RangedMonsterFSM : MonsterFSM
         if (Application.isPlaying && Player != null)
         {
             Gizmos.color = Color.yellow;
-            Vector3 boxCenter = Player.position;
-            Vector3 boxSize = new Vector3(SO.repositionBoxWidth, SO.repositionBoxHeight, 0);
-            Gizmos.DrawWireCube(boxCenter, boxSize);
+            Gizmos.DrawWireSphere(Player.position, SO.minRepositionDistance);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(Player.position, SO.maxRepositionDistance);
         }
     }
 }
@@ -161,12 +164,12 @@ public class Ranged_AttackState : BaseState
 
     public void TriggerAttack()
     {
-        if (_rangedFSM.SO.notePrefab == null || _rangedFSM.Player == null) return;
+        if (_rangedFSM.SO.projectilePrefab == null || _rangedFSM.Player == null) return;
 
-        GameObject note = UnityEngine.Object.Instantiate(_rangedFSM.SO.notePrefab, _rangedFSM.transform.position, Quaternion.identity);
-        NoteController noteController = note.GetComponent<NoteController>();
+        GameObject note = UnityEngine.Object.Instantiate(_rangedFSM.SO.projectilePrefab, _rangedFSM.transform.position, Quaternion.identity);
+        Projectile_Controller noteController = note.GetComponent<Projectile_Controller>();
         Vector2 direction = (_rangedFSM.Player.position - _rangedFSM.transform.position).normalized;
-        noteController.Initialize(direction, _rangedFSM.SO.noteSpeed, _rangedFSM.SO.attackPower);
+        // noteController.Initialize(direction, _rangedFSM.SO.projectileSpeed, _rangedFSM.SO.attackPower, );
     }
 }
 

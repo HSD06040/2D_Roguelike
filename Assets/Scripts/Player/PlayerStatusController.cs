@@ -23,8 +23,6 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(float damage)
     {
-        if(!status.DecreaseHealth((int)damage));
-            fx.CreatePopupText((int)damage);
     }
 
     private void Die()
