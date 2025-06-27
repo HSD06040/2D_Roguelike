@@ -61,7 +61,7 @@ public class ObjectPooler : MonoBehaviour
     }
 
     // 해당 태그의 오브젝트를 다시 가져옴
-        public void ReturnToPool(string tag, GameObject objectToReturn)
+    public void ReturnToPool(string tag, GameObject objectToReturn)
     {
         if (!poolDictionary.ContainsKey(tag))
         {

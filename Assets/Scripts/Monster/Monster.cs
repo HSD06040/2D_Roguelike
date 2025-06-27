@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Monster : MonoBehaviour, IDamagable
@@ -13,8 +14,7 @@ public class Monster : MonoBehaviour, IDamagable
 
 
     public float CurrentHealth { get; protected set; }
-
-    public MonsterStatusController monsterStatusCon {  get; private set; }
+    public EntityFX fx { get; protected set; }
     public StateMachine StateMachine { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
@@ -37,7 +37,7 @@ public class Monster : MonoBehaviour, IDamagable
     {
         CurrentHealth = MaxHealth;
         Animator = GetComponentInChildren<Animator>();
-        monsterStatusCon = GetComponent<MonsterStatusController>();
+        fx = GetComponent<EntityFX>();
         Rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -63,10 +63,10 @@ public class Monster : MonoBehaviour, IDamagable
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        Debug.Log($"{name}�� ������ {damage} ����. ���� hp : {CurrentHealth}");
+ 
         if (CurrentHealth > 0)
         {
             if (CurrentHealth > 0)
@@ -77,6 +77,11 @@ public class Monster : MonoBehaviour, IDamagable
                 }
             }
         }
+        else
+        {
+
+        }
+        fx.CreatePopupText(damage);
     }
 
     private IEnumerator HitFlashCoroutine()

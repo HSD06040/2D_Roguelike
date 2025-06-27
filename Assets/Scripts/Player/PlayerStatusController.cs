@@ -17,12 +17,12 @@ public class PlayerStatusController : StatusController
         
         heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
-
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
     }
 
     public override void TakeDamage(float damage)
     {
+        Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
     }
 
     private void Die()
