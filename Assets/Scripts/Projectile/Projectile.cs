@@ -25,24 +25,12 @@ public class Projectile : MonoBehaviour
         if(collision.CompareTag("Monster"))
         {
             collision.GetComponent<IDamagable>().TakeDamage(damage);
+            if(!IsPass && gameObject != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
 
-    //다시
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (gameObject == null) return; // 트리거 돼서 사라질려는 동시에 Destroy가 호출될경우
-    //    if (other.GetComponent<StatusController>() != target && other.gameObject.layer != 7) //layer == 7 플레이어로 설정
-    //        return;
-    //    if (target == null) return; //죽었을경우 return;
-    //
-    //    target.TakeDamage(damage);
-    //
-    //    if (IsPass == true) return;
-    //    Destroy(gameObject, maxTime);
-    //    
-    //    //particle
-    //}
 }

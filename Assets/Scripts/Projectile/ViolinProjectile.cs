@@ -10,6 +10,10 @@ public class ViolinProjectile : Projectile
     [SerializeField] private float vibration = 0.8f;
     [SerializeField] private LayerMask targetLayer;
 
+    private RaycastHit2D hit;
+    private bool canHit;
+    private Coroutine hitDelay;
+
     public override void Init(Vector2 _targetPos, int _damage, float _speed)
     {
         targetPos = _targetPos;
@@ -31,6 +35,33 @@ public class ViolinProjectile : Projectile
         UpdateLaser();
     }
 
+    private void HitEnemy()
+    {
+        if(hit.collider.CompareTag("Enemy"))
+        {
+            if(canHit)
+            {
+                GetComponent<IDamagable>().TakeDamage(1f);
+                hitDelay = StartCoroutine(HitEnemyCor());
+            }
+            
+        }
+    }
+
+    private IEnumerator HitEnemyCor()
+    {
+        canHit = false;
+        yield return new WaitForSeconds(1f);
+        canHit = true;
+
+        yield return null;
+        if(hitDelay != null)
+        {
+            StopCoroutine(hitDelay);
+            hitDelay = null;
+        }
+    }
+
     private void UpdateLaser()
     {
         if (!LineRender.enabled) return;
@@ -42,7 +73,7 @@ public class ViolinProjectile : Projectile
         Vector2 direction = end - start;
         Vector2 directionNormal = direction.normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(start, directionNormal, 30,targetLayer);
+        hit = Physics2D.Raycast(start, directionNormal, 30,targetLayer);
 
 
         for (int i = 0; i < pointSize; i++)
@@ -101,6 +132,7 @@ public class ViolinProjectile : Projectile
         }
     }
 
+
     private IEnumerator DestroyObject()
     {
         yield return new WaitForEndOfFrame();
@@ -108,4 +140,3 @@ public class ViolinProjectile : Projectile
     }
 
 }
- 
