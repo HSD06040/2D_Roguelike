@@ -67,7 +67,7 @@ public class ConditionPassiveEffectEditor : Editor
         }        
 
         EditorGUILayout.PropertyField(passiveTriggerType);
-        if ((PassiveTriggerType)passiveTriggerType.enumValueIndex == PassiveTriggerType.OnTime)
+        if ((PassiveTriggerType)passiveTriggerType.enumValueIndex == PassiveTriggerType.OnInterval)
         {
             EditorGUILayout.PropertyField(duration);
         }

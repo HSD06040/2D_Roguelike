@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "OrbitEffect", menuName = "Item/Accessories/Effect/OrbitEffect")]
 public class OrbitEffect : AccessoriesEffect
 {
+    [Header("Orbit Effect")]
     [SerializeField] private GameObject orbitPrefab;
 
     private List<GameObject> orbitObjs = new List<GameObject>();

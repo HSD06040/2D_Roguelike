@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0512a76be3cb284fab0810a57a9c1be, type: 3}
+  m_Name: RandomAttackEffect
+  m_EditorClassIdentifier: 
+  isCondition: 0
+  statType: 0
+  value: 0
+  condition: 0
+  intervals: []
+  triggerTypes: 02000000
+  attacker: {fileID: 6081794834133825613, guid: bab3f00d81ed5d14bb85f0c246d6e20e, type: 3}
+  attack: {fileID: 4954004628008176313, guid: 1a85c3a2485c54341bb57275555649d0, type: 3}
+  offset: 1.5
+  chances:
+  - 100
+  - 100
+  - 100
+  - 100
+  damages:
+  - 2.96
+  - 2.96
+  - 2.96
+  - 2.96
+  monsterCounts: 04000000040000000400000004000000

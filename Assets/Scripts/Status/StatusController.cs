@@ -15,11 +15,11 @@ public class StatusController : MonoBehaviour, IDamagable
         currentHp = maxHp;
     }
 
-    public virtual void TakeDamage(int damage) //대미지 받기
+    public virtual void TakeDamage(float damage) //대미지 받기
     {
-        currentHp -= damage;
+        currentHp -= (int)damage;
         Debug.Log(gameObject.name + "이" + damage + "의 피해를 받음. 현재 HP:" + currentHp);
-        fx.CreatePopupText(damage);
+        fx.CreatePopupText((int)damage);
 
         if (currentHp <= 0)
         {

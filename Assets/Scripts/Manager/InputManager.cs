@@ -14,8 +14,6 @@ public class InputManager : Singleton<InputManager>
     private static readonly Dictionary<string, InputBind> playerBind = new Dictionary<string, InputBind>();
     private static readonly Dictionary<string, InputBind> uiBinds = new Dictionary<string, InputBind>();
 
-    //public InputBind this[string key] => uiBinds.TryGetValue(key, out var bind) ? bind : null;
-
     private void Awake()
     {
         inputActionAsset = Resources.Load<InputActionAsset>("InputAction");

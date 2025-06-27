@@ -6,6 +6,7 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     public Property<int> Gold = new();
+    public GoldStat GoldStat = new();
 
     public PlayerStatus PlayerStatus = new();
     public PassiveEffectController PassiveCon;
@@ -28,6 +29,7 @@ public class DataManager : Singleton<DataManager>
 
         PlayerStatus.Speed.SetBaseStat(5);
         PlayerStatus.MaxHp.SetBaseStat(10);
+        PlayerStatus.Damage.SetBaseStat(10);
     }
 
     private void Start()
