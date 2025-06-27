@@ -11,9 +11,11 @@ public class RangedMonsterSO : MonsterStat
     public float maxRepositionDistance = 12f; // 플레이어로부터 벗어나지 않을 최대 거리
 
     [Header("공격 설정")]
-    public float attackCooldown = 3f; // 공격 쿨타임 (이 시간동안 이동)
-    public GameObject notePrefab;     // 발사할 노트 프리팹 (NoteController를 가진)
-    public float noteSpeed = 12f;     // 노트 발사 속도
+    public float attackCooldown = 3f; // 공격 쿨타임 
+    public GameObject projectilePrefab;     // 발사할 발사체 프리팹
+    public float projectileSpeed = 12f;     // 발사체 속도
 
-    
+    [Header("보상")]
+    public GameObject dropItemPrefab;
+    public int dropItemCount = 1;
 }

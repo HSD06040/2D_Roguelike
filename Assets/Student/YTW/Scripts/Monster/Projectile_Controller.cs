@@ -6,6 +6,8 @@ public class Projectile_Controller : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private int damage;
+    private string poolTag;
+    private Coroutine _returnToPoolCoroutine;
 
     private void Awake()
     {
@@ -13,13 +15,16 @@ public class Projectile_Controller : MonoBehaviour
         _rb.gravityScale = 0;
     }
 
-    public void Initialize(Vector2 direction, float speed, int damage)
+    public void Initialize(Vector2 direction, float speed, int damage, string tag)
     {
         this.damage = damage;
+        this.poolTag = tag; // 태그 저장
+
         _rb.velocity = direction.normalized * speed;
         transform.up = direction;
 
-        Destroy(gameObject, 2f);
+        if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(5f)); // 수명 5초로 변경
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,15 +36,21 @@ public class Projectile_Controller : MonoBehaviour
             {
                 damageable.TakeDamage(damage);
                 Debug.Log($"{other.name}에게 원거리 공격 명중. 데미지 : {damage}");
-                Destroy(gameObject);
+                ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
                 return;
             }
         }
 
-        // 몬스터가 아닌 벽이나 다른 오브젝트에 닿아도 파괴
-        if (other.gameObject.layer != LayerMask.NameToLayer("Monster"))
+        // 몬스터나 플레이어가 아닌 벽 같은 곳에 닿았을 때
+        if (other.gameObject.layer != LayerMask.NameToLayer("Monster") && other.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
-            Destroy(gameObject);
+            ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
         }
+    }
+
+    private IEnumerator ReturnToPoolAfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
     }
 }

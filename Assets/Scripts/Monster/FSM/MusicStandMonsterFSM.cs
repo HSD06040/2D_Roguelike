@@ -52,7 +52,7 @@ public class MusicStand_IdleState : BaseState
 
     public override void Update()
     {
-        _fsm.Owner.Flip(_fsm.Player);
+        __spreadFSM.Owner.Flip(__spreadFSM.Player);
 
         // 죽은 몬스터가 있는지 확인하고 리스트에서 제거
         // Linq의 RemoveAll을 사용하여 리스트의 요소 중 null (파괴된 게임오브젝트)인 것을 모두 제거
@@ -63,7 +63,7 @@ public class MusicStand_IdleState : BaseState
         // 쿨타임이 되었고, 현재 소환된 몬스터 수가 최대치보다 적을 때만 소환 상태로 변경
         if (_timer >= _summonCooldown && _musicStandFSM.SummonedMonsters.Count < _maxSummonedMonsters)
         {
-            _fsm.StateMachine.ChangeState(_musicStandFSM.SummonState);
+            __spreadFSM.StateMachine.ChangeState(_musicStandFSM.SummonState);
         }
     }
 }
@@ -87,6 +87,6 @@ public class MusicStand_SummonState : BaseState
         _musicStandFSM.SummonedMonsters.Add(newMonster);
 
         // 소환 후 즉시 Idle 상태로 복귀
-        _fsm.StateMachine.ChangeState(_musicStandFSM.IdleState);
+        __spreadFSM.StateMachine.ChangeState(_musicStandFSM.IdleState);
     }
 }

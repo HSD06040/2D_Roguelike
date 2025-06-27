@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 639594179580914374}
   - component: {fileID: 6327528872198740245}
   - component: {fileID: 529682406349799584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileAsset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 7035515122790931772}
   - component: {fileID: 8805716958785471939}
   - component: {fileID: 2381431836862045379}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileAsset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,8 +315,8 @@ GameObject:
   - component: {fileID: 985022646490534954}
   - component: {fileID: 3068707463062247989}
   - component: {fileID: 2204353378978484612}
-  m_Layer: 0
-  m_Name: Projectile_Slime 1
+  m_Layer: 8
+  m_Name: Projectile_DoubleWater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

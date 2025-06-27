@@ -56,5 +56,9 @@ public class MonsterFSM : MonoBehaviour, IAnimationAttackHandler
         // 기본적으로는 아무것도 하지 않음.
         // 공격 애니메이션이 있는 몬스터 FSM만 이 메소드를 재정의하여 사용
     }
+    public void DestroyMonster()
+    {
+        Destroy(gameObject);
+    }
 }
 

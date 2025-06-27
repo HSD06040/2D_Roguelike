@@ -23,23 +23,6 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(int damage)
     {
-       //if(!hasDamaged)
-       //{  
-       //    hasDamaged=true;
-            status.CurtHp.Value -= damage;
-            if(status.CurtHp.Value <= 0)
-            {
-                 status.OnPlayerDead?.Invoke();
-            }
-
-
-       //     StartCoroutine(PlayerDamageCoolDown());
-       // }
-
-        if(status.DecreaseHealth(damage))
-        {
-            Die();
-        }        
 
     }
 
