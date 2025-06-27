@@ -82,7 +82,7 @@ public abstract class AccessoriesEffect : ScriptableObject
     public void RegisterEvents(Accessories accessories)
     {
         registeredAccessories = accessories;
-        Debug.Log(isSubscribe);
+
         if (triggerTypes.Count <= 0 || isSubscribe) return;
         
         foreach (var trigger in triggerTypes)
@@ -94,6 +94,7 @@ public abstract class AccessoriesEffect : ScriptableObject
                 case PassiveTriggerType.OnHit: Manager.Game.OnMonsterHit += ExecuteHandler; break;
                 case PassiveTriggerType.OnAttack: Manager.Game.OnPlayerAttack += ExecuteHandler; break;
                 case PassiveTriggerType.OnEquip: Execute(accessories); break;
+                case PassiveTriggerType.OnInterval: Execute(accessories); break;
             }
         }
 

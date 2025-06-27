@@ -13248,7 +13248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1080889323}
-  Accessories: {fileID: 11400000, guid: 29976b3f39cb7ea47b135554ef889afe, type: 2}
+  Accessories: {fileID: 11400000, guid: 131e0bd2570e5bf44a15cd77d9ba8379, type: 2}
 --- !u!212 &893779685
 SpriteRenderer:
   m_ObjectHideFlags: 0

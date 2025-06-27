@@ -58,6 +58,7 @@ public class DelayEffect : AccessoriesEffect
 
     private void CreateAttack(string _name, int _upgrade)
     {
+        Debug.Log("2");
         Manager.Data.PassiveCon.StartSkillCoroutine
             (prefab, $"{_name}_{_upgrade}", intervals[_upgrade], counts[_upgrade], delays[_upgrade], damages[_upgrade], radius[_upgrade]);
     }

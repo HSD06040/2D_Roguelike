@@ -20,6 +20,7 @@ public class Accessories : Item
     private void OnEnable()
     {
         UpgradeIdx = 0;
+        isAttack = false;
     }
 
     public void Upgrade()

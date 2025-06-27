@@ -48,11 +48,11 @@ TagManager:
   - name: Projectile
     uniqueID: 305960425
     locked: 0
-  - name: Player
-    uniqueID: 2493935759
-    locked: 0
   - name: FX
     uniqueID: 783316077
+    locked: 0
+  - name: Player
+    uniqueID: 2493935759
     locked: 0
   - name: ShockWave
     uniqueID: 1783176045
