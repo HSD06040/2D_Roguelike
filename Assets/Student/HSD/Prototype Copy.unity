@@ -14715,6 +14715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupTextPrefab: {fileID: 0}
+  playerSpriteRender: {fileID: 0}
 --- !u!1 &1108278054
 GameObject:
   m_ObjectHideFlags: 0
@@ -18697,6 +18698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec307a65649c8843987a80c1e919552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldText: {fileID: 0}
 --- !u!1 &1474514338
 GameObject:
   m_ObjectHideFlags: 0
@@ -19148,6 +19150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  playerSpriteRender: {fileID: 0}
 --- !u!1 &1510198005
 GameObject:
   m_ObjectHideFlags: 0
