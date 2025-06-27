@@ -8,7 +8,7 @@ public class RangedShotMonsterFSM : MonsterFSM
     [field: SerializeField] public RangedShotMonsterSO SO { get; private set; }
     [SerializeField] public Transform firePoint;
     public RangedShotMonster_IdleState IdleState { get; private set; }
-    public RangedShotMonster_ChaseState RepositionState { get; private set; }
+    public RangedShot_RepositionState RepositionState { get; private set; }
     public RangedShotMonster_AttackState AttackState { get; private set; }
     public RangedShotMonster_DieState DieState { get; private set; }
 
@@ -23,7 +23,7 @@ public class RangedShotMonsterFSM : MonsterFSM
         Owner.SetStats(SO.health, SO.attackPower);
 
         IdleState = new RangedShotMonster_IdleState(this);
-        RepositionState = new RangedShotMonster_ChaseState(this);
+        RepositionState = new RangedShot_RepositionState(this);
         AttackState = new RangedShotMonster_AttackState(this);
         DieState = new RangedShotMonster_DieState(this);
     }
@@ -107,10 +107,10 @@ public class RangedShotMonster_IdleState : BaseState
     }
 }
 
-public class RangedShotMonster_ChaseState : BaseState
+public class RangedShot_RepositionState : BaseState
 {
     private RangedShotMonsterFSM _rangedShotMonsterFSM;
-    public RangedShotMonster_ChaseState(RangedShotMonsterFSM fsm) : base(fsm) => _rangedShotMonsterFSM = fsm;
+    public RangedShot_RepositionState(RangedShotMonsterFSM fsm) : base(fsm) => _rangedShotMonsterFSM = fsm;
 
     public override void Enter()
     {
@@ -255,16 +255,16 @@ public class RangedShotMonster_AttackState : BaseState
 
 public class RangedShotMonster_DieState : BaseState
 {
-    private RangedShotMonsterFSM _spreadFSM;
-    public RangedShotMonster_DieState(RangedShotMonsterFSM fsm) : base(fsm) => _spreadFSM = fsm;
+    private RangedShotMonsterFSM _rangedShotMonsterFSM;
+    public RangedShotMonster_DieState(RangedShotMonsterFSM fsm) : base(fsm) => _rangedShotMonsterFSM = fsm;
 
     public override void Enter()
     {
-        _spreadFSM.Agent.isStopped = true;
-        if (_spreadFSM.Owner.TryGetComponent<Collider2D>(out var collider))
+        _rangedShotMonsterFSM.Agent.isStopped = true;
+        if (_rangedShotMonsterFSM.Owner.TryGetComponent<Collider2D>(out var collider))
         {
             collider.enabled = false;
         }
-        _spreadFSM.Owner.Animator.SetTrigger("Die");
+        _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Die");
     }
 }

@@ -36,7 +36,7 @@ public class Projectile_Controller : MonoBehaviour
             {
                 damageable.TakeDamage(damage);
                 Debug.Log($"{other.name}에게 원거리 공격 명중. 데미지 : {damage}");
-                Destroy(gameObject);
+                ObjectPooler.Instance.ReturnToPool(poolTag, gameObject);
                 return;
             }
         }

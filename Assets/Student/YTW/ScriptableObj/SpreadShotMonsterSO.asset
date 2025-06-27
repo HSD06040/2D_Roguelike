@@ -18,12 +18,12 @@ MonoBehaviour:
   detectionRange: 10
   minRepositionDistance: 2
   maxRepositionDistance: 4
-  attackCooldown: 3
+  attackCooldown: 2
   projectilePrefab: {fileID: 7431734696087755504, guid: ccf4618d8628d3b448c524d15f18f46a, type: 3}
-  projectileSpeed: 12
-  projectileCount: 4
-  spreadAngle: 90
-  shotCount: 3
+  projectileSpeed: 6
+  projectileCount: 7
+  spreadAngle: 60
+  shotCount: 5
   aimType: 0
   timeBetweenShots: 0.2
   fireAngleOffset: 0
