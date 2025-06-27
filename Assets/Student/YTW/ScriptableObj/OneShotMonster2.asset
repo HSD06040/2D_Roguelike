@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
   m_Name: OneShotMonster2
   m_EditorClassIdentifier: 
-  health: 50
+  health: 5
   attackPower: 10
   moveSpeed: 5
   detectionRange: 10
-  minRepositionDistance: 2
-  maxRepositionDistance: 4
+  minRepositionDistance: 4
+  maxRepositionDistance: 5
   attackCooldown: 3
   projectilePrefab: {fileID: 7431734696087755504, guid: 700e7a3bab261824eac04e8324aca5af, type: 3}
   projectileSpeed: 12

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
   m_Name: CrossShotMonster
   m_EditorClassIdentifier: 
-  health: 50
+  health: 5
   attackPower: 10
   moveSpeed: 5
   detectionRange: 10
@@ -23,7 +23,7 @@ MonoBehaviour:
   projectileSpeed: 12
   projectileCount: 4
   spreadAngle: 360
-  shotCount: 3
+  shotCount: 4
   aimType: 1
-  timeBetweenShots: 0.3
+  timeBetweenShots: 0.2
   fireAngleOffset: 0

@@ -15,5 +15,7 @@ public class RangedMonsterSO : MonsterStat
     public GameObject projectilePrefab;     // 발사할 발사체 프리팹
     public float projectileSpeed = 12f;     // 발사체 속도
 
-    
+    [Header("보상")]
+    public GameObject dropItemPrefab;
+    public int dropItemCount = 1;
 }

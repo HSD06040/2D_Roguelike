@@ -265,6 +265,15 @@ public class RangedShotMonster_DieState : BaseState
         {
             collider.enabled = false;
         }
+
         _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Die");
+        DropItems();
+    }
+    private void DropItems()
+    {
+        if (_rangedShotMonsterFSM.SO.dropItemPrefab != null)
+        {
+            
+        }
     }
 }

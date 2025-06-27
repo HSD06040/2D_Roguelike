@@ -27,4 +27,5 @@ public class RangedShotMonsterSO : RangedMonsterSO // RangedMonsterSO를 상속받아
     [Tooltip("연속 발사 시 각 발사 사이의 시간 간격")]
     public float timeBetweenShots = 0.3f;
     public float fireAngleOffset = 0f;
+
 }

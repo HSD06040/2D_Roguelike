@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
   m_Name: SpreadShotMonsterSO
   m_EditorClassIdentifier: 
-  health: 50
+  health: 5
   attackPower: 10
   moveSpeed: 5
   detectionRange: 10
@@ -21,9 +21,9 @@ MonoBehaviour:
   attackCooldown: 2
   projectilePrefab: {fileID: 7431734696087755504, guid: ccf4618d8628d3b448c524d15f18f46a, type: 3}
   projectileSpeed: 6
-  projectileCount: 7
+  projectileCount: 6
   spreadAngle: 60
-  shotCount: 5
+  shotCount: 3
   aimType: 0
   timeBetweenShots: 0.2
   fireAngleOffset: 0
