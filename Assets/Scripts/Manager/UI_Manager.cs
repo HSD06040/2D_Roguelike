@@ -7,7 +7,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public Canvas WorldCanvas;
     public Canvas MainCanvas;
 
-    public AccessoriesChangePanel AccessoriesChangePanel;
+    public AccessoriesPanel AccessoriesChangePanel;
 
     private void Awake()
     {

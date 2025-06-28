@@ -42,7 +42,7 @@ public class PassiveEffectController : MonoBehaviour
     private IEnumerator PlayerInvincibleRoutine(float delay)
     {
         Manager.Data.PlayerStatus.Invincible = true;
-        yield return CoroutineUtile.GetDelay(delay);
+        yield return Utile.GetDelay(delay);
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
@@ -62,17 +62,17 @@ public class PassiveEffectController : MonoBehaviour
 
     private IEnumerator DelayRoutine(GameObject prefab, float interval, int count, float delay, float damage, float radius)
     {
-        yield return CoroutineUtile.GetDelay(interval);
+        yield return Utile.GetDelay(interval);
 
         while (true)
         {
             for (int i = 0; i < count; i ++)
             {
                 Instantiate(prefab, orbitController.transform.position, Quaternion.identity).GetComponent<PassiveObject>().Init(damage, radius);
-                yield return CoroutineUtile.GetDelay(delay);
+                yield return Utile.GetDelay(delay);
             }
             
-            yield return CoroutineUtile.GetDelay(interval);
+            yield return Utile.GetDelay(interval);
         }
     }
 

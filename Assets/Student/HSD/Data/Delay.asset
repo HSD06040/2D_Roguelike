@@ -17,10 +17,14 @@ MonoBehaviour:
   itemName: 31
   model: {fileID: 0}
   description: 
-  icon: {fileID: 520052731142259089, guid: b0e61d19844444cc1bc6222883c65ba4, type: 3}
+  icon: {fileID: -9036536072303010108, guid: b93d5a94fb1f447999e72fbc8766c8fa, type: 3}
   Price: 0
   Effect: {fileID: 11400000, guid: 517f1756e1693b847ad4a4358c34b86e, type: 2}
   Damage: 1
-  AttackSpeed: 1
+  DamageMultiply: 0
   Speed: 1
-  UpgradeIdx: 3
+  SpeedMultiply: 0
+  AttackSpeed: 1
+  Evasion: 0
+  AttackSize: 0
+  UpgradeIdx: 0

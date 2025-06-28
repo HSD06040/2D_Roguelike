@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public enum StatType
 {
-    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, AttackSize, Evasion, DamageMultifly, SpeedMultifly
+    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, AttackSize, Evasion, DamageMultiply, SpeedMultiply
 }
 
 [Serializable]
@@ -17,10 +17,10 @@ public class PlayerStatus
     // 플레이어스텟        
     public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
     public FloatStat Damage { get; private set; } = new(); // 데미지 값
-    public FloatStat DamageMultifly { get; private set; } = new(); // 데미지 퍼센트
+    public FloatStat DamageMultiply { get; private set; } = new(); // 데미지 퍼센트
 
     public FloatStat Speed { get; private set; } = new(); // 스피드 값
-    public FloatStat SpeedMultifly { get; private set; } = new(); // 스피드 값
+    public FloatStat SpeedMultiply { get; private set; } = new(); // 스피드 값
 
     public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
 
@@ -228,8 +228,8 @@ public class PlayerStatus
             case StatType.Speed: Speed.AddModifier(amount, source); break;
             case StatType.AttackSize: AttackSize.AddModifier(amount, source); break;
             case StatType.Evasion: Evasion.AddModifier(amount, source); break;
-            case StatType.DamageMultifly: DamageMultifly.AddModifier(amount, source); break;
-            case StatType.SpeedMultifly: SpeedMultifly.AddModifier(amount, source); break;
+            case StatType.DamageMultiply: DamageMultiply.AddModifier(amount, source); break;
+            case StatType.SpeedMultiply: SpeedMultiply.AddModifier(amount, source); break;
         }
     }
 

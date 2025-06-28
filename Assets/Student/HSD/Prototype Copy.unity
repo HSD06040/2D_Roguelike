@@ -3034,7 +3034,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3335,7 +3335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &227993412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5803,7 +5803,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6872,11 +6872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8417638286664384569, guid: 9f60a932475ba7c44b544f3196f745c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.61
+      value: 5.12
       objectReference: {fileID: 0}
     - target: {fileID: 8417638286664384569, guid: 9f60a932475ba7c44b544f3196f745c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.32
+      value: -20.57
       objectReference: {fileID: 0}
     - target: {fileID: 8417638286664384569, guid: 9f60a932475ba7c44b544f3196f745c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14352,7 +14352,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14562,7 +14562,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: -493653389, guid: 6cec908052df2994bb8326bdb18990c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19234,7 +19234,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

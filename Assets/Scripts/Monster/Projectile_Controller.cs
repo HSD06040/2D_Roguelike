@@ -48,7 +48,7 @@ public class Projectile_Controller : MonoBehaviour
 
     private IEnumerator ReturnToPoolAfterTime(float delay)
     {
-        yield return CoroutineUtile.GetDelay(delay);
+        yield return Utile.GetDelay(delay);
         Manager.Resources.Destroy(gameObject);
     }
 }

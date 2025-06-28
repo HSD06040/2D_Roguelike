@@ -8,9 +8,13 @@ public class Accessories : Item
     public AccessoriesEffect Effect;
 
     [Header("Stat")]
-    public int Damage;
-    public float AttackSpeed;
+    public float Damage;
+    public float DamageMultiply;
     public float Speed;
+    public float SpeedMultiply;
+    public float AttackSpeed;
+    public float Evasion;
+    public float AttackSize;
 
     [Header("Upgrade")]
     private const int maxUpgrade = 3;
@@ -21,6 +25,21 @@ public class Accessories : Item
     {
         UpgradeIdx = 0;
         isAttack = false;
+    }
+
+    public void AddStat()
+    {
+        
+    }
+
+    public void RemoveStat()
+    {
+
+    }
+
+    public void GetStatText()
+    {
+
     }
 
     public void Upgrade()
