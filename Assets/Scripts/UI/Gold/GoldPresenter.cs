@@ -8,7 +8,7 @@ public class GoldPresenter
 
     public GoldPresenter(GoldPanel _goldPanel)
     {
-        goldPanel = _goldPanel;
+        goldPanel = _goldPanel; 
     }
 
     public void AddEvent()

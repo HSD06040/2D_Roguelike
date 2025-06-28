@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class AccessoriesSlot : MonoBehaviour
 {
-    [SerializeField] private Image icon;    
-    private Accessories accessories;    
+    [SerializeField] protected Image icon;    
+    [SerializeField] protected Accessories accessories;    
 
     public void UpdateSlot(Accessories ac)
     {
@@ -18,7 +18,6 @@ public class AccessoriesSlot : MonoBehaviour
         }
 
         accessories = ac;
-
         icon.sprite = accessories.icon;
         icon.color = Color.white;
     }

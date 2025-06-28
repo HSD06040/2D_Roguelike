@@ -17,10 +17,10 @@ public static class Manager
     {
         GameManager.CreateManager();
         InputManager.CreateManager();
-        UI_Manager.CreateManager();
         ResourcesManager.CreateManager();
         AudioManager.CreateManager();
         PoolManager.CreateManager();
         DataManager.CreateManager();
+        UI_Manager.CreateManager();
     }
 }

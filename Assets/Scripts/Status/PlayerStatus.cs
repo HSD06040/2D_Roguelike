@@ -163,8 +163,7 @@ public class PlayerStatus
 
         if(slotIdx == -1)
         {
-            // Change UI 오픈
-            Debug.Log("자리가 없어 바꾸는 UI를 Open합니다.");
+            Manager.UI.OpenAccessoriesChangepanel(accessories);
         }
         else
         {
@@ -186,6 +185,14 @@ public class PlayerStatus
         PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
         PlayerAccessories[_idx].Effect.UnregisterEvents();
         PlayerAccessories[_idx] = null;
+    }
+
+    public void ChangeAccessories(Accessories _ac ,int _idx)
+    {
+        if (_ac == null) return;
+
+        UnEquipAccessories(_idx);
+        EquipSlotAccessories(_ac, _idx);
     }
 
     private int EmptyAccessoriesSlot()

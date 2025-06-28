@@ -56,7 +56,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (_musicWeapon == null) return;
 
-        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx].position, Quaternion.identity, WeaponSpawnPos[idx]);        
+        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);        
         weaponSlots[idx] = weapon;
         weapon.Init(transform);
     }
