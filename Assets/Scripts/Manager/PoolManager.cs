@@ -232,7 +232,7 @@ public class PoolManager : Singleton<PoolManager>
 
         if (!poolDic.ContainsKey(name) && !obj.activeSelf)
             yield break;
-        
+        Debug.Log(obj.activeSelf);
         poolDic[name].Release(obj);
     }
 

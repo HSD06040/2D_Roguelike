@@ -10,6 +10,13 @@ public class OrbitEffect : AccessoriesEffect
 
     private List<GameObject> orbitObjs = new List<GameObject>();
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        orbitObjs.Clear();
+    }
+
     public override void Active1(Accessories accessories)
     {
         CreateOrbitObject(1);
@@ -35,20 +42,20 @@ public class OrbitEffect : AccessoriesEffect
         foreach (var obj in orbitObjs)
         {
             if (obj != null)
-                Object.Destroy(obj);
+                Destroy(obj);
         }
         orbitObjs.Clear();
     }
 
     private void CreateOrbitObject(int count)
     {
-        GameObject[] objs = new GameObject[count];
-
         for (int i = 0; i < count; i++)
         {
-            objs[i] = Object.Instantiate(orbitPrefab, Manager.Data.PassiveCon.orbitController.transform.position, Quaternion.identity);
+            orbitObjs.Add
+                (Instantiate(orbitPrefab, Manager.Data.PassiveCon.orbitController.transform.position, Quaternion.identity, 
+                Manager.Data.PassiveCon.orbitController.transform));
         }
 
-        Manager.Data.PassiveCon.orbitController.Init(objs);
+        Manager.Data.PassiveCon.orbitController.Init(orbitObjs.ToArray());
     }
 }

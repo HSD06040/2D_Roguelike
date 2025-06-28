@@ -15,9 +15,10 @@ MonoBehaviour:
   ID: 4
   size: 0
   itemName: Violin
-  model: {fileID: 0}
+  model: {fileID: 8788568486958141491, guid: 10191432e16f2f54eb49b96934cc3523, type: 3}
   description: Violin
   icon: {fileID: 21300000, guid: 666b737749017194ea5fc01a3868ac57, type: 3}
+  Price: 0
   Type: 3
   AttackDamage: 3
   AttackSpeed: 0

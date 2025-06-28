@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.InputSystem;
 
 public enum StatType
 {
-    MaxHp,Damage,Speed,AttackSpeed,CurrentHP
+    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, AttackSize, Evasion, DamageMultiply, SpeedMultiply
 }
 
 [Serializable]
@@ -16,14 +17,20 @@ public class PlayerStatus
     // 플레이어스텟        
     public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
     public FloatStat Damage { get; private set; } = new(); // 데미지 값
-    public FloatStat Speed { get; private set; } = new(); // 스피드 값
-    public FloatStat AttackSpeed { get; private set; } = new(); // 퍼센트
-    public FloatStat Evasion { get; private set; } = new(); // 회피율
+    public FloatStat DamageMultiply { get; private set; } = new(); // 데미지 퍼센트
 
+    public FloatStat Speed { get; private set; } = new(); // 스피드 값
+    public FloatStat SpeedMultiply { get; private set; } = new(); // 스피드 값
+
+    public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
+
+    public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
+    public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
+     
     public Property<int> CurtHp = new Property<int>();
 
     public bool Invincible;
-    // 플레이어가 현재 가지고 있는 무기 (나중에 추가)
+    
     private const int weaponCount = 4;
     private const int accessoriesCount = 2;
 
@@ -46,19 +53,13 @@ public class PlayerStatus
 
     #region Bind
     public void AddBindEvent()
-    {
-        Manager.Input.GetPlayerBind("Weapon1").AddStartedEvent(() => WeaponChanged(0));
-        Manager.Input.GetPlayerBind("Weapon2").AddStartedEvent(() => WeaponChanged(1));
-        Manager.Input.GetPlayerBind("Weapon3").AddStartedEvent(() => WeaponChanged(2));
-        Manager.Input.GetPlayerBind("Weapon4").AddStartedEvent(() => WeaponChanged(3));
+    {        
+        Manager.Input.GetPlayerBind("WeaponSelect").AddStartedEvent(OnWeaponSelect);  
     }
 
     public void DisableWeaponBind()
     {
-        Manager.Input.GetPlayerBind("Weapon1").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon2").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon3").ActionDisable();
-        Manager.Input.GetPlayerBind("Weapon4").ActionDisable();
+        Manager.Input.GetPlayerBind("WeaponSelect").RemoveStartedEvent(OnWeaponSelect);
     }
     #endregion
 
@@ -99,6 +100,21 @@ public class PlayerStatus
                 weapon.Count = 0;
             }
         }
+    }
+
+    private void OnWeaponSelect(InputAction.CallbackContext ctx)
+    {
+        int idx = ctx.control.name switch
+        {
+            "1" => 0,
+            "2" => 1,
+            "3" => 2,
+            "4" => 3,
+            _ => -1
+        };
+
+        if (idx >= 0)
+            WeaponChanged(idx);
     }
 
     private void WeaponChanged(int _idx)
@@ -147,8 +163,7 @@ public class PlayerStatus
 
         if(slotIdx == -1)
         {
-            // Change UI 오픈
-            Debug.Log("자리가 없어 바꾸는 UI를 Open합니다.");
+            Manager.UI.OpenAccessoriesChangepanel(accessories);
         }
         else
         {
@@ -170,6 +185,14 @@ public class PlayerStatus
         PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
         PlayerAccessories[_idx].Effect.UnregisterEvents();
         PlayerAccessories[_idx] = null;
+    }
+
+    public void ChangeAccessories(Accessories _ac ,int _idx)
+    {
+        if (_ac == null) return;
+
+        UnEquipAccessories(_idx);
+        EquipSlotAccessories(_ac, _idx);
     }
 
     private int EmptyAccessoriesSlot()
@@ -210,6 +233,10 @@ public class PlayerStatus
             case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
+            case StatType.AttackSize: AttackSize.AddModifier(amount, source); break;
+            case StatType.Evasion: Evasion.AddModifier(amount, source); break;
+            case StatType.DamageMultiply: DamageMultiply.AddModifier(amount, source); break;
+            case StatType.SpeedMultiply: SpeedMultiply.AddModifier(amount, source); break;
         }
     }
 

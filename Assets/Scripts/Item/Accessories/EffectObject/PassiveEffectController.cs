@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.Experimental.AI;
 
 public class PassiveEffectController : MonoBehaviour
 {
@@ -41,14 +42,14 @@ public class PassiveEffectController : MonoBehaviour
     private IEnumerator PlayerInvincibleRoutine(float delay)
     {
         Manager.Data.PlayerStatus.Invincible = true;
-        yield return CoroutineUtile.GetDelay(delay);
+        yield return Utile.GetDelay(delay);
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
-
     public void StartSkillCoroutine(GameObject prefab, string key, float interval, int count, float delay, float damage, float radius)
     {
-        effectCoroutineDic[key] = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));            
+        Coroutine newCoroutine = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));
+        effectCoroutineDic[key] = newCoroutine;
     }
 
     public void StopSkillCoroutine(string key)
@@ -61,15 +62,17 @@ public class PassiveEffectController : MonoBehaviour
 
     private IEnumerator DelayRoutine(GameObject prefab, float interval, int count, float delay, float damage, float radius)
     {
-        while(true)
+        yield return Utile.GetDelay(interval);
+
+        while (true)
         {
             for (int i = 0; i < count; i ++)
             {
                 Instantiate(prefab, orbitController.transform.position, Quaternion.identity).GetComponent<PassiveObject>().Init(damage, radius);
-                yield return CoroutineUtile.GetDelay(delay);
+                yield return Utile.GetDelay(delay);
             }
             
-            yield return CoroutineUtile.GetDelay(interval);
+            yield return Utile.GetDelay(interval);
         }
     }
 

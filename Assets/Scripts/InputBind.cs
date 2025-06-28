@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,14 +15,24 @@ public class InputBind
         action.Enable();
     }
 
-    public void AddStartedEvent(Action callback)
+    public void AddStartedEvent(Action<InputAction.CallbackContext> callback)
     {
-        action.started += _ => callback();
+        action.started += callback;
     } 
     
-    public void RemoveStartedEvent(Action callback)
+    public void RemoveStartedEvent(Action<InputAction.CallbackContext> callback)
     {
-        action.started -= _ => callback();
+        action.started -= callback;
+    }
+
+    public void AddCanceledEvent(Action<InputAction.CallbackContext> callback)
+    {
+        action.canceled += callback;
+    }
+
+    public void RemoveCanceledEvent(Action<InputAction.CallbackContext> callback)
+    {        
+        action.canceled -= callback;
     }
 
     public void ActionEanble() => action.Enable();

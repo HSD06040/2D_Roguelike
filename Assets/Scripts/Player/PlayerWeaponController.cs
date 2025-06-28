@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
@@ -26,29 +27,28 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
+        Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
     }
 
     private void OnDisable()
     {
         Manager.Data.PlayerStatus.OnChangedWeapon -= AddMusicWeapon;
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
+        Manager.Input.GetPlayerBind("Attack").RemoveStartedEvent(Attack);
     }
 
-    private void Update()
+    private void Attack(InputAction.CallbackContext ctx)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (currentWeapon != null)
-            {
-                SetProjectile(currentWeapon);
-            }
-            else
-            {
-                defaultWeapon.Attack(GetMousePos());
-            }
-
-            Manager.Game.OnPlayerAttack?.Invoke();
+        if (currentWeapon != null)
+        {            
+            SetProjectile(currentWeapon);
         }
+        else
+        {
+            defaultWeapon.Attack(GetMousePos());
+        }
+
+        Manager.Game.OnPlayerAttack?.Invoke();
     }
 
     #region List<string>형식으로 weapon받아오기
@@ -56,7 +56,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (_musicWeapon == null) return;
 
-        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);            
+        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);        
         weaponSlots[idx] = weapon;
         weapon.Init(transform);
     }
@@ -94,9 +94,5 @@ public class PlayerWeaponController : MonoBehaviour
         //musicWeapon.Attack(mousePosition);
     }
 
-    private Vector2 GetMousePos()
-    {
-        Vector2 mPos = Input.mousePosition;
-        return cam.ScreenToWorldPoint(mPos);        
-    }
+    private Vector2 GetMousePos() => Manager.Input.GetMousePosition();
 }

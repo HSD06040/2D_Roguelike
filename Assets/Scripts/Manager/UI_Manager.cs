@@ -8,13 +8,27 @@ public class UI_Manager : Singleton<UI_Manager>
     public Canvas MainCanvas;
 
     public AccessoriesChangePanel AccessoriesChangePanel;
+    public ShopView ShopView;
 
     private void Awake()
     {
-        WorldCanvas = Instantiate<Canvas>(Resources.Load<Canvas>("UI/WorldCanvas"));
+        WorldCanvas = Instantiate(Resources.Load<Canvas>("UI/WorldCanvas"));
         WorldCanvas.transform.parent = transform;
 
-        MainCanvas = Instantiate<Canvas>(Resources.Load<Canvas>("UI/MainCanvas"));
-        MainCanvas.transform.parent = transform;
+        MainCanvas = Instantiate(Resources.Load<Canvas>("UI/MainCanvas"));
+        MainCanvas.transform.parent = transform;        
+
+        AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
+        ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
+    }
+
+    public void OpenShop()
+    {
+        ShopView.Open();
+    }
+
+    public void OpenAccessoriesChangepanel(Accessories ac)
+    {
+        AccessoriesChangePanel.OpenChangePanel(ac);
     }
 }

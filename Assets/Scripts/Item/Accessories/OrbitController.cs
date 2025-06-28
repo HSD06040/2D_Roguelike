@@ -18,6 +18,8 @@ public class OrbitController : MonoBehaviour
 
     private void Update()
     {
+        if(objs.Length == 0) return;
+
         for (int i = 0; i < objs.Length; i++)
         {
             angle = (Time.time * rotSpeed + i * (360f / objs.Length)) * Mathf.Deg2Rad;

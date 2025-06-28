@@ -40,7 +40,7 @@ public class Projectile_Controller : MonoBehaviour
         }
 
         // 몬스터나 플레이어가 아닌 벽 같은 곳에 닿았을 때
-        if (other.gameObject.layer == 1 << 9)
+        if ((1 << 9 & (1 << other.gameObject.layer)) != 0 || (1 << 10 & (1 << other.gameObject.layer)) != 0)
         {
             Manager.Resources.Destroy(gameObject);
         }
@@ -48,7 +48,7 @@ public class Projectile_Controller : MonoBehaviour
 
     private IEnumerator ReturnToPoolAfterTime(float delay)
     {
-        yield return CoroutineUtile.GetDelay(delay);
+        yield return Utile.GetDelay(delay);
         Manager.Resources.Destroy(gameObject);
     }
 }
