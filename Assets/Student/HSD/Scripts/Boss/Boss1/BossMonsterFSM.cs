@@ -8,6 +8,7 @@ public class BossMonsterFSM : MonoBehaviour
     public Monster Owner;
     public BossStateMachine StateMachine;
     public BossPatternController BossPattern;
+    public bool isPatternPlaying;
 
     #region AnimHash
     protected static readonly int idleHash = Animator.StringToHash("Idle");

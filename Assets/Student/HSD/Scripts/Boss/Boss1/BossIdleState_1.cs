@@ -20,6 +20,6 @@ public class BossIdleState_1 : BossBaseState
 
     public override void Update()
     {
-        base.Update();
+        base.Update();        
     }
 }

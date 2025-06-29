@@ -7,7 +7,7 @@ public class Pattern1 : BossPattern
     [SerializeField, Tooltip("패턴이 생성되는 위치 순서")]
     private Transform[] patternTransform;
 
-    protected override IEnumerator PatternRoutine()
+    protected override IEnumerator PatternRoutine(Monster boss)
     {
         for (int i = 0; i < patternTransform.Length; i++)
         {
