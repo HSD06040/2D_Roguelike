@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossBaseState
 {
     public BossMonsterFSM fsm {  get; private set; }
+    protected bool useTimer;
+    protected float timer;
     private readonly int animHash;
 
     public BossBaseState(BossMonsterFSM _fsm, int _animHash)
@@ -25,6 +27,7 @@ public class BossBaseState
 
     public virtual void Update()
     {
-
+        if(useTimer && timer >= 0)
+            timer -= Time.deltaTime;
     }
 }

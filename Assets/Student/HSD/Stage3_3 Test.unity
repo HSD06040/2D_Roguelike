@@ -4423,6 +4423,7 @@ GameObject:
   - component: {fileID: 708883989}
   - component: {fileID: 708883991}
   - component: {fileID: 708883990}
+  - component: {fileID: 708883992}
   m_Layer: 0
   m_Name: BossPatternController
   m_TagString: Untagged
@@ -4460,6 +4461,7 @@ MonoBehaviour:
   prefab: {fileID: 319510645339115189, guid: 620177ab0d143854baa8c553068dacec, type: 3}
   interval: 0.5
   duration: 1
+  Boss: {fileID: 0}
   patternTransform:
   - {fileID: 2073964468}
   - {fileID: 1238394708}
@@ -4479,6 +4481,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pattern: {fileID: 708883990}
+--- !u!114 &708883992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708883988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25a222bb15a44d42b777f9b5d850033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 742442879696141984, guid: 48bdff3b6ec0b7e49a80c3720d785e67, type: 3}
+  interval: 0.5
+  duration: 1
+  Boss: {fileID: 0}
+  points: []
 --- !u!1 &807131204
 GameObject:
   m_ObjectHideFlags: 0
