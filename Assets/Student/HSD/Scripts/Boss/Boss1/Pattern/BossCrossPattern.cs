@@ -5,20 +5,32 @@ public class BossCrossPattern : BossPattern
 {
     [SerializeField] private bool isRotate;
     [SerializeField] private GameObject warningLine;
-
     [SerializeField] private Transform pivot;
-    [SerializeField] private Transform[] warningLinePoints;
-    [SerializeField] private float speed;
+
+    [Header("Pattern Info")]
+    [SerializeField] private float projectileSpeed;
     [SerializeField] private float rotSpeed;
+    [SerializeField] private float dirCount;
+    [SerializeField] private float angleOffset;
+    [SerializeField] private float offset;
     [SerializeField] private int count;
     private Coroutine rotateRoutine;
     float angleStep;
 
     protected override IEnumerator PatternRoutine(Monster boss)
     {
-        for (int i = 0; i < warningLinePoints.Length; i++)
+        angleStep = 360 / dirCount;
+
+        for (int i = 0; i < dirCount; i++)
         {
-            Instantiate(warningLine, warningLinePoints[i].position, warningLinePoints[i].rotation, pivot).GetComponent<WarningLine>().Init(duration);
+            float angle = angleStep + angleOffset * i;
+
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * pivot.up;
+            Vector3 spawnPos = pivot.position + (Vector3)(direction * offset);
+            Quaternion rot = Quaternion.Euler(0, 0, angle);
+
+            var line = Instantiate(warningLine, spawnPos, rot, pivot);
+            line.GetComponent<WarningLine>().Init(duration/2);
         }
 
         if (isRotate)
@@ -28,8 +40,6 @@ public class BossCrossPattern : BossPattern
 
         yield return Utile.GetDelay(duration);
 
-        angleStep = 360 / warningLinePoints.Length;
-
         if (isRotate)
         {
             rotateRoutine = StartCoroutine(PivotRotate());
@@ -38,7 +48,7 @@ public class BossCrossPattern : BossPattern
 
         for (int i = 0; i < count; i++)
         {
-            Fore(boss);
+            Fire(boss);
             yield return Utile.GetDelay(interval);
         }
 
@@ -87,28 +97,24 @@ public class BossCrossPattern : BossPattern
         }
     }
 
-    private void Fore(Monster boss)
+    private void Fire(Monster boss)
     {
-        for (int j = 0; j < warningLinePoints.Length; j++)
+        for (int i = 0; i < dirCount; i++)
         {
-            float currentAngle = angleStep * j;
+            float angle = angleOffset + angleStep * i;
 
-            Vector2 centerDirection = pivot.transform.right * 1;
-            centerDirection = Quaternion.Euler(0, 0, 90) * centerDirection;
-
-            Vector2 fireDirection = Quaternion.Euler(0, 0, currentAngle) * centerDirection;
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * pivot.right;
 
             GameObject projectile = Manager.Resources.Instantiate(prefab, boss.transform.position, true);
 
-            Debug.Log($"{fireDirection.normalized} , {centerDirection} , {currentAngle}");
             if (projectile != null)
             {
                 projectile.GetComponent<Projectile_Controller>().Initialize(
-                    fireDirection.normalized,
-                    speed,
+                    direction.normalized,
+                    projectileSpeed,
                     boss.AttackPower,
                     ""
-                    );
+                );
             }
         }
     }
