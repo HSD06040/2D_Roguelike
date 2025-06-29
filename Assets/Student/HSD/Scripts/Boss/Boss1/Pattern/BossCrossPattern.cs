@@ -23,11 +23,11 @@ public class BossCrossPattern : BossPattern
 
         for (int i = 0; i < dirCount; i++)
         {
-            float angle = angleStep + angleOffset * i;
+            float angle = angleStep * i + angleOffset;
 
-            Vector2 direction = Quaternion.Euler(0, 0, angle) * pivot.up;
-            Vector3 spawnPos = pivot.position + (Vector3)(direction * offset);
             Quaternion rot = Quaternion.Euler(0, 0, angle);
+            Vector2 direction = rot * pivot.right;
+            Vector3 spawnPos = pivot.position + (Vector3)(direction * offset);                  
 
             var line = Instantiate(warningLine, spawnPos, rot, pivot);
             line.GetComponent<WarningLine>().Init(duration/2);

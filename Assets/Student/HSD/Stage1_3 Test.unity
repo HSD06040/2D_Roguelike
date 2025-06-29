@@ -6422,9 +6422,9 @@ MonoBehaviour:
   isRotate: 0
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
   pivot: {fileID: 1467770567}
-  projectileSpeed: 0
+  projectileSpeed: 5
   rotSpeed: 70
-  dirCount: 8
+  dirCount: 4
   angleOffset: 45
   offset: 5
   count: 30
