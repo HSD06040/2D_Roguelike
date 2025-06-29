@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BoxUI : AnimationUI_Base
+public class BoxRewardUI : AnimationUI_Base
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private TMP_Text itemNameText;
@@ -21,8 +21,31 @@ public class BoxUI : AnimationUI_Base
         itemNameText.text = item.name;
         itemDescription.text = item.description;
 
+        Open();
+        StartCoroutine(UIAutoCloseCoroutine());
 
     }
 
+    private IEnumerator UIAutoCloseCoroutine()
+    {
+        yield return new WaitForSeconds(uiLifeTime);
+        Close();
+    }
+
+    public override void Open()
+    {
+        //Debug.Log("ui IN");
+        base.Open();
+        background.SetActive(true);
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        background.SetActive(false);
+    }
+
 }
+
+
 
