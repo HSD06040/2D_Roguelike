@@ -39,6 +39,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
         lastAttackTime = -SO.meleeAttackCooldown;
         StateMachine.Initialize(IdleState);
     }
+
     protected override void Update()
     {
         base.Update();
@@ -58,8 +59,6 @@ public class SheetMusicMonsterFSM : MonsterFSM
     {
         StateMachine.ChangeState(ChaseState);
     }
-
-
 
     private void OnDrawGizmosSelected()
     {
