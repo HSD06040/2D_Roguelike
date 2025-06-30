@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,11 @@ public class DataManager : Singleton<DataManager>
     public Weapon[] WeaponDatas;
     public MusicWeapon[] MusicWeapons;
 
-    private DataDownloader downloader;    
+    private DataDownloader downloader;
+
+    private bool isPress;
+    public bool IsPress { get { return isPress; } set { isPress = value; OnPress?.Invoke(isPress); } }
+    public event Action<bool> OnPress;
 
     private void Awake()
     {

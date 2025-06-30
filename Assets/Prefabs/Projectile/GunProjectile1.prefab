@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 0
-  speed: 3
   IsPass: 0
   rigid: {fileID: -3077913776961787904}
 --- !u!50 &-3077913776961787904

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 0
-  IsPass: 0
+  IsPass: 1
   rigid: {fileID: 6089548101021931945}
   LineRender: {fileID: 4345575494730030453}
   pointSize: 21

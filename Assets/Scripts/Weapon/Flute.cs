@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flute : MusicWeapon
 {
     Coroutine weaponCor;
-    WaitForSeconds delay = new WaitForSeconds(0.2f);
+    WaitForSeconds delay = new WaitForSeconds(0.3f);
 
     public override void Attack(Vector2 mousePosition)
     {

@@ -14,18 +14,19 @@ public class ViolinProjectile : Projectile
     private bool canHit;
     private Coroutine hitDelay;
 
+    
     public override void Init(Vector2 _targetPos, int _damage, float _speed)
     {
         targetPos = _targetPos;
     }
     private void OnEnable()
     {
-        TestSingleton.JHT_TestInstance.OnPress += PressLaser;
+        Manager.Data.OnPress += PressLaser;
     }
 
     private void OnDisable()
     {
-        TestSingleton.JHT_TestInstance.OnPress -= PressLaser;
+        Manager.Data.OnPress -= PressLaser;
     }
 
 
@@ -67,7 +68,7 @@ public class ViolinProjectile : Projectile
         if (!LineRender.enabled) return;
         LineRender.positionCount = pointSize;
 
-        Vector2 start = TestSingleton.JHT_TestInstance.playerWeapon.transform.position;
+        Vector2 start = Manager.Data.PassiveCon.orbitController.transform.position;
         Vector2 end = targetPos;
 
         Vector2 direction = end - start;
@@ -95,7 +96,7 @@ public class ViolinProjectile : Projectile
             if (i == 0)
             {
                 //시작할 때 플레이어부터 시작
-                LineRender.SetPosition(i, TestSingleton.JHT_TestInstance.playerWeapon.transform.position);
+                LineRender.SetPosition(i, Manager.Data.PassiveCon.orbitController.transform.position);
             }
             else if (i == pointSize - 1)
             {

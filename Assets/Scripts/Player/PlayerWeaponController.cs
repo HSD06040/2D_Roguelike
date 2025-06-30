@@ -42,6 +42,10 @@ public class PlayerWeaponController : MonoBehaviour
         if (currentWeapon != null)
         {            
             SetProjectile(currentWeapon);
+            if (currentWeapon.WeaponData.itemName == "Violin")
+            {
+                Manager.Data.IsPress = true;
+            }
         }
         else
         {
@@ -85,13 +89,7 @@ public class PlayerWeaponController : MonoBehaviour
             return;
         }
 
-        //musicWeapon.Attack((mousePosition - (Vector2)transform.position).normalized);
         musicWeapon.Attack(GetMousePos());
-        //if(playerFight.WeaponList.Contains(musicWeapon.WeaponData.itemName))
-        //{
-        //    musicWeapon.Attack(musicWeapon.WeaponData, mousePosition);
-        //}
-        //musicWeapon.Attack(mousePosition);
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();
