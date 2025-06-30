@@ -17,9 +17,6 @@ public class DataManager : Singleton<DataManager>
 
     private DataDownloader downloader;
 
-    private bool isPress;
-    public bool IsPress { get { return isPress; } set { isPress = value; OnPress?.Invoke(isPress); } }
-    public event Action<bool> OnPress;
 
     private void Awake()
     {

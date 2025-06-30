@@ -44,7 +44,7 @@ public class PlayerWeaponController : MonoBehaviour
             SetProjectile(currentWeapon);
             if (currentWeapon.WeaponData.itemName == "Violin")
             {
-                Manager.Data.IsPress = true;
+                Manager.Game.IsPress = true;
             }
         }
         else

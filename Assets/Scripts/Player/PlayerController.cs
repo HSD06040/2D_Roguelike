@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         afterimage = GetComponent<Afterimage>();
         bodyAnimator = GetComponent<Animator>();
-        armAnimator = transform.Find("Arm").GetComponent<Animator>();
+        //armAnimator = transform.Find("Arm").GetComponent<Animator>();
     }
 
     private void Update()
@@ -145,10 +145,10 @@ public class PlayerController : MonoBehaviour
         float currentSpeed = rigid.velocity.magnitude;
         bodyAnimator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);  //걷기 애니메이션
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            armAnimator.SetTrigger("Attack");
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    armAnimator.SetTrigger("Attack");
+        //}
 
     }
 }

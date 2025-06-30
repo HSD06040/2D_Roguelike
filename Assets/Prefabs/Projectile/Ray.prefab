@@ -51,11 +51,13 @@ MonoBehaviour:
   IsPass: 1
   rigid: {fileID: 6089548101021931945}
   LineRender: {fileID: 4345575494730030453}
-  pointSize: 21
+  pointSize: 18
   vibration: 0.8
+  particlePrefab: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 576
+  maxCount: 0.5
 --- !u!50 &6089548101021931945
 Rigidbody2D:
   serializedVersion: 4
