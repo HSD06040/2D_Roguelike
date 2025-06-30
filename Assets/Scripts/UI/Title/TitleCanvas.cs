@@ -13,6 +13,7 @@ public class TitleCanvas : BaseUI
     private Button pressOptionButton => GetUI<Button>("PressOptionButton");
     private Button pressExitButton => GetUI<Button>("PressExitButton");
 
+    private GameObject titleText => GetUI("TitleText");
     private GameObject pressImageButton1 => GetUI("PressImage1");
     private GameObject pressImageButton2 => GetUI("PressImage2");
     private GameObject pressImageButton3 => GetUI("PressImage3");
@@ -29,6 +30,7 @@ public class TitleCanvas : BaseUI
             pressExitButton.gameObject.SetActive(false);
             pressGameStartButton.gameObject.SetActive(false);
             pressOptionButton.gameObject.SetActive(false);
+            titleText.gameObject.SetActive(false);
         };
 
         pressSpaceButton.SetActive(true);
