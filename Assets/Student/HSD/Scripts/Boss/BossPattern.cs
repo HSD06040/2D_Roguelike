@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public abstract class BossPattern : MonoBehaviour
     protected float duration;
     [SerializeField] protected Monster Boss;
     [SerializeField] protected BossMonsterFSM fsm;
+    public Action OnComplated;
 
     public virtual void Execute() => StartCoroutine(PatternRoutine(Boss));
 

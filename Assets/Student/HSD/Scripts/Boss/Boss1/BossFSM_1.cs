@@ -5,22 +5,29 @@ using UnityEngine;
 
 public class BossFSM_1 : BossMonsterFSM
 {
-    public BossPatternController_1 Pattern {  get; private set; }
+    public BossPatternController_1 Pattern;
 
     public BossStateMachine<BossFSM_1> StateMachine;
 
+    private static readonly int attack2Hash = Animator.StringToHash("Attack2");
+
     #region States
     public BossIdleState_1 idle { get; private set; }
-    public BossAttackState_1 attack { get; private set; }
+    public BossEnemySpawnState spawn { get; private set; }
+    public BossDoubleCrossState doubleCross { get; private set; }
+    public BossTeleportState_1 telpo { get; private set; }
+    public BossCrossState cross { get; private set; }
     #endregion
 
     private void Awake()
     {
-        Pattern = GetComponent<BossPatternController_1>();
         StateMachine = new BossStateMachine<BossFSM_1>();
 
         idle = new BossIdleState_1(this, idleHash);
-        attack = new BossAttackState_1(this, attackHash);
+        spawn = new BossEnemySpawnState(this, attackHash);
+        doubleCross = new BossDoubleCrossState(this, attack2Hash);
+        telpo = new BossTeleportState_1(this, idleHash);
+        cross  = new BossCrossState(this, idleHash);
     }
 
     private void Update()
@@ -37,30 +44,27 @@ public class BossIdleState_1 : BossBaseState<BossFSM_1>
 {
     public BossIdleState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
-        useTimer = true;
+        fsm.Pattern.AddEventDefault(ChangeState);
     }
 
     public override void Enter()
     {
         base.Enter();
-
-        timer = Random.Range(3f, 6f);
+        fsm.Pattern.PlayDefaultPattern();
     }
 
-    public override void Update()
+    private void ChangeState()
     {
-        if(!fsm.isPatternPlaying && timer >= 0)
-            timer -= Time.deltaTime;
-
-        if(timer <= 0)
+        switch (Random.Range(0, 4))
         {
-            switch (Random.Range(0, 5))
-            {
-                case 0: fsm.StateMachine.ChangeState(fsm.attack); break;
-            }
+            case 0: fsm.StateMachine.ChangeState(fsm.telpo); break;
+            case 1: fsm.StateMachine.ChangeState(fsm.spawn); break;
+            case 2: fsm.StateMachine.ChangeState(fsm.cross); break;
+            case 3: fsm.StateMachine.ChangeState(fsm.doubleCross); break;
         }
     }
 }
+
 public class PatternState : BossBaseState<BossFSM_1>
 {
     public PatternState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
@@ -84,39 +88,26 @@ public class PatternState : BossBaseState<BossFSM_1>
 public class BossTeleportState_1 : PatternState
 {
     private float fadeDuration = 1f;
-    private float teleportDelay = 4f;
-    private bool hasTeleported = false;
 
     public BossTeleportState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
-        useTimer = true;
+        fsm.Pattern.AddEventCircle(ChangeState);
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        hasTeleported = false;
-
         fsm.Player ??= GameObject.FindWithTag("Player").transform;
 
         fsm.StartCoroutine(FadeOutCoroutine());
     }
 
-    public override void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer >= teleportDelay && !hasTeleported)
-        {
-            hasTeleported = true;
-
-            fsm.Pattern.PlayCirclePattern();
-        }
-    }
+    private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
 
     private IEnumerator FadeOutCoroutine()
     {
+        fsm.Pattern.PlayCirclePattern();
         float elapsed = 0f;
         Color originalColor = fsm.Owner.spriteRenderer.color;
 
@@ -143,27 +134,17 @@ public class BossTeleportState_1 : PatternState
     }
 }
 
-public class BossAttackState_1 : PatternState
-{
-    private float attackTime = 3f;
-
-    public BossAttackState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+public class BossEnemySpawnState : PatternState
+{    
+    public BossEnemySpawnState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
-        useTimer = true;
+        fsm.Pattern.AddEventEnemySpawn(ChangeState);
     }
 
     public override void Enter()
     {
         base.Enter();
-
-        timer = attackTime;
-
-        switch (Random.Range(0, 3))
-        {
-            case 0: fsm.Pattern.PlayCrossPattern(); break;
-            case 1: fsm.Pattern.PlayXPattern(); break;
-            case 2: fsm.Pattern.PlayCrossPattern(); break;
-        }
+        fsm.Pattern.PlayEnemySpawnPattern();
     }
 
     public override void Exit()
@@ -171,12 +152,49 @@ public class BossAttackState_1 : PatternState
         base.Exit();
     }
 
-    public override void Update()
-    {
-        base.Update();
+    private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
+}
 
-        if (timer <= 0)
-            fsm.StateMachine.ChangeState(fsm.idle);
+public class BossCrossState : BossBaseState<BossFSM_1>
+{
+    public BossCrossState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    {
+        fsm.Pattern.AddEventCross(ChangeState);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        fsm.Pattern.PlayCrossRotatePattern();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
+}
+
+public class BossDoubleCrossState : PatternState
+{
+    public BossDoubleCrossState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    {
+        fsm.Pattern.AddEventDoubleCross(ChangeState);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        fsm.Pattern.PlayDoubleCross();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
 }
 
