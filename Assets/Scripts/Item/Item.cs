@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Item/ItemData")]
+
 public class Item : ScriptableObject
 {
     [Header("Item")]
