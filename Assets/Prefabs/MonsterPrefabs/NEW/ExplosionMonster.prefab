@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8623731597141853632}
   - component: {fileID: 6283544227227692786}
   - component: {fileID: 4637124034560806835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExplosionMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 5631724973799188390}
   - component: {fileID: 4859059371556687281}
   - component: {fileID: 8736406488886618620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
