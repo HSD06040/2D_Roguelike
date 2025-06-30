@@ -100,11 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 0
-  speed: 3
-  IsPass: 0
+  IsPass: 1
   rigid: {fileID: -6474956957834104150}
   cymbalsSprite: {fileID: 917614916908520802}
-  LivingTime: 6
 --- !u!50 &-6474956957834104150
 Rigidbody2D:
   serializedVersion: 4
