@@ -108,7 +108,7 @@ public class SheetMusic_IdleState : BaseState
 
     public override void Update()
     {
-        if (__spreadFSM.Player == null) return;
+        if (_fsm.Player == null) return;
         _sheetFSM.Owner.Flip(_sheetFSM.Player);
 
         float sqrDistance = _sheetFSM.GetSqrDistanceToPlayer();
