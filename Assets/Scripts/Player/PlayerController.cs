@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashDuration; //대쉬시간
     [SerializeField] private float dashCoolDown;
 
-    private Animator animator;
+    private Animator bodyAnimator;
+    private Animator armAnimator;
 
     private Afterimage afterimage;
     private bool isDashing = false;
@@ -34,22 +35,18 @@ public class PlayerController : MonoBehaviour
         weaponCon = GetComponent<PlayerWeaponController>();
         rigid = GetComponent<Rigidbody2D>();
         afterimage = GetComponent<Afterimage>();
-        animator = GetComponent<Animator>();
+        bodyAnimator = GetComponent<Animator>();
+        armAnimator = transform.Find("Arm").GetComponent<Animator>();
     }
 
     private void Update()
     {
         LookAtMouse();
         PlayerDash();
+        PlayerInteraction();
+        PlayerAnimation();
 
-        if (Input.GetKeyDown(KeyCode.E) && interactableTarget != null)
-        {
-            interactableTarget.Interact();
-        }
 
-        float currentSpeed = rigid.velocity.magnitude;
-        animator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);
-        
     }
 
     private void FixedUpdate()
@@ -133,5 +130,25 @@ public class PlayerController : MonoBehaviour
             }
             
         }
+    }
+
+    private void PlayerInteraction()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && interactableTarget != null)
+        {
+            interactableTarget.Interact();
+        }
+    }
+
+    private void PlayerAnimation()
+    {
+        float currentSpeed = rigid.velocity.magnitude;
+        bodyAnimator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);  //걷기 애니메이션
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            armAnimator.SetTrigger("Attack");
+        }
+
     }
 }
