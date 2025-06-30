@@ -11,6 +11,7 @@ public abstract class BossPattern : MonoBehaviour
     [SerializeField, Tooltip("공격이 되기 까지의 시간")]
     protected float duration;
     [SerializeField] protected Monster Boss;
+    [SerializeField] protected BossMonsterFSM fsm;
 
     public virtual void Execute() => StartCoroutine(PatternRoutine(Boss));
 

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossPatternController_1 : MonoBehaviour
 {
-    [SerializeField] private BossPattern pattern;
+    [SerializeField] private BossPattern circlePattern;
+    [SerializeField] private BossPattern xPattern;
+    [SerializeField] private BossPattern crossPattern;
+    [SerializeField] private BossPattern crossRotatePattern;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-            pattern.Execute();
-    }
+    public void PlayCirclePattern() => circlePattern.Execute();
+    public void PlayXPattern() => xPattern.Execute();
+    public void PlayCrossPattern() => crossPattern.Execute();
+    public void PlayCrossRotatePattern() => crossRotatePattern.Execute();
 }

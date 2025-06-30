@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBaseState
+public class BossBaseState<T> where T : BossMonsterFSM
 {
-    public BossMonsterFSM fsm {  get; private set; }
+    public T fsm {  get; private set; }
     protected bool useTimer;
     protected float timer;
     private readonly int animHash;
 
-    public BossBaseState(BossMonsterFSM _fsm, int _animHash)
+    public BossBaseState(T _fsm, int _animHash)
     {
         fsm = _fsm;
         animHash = _animHash;
@@ -17,17 +17,18 @@ public class BossBaseState
 
     public virtual void Enter()
     {
-        fsm.Owner.Animator.SetTrigger(animHash);
+        fsm.Owner.Animator.SetBool(animHash, true);
+        fsm.animFinish = false;
     }
 
     public virtual void Exit() 
     {
-        fsm.Owner.Animator.ResetTrigger(animHash);
+        fsm.Owner.Animator.SetBool(animHash, false);
     }
 
     public virtual void Update()
     {
         if(useTimer && timer >= 0)
             timer -= Time.deltaTime;
-    }
+    }    
 }
