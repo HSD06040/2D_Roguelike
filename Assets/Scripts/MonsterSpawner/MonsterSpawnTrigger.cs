@@ -31,7 +31,11 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !hasMonsterSpawned && !isRoomCleared)
+        if (!collision.CompareTag("Player"))
+        { 
+            return; 
+        }
+        if (!hasMonsterSpawned && !isRoomCleared)
         {
             LockDoors();
             StartCoroutine(MonsterSpawnStart());

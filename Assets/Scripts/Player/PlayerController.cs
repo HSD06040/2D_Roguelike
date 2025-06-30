@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashDuration; //대쉬시간
     [SerializeField] private float dashCoolDown;
 
+    private Animator animator;
+
     private Afterimage afterimage;
     private bool isDashing = false;
     private bool canDash = true;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         weaponCon = GetComponent<PlayerWeaponController>();
         rigid = GetComponent<Rigidbody2D>();
         afterimage = GetComponent<Afterimage>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -43,6 +46,10 @@ public class PlayerController : MonoBehaviour
         {
             interactableTarget.Interact();
         }
+
+        float currentSpeed = rigid.velocity.magnitude;
+        animator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);
+        
     }
 
     private void FixedUpdate()
@@ -67,12 +74,12 @@ public class PlayerController : MonoBehaviour
 
         if (dir.x >= 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
 
         }
         else
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
 
