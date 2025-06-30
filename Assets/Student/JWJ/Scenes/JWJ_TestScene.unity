@@ -11742,6 +11742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 1785378444}
   panel: {fileID: 1763774754}
+  startDialogue: {fileID: 2096550453}
 --- !u!1 &883718557
 GameObject:
   m_ObjectHideFlags: 0
@@ -23312,7 +23313,8 @@ MonoBehaviour:
   bottomDialogueText: {fileID: 1335576521}
   fadeInDuration: 2
   typingSpeed: 0.05
-  autoAdvanceDelay: 1.5
+  fadeOutDuration: 2
+  typingRemovalTime: 2
   skipButton: {fileID: 764695708}
 --- !u!114 &1785378445
 MonoBehaviour:
@@ -27380,6 +27382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096550454}
+  - component: {fileID: 2096550455}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -27402,6 +27405,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1937948743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2096550455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096550453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74514e45421c28b4f9efa808cb762e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1785378444}
 --- !u!1 &2099676693
 GameObject:
   m_ObjectHideFlags: 0
