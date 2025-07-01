@@ -18,6 +18,8 @@ public class UseItem : Item
             Manager.Data.PlayerStatus.AddStat(addStat[i].statType, addStat[i].value, name);
         }
 
+        if (!isRemove) return;
+
         for (int i = 0; i < removeStat.Length; i++)
         {
             Manager.Data.PlayerStatus.AddStat(removeStat[i].statType, -removeStat[i].value, name);
