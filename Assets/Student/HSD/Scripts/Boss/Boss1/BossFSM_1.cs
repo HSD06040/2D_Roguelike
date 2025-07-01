@@ -13,10 +13,10 @@ public class BossFSM_1 : BossMonsterFSM
 
     #region States
     public BossIdleState_1 idle { get; private set; }
-    public BossEnemySpawnState spawn { get; private set; }
-    public BossDoubleCrossState doubleCross { get; private set; }
+    public BossEnemySpawnState_1 spawn { get; private set; }
+    public BossDoubleCrossState_1 doubleCross { get; private set; }
     public BossTeleportState_1 telpo { get; private set; }
-    public BossCrossState cross { get; private set; }
+    public BossCrossState_1 cross { get; private set; }
     #endregion
 
     private void Awake()
@@ -24,10 +24,10 @@ public class BossFSM_1 : BossMonsterFSM
         StateMachine = new BossStateMachine<BossFSM_1>();
 
         idle = new BossIdleState_1(this, idleHash);
-        spawn = new BossEnemySpawnState(this, attackHash);
-        doubleCross = new BossDoubleCrossState(this, attack2Hash);
+        spawn = new BossEnemySpawnState_1(this, attackHash);
+        doubleCross = new BossDoubleCrossState_1(this, attack2Hash);
         telpo = new BossTeleportState_1(this, idleHash);
-        cross  = new BossCrossState(this, idleHash);
+        cross  = new BossCrossState_1(this, idleHash);
     }
 
     private void Update()
@@ -98,8 +98,6 @@ public class BossTeleportState_1 : PatternState
     {
         base.Enter();
 
-        fsm.Player ??= GameObject.FindWithTag("Player").transform;
-
         fsm.StartCoroutine(FadeOutCoroutine());
     }
 
@@ -134,9 +132,9 @@ public class BossTeleportState_1 : PatternState
     }
 }
 
-public class BossEnemySpawnState : PatternState
+public class BossEnemySpawnState_1 : PatternState
 {    
-    public BossEnemySpawnState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    public BossEnemySpawnState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
         fsm.Pattern.AddEventEnemySpawn(ChangeState);
     }
@@ -155,9 +153,9 @@ public class BossEnemySpawnState : PatternState
     private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
 }
 
-public class BossCrossState : BossBaseState<BossFSM_1>
+public class BossCrossState_1 : BossBaseState<BossFSM_1>
 {
-    public BossCrossState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    public BossCrossState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
         fsm.Pattern.AddEventCross(ChangeState);
     }
@@ -176,9 +174,9 @@ public class BossCrossState : BossBaseState<BossFSM_1>
     private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
 }
 
-public class BossDoubleCrossState : PatternState
+public class BossDoubleCrossState_1 : PatternState
 {
-    public BossDoubleCrossState(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    public BossDoubleCrossState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
         fsm.Pattern.AddEventDoubleCross(ChangeState);
     }
