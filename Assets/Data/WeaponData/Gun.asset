@@ -18,7 +18,8 @@ MonoBehaviour:
   model: {fileID: 4433685329174123603, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
   description: dddd
   icon: {fileID: 21300082, guid: 9603be6d9ac69924f945566fb9497bde, type: 3}
-  Type: 1
+  Price: 0
+  Type: 2
   AttackDamage: 1
   AttackSpeed: 10
   WeaponOverride: {fileID: 0}

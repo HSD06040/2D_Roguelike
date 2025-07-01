@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BaseState
 {
-    protected MonsterFSM __spreadFSM;
+    protected MonsterFSM _fsm;
 
     public BaseState(MonsterFSM fsm)
     {
-        __spreadFSM = fsm;
+        _fsm = fsm;
     }
 
     public virtual void Enter() { }
