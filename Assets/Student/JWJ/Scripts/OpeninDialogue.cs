@@ -5,6 +5,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class OpeninDialogue : MonoBehaviour
 {
+    [SerializeField] private StartDialogue conversation;
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject startDialogue;
@@ -14,15 +15,11 @@ public class OpeninDialogue : MonoBehaviour
         panel.SetActive(false);
         startDialogue.SetActive(false);
         dialogueManager.dialogueOver += DialogueOver;
+        Prolog();
+
+
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Prolog();
-        }
-    }
     private void Prolog()
     {
         panel.SetActive(true);
@@ -39,7 +36,7 @@ public class OpeninDialogue : MonoBehaviour
             new DialogueData("", "소환된 악마가 세상을 지배하던 시기.", DialoguePosition.Center, DialogueEffect.FadeIn, DialogueAdvanceType.Auto),
             new DialogueData("<color=red>???</color>", "r흑음악만이.... 토베벤님만이...\n 나를... 우리를... 세상을 정화할 것이니...", DialoguePosition.Bottom, DialogueEffect.Typing, DialogueAdvanceType.Auto),
             new DialogueData("", "<color=red>흑음악</color>은 이 세상을 순식간에 지배하기 시작했다.", DialoguePosition.Center, DialogueEffect.FadeIn, DialogueAdvanceType.Auto),
-            //페이드아웃효과
+            
         };
         dialogueManager.ShowDialogue(lines, true);
     }
@@ -47,7 +44,8 @@ public class OpeninDialogue : MonoBehaviour
     private void DialogueOver()
     {
         panel.SetActive(false);
+        dialogueManager.dialogueOver -= DialogueOver;
         startDialogue.SetActive(true);
-        gameObject.SetActive(false);
+        conversation.ConversationStart();
     }
 }

@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossRoomDoor : MonoBehaviour
+public class BossRoomDoor : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject interectionUI;
+    [SerializeField] private Transform playerStransform;
+    [SerializeField] private Transform moveToPos;
+
+    private void Start()
     {
-        
+        interectionUI.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
+        playerStransform.position = moveToPos.position;
+    }
+
+    public void UiOn()
+    {
+        interectionUI.SetActive(true);
+    }
+
+    public void UiOff()
+    {
+        interectionUI.SetActive(false);
     }
 }

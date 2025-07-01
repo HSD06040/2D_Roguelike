@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Student/JWJ/Scenes/Stages/Prolog.unity
+    guid: fd9878aa7c0d65849b0f8484219f3bb9
+  - enabled: 1
     path: Assets/Student/JWJ/Scenes/Stages/Stage1_1.unity
     guid: a61620c4a7e35c64fb529a2d88bbed08
   - enabled: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class StartDialogue : MonoBehaviour
@@ -9,10 +10,10 @@ public class StartDialogue : MonoBehaviour
 
     private bool hasPlayedStory2 = false;
 
-    private void Start()
+    public void ConversationStart()
     {
-        StartStory1();
         dialogueManager.dialogueOver += DialogueOver;
+        StartStory1();
     }
 
     private void StartStory1()
@@ -53,11 +54,20 @@ public class StartDialogue : MonoBehaviour
         {
             hasPlayedStory2 = true;
             StartCoroutine(WaitForNextStory());
-        }
+        } 
         else
         {
+            dialogueManager.dialogueOver -= DialogueOver;
+            StartCoroutine(ScreenFadeAndThenNextScene());
+        }
+    }
+    private IEnumerator ScreenFadeAndThenNextScene()
+    {
+        int currentSenen = SceneManager.GetActiveScene().buildIndex;
+        //Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadSceneAsync(currentSenen + 1);
+        Debug.Log("다음씬 이동");
 
-        }    
-        
     }
 }
