@@ -10,4 +10,7 @@ public class GameManager : Singleton<GameManager>
     public Action OnMonsterHit;  // 플레이어의 공격이 몬스터에게 적중 했을 때
     public Action OnPlayerAttack; // 플레이어가 공격 했을 때
     #endregion
+
+    public void TimeStop() => Time.timeScale = 0;
+    public void TimeRestart() => Time.timeScale = 1;
 }

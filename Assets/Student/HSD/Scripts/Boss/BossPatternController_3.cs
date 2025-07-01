@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossPatternController : MonoBehaviour
+public class BossPatternController_3 : MonoBehaviour
 {
     [SerializeField] private BossPattern pattern;
 
