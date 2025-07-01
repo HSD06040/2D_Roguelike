@@ -9,10 +9,18 @@ public class Portal : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        //SceneManager.LoadScene("씬 이름");
-        Debug.Log("다음씬 이동");
+        StartCoroutine(ScreenFade());
     }
 
+    private IEnumerator ScreenFade()
+    {
+        int currentSenen = SceneManager.GetActiveScene().buildIndex;
+        //Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadSceneAsync(currentSenen + 1);
+        Debug.Log("다음씬 이동");
+
+    }
 
     public void UiOn()
     { 

@@ -18,11 +18,12 @@ public abstract class AnimationUI_Base : MonoBehaviour
     {
         gameObject.SetActive(true);
         anim.SetTrigger(inHash);
-        anim.ResetTrigger(inHash);
+        
     }
 
     public virtual void Close()
     {
+        anim.ResetTrigger(inHash);
         anim.SetTrigger(outHash);
     }
 

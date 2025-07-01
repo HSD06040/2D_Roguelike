@@ -37,10 +37,10 @@ public class BoxRewardUI : AnimationUI_Base
         //Debug.Log("ui IN");
         //base.Open();
         //background.SetActive(true);
-
+        background.SetActive(true);
         Animator animator = GetComponent<Animator>();
         animator.Play("In", 0, 0f);
-        background.SetActive(true);
+        
     }
 
     public override void Close()
