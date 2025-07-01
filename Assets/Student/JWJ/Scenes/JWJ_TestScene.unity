@@ -5926,6 +5926,67 @@ MonoBehaviour:
   radius: 1
   rotSpeed: 40
   objs: []
+--- !u!1001 &429928243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6631324864527680561, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: boxUIScript
+      value: 
+      objectReference: {fileID: 6056993873881213066}
+    - target: {fileID: 7459608444856921843, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_Name
+      value: Box (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -22.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.036383286
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855573900213243285, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b75ec0a10ced4c45a07630821d76445, type: 3}
 --- !u!1 &469810042
 GameObject:
   m_ObjectHideFlags: 0
@@ -25357,9 +25418,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 600905309898154272, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 600905309898154272, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -904
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750039943172711276, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Name
+      value: RewardInfoSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 7201735056501417966, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
       propertyPath: m_Name
       value: BoxRewardUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201735056501417966, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7554761179022710451, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
       propertyPath: m_Pivot.x
@@ -25441,11 +25518,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2bf44eb64429fe943b8524b8d1aa5789, type: 3}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478472394776085260, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4779197092239164921, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+--- !u!114 &6056993873881213066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 400195470208451210, guid: 6a72571e08d9b6f418499f00352e2658, type: 3}
+  m_PrefabInstance: {fileID: 5873543281070500352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9720cd8d2cb22404c829118882f5775f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8166321633115388306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25626,7 +25739,7 @@ PrefabInstance:
     - target: {fileID: 734043541766345255, guid: 5f00e6c442afce24b969e19e10c693b8, type: 3}
       propertyPath: boxUIScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6056993873881213066}
     - target: {fileID: 1612437327327290710, guid: 5f00e6c442afce24b969e19e10c693b8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -25762,3 +25875,4 @@ SceneRoots:
   - {fileID: 5873543281070500352}
   - {fileID: 2353488299947530479}
   - {fileID: 1937948743}
+  - {fileID: 429928243}

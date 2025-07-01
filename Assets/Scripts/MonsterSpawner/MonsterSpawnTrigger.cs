@@ -21,7 +21,10 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private void Start()
     {
-        portal.SetActive(false);
+        if(portal != null)
+        {
+            portal.SetActive(false);
+        }
     }
     private void Update()  //테스트용 
    {
