@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7694406063512775972}
   - component: {fileID: 3517816507253107376}
   - component: {fileID: 656750542757838953}
+  - component: {fileID: 3887301669171276308}
   m_Layer: 0
   m_Name: BossLinePattern
   m_TagString: Untagged
@@ -99,6 +100,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8622339116872140330}
+  col: {fileID: 3887301669171276308}
+  red: {r: 0.6784314, g: 0.31764707, b: 0.31764707, a: 1}
+  pink: {r: 1, g: 0.5896226, b: 0.5896226, a: 0.2784314}
+  gray: {r: 1, g: 1, b: 1, a: 0.29803923}
+  white: {r: 1, g: 1, b: 1, a: 1}
+  parentSr: {fileID: 3517816507253107376}
+  children: {fileID: 7879789708124883859}
+--- !u!61 &3887301669171276308
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319510645339115189}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2996261508547895903
 GameObject:
   m_ObjectHideFlags: 0

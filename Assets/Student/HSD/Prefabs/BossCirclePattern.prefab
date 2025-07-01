@@ -101,6 +101,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2714547817373117417}
   col: {fileID: 8738574760737213187}
+  red: {r: 0.6784314, g: 0.31764707, b: 0.31764707, a: 1}
+  pink: {r: 1, g: 0.5896226, b: 0.5896226, a: 0.2784314}
+  gray: {r: 1, g: 1, b: 1, a: 0.29803923}
+  white: {r: 1, g: 1, b: 1, a: 1}
+  parentSr: {fileID: 8188244595434632953}
+  children: {fileID: 2052768546675757570}
 --- !u!58 &8738574760737213187
 CircleCollider2D:
   m_ObjectHideFlags: 0

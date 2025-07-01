@@ -6911,6 +6911,7 @@ MonoBehaviour:
   enemySpawnPattern: {fileID: 1800397128}
   cross1: {fileID: 1800397129}
   cross2: {fileID: 1800397130}
+  test: {fileID: 1800397126}
 --- !u!114 &1800397126
 MonoBehaviour:
   m_ObjectHideFlags: 0

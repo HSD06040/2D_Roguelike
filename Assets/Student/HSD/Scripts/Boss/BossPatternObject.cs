@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossPatternObject : MonoBehaviour
@@ -13,28 +14,38 @@ public class BossPatternObject : MonoBehaviour
     [SerializeField] private SpriteRenderer parentSr;
     [SerializeField] private SpriteRenderer children;
     private bool isAttack;
+    private Vector3 targetScale;
 
-    public void Setup(float _duration, GameObject obj, Vector3 scale, bool _isAttack = true)
-    {        
-        if(_isAttack)
+    private void Awake()
+    {
+        targetScale = target.localScale;
+    }
+
+    public void Setup(float _duration, GameObject obj, Vector3 scale, bool isDestroy, bool _isAttack = true)
+    {
+        gameObject.SetActive(true);
+
+        isAttack = _isAttack;
+
+        if (isAttack)
         {
             parentSr.color = pink;
             children.color = red;
         }
         else
-
         {
             parentSr.color = gray;
             children.color = white;
+            target.localScale = Vector2.one;
         }
 
-        isAttack = _isAttack;
-        transform.localScale = scale;
-        StartCoroutine(Routine(_duration, obj));
-        col.enabled = false;
+        if(scale != Vector3.zero)
+            transform.localScale = scale;
+
+        StartCoroutine(Routine(_duration, obj, isDestroy)); 
     }
 
-    private IEnumerator Routine(float _duration, GameObject obj)
+    private IEnumerator Routine(float _duration, GameObject obj, bool isDestroy)
     {
         Vector2 start = target.localScale;
         Vector2 end = Vector2.one;
@@ -51,15 +62,30 @@ public class BossPatternObject : MonoBehaviour
 
         target.localScale = Vector2.one;
 
-        if(isAttack)
-            Attack(obj);
+        if (isAttack)
+            Attack(obj, isDestroy);
+
+        target.localScale = targetScale;
+
+        if (isDestroy)
+            Destroy(gameObject, .1f);
+        else
+            gameObject.SetActive(false);
+
+        col.enabled = false;
     }
 
-    private void Attack(GameObject obj)
+    private void Attack(GameObject obj, bool isDestroy)
     {
-        Instantiate(obj,transform.position, Quaternion.identity);
-        col.enabled = true;
+        Destroy(Instantiate(obj, transform.position, Quaternion.identity),3);
+        col.enabled = true; 
+    }
 
-        Destroy(gameObject, .1f);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            collision.GetComponent<IDamagable>().TakeDamage(1);
+        }
     }
 }
