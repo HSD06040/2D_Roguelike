@@ -20,7 +20,7 @@ public class Monster : MonoBehaviour, IDamagable
     public Rigidbody2D Rb { get; private set; }
     public int FacingDirection { get; protected set; }
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private Color originalColor;
     private Material originalMaterial;
     private bool isHitCoroutineRunning = false;

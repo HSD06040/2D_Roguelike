@@ -7,7 +7,7 @@ public class EntityFX : MonoBehaviour
 {
     private const float duration = .5f;
     [SerializeField] private GameObject popupTextPrefab;
-    [SerializeField] private SpriteRenderer playerSpriteRender;
+    [SerializeField] private SpriteRenderer spriteRender;
 
     private Coroutine playerTakeDamageCor;
     private WaitForSeconds delay = new WaitForSeconds(0.2f);
@@ -28,19 +28,19 @@ public class EntityFX : MonoBehaviour
 
     private IEnumerator HitRoutine()
     {
-        Color playerColor = playerSpriteRender.color;
+        Color playerColor = spriteRender.color;
         yield return null;
-        playerSpriteRender.material.color = Color.red;
+        spriteRender.material.color = Color.red;
         yield return delay;
-        playerSpriteRender.material.color = playerColor;
+        spriteRender.material.color = playerColor;
         yield return delay;
-        playerSpriteRender.material.color = Color.red;
+        spriteRender.material.color = Color.red;
         yield return delay;
-        playerSpriteRender.material.color = playerColor;
+        spriteRender.material.color = playerColor;
         yield return delay;
-        playerSpriteRender.material.color = Color.red;
+        spriteRender.material.color = Color.red;
         yield return delay;
-        playerSpriteRender.material.color = playerColor;
+        spriteRender.material.color = playerColor;
 
         if(playerTakeDamageCor != null)
         {

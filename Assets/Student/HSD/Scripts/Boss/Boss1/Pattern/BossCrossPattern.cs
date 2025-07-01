@@ -1,117 +1,166 @@
+using System;
 using System.Collections;
 using UnityEngine;
+
+[Serializable]
+public struct CrossInfo
+{
+    public float projectileSpeed;
+    public float rotSpeed;
+    public int dirCount;
+    public bool isTotalAngleRandom;
+    public float totalAngle;
+    public float angleOffset;
+    public float offset;
+    public int count;
+    public float duration;
+    public float interval;
+}
 
 public class BossCrossPattern : BossPattern
 {
     [SerializeField] private bool isRotate;
     [SerializeField] private GameObject warningLine;
     [SerializeField] private Transform pivot;
-
     [Header("Pattern Info")]
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private float rotSpeed;
-    [SerializeField] private float dirCount;
-    [SerializeField] private float angleOffset;
-    [SerializeField] private float offset;
-    [SerializeField] private int count;
+    [SerializeField] private CrossInfo[] crossInfos;
+    private static readonly int[] randomAngles = { 0, 90, 180, 270 };
+    private float temp;
+    private float angleStep;
+
     private Coroutine rotateRoutine;
-    float angleStep;
 
     protected override IEnumerator PatternRoutine(Monster boss)
     {
-        angleStep = 360 / dirCount;
-
-        for (int i = 0; i < dirCount; i++)
+        for (int i = 0; i < crossInfos.Length; i++)
         {
-            float angle = angleStep * i + angleOffset;
+            CrossInfo info = crossInfos[i];
 
-            Quaternion rot = Quaternion.Euler(0, 0, angle);
-            Vector2 direction = rot * pivot.right;
-            Vector3 spawnPos = pivot.position + (Vector3)(direction * offset);                  
+            if (info.isTotalAngleRandom)
+            {
+                temp = info.totalAngle;
+                info.totalAngle = 360;
+                angleStep = info.totalAngle / (info.dirCount * 4);
+            }
+            else
+                angleStep = info.totalAngle / info.dirCount;
 
-            var line = Instantiate(warningLine, spawnPos, rot, pivot);
-            line.GetComponent<WarningLine>().Init(duration/2);
+            if(info.isTotalAngleRandom)
+            {
+                for (int j = 0; j < info.dirCount * 4; j++)
+                {
+                    float angle = angleStep * j + info.angleOffset;
+                    Quaternion rot = Quaternion.Euler(0, 0, angle);
+                    Vector2 direction = rot * pivot.right;
+                    Vector3 spawnPos = pivot.position + (Vector3)(direction * info.offset);
+
+                    var line = Instantiate(warningLine, spawnPos, rot, pivot);
+                    line.GetComponent<WarningLine>().Init(info.duration / 2f);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < info.dirCount; j++)
+                {
+                    float angle = angleStep * j + info.angleOffset;
+                    Quaternion rot = Quaternion.Euler(0, 0, angle);
+                    Vector2 direction = rot * pivot.right;
+                    Vector3 spawnPos = pivot.position + (Vector3)(direction * info.offset);
+
+                    var line = Instantiate(warningLine, spawnPos, rot, pivot);
+                    line.GetComponent<WarningLine>().Init(info.duration / 2f);
+                }
+            }
+            
+
+            if (isRotate)
+            {
+                StartCoroutine(RotateOverTime(info.duration, info.totalAngle));
+            }
+
+            if (info.isTotalAngleRandom)
+            {
+                info.totalAngle = temp;
+                angleStep = info.totalAngle / info.dirCount;
+            }
+
+            yield return Utile.GetDelay(info.duration);
+
+            if (isRotate)
+            {
+                rotateRoutine = StartCoroutine(PivotRotate(info.rotSpeed, info.interval * info.count));
+            }
+
+            for (int j = 0; j < info.count; j++)
+            {
+                Fire(boss, info);
+                yield return Utile.GetDelay(info.interval);
+            }
+
+            if (isRotate && rotateRoutine != null)
+                StopCoroutine(rotateRoutine);
+
+            pivot.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (isRotate)
-        {
-            StartCoroutine(Rotate());
-        }
-
-        yield return Utile.GetDelay(duration);
-
-        if (isRotate)
-        {
-            rotateRoutine = StartCoroutine(PivotRotate());
-        }
-
-
-        for (int i = 0; i < count; i++)
-        {
-            Fire(boss);
-            yield return Utile.GetDelay(interval);
-        }
-
-        if(isRotate)
-            StopCoroutine(rotateRoutine);
-
-        pivot.rotation = Quaternion.Euler(0,0,0);
+        OnComplated?.Invoke();
     }
 
-    private IEnumerator Rotate()
+    private IEnumerator RotateOverTime(float duration, float totalAngle)
     {
         float elapsed = 0f;
-        float rotateDuration = duration;
-        float totalAngle = angleStep;
         float currentAngle = 0f;
 
-        while (elapsed < rotateDuration)
+        while (elapsed < duration)
         {
             float delta = Time.deltaTime;
             elapsed += delta;
 
-            float t = Mathf.Clamp01(elapsed / rotateDuration);
+            float t = Mathf.Clamp01(elapsed / duration);
             float targetAngle = Mathf.Lerp(0f, totalAngle, t);
-
             float step = targetAngle - currentAngle;
-            pivot.Rotate(Vector3.forward, step);
 
+            pivot.Rotate(Vector3.forward, step);
             currentAngle = targetAngle;
+
             yield return null;
         }
     }
 
-    private IEnumerator PivotRotate()
+    private IEnumerator PivotRotate(float rotSpeed, float duration)
     {
         float elapsed = 0f;
-        float rotateDuration = interval * count;
 
-        while (elapsed < rotateDuration)
+        while (elapsed < duration)
         {
             float delta = Time.deltaTime;
-            float step = rotSpeed * delta;
-            pivot.Rotate(Vector3.forward, step);
+            pivot.Rotate(Vector3.forward, rotSpeed * delta);
             elapsed += delta;
-
             yield return null;
         }
     }
 
-    private void Fire(Monster boss)
+    private void Fire(Monster boss, CrossInfo info)
     {
-        for (int i = 0; i < dirCount; i++)
-        {
-            float angle = angleOffset + angleStep * i;
+        float angleStep = info.totalAngle / info.dirCount;
 
+        if (info.isTotalAngleRandom)
+        {
+            info.angleOffset = randomAngles[UnityEngine.Random.Range(0, randomAngles.Length)];
+        }
+
+        for (int i = 0; i < info.dirCount; i++)
+        {
+            float angle = info.angleOffset + angleStep * i;
             Vector2 direction = Quaternion.Euler(0, 0, angle) * pivot.right;
 
-            GameObject projectile = Manager.Resources.Instantiate(prefab, boss.transform.position, true);
+            GameObject projectile = Manager.Resources.Instantiate(prefab, pivot.transform.position, true);
 
             if (projectile != null)
             {
                 projectile.GetComponent<Projectile_Controller>().Initialize(
                     direction.normalized,
-                    projectileSpeed,
+                    info.projectileSpeed,
                     boss.AttackPower,
                     ""
                 );
