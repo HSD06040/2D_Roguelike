@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,8 @@ public class DataManager : Singleton<DataManager>
     public Weapon[] WeaponDatas;
     public MusicWeapon[] MusicWeapons;
 
-    private DataDownloader downloader;    
+    private DataDownloader downloader;
+
 
     private void Awake()
     {

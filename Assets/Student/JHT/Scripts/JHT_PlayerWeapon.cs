@@ -33,7 +33,6 @@ public class JHT_PlayerWeapon : MonoBehaviour
         {
             if (currentWeapon != null)
             {
-                Debug.Log("GetWeapon");
                 SetProjectile(currentWeapon);
                 if(currentWeapon.WeaponData.itemName == "Violin")
                 {
