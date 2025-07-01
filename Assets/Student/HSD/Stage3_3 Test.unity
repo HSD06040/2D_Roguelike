@@ -10660,6 +10660,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fadac3cfa154e8f9bc7b373e8e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2025389790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4140586160199719426, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719427, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_Name
+      value: FX_splash_crystal_floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.845935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.018860567
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.029984143
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5321083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719428, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -64.341
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.x.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.y.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.curve.scalar
+      value: 3.1415925
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.x.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.y.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationModule.curve.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140586160199719429, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
+      propertyPath: RotationBySpeedModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fcf75a8ea8abc94098d321dd313b4b7, type: 3}
 --- !u!1 &2103146838
 GameObject:
   m_ObjectHideFlags: 0
@@ -11985,3 +12082,4 @@ SceneRoots:
   - {fileID: 1919066483}
   - {fileID: 1803955166}
   - {fileID: 1701513872}
+  - {fileID: 2025389790}
