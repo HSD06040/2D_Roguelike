@@ -13,7 +13,4 @@ public class SheetMusicMonsterSO : MonsterStat
     public float meleeAttackAngle = 60f;  //  부채꼴의 총 각도
     public float meleeAttackCooldown = 2f; // 공격 쿨타임
 
-    [Header("보상")]
-    public GameObject dropItemPrefab;
-    public int dropItemCount = 1;
 }

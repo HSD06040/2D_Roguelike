@@ -245,15 +245,15 @@ public class SheetMusic_DieState : BaseState
 
         _sheetFSM.Owner.Animator.SetTrigger("Die");
 
-        DropItems();
+        //DropItems();
 
     }
 
-    private void DropItems()
-    {
-        if (_sheetFSM.SO.dropItemPrefab != null)
-        {
-
-        }
-    }
+    //private void DropItems()
+    //{
+    //    if (_sheetFSM.SO.dropItemPrefab != null)
+    //    {
+    //
+    //    }
+    //}
 }
