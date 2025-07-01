@@ -20,12 +20,12 @@ public class UI_Manager : Singleton<UI_Manager>
         MainCanvas = Instantiate(Resources.Load<Canvas>("UI/MainCanvas"));
         MainCanvas.transform.parent = transform;
 
-        PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
-        PopUpCanvas.transform.parent = transform;
-
         AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
         ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
         Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
+
+        PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
+        PopUpCanvas.transform.parent = transform;
     }
 
     public void OpenShop()

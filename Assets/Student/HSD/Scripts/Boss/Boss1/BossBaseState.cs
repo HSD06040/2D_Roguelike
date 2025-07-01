@@ -5,8 +5,9 @@ using UnityEngine;
 public class BossBaseState<T> where T : BossMonsterFSM
 {
     public T fsm {  get; private set; }
-    protected bool useTimer;
     protected float timer;
+    protected bool useTimer;
+
     private readonly int animHash;
 
     public BossBaseState(T _fsm, int _animHash)

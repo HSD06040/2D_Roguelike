@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 516545053682084967}
@@ -72,9 +72,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 783316077
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6792453, g: 0.31719473, b: 0.31719473, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,6 +185,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 296209988063438167}
   col: {fileID: 3399046369632356358}
+  red: {r: 0.6784314, g: 0.31764707, b: 0.31764707, a: 1}
+  pink: {r: 1, g: 0.5896226, b: 0.5896226, a: 0.2784314}
+  gray: {r: 1, g: 1, b: 1, a: 0.05490196}
+  white: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0.6745098}
+  parentSr: {fileID: 9080065459847020175}
+  children: {fileID: 4148787020378990357}
 --- !u!60 &3399046369632356358
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -214,7 +220,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -14,6 +14,7 @@ public class BossPatternController_1 : MonoBehaviour
     [SerializeField] private BossPattern cross1;
     [SerializeField] private BossPattern cross2;
 
+
     public void PlayCirclePattern() => circlePattern.Execute();
     public void PlayDefaultPattern() => defaultPattern.Execute();    
     public void PlayCrossRotatePattern() => crossRotatePattern.Execute();

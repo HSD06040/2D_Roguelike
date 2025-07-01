@@ -101,6 +101,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1248469959500191789}
   col: {fileID: 3636231003420900666}
+  red: {r: 0.6784314, g: 0.31764707, b: 0.31764707, a: 1}
+  pink: {r: 1, g: 0.5896226, b: 0.5896226, a: 0.2784314}
+  gray: {r: 1, g: 1, b: 1, a: 0.05490196}
+  white: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 0.6745098}
+  parentSr: {fileID: 894391905899669896}
+  children: {fileID: 2667977470213567948}
 --- !u!60 &3636231003420900666
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -130,7 +136,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -180,7 +186,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7698468719416289104}
@@ -225,7 +231,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 783316077
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6792453, g: 0.31719473, b: 0.31719473, a: 1}
   m_FlipX: 0

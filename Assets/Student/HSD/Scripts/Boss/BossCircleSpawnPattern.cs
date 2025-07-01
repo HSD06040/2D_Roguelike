@@ -28,7 +28,7 @@ public class BossCircleSpawnPattern : BossPattern
         {
             for (int i = 0; i < count; i++)
             {
-                Instantiate(prefab, fsm.Player.position, Quaternion.identity).GetComponent<BossPatternObject>().Setup(duration, attackEffect, size);
+                Instantiate(prefab, fsm.Player.position, Quaternion.identity).GetComponent<BossPatternObject>().Setup(duration, attackEffect, size, true);
                 yield return Utile.GetDelay(interval);
             }
         }
@@ -36,7 +36,7 @@ public class BossCircleSpawnPattern : BossPattern
         {
             for (int i = 0; i < transforms.Length; i ++)
             {
-                Instantiate(prefab, transforms[i].position, Quaternion.identity).GetComponent<BossPatternObject>().Setup(duration, attackEffect, size);
+                Instantiate(prefab, transforms[i].position, Quaternion.identity).GetComponent<BossPatternObject>().Setup(duration, attackEffect, size, true);
                 yield return Utile.GetDelay(interval);
             }
         }
