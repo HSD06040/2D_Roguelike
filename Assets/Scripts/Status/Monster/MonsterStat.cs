@@ -8,4 +8,7 @@ public class MonsterStat : ScriptableObject
     public float health = 50f;
     public int attackPower = 10;
     public float moveSpeed = 5f;
+
+    public GameObject CoinPrefab;
+    public int GetCoinAmount;
 }

@@ -19,8 +19,14 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private int monsterLeft; // 남은 몬스터 수
 
-
-   private void Update()  //테스트용 
+    private void Start()
+    {
+        if(portal != null)
+        {
+            portal.SetActive(false);
+        }
+    }
+    private void Update()  //테스트용 
    {
        if(Input.GetKeyDown(KeyCode.K) && hasMonsterSpawned && !isRoomCleared)
        {

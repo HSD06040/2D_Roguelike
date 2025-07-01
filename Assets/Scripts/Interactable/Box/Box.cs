@@ -16,6 +16,7 @@ public class Box : MonoBehaviour, IInteractable
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        interectionUI.SetActive(false);
     }
 
     public void Interact()
