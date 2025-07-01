@@ -5,13 +5,16 @@ using UnityEngine;
 public class BossPatternObject : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Collider2D col;
 
-    public void Setup(float _duration)
+    public void Setup(float _duration, GameObject obj, Vector3 scale)
     {
-        StartCoroutine(Routine(_duration));
+        transform.localScale = scale;
+        StartCoroutine(Routine(_duration, obj));
+        col.enabled = false;
     }
 
-    private IEnumerator Routine(float _duration)
+    private IEnumerator Routine(float _duration, GameObject obj)
     {
         Vector2 start = target.localScale;
         Vector2 end = Vector2.one;
@@ -27,13 +30,14 @@ public class BossPatternObject : MonoBehaviour
         }
 
         target.localScale = Vector2.one;
-        Attack();
+        Attack(obj);
     }
 
-    private void Attack()
+    private void Attack(GameObject obj)
     {
-        // 장판 공격
+        Instantiate(obj,transform.position, Quaternion.identity);
+        col.enabled = true;
 
-        Destroy(gameObject);
+        Destroy(gameObject, .1f);
     }
 }

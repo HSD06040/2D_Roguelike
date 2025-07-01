@@ -7,7 +7,7 @@ public class ViolinProjectile : Projectile
 {
     public LineRenderer LineRender;
 
-    [SerializeField][Range(1,50)] private int pointSize; //Á¡ÀÇ °¹¼ö
+    [SerializeField][Range(1,50)] private int pointSize; //ÃÂ¡Ã€Ã‡ Â°Â¹Â¼Ã¶
     [SerializeField] private float vibration = 0.8f;
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private LayerMask targetLayer;
