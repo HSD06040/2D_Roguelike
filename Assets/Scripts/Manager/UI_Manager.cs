@@ -10,6 +10,7 @@ public class UI_Manager : Singleton<UI_Manager>
 
     public AccessoriesChangePanel AccessoriesChangePanel;
     public ShopView ShopView;
+    public FadeScreen Fade;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class UI_Manager : Singleton<UI_Manager>
 
         AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
         ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
+        Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
     }
 
     public void OpenShop()
