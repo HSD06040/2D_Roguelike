@@ -100,7 +100,24 @@ public class Monster : MonoBehaviour, IDamagable
         isHitCoroutineRunning = false;
     }
 
+    public void DropCoin(MonsterStat monsterStat)
+    {
+        Debug.Log("DropCoin 메소드를 호출");
+        if (monsterStat.CoinPrefab != null && monsterStat.GetCoinAmount > 0)
+        {
+            GameObject coinObject = Instantiate(
+                monsterStat.CoinPrefab,
+                transform.position,
+                Quaternion.identity
+            );
 
+            var coinController = coinObject.GetComponent<Coin>();
+            if (coinController != null)
+            {
+                coinController.Init(monsterStat.GetCoinAmount);
+            }
+        }
+    }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

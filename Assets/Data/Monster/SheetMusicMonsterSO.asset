@@ -15,9 +15,9 @@ MonoBehaviour:
   health: 10
   attackPower: 1
   moveSpeed: 3
+  CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
+  GetCoinAmount: 2
   chaseRange: 10
   meleeAttackRange: 1.5
   meleeAttackAngle: 90
   meleeAttackCooldown: 2
-  dropItemPrefab: {fileID: 0}
-  dropItemCount: 1

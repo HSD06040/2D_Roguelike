@@ -128,11 +128,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3239537078337522908}
+  - component: {fileID: 1842751632925116900}
   - component: {fileID: 2819023262794639063}
   - component: {fileID: 4985898514390006046}
   - component: {fileID: 1362819112623907095}
   - component: {fileID: 7147898455959154551}
-  - component: {fileID: 1842751632925116900}
   m_Layer: 6
   m_Name: RangedMonster
   m_TagString: Monster
@@ -157,6 +157,21 @@ Transform:
   - {fileID: 7907107233210412090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1842751632925116900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922025686455673815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8690f118d641b134aa683bd85dcc833a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SO>k__BackingField: {fileID: 11400000, guid: 9842a33a86806da4c8052f3171d070d5, type: 2}
+  firePoint: {fileID: 7907107233210412090}
+  lastAttackTime: 0
 --- !u!114 &2819023262794639063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +188,7 @@ MonoBehaviour:
   hitEffectDuration: 0.15
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
+  spriteRenderer: {fileID: 0}
 --- !u!195 &4985898514390006046
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -267,21 +283,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1842751632925116900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4922025686455673815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8690f118d641b134aa683bd85dcc833a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <SO>k__BackingField: {fileID: 11400000, guid: 9842a33a86806da4c8052f3171d070d5, type: 2}
-  firePoint: {fileID: 7907107233210412090}
-  lastAttackTime: 0
 --- !u!1 &6696984923270520161
 GameObject:
   m_ObjectHideFlags: 0

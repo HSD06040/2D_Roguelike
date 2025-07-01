@@ -237,7 +237,7 @@ public class Explosion_ExplodeState : BaseState
         Vector2 relativePos = _explosionMonsterFSM.Player.position - _explosionMonsterFSM.transform.position;
 
         // 타원 방정식으로 플레이어가 범위 안에 있는지 판정
-        // (0으로 나누기 방지)
+        // (0으로 나누기 방지). 그냥 이팩트내 콜라이더해서 하는게 더 좋았을거같기도 합니다..
         if (finalRadiusX > 0 && finalRadiusY > 0)
         {
             float check = (relativePos.x * relativePos.x) / (finalRadiusX * finalRadiusX) + (relativePos.y * relativePos.y) / (finalRadiusY * finalRadiusY);
@@ -255,7 +255,7 @@ public class Explosion_ExplodeState : BaseState
 
 
         Object.Instantiate(_explosionMonsterFSM.SO.explosionEffectPrefab, _explosionMonsterFSM.transform.position, Quaternion.identity);
-
+        _explosionMonsterFSM.Owner.DropCoin(_explosionMonsterFSM.SO);
         Object.Destroy(_explosionMonsterFSM.gameObject);
     }
 }
