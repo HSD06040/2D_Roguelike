@@ -53,6 +53,8 @@ public class DialogueManager : MonoBehaviour//Singleton<DialogueManager>
     [Header("스킵버튼")]
     [SerializeField] private GameObject skipButton;
 
+    [Header("클릭유도버튼")]
+    [SerializeField] private GameObject ClickIcon;
 
     private TMP_Text currentText;
     private DialogueEffect curEffect;
@@ -231,6 +233,7 @@ public class DialogueManager : MonoBehaviour//Singleton<DialogueManager>
         }
         else if (curAdvanceType == DialogueAdvanceType.Manual) //진행 타입이 메뉴얼이면
         {
+            
             isWaitingForInput = true;
         }
     }
@@ -270,8 +273,11 @@ public class DialogueManager : MonoBehaviour//Singleton<DialogueManager>
 
     private void InputToNextSentence() // 인풋이 있어야 다음 텍스트로 넘어감
     {
-        if(Input.anyKeyDown)
+        ClickIcon.SetActive(true);
+
+        if (Input.anyKeyDown)
         {
+            ClickIcon.SetActive(false);
             isWaitingForInput = false;
 
             if (curEffect == DialogueEffect.FadeIn)
