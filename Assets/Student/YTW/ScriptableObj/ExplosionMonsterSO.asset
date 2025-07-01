@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9cc493114ced340a5bf8b68251f585, type: 3}
   m_Name: ExplosionMonsterSO
   m_EditorClassIdentifier: 
-  health: 50
+  health: 5
   attackPower: 10
   moveSpeed: 2
+  CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
+  GetCoinAmount: 2
   chaseRange: 5
   attackRange: 3
   chargeTime: 2

@@ -15,6 +15,8 @@ MonoBehaviour:
   health: 5
   attackPower: 10
   moveSpeed: 5
+  CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
+  GetCoinAmount: 2
   detectionRange: 10
   minRepositionDistance: 4
   maxRepositionDistance: 5
@@ -27,3 +29,4 @@ MonoBehaviour:
   aimType: 0
   timeBetweenShots: 0.5
   fireAngleOffset: 0
+  spiralRotationSpeed: 0

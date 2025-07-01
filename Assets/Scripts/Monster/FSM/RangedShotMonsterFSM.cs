@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -144,20 +145,30 @@ public class RangedShotMonster_AttackState : BaseState
 {
     private RangedShotMonsterFSM _rangedShotMonsterFSM;
     private Coroutine _fireCoroutine;
+    private Vector2 _lockedOnDirection;
     public RangedShotMonster_AttackState(RangedShotMonsterFSM fsm) : base(fsm) => _rangedShotMonsterFSM = fsm;
 
     public override void Enter()
     {
         _rangedShotMonsterFSM.Agent.isStopped = true;
         _rangedShotMonsterFSM.Agent.ResetPath();
-        _rangedShotMonsterFSM.Owner.Flip(_rangedShotMonsterFSM.Player);
-
+        
         _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Attack");
+    }
+
+    public override void Update()
+    { 
+        _rangedShotMonsterFSM.Owner.Flip(_rangedShotMonsterFSM.Player);
     }
 
     public void TriggerAttack()
     {
         if (_fireCoroutine != null) return;
+
+        if (_rangedShotMonsterFSM.SO.aimType == RangedShotMonsterSO.AimType.LockOnPlayer && _rangedShotMonsterFSM.Player != null)
+        {
+            _lockedOnDirection = (_rangedShotMonsterFSM.Player.position - _rangedShotMonsterFSM.transform.position).normalized;
+        }
 
         _fireCoroutine = _rangedShotMonsterFSM.StartCoroutine(FireSequence());
     }
@@ -166,16 +177,23 @@ public class RangedShotMonster_AttackState : BaseState
     {
         _rangedShotMonsterFSM.lastAttackTime = Time.time;
         // SO에 설정된 shotCount 만큼 공격을 반복
+
+        float currentSpiralAngle = 0f;
+
         for (int i = 0; i < _rangedShotMonsterFSM.SO.shotCount; i++)
         {
-            FireOneSpread();
+            FireOneSpread(currentSpiralAngle);
+
+            currentSpiralAngle += _rangedShotMonsterFSM.SO.spiralRotationSpeed;
+
             //  SO에 설정된 연속 발사 간격
             yield return new WaitForSeconds(_rangedShotMonsterFSM.SO.timeBetweenShots);
+
         }
         _rangedShotMonsterFSM.OnAttackAnimationFinished();
     }
 
-    private void FireOneSpread()
+    private void FireOneSpread(float currentSpiralAngle)
     {
         if (_rangedShotMonsterFSM.SO.projectilePrefab == null || _rangedShotMonsterFSM.Player == null) return;
         // 몬스터에서 플레이어를 향하거나 자신이 중심인 방향을 계산. 이 방향이 부채꼴의 중심
@@ -188,6 +206,12 @@ public class RangedShotMonster_AttackState : BaseState
                 centerDirection = (_rangedShotMonsterFSM.Player.position - _rangedShotMonsterFSM.transform.position).normalized;
                 break;
 
+            // 조준 고정 
+            case RangedShotMonsterSO.AimType.LockOnPlayer:
+                // 미리 기억해둔 방향 사용
+                centerDirection = _lockedOnDirection;
+                break;
+
             case RangedShotMonsterSO.AimType.Self:
                 // 몬스터가 현재 바라보는 정면 방향을 중심으로 설정
                 centerDirection = _rangedShotMonsterFSM.transform.right * _rangedShotMonsterFSM.Owner.FacingDirection;
@@ -197,9 +221,10 @@ public class RangedShotMonster_AttackState : BaseState
                 centerDirection = Vector2.right; // 기본값
                 break;
         }
-
+        // 기본 오프셋 각도와 현재 나선 각도를 더해서 최종 회전각을 결정
+        float totalRotation = _rangedShotMonsterFSM.SO.fireAngleOffset + currentSpiralAngle;
         // 방향 벡터를 fireAngleOffset 각도로 지정
-        centerDirection = Quaternion.Euler(0, 0, _rangedShotMonsterFSM.SO.fireAngleOffset) * centerDirection;
+        centerDirection = Quaternion.Euler(0, 0, totalRotation) * centerDirection;
         float angleStep;
         float startAngle;
 
@@ -267,13 +292,7 @@ public class RangedShotMonster_DieState : BaseState
         }
 
         _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Die");
-        //DropItems();
+        _rangedShotMonsterFSM.Owner.DropCoin(_rangedShotMonsterFSM.SO);
     }
-    //private void DropItems()
-    //{
-    //    if (_rangedShotMonsterFSM.SO.dropItemPrefab != null)
-    //    {
-    //        
-    //    }
-    //}
+
 }
