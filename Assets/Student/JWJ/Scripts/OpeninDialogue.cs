@@ -41,7 +41,6 @@ public class OpeninDialogue : MonoBehaviour
             new DialogueData("", "<color=red>흑음악</color>은 이 세상을 순식간에 지배하기 시작했다.", DialoguePosition.Center, DialogueEffect.FadeIn, DialogueAdvanceType.Auto),
             //페이드아웃효과
         };
-
         dialogueManager.ShowDialogue(lines, true);
     }
 
@@ -49,5 +48,6 @@ public class OpeninDialogue : MonoBehaviour
     {
         panel.SetActive(false);
         startDialogue.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

@@ -25,6 +25,8 @@ public class MonsterSpawnTrigger : MonoBehaviour
         {
             portal.SetActive(false);
         }
+
+        doors.SetActive(false);
     }
     private void Update()  //테스트용 
    {
@@ -43,6 +45,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
         }
         if (!hasMonsterSpawned && !isRoomCleared)
         {
+            hasMonsterSpawned = true;
             LockDoors();
             StartCoroutine(MonsterSpawnStart());
         }
@@ -62,7 +65,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
         monsterLeft = monsterSpawnerManager.SpawnCount; //남은 몬스터 수 매니져에서 가져옴
         Debug.Log("소환된 몬스터 수:" + monsterLeft);
-        hasMonsterSpawned = true;
+        
     }
     private void LockDoors()
     {

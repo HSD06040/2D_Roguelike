@@ -30,6 +30,12 @@ public class ShopPresenter
 
     public void TryToBuy(int _idx)
     {
+        if (_idx < 0 || _idx >= items.Count)
+        {
+            shopView.ShowMessage("아이템이 선택되지 않았습니다.");
+            return;
+        }
+
         var item = items[_idx];
         int itemPrice = item.Price;
     
@@ -41,7 +47,7 @@ public class ShopPresenter
         else
         {
             Manager.Data.RemoveGold(item.Price);
-            //shopview.UpdateMoneyDisplay();            
+            Debug.Log("구매됨");
             shopView.Close();
         }
     }

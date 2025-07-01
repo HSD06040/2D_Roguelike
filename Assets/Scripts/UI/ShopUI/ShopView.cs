@@ -39,6 +39,12 @@ public class ShopView : AnimationUI_Base
 
     private void OnBuyButtonClicked()
     {
+        //if(selectedIndex < 0)
+        //{
+        //    ShowMessage("아이템이 선택되지 않았습니다.");
+        //    return;
+        //}
+
         shopPresenter.TryToBuy(selectedIndex);
     }
 
@@ -50,7 +56,7 @@ public class ShopView : AnimationUI_Base
 
     public void ShowMessage(string message)
     {
-        Debug.Log(message);
+        Manager.UI.PopupText.StartSetup(message);
     }
 
     public override void Open()

@@ -12,6 +12,7 @@ public static class Manager
     public static DataManager Data => DataManager.GetInstance();
     public static InputManager Input => InputManager.GetInstance();
 
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
