@@ -267,13 +267,13 @@ public class RangedShotMonster_DieState : BaseState
         }
 
         _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Die");
-        DropItems();
+        //DropItems();
     }
-    private void DropItems()
-    {
-        if (_rangedShotMonsterFSM.SO.dropItemPrefab != null)
-        {
-            
-        }
-    }
+    //private void DropItems()
+    //{
+    //    if (_rangedShotMonsterFSM.SO.dropItemPrefab != null)
+    //    {
+    //        
+    //    }
+    //}
 }
