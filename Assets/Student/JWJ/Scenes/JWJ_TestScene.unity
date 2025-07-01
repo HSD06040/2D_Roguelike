@@ -10863,16 +10863,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: dbd37db2ab4f6f344a0f39164900bf46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.125, y: 3.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &766691277
@@ -29870,6 +29870,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4348666954052290104, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348666954052290104, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 3.125
       objectReference: {fileID: 0}
@@ -29878,9 +29882,25 @@ PrefabInstance:
       value: 3.125
       objectReference: {fileID: 0}
     - target: {fileID: 5460843364196822057, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460843364196822057, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9d765157a5082e34e894abdd7f081f62, type: 3}
+      objectReference: {fileID: 21300000, guid: 0567a292d661c9249818cb2da6e413b0, type: 3}
+    - target: {fileID: 5460843364196822057, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7081550081354604866, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: armSprite
+      value: 
+      objectReference: {fileID: 766691276}
+    - target: {fileID: 7081550081354604866, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: armAnimator
+      value: 
+      objectReference: {fileID: 766691277}
     - target: {fileID: 9129696760378293498, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.03

@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashDuration; //대쉬시간
     [SerializeField] private float dashCoolDown;
 
+    [SerializeField] private SpriteRenderer armSprite;
     private Animator bodyAnimator;
-    private Animator armAnimator;
+    [SerializeField]private Animator armAnimator;
 
     private Afterimage afterimage;
     private bool isDashing = false;
@@ -46,7 +47,10 @@ public class PlayerController : MonoBehaviour
         PlayerInteraction();
         PlayerAnimation();
 
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            armAnimator.SetTrigger("Attack");
+        }
     }
 
     private void FixedUpdate()
@@ -72,11 +76,14 @@ public class PlayerController : MonoBehaviour
         if (dir.x >= 0)
         {
             spriteRenderer.flipX = true;
+            armSprite.flipX = true;
 
         }
         else
         {
             spriteRenderer.flipX = false;
+            armSprite.flipX = false;
+
         }
     }
 
@@ -144,11 +151,5 @@ public class PlayerController : MonoBehaviour
     {
         float currentSpeed = rigid.velocity.magnitude;
         bodyAnimator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);  //걷기 애니메이션
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    armAnimator.SetTrigger("Attack");
-        //}
-
     }
 }
