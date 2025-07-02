@@ -24,6 +24,9 @@ public class TitleCanvas : BaseUI
 
     private void Start()
     {
+        if (Manager.Audio.bgmSource == null)
+            Manager.Audio.bgmSource.clip = Manager.Resources.Load<AudioClip>($"Sound/BGM/Title");
+
         Manager.Audio.PlayBGM("Title");
         GetEvent("PressOptionButton").Click += data =>
         {

@@ -1,15 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class SettingPopUp : BaseUI
+public class PausePopUp : BaseUI
 {
     public SoundSettingSO SoundSettingData;
     private TextMeshProUGUI returnText => GetUI<TextMeshProUGUI>("ReturnButtonText");
+    private TextMeshProUGUI exitText => GetUI<TextMeshProUGUI>("ExitButtonText");
+
+    private GameObject returnTextImage => GetUI("ReturnButtonImage");
+    private GameObject exitTextImage => GetUI("ExitButtonImage");
 
     private Slider setBGM => GetUI<Slider>("BGMSlider");
     private Slider setSFX => GetUI<Slider>("SFXSlider");
@@ -19,23 +21,53 @@ public class SettingPopUp : BaseUI
 
     void Start()
     {
-        
+        returnTextImage.SetActive(false);
+        exitTextImage.SetActive(false);
+
+        GetEvent("ReturnButtonText").Enter += data =>
+        {
+            returnText.color = Color.yellow;
+            returnTextImage.SetActive(true);
+        };
+
+        GetEvent("ExitButtonText").Enter += data =>
+        {
+            exitText.color = Color.yellow;
+            exitTextImage.SetActive(true);
+        };
+
+        GetEvent("ReturnButtonText").Exit += data =>
+        {
+            returnText.color = Color.black;
+            returnTextImage.SetActive(false);
+        };
+
+        GetEvent("ExitButtonText").Exit += data =>
+        {
+            exitText.color = Color.black;
+            exitTextImage.SetActive(false);
+        };
+
+
         setBGM.value = SoundSettingData.BGMSetting;
         setSFX.value = SoundSettingData.SFXSetting;
 
         setValueOfBGMText.text = Mathf.RoundToInt(setBGM.value * 100).ToString();
         setValueOfSFXText.text = Mathf.RoundToInt(setSFX.value * 100).ToString();
-        
+
         GetEvent("ReturnButtonText").Click += data =>
-        { 
+        {
             Manager.UI.ClosePopUp();
         };
-        GetEvent("ReturnButtonText").Enter += data => { returnText.color = Color.cyan; };
-        GetEvent("ReturnButtonText").Exit += data => { returnText.color = Color.black; };
 
         setBGM.onValueChanged.AddListener(ChangeBGM);
         setSFX.onValueChanged.AddListener(ChangeSFX);
 
+#if UNITY_EDITOR
+        GetEvent("ExitButtonText").Click += data => { UnityEditor.EditorApplication.isPlaying = false; };
+#else
+        GetEvent("ExitButtonText").Click += data => { Application.Quit(); };
+#endif
     }
 
     private void OnDestroy()
@@ -59,5 +91,4 @@ public class SettingPopUp : BaseUI
         Manager.Audio.SetVolume(SoundType.SFX, value);
         setValueOfSFXText.text = Mathf.RoundToInt(SoundSettingData.SFXSetting * 100).ToString();
     }
-
 }

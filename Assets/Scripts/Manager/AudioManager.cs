@@ -14,7 +14,7 @@ public class AudioManager : Singleton<AudioManager>
     private AudioMixerGroup bgmGroup;
     private AudioMixerGroup sfxGroup;
 
-    private AudioSource bgmSource;
+    public AudioSource bgmSource;
     private AudioSource sfxSource;
 
     private Dictionary<string, AudioClip> sfxCached;
@@ -124,7 +124,7 @@ public class AudioManager : Singleton<AudioManager>
 
             return clip;
         }
-        
+        Debug.Log($"{SOUND_PATH}{type}/{name}");
         return Manager.Resources.Load<AudioClip>($"{SOUND_PATH}{type}/{name}");
     }
 

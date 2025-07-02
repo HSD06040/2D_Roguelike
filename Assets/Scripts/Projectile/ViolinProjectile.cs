@@ -75,6 +75,12 @@ public class ViolinProjectile : Projectile
 
     private void UpdateLaser()
     {
+        if (!Manager.Game.IsPress)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector2 start = Manager.Data.PassiveCon.orbitController.transform.position;
         Vector2 end = targetPos;
 

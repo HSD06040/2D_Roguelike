@@ -79,14 +79,24 @@ public class PlayerWeaponController : MonoBehaviour
     }
     #endregion
 
-    private void WeaponSwitch(int _idx) => currentWeapon = weaponSlots[_idx];    
+    private void WeaponSwitch(int _idx)
+    {
+        if (currentWeapon != null && currentWeapon.WeaponData.itemName == "Violin")
+        {
+            Manager.Game.IsPress = false; // 강제로 레이저 끄기
+        }
+        currentWeapon = weaponSlots[_idx];
+        Debug.Log($"WeaponSwitch{currentWeapon}");
+    }
+
 
     private void SelectWeapon(int index)
     {
         if (weaponSlots[index] != null)
         {
             currentWeapon = weaponSlots[index];  //선택한 무기 = currentWeapon
-            Debug.Log((index + 1) + "번 무기 사용중. 이름: " + currentWeapon.name);
+            Debug.Log((index + 1) + "번 무기 사용중.selectWeapon 이름: " + currentWeapon.name);
+            
         }
         else
         {

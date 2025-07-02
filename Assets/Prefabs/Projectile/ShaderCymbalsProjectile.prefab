@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1783176045
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1768291966701992435, guid: 8bf14e6af91d54791b61eb34c0680926, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0.22877358, g: 0.9150943, b: 0.9015134, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1447947333167568233
