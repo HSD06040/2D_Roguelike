@@ -26,11 +26,11 @@ public class TableManager : Singleton<TableManager>
     {
         if(Random.Range(0, 2) == 1)
         {
-            return acces[Random.Range(0, acces.Length + 1)];
+            return acces[Random.Range(0, acces.Length)];
         }
         else
         {
-            return useItems[Random.Range(0, useItems.Length + 1)];
+            return useItems[Random.Range(0, useItems.Length)];
         }
     }
 }

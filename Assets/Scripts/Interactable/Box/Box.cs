@@ -54,8 +54,17 @@ public class Box : MonoBehaviour, IInteractable
 
     private void RamdomBoxRewardItem()
     {
-        int random = Random.Range(0, 5);
-        Item rewardItem = Manager.Data.MusicWeapons[random].WeaponData;
+        List<Item> randomList = new();
+
+        int weaponRandom = Random.Range(0, Manager.Data.MusicWeapons.Length);
+        Item randomWeapon = Manager.Data.MusicWeapons[weaponRandom].WeaponData;
+        randomList.Add(randomWeapon);
+
+        Item randomItem = TableManager.GetInstance().GetRandomItem();
+        randomList.Add(randomItem);
+
+        int finalReward = Random.Range(0, randomList.Count);
+        Item rewardItem = randomList[finalReward];
 
         boxUIScript.BoxRewardDisplay(rewardItem);
         Manager.Data.PlayerStatus.AddItem(rewardItem);

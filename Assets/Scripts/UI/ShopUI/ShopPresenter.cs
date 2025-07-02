@@ -20,12 +20,14 @@ public class ShopPresenter
     {
         items.Clear();
 
-        int random;
+        int weaponRandom = UnityEngine.Random.Range(0, Manager.Data.MusicWeapons.Length); //랜덤 무기 뽑음
+        items.Add(Manager.Data.MusicWeapons[weaponRandom].WeaponData); //리스트에 추가
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
-            random = UnityEngine.Random.Range(0, 5);
-            items.Add(Manager.Data.MusicWeapons[random].WeaponData);
+            Item item = TableManager.GetInstance().GetRandomItem();  //무기제외 아이템 랜덤으로 받음
+            items.Add(item);
+           
         }
 
         shopView.DisplayItems(items.ToArray()); // view 에게 디스플레이할 아이템 리스트 전달      
