@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(EntityFX))]
 public class Monster : MonoBehaviour, IDamagable
 {
     [Header("피격 효과 설정")]

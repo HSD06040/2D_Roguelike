@@ -22,7 +22,7 @@ MonoBehaviour:
   maxRepositionDistance: 4
   attackCooldown: 2.5
   projectilePrefab: {fileID: 2172880419030104594, guid: d93e6d64515c95542b1cae88b9ebaeb1, type: 3}
-  projectileSpeed: 3
+  projectileSpeed: 6
   projectileCount: 1
   spreadAngle: 0
   shotCount: 5

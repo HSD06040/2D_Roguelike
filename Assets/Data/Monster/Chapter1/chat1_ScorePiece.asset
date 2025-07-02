@@ -17,12 +17,12 @@ MonoBehaviour:
   moveSpeed: 5
   CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
   GetCoinAmount: 0
-  detectionRange: 15
-  minRepositionDistance: 7
-  maxRepositionDistance: 12
+  detectionRange: 10
+  minRepositionDistance: 4
+  maxRepositionDistance: 5
   attackCooldown: 3
   projectilePrefab: {fileID: 7431734696087755504, guid: 700e7a3bab261824eac04e8324aca5af, type: 3}
-  projectileSpeed: 4
+  projectileSpeed: 6
   projectileCount: 3
   spreadAngle: 120
   shotCount: 1
