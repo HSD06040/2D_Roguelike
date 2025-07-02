@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingPopUp : BaseUI
 {
+    public SoundSettingSO SoundSettingData;
     private TextMeshProUGUI returnText => GetUI<TextMeshProUGUI>("ReturnButtonText");
 
     private Slider setBGM => GetUI<Slider>("BGMSlider");
@@ -15,50 +17,48 @@ public class SettingPopUp : BaseUI
     private TextMeshProUGUI setValueOfBGMText => GetUI<TextMeshProUGUI>("BGMValueText");
     private TextMeshProUGUI setValueOfSFXText => GetUI<TextMeshProUGUI>("SFXValueText");
 
-
-    private event Action<float> OnChangeBGM;
-    private event Action<float> OnChangeSFX;
-
-    private void OnEnable()
-    {
-        OnChangeBGM += ChangeBGM;
-        OnChangeBGM += ChangeSFX;
-    }
-
-    private void OnDisable()
-    {
-        OnChangeBGM -= ChangeBGM;
-        OnChangeBGM -= ChangeSFX;
-    }
     void Start()
     {
-        GetEvent("ReturnButtonText").Click += data => { Manager.UI.ClosePopUp(); };
+        //나중에 시작할 떄 setSFX, setBGM을 Manager.Audio에서 Popup시작시 볼륨 량을 받아오기
+
+        setBGM.value = SoundSettingData.BGMSetting;
+        setSFX.value = SoundSettingData.SFXSetting;
+
+        setValueOfBGMText.text = Mathf.RoundToInt(setBGM.value * 100).ToString();
+        setValueOfSFXText.text = Mathf.RoundToInt(setSFX.value * 100).ToString();
+        
+        GetEvent("ReturnButtonText").Click += data =>
+        { 
+            Manager.UI.ClosePopUp();
+        };
         GetEvent("ReturnButtonText").Enter += data => { returnText.color = Color.cyan; };
         GetEvent("ReturnButtonText").Exit += data => { returnText.color = Color.black; };
+
+        setBGM.onValueChanged.AddListener(ChangeBGM);
+        setSFX.onValueChanged.AddListener(ChangeSFX);
+
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if(setBGM != null)
-        {
-            OnChangeBGM?.Invoke(Mathf.Log10(setBGM.value) * 20);
-        }
-
-        if(setSFX != null)
-        {
-            OnChangeSFX?.Invoke(Mathf.Log10(setSFX.value) * 20);
-        }
+        setBGM.onValueChanged.RemoveListener(ChangeBGM);
+        setSFX.onValueChanged.RemoveListener(ChangeSFX);
     }
+
 
     private void ChangeBGM(float _setBGMValue)
     {
-        Manager.Audio.SetVolume(SoundType.BGM, _setBGMValue);
-        setValueOfBGMText.text = _setBGMValue.ToString();
+        SoundSettingData.BGMSetting = _setBGMValue;
+        float value = Mathf.Log10(Mathf.Max(SoundSettingData.BGMSetting, 0.0001f)) * 20;
+        Manager.Audio.SetVolume(SoundType.BGM, value);
+        setValueOfBGMText.text = Mathf.RoundToInt(SoundSettingData.BGMSetting * 100).ToString();
     }
     private void ChangeSFX(float _setSFXValue)
     {
-        Manager.Audio.SetVolume(SoundType.SFX, _setSFXValue);
-        setValueOfSFXText.text = _setSFXValue.ToString();
+        SoundSettingData.SFXSetting = _setSFXValue;
+        float value = Mathf.Log10(Mathf.Max(SoundSettingData.SFXSetting, 0.0001f)) * 20;
+        Manager.Audio.SetVolume(SoundType.SFX, value);
+        setValueOfSFXText.text = Mathf.RoundToInt(SoundSettingData.SFXSetting * 100).ToString();
     }
 
 }
