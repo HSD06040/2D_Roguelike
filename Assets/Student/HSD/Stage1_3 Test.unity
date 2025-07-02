@@ -183,6 +183,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3068793717469211980, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: popupTextPrefab
+      value: 
+      objectReference: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+    - target: {fileID: 3068793717469211980, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: playerSpriteRender
       value: 
       objectReference: {fileID: 71784574}
@@ -6681,6 +6685,7 @@ GameObject:
   - component: {fileID: 1766360327}
   - component: {fileID: 1766360329}
   - component: {fileID: 1766360328}
+  - component: {fileID: 1766360330}
   m_Layer: 6
   m_Name: Boss1
   m_TagString: Monster
@@ -6734,6 +6739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7188fd8290a668d4789c7f55dc0323dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: {fileID: 0}
   Player: {fileID: 71784575}
   Owner: {fileID: 1766360326}
   isPatternPlaying: 0
@@ -6801,6 +6807,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1766360330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766360324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}
 --- !u!1 &1800397120
 GameObject:
   m_ObjectHideFlags: 0
@@ -6855,8 +6875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
-  interval: 0.1
-  duration: 1
+  interval: 0
+  duration: 0
   Boss: {fileID: 1766360326}
   fsm: {fileID: 1766360327}
   isRotate: 0
@@ -6911,7 +6931,6 @@ MonoBehaviour:
   enemySpawnPattern: {fileID: 1800397128}
   cross1: {fileID: 1800397129}
   cross2: {fileID: 1800397130}
-  test: {fileID: 1800397126}
 --- !u!114 &1800397126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6948,8 +6967,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
-  interval: 0.1
-  duration: 1
+  interval: 0
+  duration: 0
   Boss: {fileID: 1766360326}
   fsm: {fileID: 1766360327}
   isRotate: 1
@@ -6999,8 +7018,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
-  interval: 0.1
-  duration: 1
+  interval: 0
+  duration: 0
   Boss: {fileID: 1766360326}
   fsm: {fileID: 1766360327}
   isRotate: 1
@@ -7030,8 +7049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
-  interval: 0.1
-  duration: 1
+  interval: 0
+  duration: 0
   Boss: {fileID: 1766360326}
   fsm: {fileID: 1766360327}
   isRotate: 1

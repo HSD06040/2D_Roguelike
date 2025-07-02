@@ -30,6 +30,6 @@ public class BossBaseState<T> where T : BossMonsterFSM
     public virtual void Update()
     {
         if(useTimer && timer >= 0)
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime;        
     }    
 }

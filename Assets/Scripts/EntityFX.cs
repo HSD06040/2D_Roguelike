@@ -14,7 +14,7 @@ public class EntityFX : MonoBehaviour
 
     public void CreatePopupText(float damage)
     {
-        GameObject obj = Manager.Pool.GetPopup(popupTextPrefab, transform.position);      
+        GameObject obj = Manager.Pool.GetPopup(popupTextPrefab, transform.position + new Vector3(Random.Range(-.5f,.5f), Random.Range(-.2f, .2f)));      
         obj.GetComponent<DamagePopupText>().Init(damage.ToString("F1"));
     }
 

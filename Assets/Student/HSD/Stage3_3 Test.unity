@@ -4927,11 +4927,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultAttackPrefab: {fileID: 7431734696087755504, guid: 1ebc588959a787b41ba3847791faa248, type: 3}
   pattern: {fileID: 666228602}
-  glissando: {fileID: 0}
-  cross: {fileID: 0}
-  pianoWhite: {fileID: 0}
-  pianoBlack: {fileID: 0}
-  line: {fileID: 0}
+  glissando: {fileID: 666228600}
+  cross: {fileID: 666228602}
+  pianoWhite: {fileID: 666228599}
+  pianoBlack: {fileID: 666228603}
+  line: {fileID: 666228601}
 --- !u!114 &666228599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5229,7 +5229,7 @@ MonoBehaviour:
   duration: 1
   Boss: {fileID: 1803955167}
   fsm: {fileID: 1803955168}
-  type: 0
+  type: 1
   white:
   - {fileID: 3363098697430078907}
   - {fileID: 8446391110702632595}
