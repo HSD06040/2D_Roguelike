@@ -16,12 +16,12 @@ public class ShopOpen : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        interectionUI.SetActive(false);
         animator = GetComponent<Animator>();
         shopView = Manager.UI.ShopView;
         shopModel = new ShopModel();
         shopPresenter = new ShopPresenter(shopView);
 
-        interectionUI.SetActive(false);
         shopView.CloseButtonClicked += BoxClose;
         shopPresenter.Purchased += Purchased;
     }
@@ -33,7 +33,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
             animator.SetTrigger("Open");
             //Debug.Log("상자열림");
             Manager.Data.AddGold(1000); //테스트용
-            Debug.Log("잔액:" + Manager.Data.Gold.Value);//테스트용
+            //Debug.Log("잔액:" + Manager.Data.Gold.Value);//테스트용
             UiOff();
 
             
