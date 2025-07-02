@@ -26,14 +26,14 @@ public class Projectile : MonoBehaviour
         
         if(collision.CompareTag("Monster"))
         {
-            collision.GetComponent<IDamagable>().TakeDamage(0);//damage);
+            collision.GetComponent<IDamagable>().TakeDamage(damage);
             if(!IsPass && gameObject != null)
             {
                 Destroy(gameObject);
             }
             if (ParticlePrefab == null) return;
             GameObject obj = Instantiate(ParticlePrefab);
-            obj.transform.position = gameObject.transform.position;
+            obj.transform.position = collision.transform.position;
             Destroy(obj,0.4f);
         }
 

@@ -52,9 +52,9 @@ TagManager:
   - name: FX
     uniqueID: 783316077
     locked: 0
-  - name: Player
-    uniqueID: 2493935759
-    locked: 0
   - name: ShockWave
     uniqueID: 1783176045
+    locked: 0
+  - name: Player
+    uniqueID: 2493935759
     locked: 0

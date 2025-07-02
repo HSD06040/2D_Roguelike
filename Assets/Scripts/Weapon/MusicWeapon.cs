@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class MusicWeapon : MonoBehaviour
 {
     public Weapon WeaponData;
-    public int Count = 0;
     public int Level = 0;
     private List<GameObject> particles;
     protected Transform player;
+    public int curAttackDamage;
 
     private GameObject curParticle;
     private GameObject prevParticle;
@@ -20,19 +20,19 @@ public class MusicWeapon : MonoBehaviour
 
     private void OnEnable()
     {
-        OnUpgrade += SetWeaponParticle;
+        OnUpgrade += SetUpgradeWeapon;
     }
 
     private void OnDisable()
     {
-        OnUpgrade -= SetWeaponParticle;
+        OnUpgrade -= SetUpgradeWeapon;
     }
 
 
     private void Start()
     {
         particles = new();
-
+        //curAttackDamage = WeaponData.AttackDamage[0];
         for (int i = 0; i < WeaponData.WeaponParticle.Length; i++)
         {
             particles.Add(WeaponData.WeaponParticle[i]);
@@ -43,14 +43,15 @@ public class MusicWeapon : MonoBehaviour
     public void Init(Transform playerTransform) => player = playerTransform;
 
 
-    public void SetWeaponParticle(int num)
+    public void SetUpgradeWeapon(int num)
     {
-        if (Level >= 4) return;
+        if (Level >= 5) return;
         if (curParticle != null)
         {
             Destroy(curParticle);
         }
         curParticle = Instantiate(particles[num-1], transform.parent);
+        curAttackDamage = WeaponData.AttackDamage[num];
     }
 
     public virtual void Attack(Vector2 mousePosition) { }

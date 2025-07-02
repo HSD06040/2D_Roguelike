@@ -194,14 +194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interectionUI: {fileID: 1693967787784387809}
   boxUIScript: {fileID: 0}
-  boxItems:
-  - {fileID: 11400000, guid: b41f7827ffaac404da28c19f485d655b, type: 2}
-  - {fileID: 11400000, guid: dfa4b7b30ba2d73428ee4727e47eed5b, type: 2}
-  - {fileID: 11400000, guid: 4aefff5115b468640a8fcfceb7c02095, type: 2}
-  - {fileID: 11400000, guid: e05c3bda8ffff004d9977a1560e83968, type: 2}
-  - {fileID: 11400000, guid: 549f924daacf9ca4aa551f400654b1bc, type: 2}
-  - {fileID: 11400000, guid: d296bdd2d1c2cfa4f8ace65eb8261548, type: 2}
-  - {fileID: 11400000, guid: 3e2a7f16bde739940910b240578cca10, type: 2}
 --- !u!95 &2224867110278352375
 Animator:
   serializedVersion: 5
@@ -237,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613071588181755490, guid: f89dc95c2ac3ccd4fa056a12792c8ec7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7552521391611248896, guid: f89dc95c2ac3ccd4fa056a12792c8ec7, type: 3}
       propertyPath: m_LocalPosition.x
