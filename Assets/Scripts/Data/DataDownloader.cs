@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 public class DataDownloader
 {
     private const string URL = "https://docs.google.com/spreadsheets/d/10QfD3I1AbOf_yOnV5AEE4zut2KNPh1pmiAEeALIUZzA/export?format=csv&range=B66:C66";
+    // gid=1209965616
+    private const string MonsterURL = "https://docs.google.com/spreadsheets/d/1zctuhRCS5Zo979q3ffnjXye-MBmceOYc/export?format=csv&gid=1209965616";
 
     public event Action OnDataSetupCompleted;
 
@@ -19,7 +21,7 @@ public class DataDownloader
         //OnDataSetupCompleted?.Invoke();
     }
 
-    private IEnumerator LoadCSV(string url, Action<string[][]> onParsed)
+    private IEnumerator LoadCSV(string url, Action<string[][]> onParsed, int startLine = 1)
     {
         using UnityWebRequest www = UnityWebRequest.Get(url);
 
@@ -32,7 +34,7 @@ public class DataDownloader
         string[] lines = raw.Split('\n');
         string[][] parsed = new string[lines.Length][];
 
-        for (int i = 0; i < lines.Length; i++)
+        for (int i = startLine - 1; i < lines.Length; i++)
         {
             parsed[i] = lines[i].Trim().Split(',');
         }
@@ -52,6 +54,25 @@ public class DataDownloader
             if (weapon != null)
             {
                 weapon.AttackDamage = damage;                                
+            }
+        }
+    }
+
+    private void SetupMonster(string[][] data)
+    {
+        foreach (var row in data)
+        {
+            int monsterID = int.Parse(row[0]);
+
+            MonsterStat stat = Array.Find(Manager.Table.monsterStat, m => m.ID == monsterID);
+
+            if(stat != null)
+            {
+                stat.monsterName = row[1];
+                stat.health = float.Parse(row[2]);
+                stat.attackPower = int.Parse(row[3]);
+                stat.moveSpeed = float.Parse(row[4]);
+                stat.monsterDescription = row[5];
             }
         }
     }

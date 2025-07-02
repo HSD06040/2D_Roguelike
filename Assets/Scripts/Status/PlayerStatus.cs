@@ -63,6 +63,22 @@ public class PlayerStatus
     }
     #endregion
 
+    public void AddItem(Item item)
+    {
+        if(item is Weapon weapon)
+        {
+            AddWeapon(weapon.Type);
+        }
+        else if (item is UseItem useItem)
+        {
+            useItem.Execute();
+        }
+        else if (item is Accessories acc)
+        {
+            TryEquipAccessories(acc);
+        }
+    }
+
     #region Weapon
     public void AddWeapon(MusicWeaponType musicWeaponType)
     {
