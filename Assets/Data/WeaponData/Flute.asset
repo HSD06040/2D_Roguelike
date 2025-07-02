@@ -17,10 +17,10 @@ MonoBehaviour:
   itemName: Flute
   model: {fileID: 0}
   description: Flute
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0e5526c0ef322cc449c8d96216c7c00a, type: 3}
   Price: 15
   Type: 1
-  AttackDamage: 03000000040000000600000009000000
+  AttackDamage: 1
   AttackSpeed: 10
   WeaponOverride: {fileID: 0}
   AttackRange: 1
