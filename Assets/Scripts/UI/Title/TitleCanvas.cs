@@ -24,9 +24,15 @@ public class TitleCanvas : BaseUI
 
     private void Start()
     {
-        GetEvent("PressOptionButton").Click += data => 
-        { 
+        Manager.Audio.PlayBGM("Title");
+        GetEvent("PressOptionButton").Click += data =>
+        {
             Manager.UI.ShowPopUp<SettingPopUp>();
+        };
+
+        GetEvent("PressGameStartButton").Click += data =>
+        {
+            SceneManager.LoadSceneAsync(1);
         };
 
         pressSpaceButton.SetActive(true);
@@ -62,12 +68,12 @@ public class TitleCanvas : BaseUI
             isPress = true;
         }
 
-        test();
+        Press();
     }
 
 
 
-    private void test()
+    private void Press()
     {
         GetEvent("PressGameStartButton").Enter += data => { pressImageButton1.SetActive(true); ChangeColor(pressGameStartButton); };
         //GetEvent("PressGameStartButton").Click += data => { SceneManager.LoadSceneAsync(1); }; // Fade추가 or 로딩 추가

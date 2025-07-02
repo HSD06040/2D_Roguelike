@@ -24,7 +24,7 @@ public class AudioManager : Singleton<AudioManager>
 
     private const string SOUND_PATH = "Sound/";
 
-    public void Init()
+    public void Awake()
     {
         sfxCached = new Dictionary<string, AudioClip>();
 
@@ -98,7 +98,10 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (string.IsNullOrEmpty(name)) return;
 
-        bgmSource.Stop();
+        if(bgmSource != null)
+        {
+            bgmSource.Stop();
+        }
         bgmSource.clip = LoadClip(name, SoundType.BGM);
         bgmSource.volume = volume;
         bgmSource.pitch = pitch;
