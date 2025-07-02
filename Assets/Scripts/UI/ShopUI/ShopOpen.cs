@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ShopOpen : MonoBehaviour, IInteractable
 {
-    //[SerializeField] private GameObject shopUI;
     [SerializeField] GameObject interectionUI;
 
     private ShopPresenter shopPresenter;
     private ShopView shopView;
     private Animator animator;
+    private ShopModel shopModel;
 
     private bool hasOpended = false;
+    private bool hasPurchased = false;
 
     private void Start()
     {
+        interectionUI.SetActive(false);
         animator = GetComponent<Animator>();
         shopView = Manager.UI.ShopView;
-        interectionUI.SetActive(false);
+        shopModel = new ShopModel();
+        shopPresenter = new ShopPresenter(shopView);
+
+        shopView.CloseButtonClicked += BoxClose;
+        shopPresenter.Purchased += Purchased;
     }
     public void Interact()
     {
@@ -25,23 +31,44 @@ public class ShopOpen : MonoBehaviour, IInteractable
         {
             hasOpended = true;
             animator.SetTrigger("Open");
-            Debug.Log("»óÀÚ¿­¸²");
+            //Debug.Log("»óÀÚ¿­¸²");
+            Manager.Data.AddGold(1000); //Å×½ºÆ®¿ë
+            //Debug.Log("ÀÜ¾×:" + Manager.Data.Gold.Value);//Å×½ºÆ®¿ë
             UiOff();
 
-            ShopModel shopModel = new ShopModel();
-            shopPresenter = new ShopPresenter(shopView);
-
+            
+            
             shopView._Start(shopPresenter);
             shopPresenter.ShopSetting();
             shopView.Open();
 
-            Debug.Log("¼¥¿ÀÇÂ");
+            //Debug.Log("¼¥¿ÀÇÂ");
         }
+
+        if (hasOpended && !hasPurchased)
+        {
+            animator.SetTrigger("Open");
+            UiOff();
+            shopView.Open();
+        }
+    }
+
+    public void BoxClose()
+    {
+        animator.SetTrigger("Close");
+        UiOn();
+
+    }
+
+    private void Purchased()
+    {
+        hasPurchased = true;
+        shopView.CloseButtonClicked -= BoxClose;
     }
 
     public void UiOn()
     {
-        if (!hasOpended)
+        if (!hasOpended || !hasPurchased)
         {
             interectionUI.SetActive(true);
         }

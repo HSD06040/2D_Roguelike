@@ -9,6 +9,6 @@ public class Gun : MusicWeapon
     {        
         Vector2 pos = (mousePosition - (Vector2)player.position).normalized;
         Projectile obj = Instantiate(WeaponData.Projectile, player.position, Quaternion.identity);
-        obj.Init(pos, WeaponData.AttackDamage, WeaponData.AttackSpeed);
+        obj.Init(pos, curAttackDamage, WeaponData.AttackSpeed);
     }
 }

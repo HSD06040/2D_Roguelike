@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,42 +10,55 @@ public class ShopView : AnimationUI_Base
     [SerializeField] private ShopSlotUI[] slotUIs;
     [SerializeField] private Button buyButton;
     [SerializeField] private GameObject background;
+    [SerializeField] private Button closeButton;
     //[SerializeField] private TMP_Text moneyText;
 
     private ShopPresenter shopPresenter;
     private Item[] currentItems;
     private int selectedIndex = -1;
+    
+
+    public event Action CloseButtonClicked;
 
     public void _Start(ShopPresenter presenter)
     {
+       
         shopPresenter = presenter;
-
+        closeButton.onClick.AddListener(onCloseButtonClicked);
         buyButton.onClick.AddListener(OnBuyButtonClicked);
+        shopPresenter.Purchased += ItemPurchased;
+        buyButton.enabled = true;
         //UpdateMoneyDisplay();
     }
 
     public void DisplayItems(Item[] items) //아이템들 슬롯에 표시
     {
         currentItems = items;
+        selectedIndex = -1;
 
-        slotUIs[0].SetData(items[0], 0, this);
-        slotUIs[1].SetData(items[1], 1, this);
-        slotUIs[2].SetData(items[2], 2, this);
+        for (int i = 0; i < 3; i++)
+        {
+            slotUIs[i].SetData(items[i], i, this);
+            slotUIs[i].Selected(false);
+     
+        }
+        
+        
     }
 
     public void onSlotSelected(int index)
     {
+        if(selectedIndex != -1 && selectedIndex != index)
+        {
+            slotUIs[selectedIndex].Selected(false);
+        }
+
         selectedIndex = index;
+        slotUIs[selectedIndex].Selected(true);
     }
 
     private void OnBuyButtonClicked()
     {
-        //if(selectedIndex < 0)
-        //{
-        //    ShowMessage("아이템이 선택되지 않았습니다.");
-        //    return;
-        //}
-
         shopPresenter.TryToBuy(selectedIndex);
     }
 
@@ -64,9 +78,21 @@ public class ShopView : AnimationUI_Base
         base.Open();
         background.SetActive(true);
     }
+
+    public void onCloseButtonClicked()
+    {
+        CloseButtonClicked?.Invoke();
+        Close();
+    }
+
     public override void Close()
     {
         base.Close();
         background.SetActive(false);
+    }
+
+    private void ItemPurchased()
+    {
+        buyButton.enabled = false;
     }
 }
