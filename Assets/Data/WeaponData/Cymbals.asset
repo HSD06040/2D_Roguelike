@@ -27,8 +27,8 @@ MonoBehaviour:
   AttackRadius: 3
   WeaponMaxUpgrade: 4
   WeaponParticle:
-  - {fileID: 499010178548250081, guid: 08a665cb9e369f641ae02f3c757e2cd8, type: 3}
-  - {fileID: 8472133573239423094, guid: cb235c927c88f4546bde0acd5bca8298, type: 3}
-  - {fileID: 5470499818708082747, guid: d3defe44ccca3814c8937d173f9677a4, type: 3}
+  - {fileID: 8696772878897534742, guid: 88b0400b9b2d1c74cb67ce57f0d63005, type: 3}
+  - {fileID: 5821549190899430897, guid: 73742e3f8ca78974ea3e286a98088d20, type: 3}
+  - {fileID: 5821549190899430897, guid: 73742e3f8ca78974ea3e286a98088d20, type: 3}
   Projectile: {fileID: 1447947333167568233, guid: 5e8c6730a581b4e49bfdc248774aed1c, type: 3}
   Projectiles: []
