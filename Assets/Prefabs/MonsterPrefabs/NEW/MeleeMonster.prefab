@@ -161,6 +161,7 @@ MonoBehaviour:
   hitEffectDuration: 0.15
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
+  spriteRenderer: {fileID: 0}
 --- !u!1 &4722463184709793323
 GameObject:
   m_ObjectHideFlags: 0

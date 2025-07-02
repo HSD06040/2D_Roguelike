@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
+  m_Name: chat2_Orb
+  m_EditorClassIdentifier: 
+  health: 5
+  attackPower: 10
+  moveSpeed: 5
+  CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
+  GetCoinAmount: 2
+  detectionRange: 10
+  minRepositionDistance: 4
+  maxRepositionDistance: 5
+  attackCooldown: 3
+  projectilePrefab: {fileID: 6146342744357689325, guid: c43da31ff30960946b5bb3e29ef5b0e3, type: 3}
+  projectileSpeed: 6
+  projectileCount: 1
+  spreadAngle: 0
+  shotCount: 2
+  aimType: 0
+  timeBetweenShots: 0.3
+  fireAngleOffset: 0
+  spiralRotationSpeed: 0
