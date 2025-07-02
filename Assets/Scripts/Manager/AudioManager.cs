@@ -25,7 +25,7 @@ public class AudioManager : Singleton<AudioManager>
     private const string SOUND_PATH = "Sound/";
 
     public void Init()
-    {
+    {        
         sfxCached = new Dictionary<string, AudioClip>();
 
         audioMixer = Manager.Resources.Load<AudioMixer>($"{SOUND_PATH}AudioMixer");

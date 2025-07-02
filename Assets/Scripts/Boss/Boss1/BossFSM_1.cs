@@ -17,6 +17,7 @@ public class BossFSM_1 : BossMonsterFSM
     public BossDoubleCrossState_1 doubleCross { get; private set; }
     public BossTeleportState_1 telpo { get; private set; }
     public BossCrossState_1 cross { get; private set; }
+    public BossDieState_1 die { get; private set; }
     #endregion
 
     private void Awake()
@@ -28,6 +29,9 @@ public class BossFSM_1 : BossMonsterFSM
         doubleCross = new BossDoubleCrossState_1(this, attack2Hash);
         telpo = new BossTeleportState_1(this, idleHash);
         cross  = new BossCrossState_1(this, idleHash);
+        die = new BossDieState_1(this, dieHash);
+
+        Owner.OnDied += () => { StateMachine.ChangeState(die); };
     }
 
     private void Update()
@@ -194,5 +198,32 @@ public class BossDoubleCrossState_1 : PatternState
     }
 
     private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
+}
+
+public class BossDieState_1 : BossBaseState<BossFSM_1>
+{
+    public BossDieState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
+    {
+        
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        fsm.Owner.DropCoin(fsm.stat);
+
+        Object.Destroy(fsm.Owner.gameObject, 3);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }    
 }
 

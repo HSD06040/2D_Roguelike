@@ -17,6 +17,7 @@ public class BossFSM_3 : BossMonsterFSM
     public GlissandoState_3 Glissando { get; private set; }
     public PianoBlackState_3 PianoBlack { get; private set; }
     public PianoWhiteState_3 PianoWhite { get; private set; }
+    public BossDieState_3 die { get; private set; }
     #endregion
 
     private void Awake()
@@ -29,6 +30,9 @@ public class BossFSM_3 : BossMonsterFSM
         Glissando = new GlissandoState_3(this, idleHash);
         PianoWhite = new PianoWhiteState_3(this, idleHash);
         PianoBlack = new PianoBlackState_3(this, idleHash);
+        die = new BossDieState_3(this, idleHash);
+
+        Owner.OnDied += () => { StateMachine.ChangeState(die); };
     }
 
     private void Update()
@@ -191,5 +195,30 @@ public class LinePatternState_3 : TobebenBaseState
     {
         base.Enter();
         fsm.Pattern.PlayLine();
+    }
+}
+
+public class BossDieState_3 : BossBaseState<BossFSM_3>
+{
+    public BossDieState_3(BossFSM_3 _fsm, int _animHash) : base(_fsm, _animHash)
+    {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        fsm.Owner.DropCoin(fsm.stat);
+        Object.Destroy(fsm.Owner.gameObject, 3);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 }

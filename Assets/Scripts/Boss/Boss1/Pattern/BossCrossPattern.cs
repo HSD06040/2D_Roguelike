@@ -32,6 +32,8 @@ public class BossCrossPattern : BossPattern
 
     protected override IEnumerator PatternRoutine(Monster boss)
     {
+        yield return Utile.GetDelay(duration);
+
         for (int i = 0; i < crossInfos.Length; i++)
         {
             CrossInfo info = crossInfos[i];

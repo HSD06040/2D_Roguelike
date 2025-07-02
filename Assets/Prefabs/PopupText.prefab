@@ -68,15 +68,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8dc853c96f6fc0c4eb1623d0e4d4fc67, type: 2}
+  m_sharedMaterial: {fileID: -4894767630600524641, guid: 8dc853c96f6fc0c4eb1623d0e4d4fc67, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294292462
-  m_fontColor: {r: 0.9327566, g: 0.70354223, b: 0.9622642, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageText: {fileID: 7081271152288083262}
-  moveOffset: {x: 0, y: 1, z: 0}
+  moveOffset: {x: 0, y: 2, z: 0}
   duration: 1
   scaleCurve:
     serializedVersion: 2
@@ -198,4 +198,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  color: {r: 0.9622642, g: 0.52198297, b: 0.9063674, a: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}

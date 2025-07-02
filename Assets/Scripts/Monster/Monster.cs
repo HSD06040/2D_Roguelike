@@ -1,6 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Monster : MonoBehaviour, IDamagable
@@ -12,10 +11,8 @@ public class Monster : MonoBehaviour, IDamagable
     [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
     [field: SerializeField] public int AttackPower { get; protected set; } = 10;
 
-
     public float CurrentHealth { get; protected set; }
     public EntityFX fx { get; protected set; }
-    public StateMachine StateMachine { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
     public int FacingDirection { get; protected set; }
@@ -24,15 +21,16 @@ public class Monster : MonoBehaviour, IDamagable
     private Color originalColor;
     private Material originalMaterial;
     private bool isHitCoroutineRunning = false;
+    public bool Invincible;
+    public Action OnDied;
 
     public virtual void SetStats(float maxHealth, int attackPower)
     {
         MaxHealth = maxHealth;
         CurrentHealth = maxHealth;
         AttackPower = attackPower;
-
     }
- 
+
     protected virtual void Awake()
     {
         CurrentHealth = MaxHealth;
@@ -47,7 +45,6 @@ public class Monster : MonoBehaviour, IDamagable
             originalMaterial = spriteRenderer.material;
         }
     }
-
 
     public virtual void Flip(Transform target)
     {
@@ -65,21 +62,20 @@ public class Monster : MonoBehaviour, IDamagable
 
     public virtual void TakeDamage(float damage)
     {
+        if (Invincible) return;
+
         CurrentHealth -= damage;
- 
+
         if (CurrentHealth > 0)
         {
-            if (CurrentHealth > 0)
+            if (!isHitCoroutineRunning)
             {
-                if (!isHitCoroutineRunning)
-                {
-                    StartCoroutine(HitFlashCoroutine());
-                }
+                StartCoroutine(HitFlashCoroutine());
             }
         }
         else
         {
-
+            OnDied?.Invoke();
         }
         fx.CreatePopupText(damage);
     }
