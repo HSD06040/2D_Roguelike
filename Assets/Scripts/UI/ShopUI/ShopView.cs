@@ -16,6 +16,7 @@ public class ShopView : AnimationUI_Base
     private ShopPresenter shopPresenter;
     private Item[] currentItems;
     private int selectedIndex = -1;
+    
 
     public event Action CloseButtonClicked;
 
@@ -26,16 +27,23 @@ public class ShopView : AnimationUI_Base
         closeButton.onClick.AddListener(onCloseButtonClicked);
         buyButton.onClick.AddListener(OnBuyButtonClicked);
         shopPresenter.Purchased += ItemPurchased;
+        buyButton.enabled = true;
         //UpdateMoneyDisplay();
     }
 
     public void DisplayItems(Item[] items) //아이템들 슬롯에 표시
     {
         currentItems = items;
+        selectedIndex = -1;
 
-        slotUIs[0].SetData(items[0], 0, this);
-        slotUIs[1].SetData(items[1], 1, this);
-        slotUIs[2].SetData(items[2], 2, this);
+        for (int i = 0; i < 3; i++)
+        {
+            slotUIs[i].SetData(items[i], i, this);
+            slotUIs[i].Selected(false);
+     
+        }
+        
+        
     }
 
     public void onSlotSelected(int index)
