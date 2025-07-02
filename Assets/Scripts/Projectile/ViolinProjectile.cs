@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class ViolinProjectile : Projectile
 {
-    public LineRenderer LineRender;
-
-    [SerializeField][Range(1,50)] private int pointSize; //Á¡ÀÇ °¹¼ö
-    [SerializeField] private float vibration = 0.8f;
-    [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private GameObject laser;
     [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private ParticleSystem elecParticle;
+    [SerializeField] private GameObject trigParticle;
 
-    private RaycastHit2D hit;
+    private ParticleSystem electObj;
+    private RaycastHit2D[] hits;
     private bool canHit = true;
     private Coroutine hitDelay;
 
     [SerializeField] private float maxCount;
     private float delay = 0;
     private bool countFull;
+
+    [SerializeField] private float particleMaxCount;
+    private float particleDelay = 0;
+    private bool particleCountFull;
+
+    
 
     public override void Init(Vector2 _targetPos, int _damage, float _speed)
     {
@@ -27,16 +32,19 @@ public class ViolinProjectile : Projectile
     private void OnEnable()
     {
         Manager.Game.OnPress += PressLaser;
+        electObj = Instantiate(elecParticle, transform);
     }
 
     private void OnDisable()
     {
+        Destroy(electObj);
         Manager.Game.OnPress -= PressLaser;
     }
 
 
     private void Update()
     {
+        #region 공격 쿨타임
         if (delay <= maxCount)
         {
             delay += Time.deltaTime;
@@ -46,75 +54,70 @@ public class ViolinProjectile : Projectile
         {
             countFull = true;
         }
+        #endregion
+
+        #region 파티클 쿨타임
+        if (particleDelay <= particleMaxCount)
+        {
+            particleDelay += Time.deltaTime;
+            particleCountFull = false;
+        }
+        else
+        {
+            particleCountFull = true;
+        }
+        #endregion
 
         targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         UpdateLaser();
     }
 
-    private void HitEnemy()
-    {
-        if (hit.collider != null && hit.collider.CompareTag("Monster"))
-        {
-            if(countFull)
-            {
-                hit.collider.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
-                GameObject obj = Instantiate(particlePrefab);
-                obj.transform.position = hit.point;
-                delay = 0;
-            }
-        }
-        else
-        {
-            Debug.Log("Not hit");
-        }
-    }
-
 
     private void UpdateLaser()
     {
-        if (!LineRender.enabled) return;
-        LineRender.positionCount = pointSize;
-
         Vector2 start = Manager.Data.PassiveCon.orbitController.transform.position;
         Vector2 end = targetPos;
 
         Vector2 direction = end - start;
         Vector2 directionNormal = direction.normalized;
 
-        hit = Physics2D.Raycast(start, directionNormal, 30, targetLayer);
-        for (int i = 1; i < pointSize-1; i++)
-        {
-            float t = (float)i / (pointSize - 1);
-            Vector2 pointPos = Vector3.Lerp(start, end, t);
-            float offsetY = 0;
+        hits = Physics2D.RaycastAll(start, directionNormal, 30, targetLayer);
 
-            if (i >= 5)
+        electObj.transform.position = Manager.Data.PassiveCon.orbitController.transform.position;
+
+        float angle = Mathf.Atan2(directionNormal.y, directionNormal.x) * Mathf.Rad2Deg;
+        electObj.transform.localRotation = Quaternion.Euler(0, 0, angle);
+        electObj.transform.localScale = new Vector2(Mathf.Abs(direction.x), electObj.transform.localScale.y);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Monster"))
             {
-                offsetY = 0;
+                if (countFull)
+                {
+                    hit.collider.gameObject.GetComponent<IDamagable>().TakeDamage(damage);
+                    delay = 0; 
+                    GameObject obj = Instantiate(trigParticle);
+                    obj.transform.position = hit.point;
+                    particleCountFull = true;
+                    particleDelay = 0;
+                }
+                else
+                {
+                    Debug.Log("Not Hit Enemy");
+                }
             }
-            else
+
+            if (hit.collider.CompareTag("Wall"))
             {
-                offsetY = ((i % 2 == 0) ? 1 : -1) * vibration;
+                if (particleCountFull)
+                {
+                    GameObject obj = Instantiate(trigParticle);
+                    obj.transform.position = hit.point;
+                    particleDelay = 0;
+                }
             }
-
-            LineRender.SetPosition(i, new Vector3(pointPos.x, pointPos.y + offsetY, 0));
         }
-        
-
-        LineRender.SetPosition(0, Manager.Data.PassiveCon.orbitController.transform.position);
-
-        if (hit.collider != null)
-        {
-            LineRender.SetPosition(pointSize - 1, hit.point);
-            GameObject obj = Instantiate(particlePrefab);
-            obj.transform.position = hit.point;
-        }
-        else
-        {
-            Debug.Log("hit point null");
-            LineRender.SetPosition(pointSize - 1, end);
-        }
-        HitEnemy();
     }
 
 
@@ -122,12 +125,13 @@ public class ViolinProjectile : Projectile
     {
         if(value)
         {
-            LineRender.enabled = value;
+            laser.SetActive(true);
         }
         else
         {
             if(gameObject.activeInHierarchy)
             {
+                laser.SetActive(false);
                 StartCoroutine(DestroyObject());
             }
         }

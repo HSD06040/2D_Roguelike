@@ -50,14 +50,14 @@ MonoBehaviour:
   maxTime: 0
   IsPass: 1
   rigid: {fileID: 6089548101021931945}
-  LineRender: {fileID: 4345575494730030453}
-  pointSize: 18
-  vibration: 0.8
-  particlePrefab: {fileID: 0}
+  laser: {fileID: 508632435648979993}
   targetLayer:
     serializedVersion: 2
     m_Bits: 576
+  elecParticle: {fileID: 2284323219530198305, guid: 64f084b6c6c3b8a4397e1d972b9ae6e5, type: 3}
+  trigParticle: {fileID: 3713865803119324823, guid: 2b8893a9d363bba4b89785a779a4df7b, type: 3}
   maxCount: 0.5
+  particleMaxCount: 0.3
 --- !u!50 &6089548101021931945
 Rigidbody2D:
   serializedVersion: 4
@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2426515811680403083
 Transform:
   m_ObjectHideFlags: 0
