@@ -27,10 +27,6 @@ public class TitleCanvas : BaseUI
         GetEvent("PressOptionButton").Click += data => 
         { 
             Manager.UI.ShowPopUp<SettingPopUp>();
-            pressExitButton.gameObject.SetActive(false);
-            pressGameStartButton.gameObject.SetActive(false);
-            pressOptionButton.gameObject.SetActive(false);
-            titleText.gameObject.SetActive(false);
         };
 
         pressSpaceButton.SetActive(true);

@@ -85,26 +85,21 @@ public class PlayerStatus
         {
             for (int i = 0; i < PlayerWeapons.Length; i++)
             {
-                if(PlayerWeapons[i].WeaponData.Type == _weapon.WeaponData.Type)
-                {
-                    Debug.Log($"playerWeapons true : {PlayerWeapons[i].WeaponData.Type}, {_weapon.WeaponData.Type}");
-                }
                 if (PlayerWeapons[i].WeaponData.Type == _weapon.WeaponData.Type)
                 {
-                    Debug.Log("type true");
                     idx = i;
                     weapon = PlayerWeapons[i];
                     break;
                 }
                 else
                 {
-                    Debug.Log("Null");
                     continue;
                 }
             }
 
             if (weapon.Level <= weapon.WeaponData.WeaponMaxUpgrade)
             {
+                Debug.Log($"{weapon.WeaponData.itemName} LevelUp");
                 weapon.Level++;
                 weapon.OnUpgrade?.Invoke(weapon.Level);
             }
