@@ -28,6 +28,7 @@ public class PlayerWeaponController : MonoBehaviour
         Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
+        Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
     }
 
     private void OnDisable()
@@ -35,6 +36,7 @@ public class PlayerWeaponController : MonoBehaviour
         Manager.Data.PlayerStatus.OnChangedWeapon -= AddMusicWeapon;
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").RemoveStartedEvent(Attack);
+        Manager.Input.GetPlayerBind("Attack").RemoveCanceledEvent(CancelAttack);
     }
 
     private void Attack(InputAction.CallbackContext ctx)
@@ -53,6 +55,17 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         Manager.Game.OnPlayerAttack?.Invoke();
+    }
+
+    private void CancelAttack(InputAction.CallbackContext ctx)
+    {
+        if(currentWeapon != null)
+        {
+            if(currentWeapon.WeaponData.itemName == "Violin")
+            {
+                Manager.Game.IsPress = false;
+            }
+        }
     }
 
     #region List<string>형식으로 weapon받아오기

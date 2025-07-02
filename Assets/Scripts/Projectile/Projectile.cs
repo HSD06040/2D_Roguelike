@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public bool IsPass;
     [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
-
+    public GameObject ParticlePrefab;
 
     public virtual void Init(Vector2 _targetPos, int _damage, float _speed)
     {        
@@ -29,6 +29,18 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            if (ParticlePrefab == null) return;
+            GameObject obj = Instantiate(ParticlePrefab);
+            obj.transform.position = gameObject.transform.position;
+            Destroy(obj,0.4f);
+        }
+
+        if (collision.CompareTag("Wall"))
+        {
+            if (ParticlePrefab == null) return;
+            GameObject obj = Instantiate(ParticlePrefab);
+            obj.transform.position = gameObject.transform.position;
+            Destroy(obj, 0.4f);
         }
     }
 }

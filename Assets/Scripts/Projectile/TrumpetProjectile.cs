@@ -19,7 +19,7 @@ public class TrumpetProjectile : Projectile
 
     private void Start()
     {
-        data = TestSingleton.JHT_TestInstance.playerWeapon.transform.position;
+        data = Manager.Data.PassiveCon.orbitController.transform.position;
         maxValue = ((Vector2)targetPos - data).magnitude;
 
         if (sizeCor == null)

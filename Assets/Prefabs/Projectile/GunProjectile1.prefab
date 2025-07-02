@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 305960425
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9bc7f8eb90c85a4685c2af0ad16646e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   maxTime: 0
   IsPass: 0
   rigid: {fileID: -3077913776961787904}
+  ParticlePrefab: {fileID: 6781558560145943571, guid: 9446463854303284cbb9c36eeec061c5, type: 3}
 --- !u!50 &-3077913776961787904
 Rigidbody2D:
   serializedVersion: 4
