@@ -21,4 +21,16 @@ public class TableManager : Singleton<TableManager>
         acces = Resources.LoadAll<Accessories>("Data/Item/Accessories");
         useItems = Resources.LoadAll<UseItem>("Data/Item/UseItem");
     }
+
+    public Item GetRandomItem()
+    {
+        if(Random.Range(0, 2) == 1)
+        {
+            return acces[Random.Range(0, acces.Length + 1)];
+        }
+        else
+        {
+            return useItems[Random.Range(0, useItems.Length + 1)];
+        }
+    }
 }
