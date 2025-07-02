@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         
         if(collision.CompareTag("Monster"))
         {
-            collision.GetComponent<IDamagable>().TakeDamage(0);//damage);
+            collision.GetComponent<IDamagable>().TakeDamage(damage);
             if(!IsPass && gameObject != null)
             {
                 Destroy(gameObject);

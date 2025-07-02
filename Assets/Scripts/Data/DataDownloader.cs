@@ -51,10 +51,10 @@ public class DataDownloader
             
             Weapon weapon = Array.Find(Manager.Data.WeaponDatas, w => w.name == weaponName);
 
-            if (weapon != null)
-            {
-                weapon.AttackDamage = damage;                                
-            }
+            //if (weapon != null)
+            //{
+            //    weapon.AttackDamage = damage;                                
+            //}
         }
     }
 

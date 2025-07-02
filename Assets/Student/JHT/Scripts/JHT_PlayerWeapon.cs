@@ -101,13 +101,13 @@ public class JHT_PlayerWeapon : MonoBehaviour
     #endregion
     public void CheckOldWeapon() // 파라미터 Player
     {
-        musicWeapon.Count++;
-        if (musicWeapon.Count > musicWeapon.WeaponData.WeaponMaxCount)
-        {
-            musicWeapon.Level++;
-            musicWeapon.OnUpgrade?.Invoke(musicWeapon.Level);
-            musicWeapon.Count = 0;
-        }
+        //musicWeapon.Count++;
+        //if (musicWeapon.Count > musicWeapon.WeaponData.WeaponMaxUpgrade)
+        //{
+        //    musicWeapon.Level++;
+        //    musicWeapon.OnUpgrade?.Invoke(musicWeapon.Level);
+        //    musicWeapon.Count = 0;
+        //}
     }
     private void WeaponSwitch()
     {
