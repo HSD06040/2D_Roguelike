@@ -15,6 +15,7 @@ public class TrumpetProjectile : Projectile
     {
         base.Init(_targetPos, _damage, _speed);
         targetPos = _targetPos;
+        transform.right = targetPos.normalized;
     }
 
     private void Start()
@@ -26,11 +27,12 @@ public class TrumpetProjectile : Projectile
         {
             sizeCor = StartCoroutine(UpSizeCor(maxValue));
         }
+
     }
 
     private IEnumerator UpSizeCor(float _maxValue)
     {
-        float t = 1 / maxValue;
+        float t = 4 / maxValue;
         
         while(transform.localScale.x <= 2)
         {
