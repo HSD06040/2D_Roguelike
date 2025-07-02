@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterFSM : MonoBehaviour, IAnimationAttackHandler
+public class MonsterFSM : MonoBehaviour
 {
     public Monster Owner { get; private set; }
     public StateMachine StateMachine { get; private set; }
