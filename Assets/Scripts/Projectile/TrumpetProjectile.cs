@@ -11,7 +11,7 @@ public class TrumpetProjectile : Projectile
 
     private Coroutine sizeCor;
     private WaitForSeconds delay = new WaitForSeconds(0.2f);
-    public override void Init(Vector2 _targetPos, int _damage, float _speed)
+    public override void Init(Vector2 _targetPos, float _damage, float _speed)
     {
         base.Init(_targetPos, _damage, _speed);
         targetPos = _targetPos;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 930e854550d67b04eaacef9a8414d8c4, type: 3}
-  m_Name: OrbitEffect
+  m_Name: 2014_Delicato
   m_EditorClassIdentifier: 
   isCondition: 0
   statType: 0
@@ -19,3 +19,8 @@ MonoBehaviour:
   intervals: []
   triggerTypes: 00000000
   orbitPrefab: {fileID: 6666733245598184628, guid: 4b1ef959d1cd64745a5ac285842fc6d9, type: 3}
+  damage:
+  - 0
+  - 0
+  - 0
+  - 0
