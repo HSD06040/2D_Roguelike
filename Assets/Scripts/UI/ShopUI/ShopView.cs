@@ -21,9 +21,11 @@ public class ShopView : AnimationUI_Base
 
     public void _Start(ShopPresenter presenter)
     {
+       
         shopPresenter = presenter;
         closeButton.onClick.AddListener(onCloseButtonClicked);
         buyButton.onClick.AddListener(OnBuyButtonClicked);
+        shopPresenter.Purchased += ItemPurchased;
         //UpdateMoneyDisplay();
     }
 
@@ -38,7 +40,13 @@ public class ShopView : AnimationUI_Base
 
     public void onSlotSelected(int index)
     {
+        if(selectedIndex != -1 && selectedIndex != index)
+        {
+            slotUIs[selectedIndex].Selected(false);
+        }
+
         selectedIndex = index;
+        slotUIs[selectedIndex].Selected(true);
     }
 
     private void OnBuyButtonClicked()
@@ -73,5 +81,10 @@ public class ShopView : AnimationUI_Base
     {
         base.Close();
         background.SetActive(false);
+    }
+
+    private void ItemPurchased()
+    {
+        buyButton.enabled = false;
     }
 }

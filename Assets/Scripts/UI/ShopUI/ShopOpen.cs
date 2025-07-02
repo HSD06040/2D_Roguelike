@@ -32,10 +32,12 @@ public class ShopOpen : MonoBehaviour, IInteractable
             hasOpended = true;
             animator.SetTrigger("Open");
             //Debug.Log("상자열림");
+            //Manager.Data.AddGold(100); //테스트용
+            //Debug.Log("잔액:" + Manager.Data.Gold.Value);//테스트용
             UiOff();
 
             
-
+            
             shopView._Start(shopPresenter);
             shopPresenter.ShopSetting();
             shopView.Open();

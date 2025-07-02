@@ -44,16 +44,17 @@ public class ShopPresenter
     
         if(!Manager.Data.IsHaveGold(item.Price))
         {
-            Debug.Log("재화가 부족합니다!");
-            //shopView.ShowMessage("재화가 부족합니다!");
+            //Debug.Log("재화가 부족합니다!");
+            shopView.ShowMessage("재화가 부족합니다!");
+            Debug.Log("잔액:" + Manager.Data.Gold.Value);
             return;
         }
-        else
-        {
-            Manager.Data.RemoveGold(item.Price);
-            Debug.Log("구매됨");
-            Purchased?.Invoke();
-            shopView.Close();
-        }
+        
+        Manager.Data.PlayerStatus.AddItem(item);  //아이템 추가
+
+        Manager.Data.RemoveGold(item.Price);  //골드 뺌
+        Debug.Log("구매됨 잔액:" + Manager.Data.Gold.Value);
+        Purchased?.Invoke();
+        shopView.Close();
     }
 }
