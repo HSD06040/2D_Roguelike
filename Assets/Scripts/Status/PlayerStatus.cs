@@ -75,7 +75,7 @@ public class PlayerStatus
         if (!WeaponList.Contains(_weapon.WeaponData.itemName))
         {
             WeaponList.Add(_weapon.WeaponData.itemName);
-
+            _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
             idx = EmptyWeaponSlot();
             if (idx == -1) return;
 
@@ -92,12 +92,10 @@ public class PlayerStatus
                 }
             }
 
-            weapon.Count++;
-            if (weapon.Count >= weapon.WeaponData.WeaponMaxCount)
+            if (weapon.Level <= weapon.WeaponData.WeaponMaxUpgrade)
             {
                 weapon.Level++;
                 weapon.OnUpgrade?.Invoke(weapon.Level);
-                weapon.Count = 0;
             }
         }
     }

@@ -17,7 +17,7 @@ public class EffectRandomAttacker : MonoBehaviour
 
         offset = _offset;
         monsterCount = _monsterCount;
-        damage = Manager.Data.PlayerStatus.curWeapon.WeaponData.AttackDamage * _damage;
+        damage = Manager.Data.PlayerStatus.curWeapon.curAttackDamage * _damage;
         prefab = _prefab;
         
         Attack();
