@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 5179843613117121726}
   - component: {fileID: 4660332758918883900}
   - component: {fileID: 3839888990145887570}
+  - component: {fileID: 3770720978944334298}
   m_Layer: 6
   m_Name: chat2_Slime
   m_TagString: Monster
@@ -314,3 +315,17 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: ba256496165cad045946882eee613989, type: 2}
   firePoint: {fileID: 5916936771128501597}
   lastAttackTime: 0
+--- !u!114 &3770720978944334298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296680290484800021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

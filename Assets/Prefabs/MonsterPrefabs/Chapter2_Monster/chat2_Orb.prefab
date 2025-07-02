@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2933935596414346803}
   - component: {fileID: 5090343089293330243}
   - component: {fileID: 8494418928567192243}
+  - component: {fileID: 8944866026004246009}
   m_Layer: 6
   m_Name: chat2_Orb
   m_TagString: Monster
@@ -195,6 +196,20 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: 5bb83fdee4514384aa5bd7306c08657b, type: 2}
   firePoint: {fileID: 6775407465105628936}
   lastAttackTime: 0
+--- !u!114 &8944866026004246009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482509336182683587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}
 --- !u!1 &8691100592765756990
 GameObject:
   m_ObjectHideFlags: 0

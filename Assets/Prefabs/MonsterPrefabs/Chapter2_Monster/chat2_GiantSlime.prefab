@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 5950224570316270550}
   - component: {fileID: 3155344979471213384}
   - component: {fileID: 5505119374549893286}
+  - component: {fileID: 2541728254842497061}
   m_Layer: 6
   m_Name: chat2_GiantSlime
   m_TagString: Monster
@@ -268,3 +269,17 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 0}
+--- !u!114 &2541728254842497061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744289935570545646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

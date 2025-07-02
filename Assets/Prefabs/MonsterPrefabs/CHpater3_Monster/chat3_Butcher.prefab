@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 7478224359869742092}
   - component: {fileID: 7163644298752220988}
   - component: {fileID: 2635847519727396056}
+  - component: {fileID: 5391088654556809186}
   m_Layer: 6
   m_Name: chat3_Butcher
   m_TagString: Monster
@@ -281,3 +282,17 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 0}
+--- !u!114 &5391088654556809186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905300971579881486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

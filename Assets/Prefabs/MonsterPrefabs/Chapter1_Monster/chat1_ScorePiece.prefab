@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1795037778028289336}
   - component: {fileID: 877730584009786712}
   - component: {fileID: 492920979703044475}
+  - component: {fileID: 8152244424781458208}
   m_Layer: 6
   m_Name: chat1_ScorePiece
   m_TagString: Monster
@@ -283,6 +284,20 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: 00b286974e67a2a4b82bcd86a3a4952d, type: 2}
   firePoint: {fileID: 8725275732731360715}
   lastAttackTime: 0
+--- !u!114 &8152244424781458208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135098621523971942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}
 --- !u!1 &3511697923672227562
 GameObject:
   m_ObjectHideFlags: 0

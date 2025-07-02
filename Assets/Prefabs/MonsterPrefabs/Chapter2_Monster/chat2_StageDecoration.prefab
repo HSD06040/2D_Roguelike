@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 1299881870403115241}
   - component: {fileID: 8754417890009950006}
   - component: {fileID: 7443200359844175130}
+  - component: {fileID: 211093087363923572}
   m_Layer: 6
   m_Name: chat2_StageDecoration
   m_TagString: Monster
@@ -314,3 +315,17 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: 86d4b85b291534f47ab383c0020f5c36, type: 2}
   firePoint: {fileID: 6927455376952568820}
   lastAttackTime: 0
+--- !u!114 &211093087363923572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987412390392645457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

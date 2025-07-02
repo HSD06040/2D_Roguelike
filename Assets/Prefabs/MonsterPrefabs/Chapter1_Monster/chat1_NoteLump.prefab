@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 496567336248838275}
   - component: {fileID: 1019780616868513208}
   - component: {fileID: 5678950094071094991}
+  - component: {fileID: 903168132364001392}
   m_Layer: 6
   m_Name: chat1_NoteLump
   m_TagString: Monster
@@ -314,3 +315,17 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: 4f636c2c211c923438b4eb64434ba6c7, type: 2}
   firePoint: {fileID: 7623394456828627121}
   lastAttackTime: 0
+--- !u!114 &903168132364001392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752844052063095601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

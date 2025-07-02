@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 8896551716014500342}
   - component: {fileID: 6370214313469356023}
   - component: {fileID: 2124758571084612329}
+  - component: {fileID: 5430495367966957224}
   m_Layer: 6
   m_Name: chat2_DestructDog
   m_TagString: Monster
@@ -268,3 +269,17 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 0}
+--- !u!114 &5430495367966957224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018387081342437060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

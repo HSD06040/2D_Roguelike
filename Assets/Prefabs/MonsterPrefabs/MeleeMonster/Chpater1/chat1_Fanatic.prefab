@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8086508300122742003}
   - component: {fileID: 2974860762784055601}
   - component: {fileID: 1521990546053403586}
+  - component: {fileID: 3232228264169174008}
   m_Layer: 6
   m_Name: chat1_Fanatic
   m_TagString: Monster
@@ -162,6 +163,20 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 0}
+--- !u!114 &3232228264169174008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579990129921879976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}
 --- !u!1 &1586376460316467012
 GameObject:
   m_ObjectHideFlags: 0

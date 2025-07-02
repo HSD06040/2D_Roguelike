@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7382224999374181614}
   - component: {fileID: 1078680435904940486}
   - component: {fileID: 4697491454161217786}
+  - component: {fileID: 4466948744232703498}
   m_Layer: 6
   m_Name: chat1_Zombie
   m_TagString: Monster
@@ -268,3 +269,17 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 0}
+--- !u!114 &4466948744232703498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937654301566355197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}
