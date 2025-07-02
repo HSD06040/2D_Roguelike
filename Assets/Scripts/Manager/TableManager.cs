@@ -18,7 +18,7 @@ public class TableManager : Singleton<TableManager>
         chapter2Monster = Resources.LoadAll<GameObject>("Monster/Chapter2");
         chapter3Monster = Resources.LoadAll<GameObject>("Monster/Chapter3");
 
-        acces = Resources.LoadAll<Accessories>("Item/Accessories");
-        useItems = Resources.LoadAll<UseItem>("Item/UseItem");
+        acces = Resources.LoadAll<Accessories>("Data/Item/Accessories");
+        useItems = Resources.LoadAll<UseItem>("Data/Item/UseItem");
     }
 }

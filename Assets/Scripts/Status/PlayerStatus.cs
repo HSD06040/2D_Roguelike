@@ -25,7 +25,6 @@ public class PlayerStatus
     public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
 
     public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
-    public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
      
     public Property<int> CurtHp = new Property<int>();
 
