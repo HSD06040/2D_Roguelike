@@ -131,7 +131,6 @@ public class ViolinProjectile : Projectile
         {
             if(gameObject.activeInHierarchy)
             {
-                laser.SetActive(false);
                 StartCoroutine(DestroyObject());
             }
         }
