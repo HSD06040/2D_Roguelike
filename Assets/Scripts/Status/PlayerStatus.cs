@@ -50,6 +50,10 @@ public class PlayerStatus
 
     public Action OnPlayerDead;
 
+    public float TotalDamage => (weaponDamage + Damage.Value) * DamageMultiply.Value;
+    public float TotalSpeed => Speed.Value * SpeedMultiply.Value;
+    private float weaponDamage => curWeapon ? curWeapon.WeaponData.AttackDamage[curWeapon.Level] : 1;
+
     #region Bind
     public void AddBindEvent()
     {        
@@ -190,19 +194,30 @@ public class PlayerStatus
         }
     }
 
-    public void EquipSlotAccessories(Accessories accessories, int slotIdx)
+    public void EquipSlotAccessories(Accessories accessories, int _idx)
     {
-        PlayerAccessories[slotIdx] = accessories;
-        PlayerAccessories[slotIdx].Effect.RegisterEvents(PlayerAccessories[slotIdx]);
-        OnAccessoriesChanged?.Invoke(slotIdx, accessories);
+        PlayerAccessories[_idx] = accessories;
+
+        if (PlayerAccessories[_idx].Effect != null)
+            PlayerAccessories[_idx].Effect.RegisterEvents(PlayerAccessories[_idx]);
+            
+        PlayerAccessories[_idx].AddStat();
+
+        OnAccessoriesChanged?.Invoke(_idx, accessories);
     }
 
     public void UnEquipAccessories(int _idx)
     {
         if (PlayerAccessories[_idx] == null) return;
 
-        PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
-        PlayerAccessories[_idx].Effect.UnregisterEvents();
+        if (PlayerAccessories[_idx].Effect != null)
+        {
+            PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
+            PlayerAccessories[_idx].Effect.UnregisterEvents();
+        }
+
+        PlayerAccessories[_idx].RemoveStat();
+
         PlayerAccessories[_idx] = null;
     }
 

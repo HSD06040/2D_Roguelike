@@ -25,7 +25,7 @@ public class ViolinProjectile : Projectile
 
     
 
-    public override void Init(Vector2 _targetPos, int _damage, float _speed)
+    public override void Init(Vector2 _targetPos, float _damage, float _speed)
     {
         targetPos = _targetPos;
     }

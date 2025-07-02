@@ -11,7 +11,7 @@ public class MusicWeapon : MonoBehaviour
     public int Level = 0;
     private List<GameObject> particles;
     protected Transform player;
-    public int curAttackDamage;
+    public float curAttackDamage;
 
     private GameObject curParticle;
     private GameObject prevParticle;
