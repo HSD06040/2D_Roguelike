@@ -25,7 +25,6 @@ public class PlayerStatus
     public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
 
     public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
-    public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
      
     public Property<int> CurtHp = new Property<int>();
 
@@ -253,7 +252,6 @@ public class PlayerStatus
             case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
-            case StatType.AttackSize: AttackSize.AddModifier(amount, source); break;
             case StatType.Evasion: Evasion.AddModifier(amount, source); break;
             case StatType.DamageMultiply: DamageMultiply.AddModifier(amount, source); break;
             case StatType.SpeedMultiply: SpeedMultiply.AddModifier(amount, source); break;

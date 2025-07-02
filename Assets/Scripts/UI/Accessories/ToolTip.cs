@@ -19,7 +19,7 @@ public class ToolTip : MonoBehaviour
 
         itemIcon.sprite = accessories.icon;
         itemName.text = accessories.itemName;
-        //itemStat.text = 
+        itemStat.text = accessories.GetStatText();
         description.text = accessories.description;
     }
 
