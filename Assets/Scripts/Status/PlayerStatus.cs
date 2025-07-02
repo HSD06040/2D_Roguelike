@@ -44,7 +44,7 @@ public class PlayerStatus
     public int currentWeaponIdx;
     public MusicWeapon curWeapon => PlayerWeapons[currentWeaponIdx];
     public MusicWeapon[] PlayerWeapons = new MusicWeapon[weaponCount];
-    private List<string> WeaponList = new List<string>(4);
+    private List<MusicWeaponType> WeaponList = new List<MusicWeaponType>(4);
 
     public Action<int, MusicWeapon> OnChangedWeapon;
     public Action<int> OnCurrentWeaponChanged;
@@ -72,9 +72,9 @@ public class PlayerStatus
 
         int idx = 0;
 
-        if (!WeaponList.Contains(_weapon.WeaponData.itemName))
+        if (!WeaponList.Contains(_weapon.WeaponData.Type))
         {
-            WeaponList.Add(_weapon.WeaponData.itemName);
+            WeaponList.Add(_weapon.WeaponData.Type);
             _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
             idx = EmptyWeaponSlot();
             if (idx == -1) return;
@@ -85,10 +85,21 @@ public class PlayerStatus
         {
             for (int i = 0; i < PlayerWeapons.Length; i++)
             {
-                if (PlayerWeapons[i].WeaponData.itemName == _weapon.WeaponData.itemName)
+                if(PlayerWeapons[i].WeaponData.Type == _weapon.WeaponData.Type)
                 {
+                    Debug.Log($"playerWeapons true : {PlayerWeapons[i].WeaponData.Type}, {_weapon.WeaponData.Type}");
+                }
+                if (PlayerWeapons[i].WeaponData.Type == _weapon.WeaponData.Type)
+                {
+                    Debug.Log("type true");
                     idx = i;
                     weapon = PlayerWeapons[i];
+                    break;
+                }
+                else
+                {
+                    Debug.Log("Null");
+                    continue;
                 }
             }
 
