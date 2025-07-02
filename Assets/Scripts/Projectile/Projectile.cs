@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -22,9 +23,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if(collision.CompareTag("Monster"))
         {
-            collision.GetComponent<IDamagable>().TakeDamage(damage);
+            collision.GetComponent<IDamagable>().TakeDamage(0);//damage);
             if(!IsPass && gameObject != null)
             {
                 Destroy(gameObject);

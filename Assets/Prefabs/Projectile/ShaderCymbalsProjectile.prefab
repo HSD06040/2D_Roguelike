@@ -102,6 +102,7 @@ MonoBehaviour:
   maxTime: 0
   IsPass: 1
   rigid: {fileID: -6474956957834104150}
+  ParticlePrefab: {fileID: 2619878415895669635, guid: cf203540d5c85344d9587e432112daab, type: 3}
   cymbalsSprite: {fileID: 917614916908520802}
 --- !u!50 &-6474956957834104150
 Rigidbody2D:

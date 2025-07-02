@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinNum: 0
+  coinSpeed: 0
 --- !u!212 &148905132
 SpriteRenderer:
   m_ObjectHideFlags: 0

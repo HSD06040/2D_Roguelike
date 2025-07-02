@@ -30,8 +30,8 @@ MonoBehaviour:
   - {fileID: 499010178548250081, guid: 08a665cb9e369f641ae02f3c757e2cd8, type: 3}
   - {fileID: 8472133573239423094, guid: cb235c927c88f4546bde0acd5bca8298, type: 3}
   - {fileID: 5470499818708082747, guid: d3defe44ccca3814c8937d173f9677a4, type: 3}
-  Projectile: {fileID: -1299478581240112786, guid: d618a7048b6172a48a9cf2cc53ce30ff, type: 3}
+  Projectile: {fileID: 0}
   Projectiles:
   - {fileID: -1299478581240112786, guid: d618a7048b6172a48a9cf2cc53ce30ff, type: 3}
-  - {fileID: -1299478581240112786, guid: d618a7048b6172a48a9cf2cc53ce30ff, type: 3}
-  - {fileID: -1299478581240112786, guid: d618a7048b6172a48a9cf2cc53ce30ff, type: 3}
+  - {fileID: -1299478581240112786, guid: 1cc8b775ff9cf9e42b21bb3899d89d8c, type: 3}
+  - {fileID: -1299478581240112786, guid: 29e28e4057f94d544b934751f2997f51, type: 3}
