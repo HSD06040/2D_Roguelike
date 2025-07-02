@@ -11,10 +11,12 @@ public static class Manager
     public static UI_Manager UI => UI_Manager.GetInstance();
     public static DataManager Data => DataManager.GetInstance();
     public static InputManager Input => InputManager.GetInstance();
+    public static TableManager Table => TableManager.GetInstance();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
+        TableManager.CreateManager();
         GameManager.CreateManager();
         InputManager.CreateManager();
         ResourcesManager.CreateManager();
