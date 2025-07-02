@@ -24,7 +24,7 @@ public class ShopPresenter
 
         for (int i = 0; i < 3; i++)
         {
-            random = UnityEngine.Random.Range(0, 4);
+            random = UnityEngine.Random.Range(0, 5);
             items.Add(Manager.Data.MusicWeapons[random].WeaponData);
         }
 
