@@ -212,6 +212,7 @@ public class BossDieState_1 : BossBaseState<BossFSM_1>
     {
         base.Enter();
 
+        fsm.Pattern.CurrentBossPatternStop();
         fsm.Owner.DropCoin(fsm.stat);
         fsm.StartDieRoutine();       
     }
