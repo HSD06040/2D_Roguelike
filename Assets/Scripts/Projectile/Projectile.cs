@@ -43,6 +43,7 @@ public class Projectile : MonoBehaviour
             GameObject obj = Instantiate(ParticlePrefab);
             obj.transform.position = gameObject.transform.position;
             Destroy(obj, 0.4f);
+            Destroy(gameObject);
         }
     }
 }
