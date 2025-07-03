@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 [RequireComponent(typeof(EntityFX))]
 public class Monster : MonoBehaviour, IDamagable
@@ -11,8 +12,8 @@ public class Monster : MonoBehaviour, IDamagable
 
     [field: SerializeField] public float MaxHealth { get; protected set; } = 100f;
     [field: SerializeField] public int AttackPower { get; protected set; } = 10;
-
-    public float CurrentHealth { get; protected set; }
+    private float curHP;
+    public float CurrentHealth { get { return curHP; } protected set { curHP = value; OnHpChanged?.Invoke(curHP); } }
     public EntityFX fx { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
@@ -24,6 +25,7 @@ public class Monster : MonoBehaviour, IDamagable
     private bool isHitCoroutineRunning = false;
     public bool Invincible;
     public Action OnDied;
+    public Action<float> OnHpChanged;
 
     public virtual void SetStats(float maxHealth, int attackPower)
     {
