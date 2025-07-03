@@ -20,6 +20,7 @@ public class TrumpetProjectile : Projectile
 
     private void Start()
     {
+        gameObject.transform.localScale = new Vector2(0.05f, 0.05f);
         data = Manager.Data.PassiveCon.orbitController.transform.position;
         maxValue = ((Vector2)targetPos - data).magnitude;
 
