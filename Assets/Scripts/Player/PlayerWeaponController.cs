@@ -50,7 +50,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
         else
         {
-            defaultWeapon.Attack(GetMousePos());
+            SetProjectile(defaultWeapon);
         }
 
         Manager.Game.OnPlayerAttack?.Invoke();
@@ -131,7 +131,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         musicWeapon.Attack(GetMousePos());
         canAttack = false;
-        yield return new WaitForSeconds(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        yield return Utile.GetDelay(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
         yield return new WaitForEndOfFrame();
         canAttack = true;
     }
