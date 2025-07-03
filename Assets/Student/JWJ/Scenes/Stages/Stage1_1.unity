@@ -26514,7 +26514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 1839070380892803278}
   cameraMoveSpeed: 50
 --- !u!114 &1051266692168943500
@@ -28548,7 +28547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 7090996210359429414}
   cameraMoveSpeed: 50
 --- !u!114 &3928204131943292761
@@ -28768,7 +28766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 404838488207794802}
   cameraMoveSpeed: 50
 --- !u!222 &4185266214749606579
@@ -30178,7 +30175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 2643171928239592092}
   cameraMoveSpeed: 50
 --- !u!4 &7090996210359429414
@@ -30365,7 +30361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 4437857679171738345}
   cameraMoveSpeed: 50
 --- !u!1 &7240880830300977012
@@ -31040,7 +31035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 1992545611075640167}
   cameraMoveSpeed: 50
 --- !u!224 &8198000095646922069
@@ -31712,7 +31706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 2275991524259509386}
   cameraMoveSpeed: 50
 --- !u!224 &9078479147226556529
@@ -31772,7 +31765,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!222 &9178971964292457840
 CanvasRenderer:
   m_ObjectHideFlags: 0

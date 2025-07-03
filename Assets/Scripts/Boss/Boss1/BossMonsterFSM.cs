@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossMonsterFSM : MonoBehaviour
 {
     public MonsterStat stat;
-    public Transform Player;
+    public Transform Player {  get; private set; }
     public Monster Owner;   
     public bool isPatternPlaying;
     public bool animFinish;
@@ -21,6 +21,10 @@ public class BossMonsterFSM : MonoBehaviour
     protected virtual void Awake()
     {
         Owner.SetStats(stat.health, stat.attackPower);
+    }
+    private void Start()
+    {
+        Player ??= GameObject.FindWithTag("Player").transform;
     }
 
     public void AnimFinish() => animFinish = true;
