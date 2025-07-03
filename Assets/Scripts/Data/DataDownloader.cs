@@ -10,6 +10,8 @@ public class DataDownloader
     private const string URL = "https://docs.google.com/spreadsheets/d/10QfD3I1AbOf_yOnV5AEE4zut2KNPh1pmiAEeALIUZzA/export?format=csv&range=B66:C66";
     // gid=2097254203 
     private const string MonsterURL = "https://docs.google.com/spreadsheets/d/1LZaGVufTNxyyq0qzsyR9IY6TX2c_TVH0/export?format=csv&gid=2097254203";
+    // gid=17471850
+    private const string WeaponURL = "https://docs.google.com/spreadsheets/d/1J6JrHTDnkcCYHN-F3i22qT15ako3L43B/export?format=csv&gid=17471850";
 
     public event Action OnDataSetupCompleted;
 
@@ -17,7 +19,7 @@ public class DataDownloader
     {
         yield return null;
         yield return LoadCSV(MonsterURL, SetupMonster, 4);
-        
+        yield return LoadCSV(WeaponURL, SetupWeapon, 4);
         OnDataSetupCompleted?.Invoke();
     }
 
@@ -68,14 +70,16 @@ public class DataDownloader
     {
         foreach (var row in data)
         {
-            string weaponName = row[0];
-            int damage = int.Parse(row[1]);
-            
-            Weapon weapon = Array.Find(Manager.Data.WeaponDatas, w => w.name == weaponName);
+            int ID = int.Parse(row[0]);
+            int up = int.Parse(row[2]);
 
-            if (weapon != null)
-            {
-                              
+            Weapon weapon = Array.Find(Manager.Data.WeaponDatas, w => w.ID == ID);
+
+            if(weapon != null)
+            {                
+                weapon.itemName = row[1];
+                weapon.AttackDamage[up-1] = float.Parse(row[3]);
+                weapon.AttackDelay[up-1] = float.Parse(row[4]);
             }
         }
     }

@@ -20,7 +20,7 @@ public class DataManager : Singleton<DataManager>
 
     private void Awake()
     {
-        WeaponDatas = Resources.LoadAll<Weapon>("Data/Weapon");
+        WeaponDatas = Resources.LoadAll<Weapon>("Data/WeaponData");
         MusicWeapons = Resources.LoadAll<MusicWeapon>("Weapon");
 
         PassiveCon = new GameObject("PassiveCon").AddComponent<PassiveEffectController>();
