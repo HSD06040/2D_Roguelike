@@ -21,18 +21,22 @@ MonoBehaviour:
   Price: 0
   Type: 4
   AttackDamage:
-  - 1
-  - 2
-  - 3
-  - 4
+  - 7
+  - 13
+  - 14
+  - 19
   AttackSpeed: 0
   WeaponOverride: {fileID: 0}
-  AttackRange: 0
-  AttackRadius: 0
+  AttackDelay:
+  - 1
+  - 1
+  - 1.5
+  - 2
   WeaponMaxUpgrade: 4
   WeaponParticle:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1365979693407949108, guid: 14602a1fd9aaf574f8b8b4c9a6d57c3d, type: 3}
+  - {fileID: 1365979693407949108, guid: 275e8b2dd99d7304488ee4acfe54b7e3, type: 3}
+  - {fileID: 1365979693407949108, guid: 023fa2ae13d851b43a3d6b0266531946, type: 3}
+  - {fileID: 1365979693407949108, guid: 023fa2ae13d851b43a3d6b0266531946, type: 3}
   Projectile: {fileID: 753983221761098015, guid: aa79673a73ea7254fbaa79466f00b8bb, type: 3}
   Projectiles: []
