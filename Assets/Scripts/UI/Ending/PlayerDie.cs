@@ -17,7 +17,14 @@ public class PlayerDie : BaseUI
         GetEvent("RetryText").Exit += data => retryText.color = Color.white;
         GetEvent("LobbyText").Exit += data => lobbyText.color = Color.white;
 
-        GetEvent("RetryText").Click += data => SceneManager.LoadSceneAsync(2);
+        //이부분에 초기화 작업 해줘야함
+        GetEvent("RetryText").Click += data =>
+        {
+            if (Manager.Game.IsDead)
+                Manager.Game.IsDead = false;
+
+            SceneManager.LoadSceneAsync(2);
+        };
         GetEvent("LobbyText").Click += data => SceneManager.LoadSceneAsync(0);
     }
 

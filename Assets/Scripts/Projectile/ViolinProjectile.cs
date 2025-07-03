@@ -12,7 +12,6 @@ public class ViolinProjectile : Projectile
 
     private ParticleSystem electObj;
     private RaycastHit2D[] hits;
-    private bool canHit = true;
     private Coroutine hitDelay;
 
     [SerializeField] private float maxCount;

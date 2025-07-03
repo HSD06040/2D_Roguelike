@@ -57,6 +57,7 @@ public class PausePopUp : BaseUI
 
         GetEvent("ReturnButtonText").Click += data =>
         {
+            Manager.Game.IsPause = false;
             Manager.UI.ClosePopUp();
         };
 

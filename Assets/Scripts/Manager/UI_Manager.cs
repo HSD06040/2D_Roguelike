@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UI_Manager : Singleton<UI_Manager>
@@ -26,10 +27,10 @@ public class UI_Manager : Singleton<UI_Manager>
         ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
         Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
         PopupText = MainCanvas.GetComponentInChildren<PopupText>(true);
-        //PlayerDie = MainCanvas.GetComponentInChildren<PlayerDie>(true); 
 
         PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
         PopUpCanvas.transform.parent = transform;
+        PopUpCanvas.GetOrAddComponent<PopUpCanvas>();
     }
 
     public void OpenShop()
