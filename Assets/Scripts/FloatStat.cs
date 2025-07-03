@@ -3,17 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Modifier<T>
-{
-    public T value;
-    public string source;
-
-    public Modifier(T value, string source)
-    {
-        this.value = value;
-        this.source = source;
-    }
-}
 
 [Serializable]
 public class FloatStat
@@ -67,4 +56,16 @@ public class FloatStat
    
 
     public void Clear() => modifiers.Clear();
+}
+
+public struct Modifier<T>
+{
+    public T value;
+    public string source;
+
+    public Modifier(T value, string source)
+    {
+        this.value = value;
+        this.source = source;
+    }
 }
