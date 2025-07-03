@@ -21,7 +21,10 @@ MonoBehaviour:
   Price: 0
   Type: 2
   AttackDamage:
-  - 0
+  - 1
+  - 2
+  - 3
+  - 4
   AttackSpeed: 10
   WeaponOverride: {fileID: 0}
   AttackRange: 1

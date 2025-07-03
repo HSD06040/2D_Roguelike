@@ -27,10 +27,15 @@ public class GameManager : Singleton<GameManager>
     public bool IsPause { get { return isPause; } set { isPause = value; OnPause.Invoke(isPause); } }
     public event Action<bool> OnPause;
     #endregion
+    public int currentStage;
+
+    private void Awake()
+    {
+        currentStage = 1;
+    }
 
     public void TimeStop() => Time.timeScale = 0;
     public void TimeRestart() => Time.timeScale = 1;
-
 
     #region Pause
 

@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Init(Vector2 _targetPos, float _damage, float _speed)
     {        
-        damage = _damage;        
+        damage = Manager.Data.PlayerStatus.TotalDamage;        
         rigid.velocity = _targetPos * _speed;
     }
 

@@ -20,7 +20,11 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 666b737749017194ea5fc01a3868ac57, type: 3}
   Price: 0
   Type: 4
-  AttackDamage: 01000000020000000300000004000000
+  AttackDamage:
+  - 1
+  - 2
+  - 3
+  - 4
   AttackSpeed: 0
   WeaponOverride: {fileID: 0}
   AttackRange: 0
