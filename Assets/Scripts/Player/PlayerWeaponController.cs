@@ -112,7 +112,8 @@ public class PlayerWeaponController : MonoBehaviour
             return;
         }
 
-        musicWeapon.Attack(GetMousePos());
+        if (!Manager.Game.IsPause)
+            musicWeapon.Attack(GetMousePos());
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();

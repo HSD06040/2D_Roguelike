@@ -33,8 +33,12 @@ public class TitleCanvas : BaseUI
             Manager.UI.ShowPopUp<SettingPopUp>();
         };
 
+        //이부분에 초기화작업 해줘야함
         GetEvent("PressGameStartButton").Click += data =>
         {
+            if(Manager.Game.IsDead)
+                Manager.Game.IsDead = false;
+
             SceneManager.LoadSceneAsync(1);
         };
 

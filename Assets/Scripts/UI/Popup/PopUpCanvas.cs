@@ -8,7 +8,7 @@ public class PopUpCanvas : MonoBehaviour
 
     public void AddUI(BaseUI ui)
     {
-        if(popUpStack.Count > 0)
+        if (popUpStack.Count > 0)
         {
             BaseUI top = popUpStack.Peek();
             top.gameObject.SetActive(false);
@@ -25,7 +25,7 @@ public class PopUpCanvas : MonoBehaviour
         BaseUI top = popUpStack.Pop();
         Destroy(top.gameObject);
 
-        if(popUpStack.Count >0)
+        if (popUpStack.Count > 0)
         {
             top = popUpStack.Peek();
             top.gameObject.SetActive(true);
