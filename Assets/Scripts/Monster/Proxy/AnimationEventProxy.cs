@@ -29,5 +29,6 @@ public class AnimationEventProxy : MonoBehaviour
     {
         // MonsterFSM에 있는 DestroyMonster 함수를 직접 호출
         _monsterFSM?.DestroyMonster();
+        Manager.Game.OnMonsterKill?.Invoke();
     }
 }

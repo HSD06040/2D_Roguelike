@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
 
     private IInteractable interactableTarget;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {        
         weaponCon = GetComponent<PlayerWeaponController>();
