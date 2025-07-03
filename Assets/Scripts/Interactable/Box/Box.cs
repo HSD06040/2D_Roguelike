@@ -52,22 +52,42 @@ public class Box : MonoBehaviour, IInteractable
         interectionUI.SetActive(false);
     }
 
+    //private void RamdomBoxRewardItem()  //무기확률 50%
+    //{
+    //    List<Item> randomList = new();
+    //
+    //    int weaponRandom = Random.Range(0, Manager.Data.MusicWeapons.Length);
+    //    Item randomWeapon = Manager.Data.MusicWeapons[weaponRandom].WeaponData;
+    //    randomList.Add(randomWeapon);
+    //
+    //    Item randomItem = TableManager.GetInstance().GetRandomItem();
+    //    randomList.Add(randomItem);
+    //
+    //    int finalReward = Random.Range(0, randomList.Count);
+    //    Item rewardItem = randomList[finalReward];
+    //
+    //    boxUIScript.BoxRewardDisplay(rewardItem);
+    //    Manager.Data.PlayerStatus.AddItem(rewardItem);
+    //    Debug.Log("아이템 지급 :" + rewardItem.name);
+    //}
+
     private void RamdomBoxRewardItem()
     {
         List<Item> randomList = new();
 
-        int weaponRandom = Random.Range(0, Manager.Data.MusicWeapons.Length);
-        Item randomWeapon = Manager.Data.MusicWeapons[weaponRandom].WeaponData;
-        randomList.Add(randomWeapon);
+        foreach(var weapon in Manager.Data.MusicWeapons)
+        {
+            randomList.Add(weapon.WeaponData);
+        }
 
-        Item randomItem = TableManager.GetInstance().GetRandomItem();
-        randomList.Add(randomItem);
+        randomList.AddRange(TableManager.GetInstance().GetAllItems());
 
-        int finalReward = Random.Range(0, randomList.Count);
-        Item rewardItem = randomList[finalReward];
+        Item rewardItem = randomList[Random.Range(0, randomList.Count)];
 
         boxUIScript.BoxRewardDisplay(rewardItem);
         Manager.Data.PlayerStatus.AddItem(rewardItem);
         Debug.Log("아이템 지급 :" + rewardItem.name);
     }
+
+
 }

@@ -24,13 +24,19 @@ public class TableManager : Singleton<TableManager>
 
     public Item GetRandomItem()
     {
-        if(Random.Range(0, 2) == 1)
-        {
-            return acces[Random.Range(0, acces.Length)];
-        }
-        else
-        {
-            return useItems[Random.Range(0, useItems.Length)];
-        }
+        List<Item> allItems = GetAllItems();
+        int random = Random.Range(0, allItems.Count);
+        return allItems[random];
+    }
+
+    public List<Item> GetAllItems()
+    {
+        List<Item> allItems = new();
+
+        allItems.AddRange(acces);
+
+        allItems.AddRange(useItems);
+
+        return allItems;
     }
 }
