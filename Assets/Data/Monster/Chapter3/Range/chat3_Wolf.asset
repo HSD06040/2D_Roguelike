@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
   m_Name: chat3_Wolf
   m_EditorClassIdentifier: 
+  ID: 0
+  monsterName: 
+  monsterDescription: 
   health: 5
   attackPower: 10
   moveSpeed: 5
@@ -20,13 +23,13 @@ MonoBehaviour:
   detectionRange: 10
   minRepositionDistance: 4
   maxRepositionDistance: 5
-  attackCooldown: 3
-  projectilePrefab: {fileID: 2612855775309902406, guid: f0ff02b6579de0b478d6eed87482a7e7, type: 3}
+  attackCooldown: 2
+  projectilePrefab: {fileID: 8961674142559912989, guid: fd735807664f4a243b2aa425fbcfed3a, type: 3}
   projectileSpeed: 6
-  projectileCount: 2
-  spreadAngle: 30
-  shotCount: 2
-  aimType: 0
-  timeBetweenShots: 0.5
+  projectileCount: 6
+  spreadAngle: 60
+  shotCount: 6
+  aimType: 1
+  timeBetweenShots: 0.2
   fireAngleOffset: 0
   spiralRotationSpeed: 0
