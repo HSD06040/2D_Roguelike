@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - Wall
+  - PlayerHead
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Projectile
   - Wall
   - Orbit
-  - 
+  - MiniMap
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MiniMap
+    uniqueID: 45244751
     locked: 0
   - name: Monster
     uniqueID: 4162278897
