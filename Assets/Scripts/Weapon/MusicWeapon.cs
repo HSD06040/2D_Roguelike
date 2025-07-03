@@ -12,6 +12,7 @@ public class MusicWeapon : MonoBehaviour
     private List<GameObject> particles;
     protected Transform player;
     public float curAttackDamage;
+    public float curAttackDelay;
 
     private GameObject curParticle;
     private GameObject prevParticle;
@@ -45,13 +46,15 @@ public class MusicWeapon : MonoBehaviour
 
     public void SetUpgradeWeapon(int num)
     {
-        if (Level >= 5) return;
+        if (Level > WeaponData.WeaponMaxUpgrade) return;
         if (curParticle != null)
         {
             Destroy(curParticle);
         }
         curParticle = Instantiate(particles[num-1], transform.parent);
+        curParticle.transform.position = new Vector3(transform.position.x,transform.position.y,-1);
         curAttackDamage = WeaponData.AttackDamage[num];
+        curAttackDelay = WeaponData.AttackDelay[num];
     }
 
     public virtual void Attack(Vector2 mousePosition) { }

@@ -14,7 +14,8 @@ public class PlayerWeaponController : MonoBehaviour
     private MusicWeapon[] weaponSlots;
     private MusicWeapon currentWeapon;
 
-
+    Coroutine attackDelayCor;
+    private bool canAttack = true;
     private void Start()
     {
         cam = Camera.main;
@@ -112,8 +113,29 @@ public class PlayerWeaponController : MonoBehaviour
             return;
         }
 
-        if (!Manager.Game.IsPause)
-            musicWeapon.Attack(GetMousePos());
+        if (!Manager.Game.IsPause || !Manager.Game.IsDead)
+        {
+            
+            if(attackDelayCor == null && canAttack)
+            {
+                attackDelayCor = StartCoroutine(AttackCor(musicWeapon));
+            }
+            
+            if (attackDelayCor != null && canAttack)
+            {
+                StopCoroutine(attackDelayCor);
+                attackDelayCor = null;
+            }
+        }
+    }
+
+    IEnumerator AttackCor(MusicWeapon musicWeapon)
+    {
+        musicWeapon.Attack(GetMousePos());
+        canAttack = false;
+        yield return new WaitForSeconds(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        yield return new WaitForEndOfFrame();
+        canAttack = true;
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();

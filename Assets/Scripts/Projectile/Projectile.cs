@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour
     protected Vector3 targetPos;
     public GameObject ParticlePrefab;
 
+    private void Start()
+    {
+        StartCoroutine(SpawnTime());
+    }
+
     public virtual void Init(Vector2 _targetPos, float _damage, float _speed)
     {        
         damage = Manager.Data.PlayerStatus.TotalDamage;        
@@ -45,5 +50,14 @@ public class Projectile : MonoBehaviour
             Destroy(obj, 0.4f);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator SpawnTime()
+    {
+        yield return new WaitForSeconds(3f);
+        yield return new WaitForNextFrameUnit();
+
+        if(gameObject != null)
+            Destroy(this.gameObject);
     }
 }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051b18f7085c9a548bfe30e6dc8154d5, type: 3}
+  m_Name: Cymbals
+  m_EditorClassIdentifier: 
+  ID: 3
+  size: 3
+  itemName: Cymbals
+  model: {fileID: 5727087395937455113, guid: 4377568d25f3eb34ebd551560dce9f26, type: 3}
+  description: Cymbals
+  icon: {fileID: 21300000, guid: 7fba745c1338c07488a1e49ca4d32ab6, type: 3}
+  Price: 10
+  Type: 0
+  AttackDamage:
+  - 9
+  - 17
+  - 20
+  - 25
+  AttackSpeed: 1
+  WeaponOverride: {fileID: 0}
+  AttackDelay:
+  - 0.8
+  - 0.8
+  - 1
+  - 1.5
+  WeaponMaxUpgrade: 4
+  WeaponParticle:
+  - {fileID: 1727989760398401218, guid: 4d8d62aae6550b546b51fc9c0c078273, type: 3}
+  - {fileID: 1727989760398401218, guid: 7a13adec6adba9b44ae7cfd409140d08, type: 3}
+  - {fileID: 1727989760398401218, guid: ee9229a055d184a4fbb697e002e111de, type: 3}
+  - {fileID: 1727989760398401218, guid: ee9229a055d184a4fbb697e002e111de, type: 3}
+  Projectile: {fileID: 1447947333167568233, guid: 5e8c6730a581b4e49bfdc248774aed1c, type: 3}
+  Projectiles: []
