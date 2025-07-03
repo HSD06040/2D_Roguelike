@@ -16,7 +16,14 @@ public class PassiveProjectile : PassiveObject
     public override void Init(float _damage, float _radius)
     {
         base.Init(_damage, _radius);
-        Vector3 dir = (FindCloseEnemy().position - transform.position).normalized;
+
+        Transform target = FindCloseEnemy();
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Vector3 dir = (target.position - transform.position).normalized;
         transform.right = dir;
         rb.velocity = dir * speed;
     }

@@ -9,7 +9,7 @@ public class PassiveObject : MonoBehaviour
     public virtual void Init(float _damage, float _radius)
     {
         transform.localScale = new Vector2(transform.localScale.x * _radius, transform.localScale.y * _radius);
-        damage = Manager.Data.PlayerStatus.curWeapon.curAttackDamage * _damage;
+        damage = Manager.Data.PlayerStatus.TotalDamage * _damage;
         Manager.Resources.Destroy(gameObject, 2);
     }
 

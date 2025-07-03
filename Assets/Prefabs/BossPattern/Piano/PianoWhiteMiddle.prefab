@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 783316077
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6792453, g: 0.31719473, b: 0.31719473, a: 1}
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 783316077
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6792453, g: 0.31719473, b: 0.31719473, a: 1}
@@ -185,10 +185,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7322746644172400837}
   col: {fileID: 3163881471348741983}
-  red: {r: 0.6784314, g: 0.31764707, b: 0.31764707, a: 1}
-  pink: {r: 1, g: 0.5896226, b: 0.5896226, a: 0.2784314}
-  gray: {r: 1, g: 1, b: 1, a: 0.05490196}
-  white: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 0.6745098}
+  red: {r: 0.91372555, g: 0.10980393, b: 0.10980393, a: 1}
+  pink: {r: 1, g: 0.3803922, b: 0.3803922, a: 0.2784314}
+  gray: {r: 1, g: 1, b: 1, a: 0.31764707}
+  white: {r: 1, g: 1, b: 1, a: 1}
   parentSr: {fileID: 5453467832459884948}
   children: {fileID: 5980382391257929084}
 --- !u!60 &3163881471348741983
@@ -198,7 +198,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5967830738504585384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
