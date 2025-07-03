@@ -28,13 +28,13 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
         doors.SetActive(false);
     }
+
     private void Update()  //테스트용 
    {
        if(Input.GetKeyDown(KeyCode.K) && hasMonsterSpawned && !isRoomCleared)
        {
            MonsterDied();
-       }
-       
+       }    
    }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,6 +45,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
         }
         if (!hasMonsterSpawned && !isRoomCleared)
         {
+            Manager.Game.OnMonsterKill += MonsterDied;
             hasMonsterSpawned = true;
             LockDoors();
             StartCoroutine(MonsterSpawnStart());
@@ -53,8 +54,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
         {
             Debug.Log("몬스터가 이미 소환되었던 방입니다.");
             return;
-        }
-            
+        }           
     }
     
     private IEnumerator MonsterSpawnStart()
