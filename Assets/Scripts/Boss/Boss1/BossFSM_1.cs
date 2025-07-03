@@ -43,6 +43,7 @@ public class BossFSM_1 : BossMonsterFSM
 
     protected override void Start()
     {
+        base.Start();
         StateMachine.Initialize(idle);
     } 
 }
@@ -205,6 +206,8 @@ public class BossDoubleCrossState_1 : PatternState
 
 public class BossDieState_1 : BossBaseState<BossFSM_1>
 {
+    private bool isDead;
+
     public BossDieState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
         
@@ -214,9 +217,13 @@ public class BossDieState_1 : BossBaseState<BossFSM_1>
     {
         base.Enter();
 
-        fsm.Pattern.CurrentBossPatternStop();
-        fsm.Owner.DropCoin(fsm.stat);
-        fsm.StartDieRoutine();       
+        if(!isDead)
+        {
+            isDead = true;
+            fsm.Pattern.CurrentBossPatternStop();
+            fsm.Owner.DropCoin(fsm.stat);
+            fsm.StartDieRoutine();
+        }        
     }
 
     public override void Exit()

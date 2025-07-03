@@ -7,7 +7,7 @@ public class PlayerWeaponController : MonoBehaviour
 {
     public Transform[] WeaponSpawnPos;
 
-    [Header("¹«±â")]
+    [Header("ë¬´ê¸°")]
     [SerializeField] private MusicWeapon defaultWeapon;
     private MusicWeapon[] weaponSlots;
     private MusicWeapon currentWeapon;
@@ -50,7 +50,6 @@ public class PlayerWeaponController : MonoBehaviour
         }
         else
         {
-            //defaultWeapon.Attack(GetMousePos());
             SetProjectile(defaultWeapon);
         }
 
@@ -68,7 +67,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    #region List<string>Çü½ÄÀ¸·Î weapon¹Ş¾Æ¿À±â
+    #region List<string>í˜•ì‹ìœ¼ë¡œ weaponë°›ì•„ì˜¤ê¸°
     public void AddMusicWeapon(int idx, MusicWeapon _musicWeapon)
     {
         if (_musicWeapon == null) return;
@@ -83,7 +82,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (currentWeapon != null && currentWeapon.WeaponData.ID == 5)
         {
-            Manager.Game.IsPress = false; // °­Á¦·Î ·¹ÀÌÀú ²ô±â
+            Manager.Game.IsPress = false; // ê°•ì œë¡œ ë ˆì´ì € ë„ê¸°
         }
         currentWeapon = weaponSlots[_idx];
         Debug.Log($"WeaponSwitch{currentWeapon}");
@@ -94,13 +93,13 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (weaponSlots[index] != null)
         {
-            currentWeapon = weaponSlots[index];  //¼±ÅÃÇÑ ¹«±â = currentWeapon
-            Debug.Log((index + 1) + "¹ø ¹«±â »ç¿ëÁß.selectWeapon ÀÌ¸§: " + currentWeapon.name);
+            currentWeapon = weaponSlots[index];  //ì„ íƒí•œ ë¬´ê¸° = currentWeapon
+            Debug.Log((index + 1) + "ë²ˆ ë¬´ê¸° ì‚¬ìš©ì¤‘.selectWeapon ì´ë¦„: " + currentWeapon.name);
             
         }
         else
         {
-            Debug.Log((index + 1) + " ½½·ÔÀº ºñ¾îÀÖÀ½");
+            Debug.Log((index + 1) + " ìŠ¬ë¡¯ì€ ë¹„ì–´ìˆìŒ");
         }
     }
 
@@ -133,16 +132,18 @@ public class PlayerWeaponController : MonoBehaviour
         musicWeapon.Attack(GetMousePos());
         Debug.Log($"1 : {canAttack}");
         canAttack = false;
+
         Debug.Log($"2 : {canAttack}");
         if(musicWeapon.WeaponData.ID == 1)
         {
-            yield return new WaitForSeconds(1 / musicWeapon.WeaponData.AttackDelay[0] * 
+            yield return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] * 
                 Manager.Data.PlayerStatus.AttackSpeed.Value);
         }
         else
         {
-            yield return new WaitForSeconds(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+            yield return Utile.GetDelay(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
         }
+
         yield return new WaitForEndOfFrame();
         Debug.Log($"3 : {canAttack}");
         canAttack = true;
