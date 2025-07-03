@@ -65,7 +65,7 @@ public class StartDialogue : MonoBehaviour
     {
         int currentSenen = SceneManager.GetActiveScene().buildIndex;
         //Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         SceneManager.LoadSceneAsync(currentSenen + 1);
         Debug.Log("다음씬 이동");
 

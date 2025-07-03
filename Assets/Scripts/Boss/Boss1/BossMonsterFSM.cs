@@ -24,6 +24,8 @@ public class BossMonsterFSM : MonoBehaviour
 
     public void AnimFinish() => animFinish = true;
 
+    public void StartDieRoutine() => StartCoroutine(FadeOutCoroutine(3));
+
     public IEnumerator FadeOutCoroutine(float _fadeDuration)
     {        
         float elapsed = 0f;
