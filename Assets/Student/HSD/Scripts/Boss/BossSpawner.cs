@@ -22,6 +22,6 @@ public class BossSpawner : MonoBehaviour
     {
         yield return Utile.GetDelay(delay);
 
-        Instantiate(boss, spawnPoint.position, Quaternion.identity);
+        boss.SetActive(true);
     }
 }

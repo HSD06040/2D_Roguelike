@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1551071710477825170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1978695465987272431}
+  m_Layer: 0
+  m_Name: CrossSpawnPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1978695465987272431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551071710477825170}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4833333, y: 1.0766668, z: -0.010523446}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7809236192987518534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4372711411036248848
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +404,7 @@ MonoBehaviour:
   fsm: {fileID: 6116423329824656736}
   isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
-  pivot: {fileID: 0}
+  pivot: {fileID: 2774548785113792157}
   crossInfos:
   - projectileSpeed: 6
     rotSpeed: 70
@@ -404,7 +435,7 @@ MonoBehaviour:
   fsm: {fileID: 6116423329824656736}
   isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
-  pivot: {fileID: 0}
+  pivot: {fileID: 1978695465987272431}
   crossInfos:
   - projectileSpeed: 6
     rotSpeed: 70
@@ -416,6 +447,37 @@ MonoBehaviour:
     count: 30
     duration: 0.5
     interval: 0.3
+--- !u!1 &5594754022889468560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2774548785113792157}
+  m_Layer: 0
+  m_Name: CrossSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2774548785113792157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594754022889468560}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4833333, y: 1.0766668, z: -0.010523446}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7809236192987518534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7490755610252007539
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +546,8 @@ Transform:
   - {fileID: 4357637604877814594}
   - {fileID: 6780838801452011512}
   - {fileID: 4660557061317988339}
+  - {fileID: 2774548785113792157}
+  - {fileID: 1978695465987272431}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1785076859981665504
@@ -517,7 +581,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: 7c2548d4c9caf124a8238d302d69dcfb, type: 2}
-  Player: {fileID: 0}
   Owner: {fileID: 1785076859981665504}
   isPatternPlaying: 0
   animFinish: 0

@@ -43,6 +43,7 @@ public class BossFSM_1 : BossMonsterFSM
 
     protected override void Start()
     {
+        base.Start();
         StateMachine.Initialize(idle);
     } 
 }

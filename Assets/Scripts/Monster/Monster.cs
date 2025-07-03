@@ -110,12 +110,43 @@ public class Monster : MonoBehaviour, IDamagable
                 Quaternion.identity
             );
 
-            var coinController = coinObject.GetComponent<Coin>();
+            Coin coinController = coinObject.GetComponent<Coin>();
+
             if (coinController != null)
             {
                 coinController.Init(monsterStat.GetCoinAmount);
             }
-        }
+
+            if (Manager.Data.GoldStat.HitGoldChance.Value > UnityEngine.Random.Range(0, 100))
+            {
+                coinObject = Instantiate(
+                monsterStat.CoinPrefab,
+                transform.position,
+                Quaternion.identity
+                );
+
+                coinController = coinObject.GetComponent<Coin>();
+                if (coinController != null)
+                {
+                    coinController.Init(Manager.Data.GoldStat.HitGoldAmount.Value);
+                }
+            }               
+
+            if (Manager.Data.GoldStat.KillGoldChance.Value > UnityEngine.Random.Range(0, 100))
+            {
+                coinObject = Instantiate(
+                monsterStat.CoinPrefab,
+                transform.position,
+                Quaternion.identity
+                );
+
+                coinController = coinObject.GetComponent<Coin>();
+                if (coinController != null)
+                {
+                    coinController.Init(monsterStat.GetCoinAmount * Manager.Data.GoldStat.KillGoldAmount.Value);
+                }
+            }
+        }        
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
