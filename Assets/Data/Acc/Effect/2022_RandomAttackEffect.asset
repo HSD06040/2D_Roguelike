@@ -19,7 +19,7 @@ MonoBehaviour:
   intervals: []
   triggerTypes: 02000000
   attacker: {fileID: 6081794834133825613, guid: bab3f00d81ed5d14bb85f0c246d6e20e, type: 3}
-  attack: {fileID: 0}
+  attack: {fileID: 4954004628008176313, guid: 1a85c3a2485c54341bb57275555649d0, type: 3}
   offset: 0
   chances:
   - 10
@@ -27,8 +27,8 @@ MonoBehaviour:
   - 35
   - 50
   damages:
-  - 3
-  - 6
-  - 12
-  - 24
+  - 0.5
+  - 1
+  - 2
+  - 3.5
   monsterCounts: 01000000020000000300000004000000

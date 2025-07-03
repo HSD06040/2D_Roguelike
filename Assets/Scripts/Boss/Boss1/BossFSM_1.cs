@@ -101,7 +101,7 @@ public class BossTeleportState_1 : PatternState
     public override void Enter()
     {
         base.Enter();
-
+        fsm.Owner.Invincible = true;
         fsm.StartCoroutine(FadeOutCoroutine());
     }
 
@@ -133,6 +133,7 @@ public class BossTeleportState_1 : PatternState
             Color c = fsm.Owner.spriteRenderer.color;
             fsm.Owner.spriteRenderer.color = new Color(c.r, c.g, c.b, 1f);
         }
+        fsm.Owner.Invincible = false;
     }
 }
 
@@ -212,8 +213,7 @@ public class BossDieState_1 : BossBaseState<BossFSM_1>
         base.Enter();
 
         fsm.Owner.DropCoin(fsm.stat);
-
-        Object.Destroy(fsm.Owner.gameObject, 3);
+        fsm.StartDieRoutine();       
     }
 
     public override void Exit()
