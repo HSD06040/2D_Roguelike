@@ -20,15 +20,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 666b737749017194ea5fc01a3868ac57, type: 3}
   Price: 0
   Type: 4
-  AttackDamage: 01000000020000000300000004000000
+  AttackDamage:
+  - 1
+  - 2
+  - 3
+  - 4
   AttackSpeed: 0
   WeaponOverride: {fileID: 0}
   AttackRange: 0
   AttackRadius: 0
   WeaponMaxUpgrade: 4
   WeaponParticle:
-  - {fileID: 499010178548250081, guid: 08a665cb9e369f641ae02f3c757e2cd8, type: 3}
-  - {fileID: 8472133573239423094, guid: cb235c927c88f4546bde0acd5bca8298, type: 3}
-  - {fileID: 5470499818708082747, guid: d3defe44ccca3814c8937d173f9677a4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Projectile: {fileID: 753983221761098015, guid: aa79673a73ea7254fbaa79466f00b8bb, type: 3}
   Projectiles: []
