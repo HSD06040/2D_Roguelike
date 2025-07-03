@@ -11,10 +11,8 @@ public class Weapon : Item
     public float[] AttackDamage;
     public float AttackSpeed;
     public AnimatorOverrideController WeaponOverride = null;
-    public float AttackRange;
-    public float AttackDelay { get; private set;}
-    public float AttackRadius;
-    public int WeaponMaxUpgrade;
+    public float[] AttackDelay;
+    public int WeaponMaxUpgrade = 4;
     public GameObject[] WeaponParticle;
     public Projectile Projectile = null;
     public Projectile[] Projectiles = null;  

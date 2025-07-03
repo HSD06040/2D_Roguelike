@@ -95,6 +95,7 @@ public class PlayerStatus
         {
             WeaponList.Add(_weapon.WeaponData.Type);
             _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
+            _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
             if (idx == -1) return;
 

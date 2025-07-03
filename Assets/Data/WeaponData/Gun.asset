@@ -21,14 +21,17 @@ MonoBehaviour:
   Price: 0
   Type: 2
   AttackDamage:
-  - 1
-  - 2
-  - 3
+  - 4
+  - 4
+  - 4
   - 4
   AttackSpeed: 10
   WeaponOverride: {fileID: 0}
-  AttackRange: 1
-  AttackRadius: 1
+  AttackDelay:
+  - 1
+  - 1
+  - 1
+  - 1
   WeaponMaxUpgrade: 3
   WeaponParticle:
   - {fileID: 0}
