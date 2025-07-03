@@ -128,11 +128,7 @@ GameObject:
   - component: {fileID: 8322308032326515858}
   - component: {fileID: 3068793717469211980}
   - component: {fileID: 7488264513582482820}
-<<<<<<< HEAD
-  - component: {fileID: 1809772675714196739}
-=======
   - component: {fileID: 8627703480107503960}
->>>>>>> develop
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -157,11 +153,7 @@ Transform:
   - {fileID: 9129696760378293498}
   - {fileID: 4805698811618276107}
   - {fileID: 7009496423910802803}
-<<<<<<< HEAD
-  - {fileID: 8700449223171901777}
-=======
   - {fileID: 6615602199460839046}
->>>>>>> develop
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5460843364196822057
@@ -204,11 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
   m_SortingLayer: 5
-<<<<<<< HEAD
-  m_SortingOrder: 3
-=======
   m_SortingOrder: 10
->>>>>>> develop
   m_Sprite: {fileID: 21300000, guid: 0567a292d661c9249818cb2da6e413b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -409,11 +397,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-<<<<<<< HEAD
---- !u!58 &1809772675714196739
-=======
 --- !u!58 &8627703480107503960
->>>>>>> develop
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
