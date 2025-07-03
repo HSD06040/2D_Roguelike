@@ -256,6 +256,5 @@ public class Explosion_ExplodeState : BaseState
 
         Object.Instantiate(_explosionMonsterFSM.SO.explosionEffectPrefab, _explosionMonsterFSM.transform.position, Quaternion.identity);
         _explosionMonsterFSM.Owner.DropCoin(_explosionMonsterFSM.SO);
-        Object.Destroy(_explosionMonsterFSM.gameObject);
     }
 }
