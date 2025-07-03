@@ -25,7 +25,6 @@ public class BossMonsterFSM : MonoBehaviour
     protected virtual void Start()
     {
         Player ??= GameObject.FindGameObjectWithTag("Player").transform;
-        portal ??= GameObject.FindGameObjectWithTag("Potal");
     }
 
     public void AnimFinish() => animFinish = true;

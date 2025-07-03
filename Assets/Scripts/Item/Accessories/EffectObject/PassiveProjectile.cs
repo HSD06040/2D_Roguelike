@@ -5,6 +5,7 @@ using UnityEngine;
 public class PassiveProjectile : PassiveObject
 {
     private Rigidbody2D rb;
+    [SerializeField] private Animator anim;
     [SerializeField] private float speed;
 
     private void Awake()
@@ -15,9 +16,9 @@ public class PassiveProjectile : PassiveObject
     public override void Init(float _damage, float _radius)
     {
         base.Init(_damage, _radius);
-
-        Debug.Log(FindCloseEnemy());
-        rb.velocity = (FindCloseEnemy().position - transform.position).normalized * speed;
+        Vector3 dir = (FindCloseEnemy().position - transform.position).normalized;
+        transform.right = dir;
+        rb.velocity = dir * speed;
     }
 
     private Transform FindCloseEnemy()
@@ -39,4 +40,17 @@ public class PassiveProjectile : PassiveObject
 
         return result;
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((1 << 6 & (1 << collision.gameObject.layer)) != 0)
+        {
+            collision.GetComponent<IDamagable>().TakeDamage(damage);
+
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            anim.SetTrigger("Hit");
+        }
+    }
+
+    private void DestroyObject() => Destroy(gameObject);
 }

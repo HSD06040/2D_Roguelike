@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PassiveObject : MonoBehaviour
 {
-    private float damage;
+    protected float damage;
 
     public virtual void Init(float _damage, float _radius)
     {
@@ -13,7 +13,7 @@ public class PassiveObject : MonoBehaviour
         Manager.Resources.Destroy(gameObject, 2);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if((1 << 6 & (1 << collision.gameObject.layer)) != 0)
         {
