@@ -29,9 +29,18 @@ public class DataManager : Singleton<DataManager>
         downloader = new DataDownloader();
         StartCoroutine(downloader.DownloadData());
 
-        PlayerStatus.Speed.SetBaseStat(5);
+        SetupPlayerStat();
+    }
+
+    private void SetupPlayerStat()
+    {
         PlayerStatus.MaxHp.SetBaseStat(10);
+        PlayerStatus.Speed.SetBaseStat(5);
+        PlayerStatus.SpeedMultiply.SetBaseStat(1);
+        PlayerStatus.DamageMultiply.SetBaseStat(1);
         PlayerStatus.Damage.SetBaseStat(10);
+        PlayerStatus.AttackSpeed.SetBaseStat(1);
+        PlayerStatus.Evasion.SetBaseStat(0);
     }
 
     private void Start()
