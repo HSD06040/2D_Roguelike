@@ -15,7 +15,7 @@ public class Portal : MonoBehaviour, IInteractable
     private IEnumerator ScreenFade()
     {
         int currentSenen = SceneManager.GetActiveScene().buildIndex;
-        //Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
+        Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
         yield return new WaitForSeconds(3);
         SceneManager.LoadSceneAsync(currentSenen + 1);
         Debug.Log("다음씬 이동");

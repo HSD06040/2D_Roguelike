@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawnerManager : MonoBehaviour
-{
+{    
     [Header("고정 소환위치")]
     [SerializeField] public Transform[] fixedSpawnPositions;
 
@@ -34,12 +34,8 @@ public class MonsterSpawnerManager : MonoBehaviour
         for(int i = 0; i < randomSpawnAreas.Length; i++)
         {
             int spawnNum = randomSpawnMonsterNum[i]; // 인덱스에 넣은 소환할 몬스터 숫자
-            spawnRandomPosMonsters(randomSpawnAreas[i], spawnNum); // 각각 영역별로 소환할 숫자전달
+            SpawnRandomPosMonsters(randomSpawnAreas[i], spawnNum); // 각각 영역별로 소환할 숫자전달
         }
-        
-        
-        
-
     }
 
     private void SpawnFixedPosMonsters()  //고정위치 몬스터 소환
@@ -55,12 +51,11 @@ public class MonsterSpawnerManager : MonoBehaviour
         }
     }
 
-    public void spawnRandomPosMonsters(RectTransform spawnArea, int spawnNum)  //랜덤위치 몬스터 소환
+    public void SpawnRandomPosMonsters(RectTransform spawnArea, int spawnNum)  //랜덤위치 몬스터 소환
     {
         for (int i = 0; i < spawnNum; i++) //스폰 수만큼 반복
         {
-            int random = Random.Range(0, randomePosMonsterprefabs.Length);
-            GameObject spawnMonster = randomePosMonsterprefabs[random]; //랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
+            GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentStage);//랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
 
             Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정
             Instantiate(spawnMonster, spawnPoint, Quaternion.identity); //몬스터 스폰

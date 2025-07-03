@@ -15,24 +15,37 @@ public class FadeScreen : MonoBehaviour
 
     private IEnumerator FadeRoutine(float _fadeTime, float _delay)
     {
-        timer = 0;
+        timer = 0f;
+
         while (timer < _fadeTime)
         {
             Color color = fadeImage.color;
-            color.a = Mathf.Lerp(0, 1, timer / _fadeTime);
+            color.a = Mathf.Lerp(0f, 1f, timer / _fadeTime);
+            fadeImage.color = color;
             timer += Time.deltaTime;
             yield return null;
         }
+
+        Color fullVisible = fadeImage.color;
+        fullVisible.a = 1f;
+        fadeImage.color = fullVisible;
 
         yield return Utile.GetDelay(_delay);
 
-        timer = 0;
+        timer = 0f;
+
         while (timer < _fadeTime)
         {
             Color color = fadeImage.color;
-            color.a = Mathf.Lerp(1, 0, timer / _fadeTime);
+            color.a = Mathf.Lerp(1f, 0f, timer / _fadeTime);
+            fadeImage.color = color;
             timer += Time.deltaTime;
             yield return null;
         }
+
+        Color fullyTransparent = fadeImage.color;
+        fullyTransparent.a = 0f;
+        fadeImage.color = fullyTransparent;
     }
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GoldPanel : MonoBehaviour
-{    
+{
     [SerializeField] private TMP_Text goldText;
 
     private GoldPresenter goldPresenter;
