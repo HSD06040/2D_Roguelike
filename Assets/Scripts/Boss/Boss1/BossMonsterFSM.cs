@@ -22,9 +22,10 @@ public class BossMonsterFSM : MonoBehaviour
     {
         Owner.SetStats(stat.health, stat.attackPower);
     }
-    private void Start()
+    protected virtual void Start()
     {
-        Player ??= GameObject.FindWithTag("Player").transform;
+        Player ??= GameObject.FindGameObjectWithTag("Player").transform;
+        portal ??= GameObject.FindGameObjectWithTag("Potal");
     }
 
     public void AnimFinish() => animFinish = true;
@@ -47,5 +48,7 @@ public class BossMonsterFSM : MonoBehaviour
         Owner.spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
 
         portal.SetActive(true);
+
+        Destroy(gameObject, 2);
     }
 }

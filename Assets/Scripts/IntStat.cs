@@ -37,14 +37,14 @@ public class IntStat
     {
         modifiers.Add(new Modifier<int>(value, source));
         isChanged = true;
-        OnChanged.Invoke(Value);
+        OnChanged?.Invoke(Value);
     }
 
     public void RemoveModifier(string source)
     {
         modifiers.RemoveAll(modifier => modifier.source == source);
         isChanged = true;
-        OnChanged.Invoke(Value);
+        OnChanged?.Invoke(Value);
     }
 
     public void SetBaseStat(int value)
@@ -52,8 +52,6 @@ public class IntStat
         this.value = value;
         isChanged = true;
     }
-    
-
 
     public void Clear() => modifiers.Clear();
 }

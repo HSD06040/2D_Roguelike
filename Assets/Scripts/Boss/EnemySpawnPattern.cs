@@ -12,7 +12,11 @@ public class EnemySpawnPattern : BossPattern
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             Instantiate(prefab, spawnPoints[i].position, Quaternion.identity);
-            //몬스터 소환로직
+            
+            for (int j = 0; j < Random.Range(2,4); j++)
+            {
+                Instantiate(Manager.Table.RandomMonsterSpawn(1), spawnPoints[i].position, Quaternion.identity);
+            }
         }
 
         OnComplated?.Invoke();
