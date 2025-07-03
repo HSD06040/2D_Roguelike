@@ -50,7 +50,8 @@ public class PlayerWeaponController : MonoBehaviour
         }
         else
         {
-            defaultWeapon.Attack(GetMousePos());
+            //defaultWeapon.Attack(GetMousePos());
+            SetProjectile(defaultWeapon);
         }
 
         Manager.Game.OnPlayerAttack?.Invoke();
@@ -130,10 +131,22 @@ public class PlayerWeaponController : MonoBehaviour
     IEnumerator AttackCor(MusicWeapon musicWeapon)
     {
         musicWeapon.Attack(GetMousePos());
+        Debug.Log($"1 : {canAttack}");
         canAttack = false;
-        yield return new WaitForSeconds(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        Debug.Log($"2 : {canAttack}");
+        if(musicWeapon.WeaponData.ID == 1)
+        {
+            yield return new WaitForSeconds(1 / musicWeapon.WeaponData.AttackDelay[0] * 
+                Manager.Data.PlayerStatus.AttackSpeed.Value);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        }
         yield return new WaitForEndOfFrame();
+        Debug.Log($"3 : {canAttack}");
         canAttack = true;
+        Debug.Log($"4 : {canAttack}");
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();
