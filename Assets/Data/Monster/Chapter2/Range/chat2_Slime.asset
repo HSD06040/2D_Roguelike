@@ -10,23 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 063b6edf7e2967e4996e461a6e07f48f, type: 3}
-  m_Name: chat2_BlackWolf
+  m_Name: chat2_Slime
   m_EditorClassIdentifier: 
+  ID: 0
+  monsterName: 
+  monsterDescription: 
   health: 5
   attackPower: 10
-  moveSpeed: 2
+  moveSpeed: 2.5
   CoinPrefab: {fileID: 58563911391916814, guid: 2d020f594b37ceb4bbd71f997dd068db, type: 3}
   GetCoinAmount: 2
   detectionRange: 10
   minRepositionDistance: 4
   maxRepositionDistance: 5
-  attackCooldown: 1.5
-  projectilePrefab: {fileID: 1079808049647952630, guid: ab76f32fb124e2c41a8d516c48efa3c6, type: 3}
+  attackCooldown: 3
+  projectilePrefab: {fileID: 4788675022462736502, guid: 036d9bbcd8168104d8d2f20ad53e7e03, type: 3}
   projectileSpeed: 6
-  projectileCount: 8
+  projectileCount: 6
   spreadAngle: 360
-  shotCount: 2
+  shotCount: 4
   aimType: 2
   timeBetweenShots: 0.2
   fireAngleOffset: 0
-  spiralRotationSpeed: 0
+  spiralRotationSpeed: 45
