@@ -19,3 +19,11 @@ MonoBehaviour:
   intervals: []
   triggerTypes: 00000000
   orbitPrefab: {fileID: 6666733245598184628, guid: 4b1ef959d1cd64745a5ac285842fc6d9, type: 3}
+<<<<<<< Updated upstream:Assets/Student/HSD/OrbitEffect.asset
+=======
+  damage:
+  - 5
+  - 7
+  - 10
+  - 15
+>>>>>>> Stashed changes:Assets/Data/Acc/Effect/2014_Delicato.asset

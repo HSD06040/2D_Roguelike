@@ -8,7 +8,5 @@ public class Violin : MusicWeapon
     {
         Projectile obj = Instantiate(WeaponData.Projectile, player.position, Quaternion.identity);
         obj.Init(mousePosition, curAttackDamage, WeaponData.AttackSpeed);
-
     }
-
 }

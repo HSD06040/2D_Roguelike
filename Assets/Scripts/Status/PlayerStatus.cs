@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public enum StatType
 {
-    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, AttackSize, Evasion, DamageMultiply, SpeedMultiply
+    MaxHp, Damage, Speed, AttackSpeed, CurrentHP, Evasion, DamageMultiply, SpeedMultiply
 }
 
 [Serializable]
@@ -16,14 +16,14 @@ public class PlayerStatus
 {
     // 플레이어스텟        
     public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
+
     public FloatStat Damage { get; private set; } = new(); // 데미지 값
     public FloatStat DamageMultiply { get; private set; } = new(); // 데미지 퍼센트
 
     public FloatStat Speed { get; private set; } = new(); // 스피드 값
     public FloatStat SpeedMultiply { get; private set; } = new(); // 스피드 값
 
-    public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트
-
+    public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트    
     public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
     public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
      
@@ -237,8 +237,8 @@ public class PlayerStatus
         return (type) switch
         {
             StatType.MaxHp => MaxHp.Value,
-            StatType.Damage => Damage.Value,
-            StatType.Speed => Speed.Value,
+            StatType.Damage => TotalDamage,
+            StatType.Speed => TotalSpeed,
             StatType.AttackSpeed => AttackSpeed.Value,
             StatType.CurrentHP => CurtHp.Value,
             _ => 0
