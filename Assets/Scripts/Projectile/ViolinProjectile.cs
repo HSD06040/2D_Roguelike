@@ -130,6 +130,7 @@ public class ViolinProjectile : Projectile
     {
         if(value)
         {
+            Debug.Log("Violin On");
             laser.SetActive(true);
         }
         else

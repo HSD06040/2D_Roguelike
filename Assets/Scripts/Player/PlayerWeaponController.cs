@@ -43,7 +43,7 @@ public class PlayerWeaponController : MonoBehaviour
         if (currentWeapon != null)
         {            
             SetProjectile(currentWeapon);
-            if (currentWeapon.WeaponData.itemName == "Violin")
+            if (currentWeapon.WeaponData.ID == 5)
             {
                 Manager.Game.IsPress = true;
             }
@@ -60,7 +60,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if(currentWeapon != null)
         {
-            if(currentWeapon.WeaponData.itemName == "Violin")
+            if(currentWeapon.WeaponData.ID == 5)
             {
                 Manager.Game.IsPress = false;
             }
@@ -80,7 +80,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void WeaponSwitch(int _idx)
     {
-        if (currentWeapon != null && currentWeapon.WeaponData.itemName == "Violin")
+        if (currentWeapon != null && currentWeapon.WeaponData.ID == 5)
         {
             Manager.Game.IsPress = false; // 강제로 레이저 끄기
         }
@@ -126,7 +126,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
     }
-
+    
     IEnumerator AttackCor(MusicWeapon musicWeapon)
     {
         musicWeapon.Attack(GetMousePos());
