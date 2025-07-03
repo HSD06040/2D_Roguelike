@@ -25,7 +25,7 @@ public class ViolinProjectile : Projectile
 
     
 
-    public override void Init(Vector2 _targetPos, int _damage, float _speed)
+    public override void Init(Vector2 _targetPos, float _damage, float _speed)
     {
         targetPos = _targetPos;
     }
@@ -75,6 +75,12 @@ public class ViolinProjectile : Projectile
 
     private void UpdateLaser()
     {
+        if (!Manager.Game.IsPress)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector2 start = Manager.Data.PassiveCon.orbitController.transform.position;
         Vector2 end = targetPos;
 

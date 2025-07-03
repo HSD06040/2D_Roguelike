@@ -7,14 +7,14 @@ using UnityEngine.U2D;
 
 public class Projectile : MonoBehaviour
 {
-    protected int damage;
+    protected float damage;
     [SerializeField] private float maxTime;
     public bool IsPass;
     [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
     public GameObject ParticlePrefab;
 
-    public virtual void Init(Vector2 _targetPos, int _damage, float _speed)
+    public virtual void Init(Vector2 _targetPos, float _damage, float _speed)
     {        
         damage = _damage;        
         rigid.velocity = _targetPos * _speed;

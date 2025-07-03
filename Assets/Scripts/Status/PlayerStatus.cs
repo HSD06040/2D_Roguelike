@@ -25,7 +25,6 @@ public class PlayerStatus
 
     public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트    
     public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
-    public FloatStat AttackSize { get; private set; } = new(); // 발사체 크기 퍼센트
      
     public Property<int> CurtHp = new Property<int>();
 
@@ -50,6 +49,10 @@ public class PlayerStatus
     public Action<int> OnCurrentWeaponChanged;
 
     public Action OnPlayerDead;
+
+    public float TotalDamage => (weaponDamage + Damage.Value) * DamageMultiply.Value;
+    public float TotalSpeed => Speed.Value * SpeedMultiply.Value;
+    private float weaponDamage => curWeapon ? curWeapon.WeaponData.AttackDamage[curWeapon.Level] : 1;
 
     #region Bind
     public void AddBindEvent()
@@ -191,19 +194,30 @@ public class PlayerStatus
         }
     }
 
-    public void EquipSlotAccessories(Accessories accessories, int slotIdx)
+    public void EquipSlotAccessories(Accessories accessories, int _idx)
     {
-        PlayerAccessories[slotIdx] = accessories;
-        PlayerAccessories[slotIdx].Effect.RegisterEvents(PlayerAccessories[slotIdx]);
-        OnAccessoriesChanged?.Invoke(slotIdx, accessories);
+        PlayerAccessories[_idx] = accessories;
+
+        if (PlayerAccessories[_idx].Effect != null)
+            PlayerAccessories[_idx].Effect.RegisterEvents(PlayerAccessories[_idx]);
+            
+        PlayerAccessories[_idx].AddStat();
+
+        OnAccessoriesChanged?.Invoke(_idx, accessories);
     }
 
     public void UnEquipAccessories(int _idx)
     {
         if (PlayerAccessories[_idx] == null) return;
 
-        PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
-        PlayerAccessories[_idx].Effect.UnregisterEvents();
+        if (PlayerAccessories[_idx].Effect != null)
+        {
+            PlayerAccessories[_idx].Effect.Revoke(PlayerAccessories[_idx]);
+            PlayerAccessories[_idx].Effect.UnregisterEvents();
+        }
+
+        PlayerAccessories[_idx].RemoveStat();
+
         PlayerAccessories[_idx] = null;
     }
 
@@ -253,7 +267,6 @@ public class PlayerStatus
             case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
-            case StatType.AttackSize: AttackSize.AddModifier(amount, source); break;
             case StatType.Evasion: Evasion.AddModifier(amount, source); break;
             case StatType.DamageMultiply: DamageMultiply.AddModifier(amount, source); break;
             case StatType.SpeedMultiply: SpeedMultiply.AddModifier(amount, source); break;

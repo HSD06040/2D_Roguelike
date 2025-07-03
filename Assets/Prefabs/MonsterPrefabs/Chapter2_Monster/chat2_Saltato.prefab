@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 8807852825573550314}
   - component: {fileID: 4873783017939978113}
   - component: {fileID: 4359717503307452602}
+  - component: {fileID: 2082842565285344675}
   m_Layer: 6
   m_Name: chat2_Saltato
   m_TagString: Monster
@@ -314,3 +315,17 @@ MonoBehaviour:
   <SO>k__BackingField: {fileID: 11400000, guid: 4f92f4ff697a33f49b21b940817b6393, type: 2}
   firePoint: {fileID: 1602487316781536300}
   lastAttackTime: 0
+--- !u!114 &2082842565285344675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133174678725475767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
+  spriteRender: {fileID: 0}

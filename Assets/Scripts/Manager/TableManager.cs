@@ -18,7 +18,19 @@ public class TableManager : Singleton<TableManager>
         chapter2Monster = Resources.LoadAll<GameObject>("Monster/Chapter2");
         chapter3Monster = Resources.LoadAll<GameObject>("Monster/Chapter3");
 
-        acces = Resources.LoadAll<Accessories>("Item/Accessories");
-        useItems = Resources.LoadAll<UseItem>("Item/UseItem");
+        acces = Resources.LoadAll<Accessories>("Data/Item/Accessories");
+        useItems = Resources.LoadAll<UseItem>("Data/Item/UseItem");
+    }
+
+    public Item GetRandomItem()
+    {
+        if(Random.Range(0, 2) == 1)
+        {
+            return acces[Random.Range(0, acces.Length)];
+        }
+        else
+        {
+            return useItems[Random.Range(0, useItems.Length)];
+        }
     }
 }

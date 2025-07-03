@@ -18,12 +18,12 @@ public class AnimationEventProxy : MonoBehaviour
     // 애니메이션 이벤트가 호출할 함수
     public void OnAttackEvent()
     {
-        (_monsterFSM as IAnimationAttackHandler)?.AnimationAttackTrigger();
+        _monsterFSM?.AnimationAttackTrigger();
     }
 
     public void OnAttackEndEvent()
     {
-        (_monsterFSM as IAnimationAttackHandler)?.OnAttackAnimationFinished();
+        _monsterFSM?.OnAttackAnimationFinished();
     }
     public void OnDeathAnimationEnd()
     {

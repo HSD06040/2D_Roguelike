@@ -9,7 +9,7 @@ public class CymbalsProjectile : Projectile
     private float time = 0;    
     private float speed;
 
-    public override void Init(Vector2 _targetPos, int _damage, float _speed)
+    public override void Init(Vector2 _targetPos, float _damage, float _speed)
     { 
         damage = _damage; 
         speed = _speed;

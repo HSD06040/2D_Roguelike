@@ -246,6 +246,5 @@ public class SheetMusic_DieState : BaseState
         _sheetFSM.Owner.Animator.SetTrigger("Die");
 
         _sheetFSM.Owner.DropCoin(_sheetFSM.SO);
-
     }
 }

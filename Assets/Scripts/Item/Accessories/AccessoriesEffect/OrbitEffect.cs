@@ -7,6 +7,7 @@ public class OrbitEffect : AccessoriesEffect
 {
     [Header("Orbit Effect")]
     [SerializeField] private GameObject orbitPrefab;
+    [SerializeField] private float[] damage;
 
     private List<GameObject> orbitObjs = new List<GameObject>();
 
@@ -51,9 +52,12 @@ public class OrbitEffect : AccessoriesEffect
     {
         for (int i = 0; i < count; i++)
         {
-            orbitObjs.Add
-                (Instantiate(orbitPrefab, Manager.Data.PassiveCon.orbitController.transform.position, Quaternion.identity, 
-                Manager.Data.PassiveCon.orbitController.transform));
+            GameObject go = Instantiate(orbitPrefab, Manager.Data.PassiveCon.orbitController.transform.position, Quaternion.identity,
+                Manager.Data.PassiveCon.orbitController.transform);
+
+            orbitObjs.Add(go);
+
+            go.GetComponent<OrbitObject>().Init(damage[count]);
         }
 
         Manager.Data.PassiveCon.orbitController.Init(orbitObjs.ToArray());

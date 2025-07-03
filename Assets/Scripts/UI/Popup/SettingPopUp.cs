@@ -19,8 +19,7 @@ public class SettingPopUp : BaseUI
 
     void Start()
     {
-        //나중에 시작할 떄 setSFX, setBGM을 Manager.Audio에서 Popup시작시 볼륨 량을 받아오기
-
+        
         setBGM.value = SoundSettingData.BGMSetting;
         setSFX.value = SoundSettingData.SFXSetting;
 

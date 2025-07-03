@@ -18,17 +18,20 @@ public static class Utile
 
     private static readonly StringBuilder sb = new StringBuilder();
 
-    public static string Apeend<T>(T text)
+    public static void Apeend<T>(T text)
     {
-        sb.Clear();
-        sb.Append(text);
-        return sb.ToString();
+        sb.Append(text);       
     }
 
-    public static string ApeendLine<T>(T text)
+    public static void AppendLine<T>(T text)
     {
+        sb.AppendLine(text.ToString());       
+    }
+
+    public static string GetText()
+    {
+        string temp = sb.ToString();
         sb.Clear();
-        sb.AppendLine(text.ToString());
-        return sb.ToString();
+        return temp;
     }
 }
