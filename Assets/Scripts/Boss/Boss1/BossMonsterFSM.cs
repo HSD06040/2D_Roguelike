@@ -9,6 +9,7 @@ public class BossMonsterFSM : MonoBehaviour
     public Monster Owner;   
     public bool isPatternPlaying;
     public bool animFinish;
+    [SerializeField] private GameObject portal;
 
     #region AnimHash
     protected static readonly int idleHash = Animator.StringToHash("Idle");
@@ -17,7 +18,7 @@ public class BossMonsterFSM : MonoBehaviour
     protected static readonly int dieHash = Animator.StringToHash("Dead");
     #endregion   
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Owner.SetStats(stat.health, stat.attackPower);
     }
@@ -40,5 +41,7 @@ public class BossMonsterFSM : MonoBehaviour
         }
 
         Owner.spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+
+        portal.SetActive(true);
     }
 }

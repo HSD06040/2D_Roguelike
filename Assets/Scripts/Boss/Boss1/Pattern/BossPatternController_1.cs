@@ -14,7 +14,7 @@ public class BossPatternController_1 : MonoBehaviour
     [SerializeField] private BossPattern cross1;
     [SerializeField] private BossPattern cross2;
 
-    private List<BossPattern> curPatterns;
+    private List<BossPattern> curPatterns = new();
 
     public void CurrentBossPatternStop()
     {
