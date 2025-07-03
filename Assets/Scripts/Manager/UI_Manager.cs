@@ -14,6 +14,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public FadeScreen Fade;
     public PopupText PopupText;
     public PlayerDie PlayerDie;
+    public BoxRewardUI BoxReward;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class UI_Manager : Singleton<UI_Manager>
         ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
         Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
         PopupText = MainCanvas.GetComponentInChildren<PopupText>(true);
+        BoxReward = MainCanvas.GetComponentInChildren<BoxRewardUI>(true);
 
         PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
         PopUpCanvas.transform.parent = transform;
@@ -61,6 +63,5 @@ public class UI_Manager : Singleton<UI_Manager>
     {
         PopUpCanvas.GetComponent<PopUpCanvas>().RemoveUI();
     }
-
 }
 

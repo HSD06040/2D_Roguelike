@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private Camera cam;
-
     public Transform[] WeaponSpawnPos;
 
     [Header("¹«±â")]
@@ -16,9 +14,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     Coroutine attackDelayCor;
     private bool canAttack = true;
+
     private void Start()
-    {
-        cam = Camera.main;
+    {       
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
         defaultWeapon.Init(transform);
         weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;       

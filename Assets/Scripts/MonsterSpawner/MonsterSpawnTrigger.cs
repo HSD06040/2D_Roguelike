@@ -74,7 +74,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private void UnlockDoors()
     {
-        doors.SetActive(false);
+        doors.SetActive(false);         
     }
 
     public void MonsterDied()

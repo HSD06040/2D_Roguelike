@@ -40,11 +40,6 @@ public class BossFSM_3 : BossMonsterFSM
         StateMachine.Update();
     }
 
-    private void Start()
-    {
-        Player ??= GameObject.FindWithTag("Player").transform;
-    } 
-
     public void Attack()
     {
         Vector2 dir = (Player.position - transform.position).normalized;

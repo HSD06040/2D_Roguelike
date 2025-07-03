@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
     [SerializeField] private Transform roomCenter;
     [SerializeField] private float cameraMoveSpeed = 5f;
 
@@ -32,6 +31,7 @@ public class CameraMovement : MonoBehaviour
     {
         if(isCameraMoving && isPlayerinTheRoom)
         {
+            Camera cam = Camera.main;
             Vector3 targetPos = new Vector3(roomCenter.position.x, roomCenter.position.y, cam.transform.position.z);
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, targetPos, cameraMoveSpeed * Time.deltaTime);
 

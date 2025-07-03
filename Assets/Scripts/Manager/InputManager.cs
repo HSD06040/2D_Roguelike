@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class InputManager : Singleton<InputManager>
 {
-    private Camera cam;
-
     private InputActionAsset inputActionAsset;
     private InputActionMap playerMap;
     private InputActionMap uIMap;
@@ -27,12 +25,8 @@ public class InputManager : Singleton<InputManager>
         PlayerBindSetting();
     }
 
-    private void Start()
-    {
-        cam = Camera.main;
-    }
 
-    public Vector2 GetMousePosition() => cam.ScreenToWorldPoint(Input.mousePosition);
+    public Vector2 GetMousePosition() => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
     private void UIBindingSetting()
     {

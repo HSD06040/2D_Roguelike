@@ -11,6 +11,7 @@ public class BossRoomDoor : MonoBehaviour, IInteractable
     private void Start()
     {
         interectionUI.SetActive(false);
+        playerStransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void Interact()
