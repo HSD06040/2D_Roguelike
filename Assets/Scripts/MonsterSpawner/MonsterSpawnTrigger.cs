@@ -92,8 +92,12 @@ public class MonsterSpawnTrigger : MonoBehaviour
             {
                 portal.SetActive(true);
             }
-
         }
+    }
+
+    private void OnDestroy()
+    {
+        Manager.Game.OnMonsterKill -= MonsterDied;
     }
 }    
 
