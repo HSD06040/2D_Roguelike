@@ -440,11 +440,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2307233916922076258, guid: 5b04b218f78a84e4ba450f65f35b4a82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.51
+      value: -4.89
       objectReference: {fileID: 0}
     - target: {fileID: 2307233916922076258, guid: 5b04b218f78a84e4ba450f65f35b4a82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.6
+      value: -14.34
       objectReference: {fileID: 0}
     - target: {fileID: 2307233916922076258, guid: 5b04b218f78a84e4ba450f65f35b4a82, type: 3}
       propertyPath: m_LocalPosition.z
@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5383752193016925111, guid: 5b04b218f78a84e4ba450f65f35b4a82, type: 3}
+      propertyPath: <SO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f1a5d726efac94048aa11beee5d5ea81, type: 2}
     - target: {fileID: 8626657216566550512, guid: 5b04b218f78a84e4ba450f65f35b4a82, type: 3}
       propertyPath: m_Name
       value: chat1_Zombie
