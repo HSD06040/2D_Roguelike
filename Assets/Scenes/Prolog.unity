@@ -304,7 +304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 356378794195988073, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 637448742126551925, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
       propertyPath: m_AnchorMax.x
@@ -357,6 +357,22 @@ PrefabInstance:
     - target: {fileID: 2795683246964954514, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
       propertyPath: m_Name
       value: DialogueUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161421057893219, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161421057893219, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161421057893219, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042161421057893219, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 4324538145394897351, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
@@ -862,7 +878,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 9
   m_TargetDisplay: 0
 --- !u!224 &1831555397
 RectTransform:

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class Box : MonoBehaviour, IInteractable
 {
