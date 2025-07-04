@@ -52,6 +52,9 @@ public class EllieLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if ((1 << 7 & (1 << collision.gameObject.layer)) != 0)
+        {
+            collision.GetComponent<IDamagable>().TakeDamage(1);
+        }
     }
 }

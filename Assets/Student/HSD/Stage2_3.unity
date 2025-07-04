@@ -4836,7 +4836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a08b9ff2b3caa4fa1427bace41f675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: 1d101441155dd914e9c5b139b2490553, type: 2}
   <Player>k__BackingField: {fileID: 256916273}
   Owner: {fileID: 1065011523}
   isPatternPlaying: 0
@@ -7860,9 +7860,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0afe93eed4e604698001e08d21bdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePattern: {fileID: 1975870275}
-  crossRotatePattern: {fileID: 1975870277}
-  crossPattern: {fileID: 1975870278}
+  line: {fileID: 1975870275}
+  crossRotate: {fileID: 1975870277}
+  cross: {fileID: 1975870278}
+  explosion: {fileID: 1975870279}
+  centerTeleport: {fileID: 0}
+  sideTeleport: {fileID: 0}
+  doubleShot: {fileID: 1975870281}
+  laser: {fileID: 1975870282}
   test: {fileID: 1975870282}
 --- !u!114 &1975870277
 MonoBehaviour:
@@ -8014,8 +8019,8 @@ MonoBehaviour:
   fsm: {fileID: 1065011524}
   warningLine: {fileID: 8173824689752125809, guid: 1f5b788545c4890468193c5e438160dd, type: 3}
   count: 24
-  deleteDelay: 0
-  laserDelay: 0
+  deleteDelay: 0.1
+  laserDelay: 0.1
 --- !u!1 &2103146838
 GameObject:
   m_ObjectHideFlags: 0

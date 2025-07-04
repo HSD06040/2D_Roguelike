@@ -36,5 +36,7 @@ public class BossDoubleShot : BossPattern
             }
             yield return Utile.GetDelay(interval);
         }
+
+        OnComplated?.Invoke();
     }    
 }

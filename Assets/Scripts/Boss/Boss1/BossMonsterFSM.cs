@@ -14,7 +14,7 @@ public class BossMonsterFSM : MonoBehaviour
     #region AnimHash
     protected static readonly int idleHash = Animator.StringToHash("Idle");
     protected static readonly int attackHash = Animator.StringToHash("Attack");
-    protected static readonly int runHash = Animator.StringToHash("Run");
+    protected static readonly int moveHash = Animator.StringToHash("Move");
     protected static readonly int dieHash = Animator.StringToHash("Dead");
     #endregion   
 

@@ -9,7 +9,8 @@ public class BossPatternController_2 : MonoBehaviour
     [SerializeField] private BossPattern crossRotate;
     [SerializeField] private BossPattern cross;
     [SerializeField] private BossPattern explosion;
-    [SerializeField] private BossPattern teleport;
+    [SerializeField] private BossPattern centerTeleport;
+    [SerializeField] private BossPattern sideTeleport;
     [SerializeField] private BossPattern doubleShot;
     [SerializeField] private BossPattern laser;
 
@@ -29,7 +30,8 @@ public class BossPatternController_2 : MonoBehaviour
     public void AddCrossRotateEvent(Action action) => crossRotate.OnComplated += action;
     public void AddCrossEvent(Action action) => cross.OnComplated += action;
     public void AddExplosionEvent(Action action) => explosion.OnComplated += action;
-    public void AddTeleportEvent(Action action) => teleport.OnComplated += action;
+    public void AddCenterTeleportEvent(Action action) => centerTeleport.OnComplated += action;
+    public void AddSideTeleportEvent(Action action) => sideTeleport.OnComplated += action;
     public void AddDoubleShotEvent(Action action) => doubleShot.OnComplated += action;
     public void AddLaserEvent(Action action) => laser.OnComplated += action;
 
@@ -66,11 +68,17 @@ public class BossPatternController_2 : MonoBehaviour
         curPatterns.Add(explosion);
     }
 
-    public void PlayTeleportPattern()
+    public void PlayCenterTeleportPattern()
     {
         curPatterns.Clear();
-        teleport.Execute();
-        curPatterns.Add(teleport);
+        centerTeleport.Execute();
+        curPatterns.Add(centerTeleport);
+    }
+    public void PlaySideTeleportPattern()
+    {
+        curPatterns.Clear();
+        sideTeleport.Execute();
+        curPatterns.Add(sideTeleport);
     }
 
     public void PlayDoubleShotPattern()

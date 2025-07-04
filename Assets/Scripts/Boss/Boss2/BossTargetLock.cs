@@ -26,5 +26,7 @@ public class BossTargetLock : BossPattern
             targetRotation = Quaternion.Euler(0f, 0f, angle -90);
             Instantiate(prefab, transform.position, targetRotation).GetComponent<EllieLine>().Init(deleteDelay, laserDelay);
         }
+
+        OnComplated?.Invoke();
     }
 }
