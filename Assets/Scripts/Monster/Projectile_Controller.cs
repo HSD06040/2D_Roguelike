@@ -7,6 +7,7 @@ public class Projectile_Controller : MonoBehaviour
     private Rigidbody2D _rb;
     private int damage;
     private Coroutine _returnToPoolCoroutine;
+    [SerializeField] public float delay = 3f;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class Projectile_Controller : MonoBehaviour
         transform.up = direction;
 
         if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
-        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(5f)); // 수명 5초로 변경
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(delay)); // 수명 5초로 변경
     }
 
     private void OnTriggerEnter2D(Collider2D other)
