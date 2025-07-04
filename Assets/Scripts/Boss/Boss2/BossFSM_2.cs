@@ -32,6 +32,8 @@ public class BossFSM_2 : BossMonsterFSM
         crossRotate = new BossCrossRotateState_2(this, attackHash);
         laser = new BossLaserState_2(this, attackHash);
         die = new BossDieState_2(this, dieHash);
+
+        Owner.OnDied += () => { StateMachine.ChangeState(die); };
     }
 
     private void Update()

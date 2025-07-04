@@ -38,5 +38,6 @@ public class PianoPattern : BossPattern
         }
 
         yield return null;
+        OnComplated?.Invoke();
     }
 }

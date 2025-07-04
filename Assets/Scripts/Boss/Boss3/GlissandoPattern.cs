@@ -35,5 +35,9 @@ public class GlissandoPattern : BossPattern
 
             yield return Utile.GetDelay(interval);
         }
+
+        yield return Utile.GetDelay(delay);
+
+        OnComplated?.Invoke();
     }
 }

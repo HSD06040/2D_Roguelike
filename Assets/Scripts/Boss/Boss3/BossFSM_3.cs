@@ -17,11 +17,12 @@ public class BossFSM_3 : BossMonsterFSM
     public GlissandoState_3 Glissando { get; private set; }
     public PianoBlackState_3 PianoBlack { get; private set; }
     public PianoWhiteState_3 PianoWhite { get; private set; }
-    public BossDieState_3 die { get; private set; }
+    public BossDieState_3 Die { get; private set; }
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         StateMachine = new BossStateMachine<BossFSM_3>();
 
         Idle = new BossIdleState_3(this, idleHash);
@@ -30,9 +31,16 @@ public class BossFSM_3 : BossMonsterFSM
         Glissando = new GlissandoState_3(this, idleHash);
         PianoWhite = new PianoWhiteState_3(this, idleHash);
         PianoBlack = new PianoBlackState_3(this, idleHash);
-        die = new BossDieState_3(this, idleHash);
+        Die = new BossDieState_3(this, idleHash);
 
-        Owner.OnDied += () => { StateMachine.ChangeState(die); };
+        Owner.OnDied += () => { StateMachine.ChangeState(Die); };
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        StateMachine.Initialize(Idle);
     }
 
     private void Update()
@@ -77,6 +85,7 @@ public class TobebenBaseState : BossBaseState<BossFSM_3>
         if(staticTimer <= 0)
         {
             fsm.Attack();
+            staticTimer = .7f;
         }
     }
 
@@ -108,7 +117,7 @@ public class BossIdleState_3 : TobebenBaseState
     {
         base.Update();
 
-        if(timer >= 0 && canPattern)
+        if(timer <= 0 && canPattern)
         {
             switch(Random.Range(0, 5))
             {
@@ -195,6 +204,8 @@ public class LinePatternState_3 : TobebenBaseState
 
 public class BossDieState_3 : BossBaseState<BossFSM_3>
 {
+    private bool isDead;
+
     public BossDieState_3(BossFSM_3 _fsm, int _animHash) : base(_fsm, _animHash)
     {
     }
@@ -203,8 +214,13 @@ public class BossDieState_3 : BossBaseState<BossFSM_3>
     {
         base.Enter();
 
-        fsm.Owner.DropCoin(fsm.stat);
-        Object.Destroy(fsm.Owner.gameObject, 3);
+        if (!isDead)
+        {
+            isDead = true;
+            fsm.Pattern.CurrentBossPatternStop();
+            fsm.Owner.DropCoin(fsm.stat);
+            fsm.StartDieRoutine();
+        }
     }
 
     public override void Exit()

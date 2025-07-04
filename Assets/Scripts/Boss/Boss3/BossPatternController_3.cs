@@ -33,6 +33,7 @@ public class BossPatternController_3 : MonoBehaviour
 
     public void PlayGlissando()
     {
+        Debug.Log("Glissando가 실행되었습니다");
         curPatterns.Clear();
         glissando.Execute();
         curPatterns.Add(glissando);
