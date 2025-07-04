@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
-    [SerializeField] private Image[] slots;   // Ãß°¡µÊ!!! ½½·Ô ¹è°æ (È¸»ö/Èò»ö)
-    [SerializeField] private Image[] weaponIcons;        // Ãß°¡µÊ!!! ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ
+    [SerializeField] private Image[] slots;   // ï¿½ß°ï¿½ï¿½ï¿½!!! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (È¸ï¿½ï¿½/ï¿½ï¿½ï¿½)
+    [SerializeField] private Image[] weaponIcons;        // ï¿½ß°ï¿½ï¿½ï¿½!!! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    [SerializeField] private Sprite selectedSlotSprite;   // Ãß°¡µÊ!!! ¼±ÅÃµÊ ½½·Ô ¹è°æ (Èò»ö)
-    [SerializeField] private Sprite unselectedSlotSprite; // Ãß°¡µÊ!!! ¼±ÅÃ ¾ÈµÊ ¹è°æ (È¸»ö)
+    [SerializeField] private Sprite selectedSlotSprite;   // ï¿½ß°ï¿½ï¿½ï¿½!!! ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½)
+    [SerializeField] private Sprite unselectedSlotSprite; // ï¿½ß°ï¿½ï¿½ï¿½!!! ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½ ï¿½ï¿½ï¿½ (È¸ï¿½ï¿½)
 
     private WeaponSlotPresenter presenter;
 
@@ -22,8 +22,8 @@ public class WeaponSlot : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            slots[i].sprite = unselectedSlotSprite;   //½½·ÔÀº ÀüºÎ ºñÈ°¼ºÈ­ ½ºÇÁ¶óÀÌÆ®·Î ½ÃÀÛ
-            weaponIcons[i].gameObject.SetActive(false); //¾ÆÀÌÄÜÀº ´Ù ²¨ÁÜ
+            slots[i].sprite = unselectedSlotSprite;   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            weaponIcons[i].gameObject.SetActive(false); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 
@@ -43,7 +43,7 @@ public class WeaponSlot : MonoBehaviour
         {
             if( i == _idx )
             {
-                slots[i].sprite = selectedSlotSprite; //¼±ÅÃµÈ°Ç Èò»ö
+                slots[i].sprite = selectedSlotSprite; //ï¿½ï¿½ï¿½ÃµÈ°ï¿½ ï¿½ï¿½ï¿½
             }
             else
             {
@@ -56,11 +56,11 @@ public class WeaponSlot : MonoBehaviour
     {
         if (_weapon == null)
         {
-            weaponIcons[_idx].gameObject.SetActive(false); // ¾ÆÀÌÅÛ ¾øÀ¸¸é ¾ÆÀÌÄÜ ºñÈ°¼ºÈ­
+            weaponIcons[_idx].gameObject.SetActive(false); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
             return;
         }
 
-        weaponIcons[_idx].gameObject.SetActive(true); // ¾ÆÀÌÅÛ ÀÖÀ¸¸é ¾ÆÀÌÄÜ È°¼ºÈ­
-        weaponIcons[_idx].sprite = _weapon.WeaponData.icon; // ¾ÆÀÌÄÜ Ç¥½Ã
+        weaponIcons[_idx].gameObject.SetActive(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
+        weaponIcons[_idx].sprite = _weapon.WeaponData.icon; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
     }
 }

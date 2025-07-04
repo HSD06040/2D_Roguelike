@@ -170,7 +170,7 @@ public class PlayerStatus
         {
             if (item == null) continue;
 
-            if(item.itemName == accessories.itemName)
+            if(item.ID == accessories.ID)
             {
                 match = item;
                 break;
@@ -313,5 +313,18 @@ public class PlayerStatus
         }        
         else
             CurtHp.Value += amount;
+    }
+
+    public void ResetItemUI()
+    {
+        for (int i = 0; i < weaponCount; i++)
+        {
+            OnChangedWeapon?.Invoke(i, null);
+        }
+
+        for (int i = 0; i < accessoriesCount; i++)
+        {
+            OnAccessoriesChanged?.Invoke(i, null);
+        }
     }
 }

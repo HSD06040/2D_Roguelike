@@ -4,7 +4,6 @@ using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class Box : MonoBehaviour, IInteractable
 {
@@ -30,7 +29,7 @@ public class Box : MonoBehaviour, IInteractable
         {
             hasOpended = true;
             animator.SetTrigger("Open");
-            Debug.Log("상자열림");
+            //Debug.Log("상자열림");
             UiOff();
 
             RamdomBoxRewardItem();

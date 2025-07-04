@@ -7,6 +7,7 @@ public class PassiveProjectile : PassiveObject
     private Rigidbody2D rb;
     [SerializeField] private Animator anim;
     [SerializeField] private float speed;
+    private Collider2D[] cols;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class PassiveProjectile : PassiveObject
     {
         base.Init(_damage, _radius);
 
-        Transform target = FindCloseEnemy();
+        Transform target = FindClosestEnemy();
         if (target == null)
         {
             Destroy(gameObject);
@@ -28,24 +29,26 @@ public class PassiveProjectile : PassiveObject
         rb.velocity = dir * speed;
     }
 
-    private Transform FindCloseEnemy()
+    private Transform FindClosestEnemy()
     {
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 30, 1 << 6);
+        int count = Physics2D.OverlapCircleNonAlloc(transform.position, 30f, cols, 1 << 6);
+        if (count == 0) return null;
 
-        float minDistance = Mathf.Infinity;
-        Transform result = null;
+        Transform closest = null;
+        float minDistSq = float.MaxValue;
+        Vector2 selfPos = transform.position;
 
-        foreach (Collider2D col in cols)
+        for (int i = 0; i < count; i++)
         {
-            float distance = Vector2.Distance(transform.position, col.transform.position);
-            if(distance < minDistance)
+            float distSq = ((Vector2)cols[i].transform.position - selfPos).sqrMagnitude;
+            if (distSq < minDistSq)
             {
-                minDistance = distance;
-                result = col.transform;
+                minDistSq = distSq;
+                closest = cols[i].transform;
             }
-        }        
+        }
 
-        return result;
+        return closest;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

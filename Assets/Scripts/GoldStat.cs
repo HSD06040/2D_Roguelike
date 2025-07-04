@@ -9,4 +9,12 @@ public class GoldStat
 
     public FloatStat KillGoldChance = new FloatStat();
     public IntStat KillGoldAmount = new IntStat();
+
+    public void InitGoldStat()
+    {
+        HitGoldChance = new FloatStat();
+        HitGoldAmount = new IntStat();
+        KillGoldAmount = new IntStat();
+        KillGoldChance = new FloatStat();
+    }
 }

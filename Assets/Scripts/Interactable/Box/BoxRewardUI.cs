@@ -14,6 +14,7 @@ public class BoxRewardUI : AnimationUI_Base
     [SerializeField] private float uiLifeTime = 3f;
 
     private Item item;
+    private Coroutine coroutine;
 
     public void BoxRewardDisplay(Item item)
     {
@@ -22,7 +23,13 @@ public class BoxRewardUI : AnimationUI_Base
         itemDescription.text = item.description;
 
         Open();
-        StartCoroutine(UIAutoCloseCoroutine());
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        
+        coroutine = StartCoroutine(UIAutoCloseCoroutine());
 
     }
 
@@ -34,9 +41,7 @@ public class BoxRewardUI : AnimationUI_Base
 
     public override void Open()
     {
-        //Debug.Log("ui IN");
-        //base.Open();
-        //background.SetActive(true);
+ 
         background.SetActive(true);
         Animator animator = GetComponent<Animator>();
         animator.Play("In", 0, 0f);
@@ -46,7 +51,7 @@ public class BoxRewardUI : AnimationUI_Base
     public override void Close()
     {
         base.Close();
-        background.SetActive(false);
+        //background.SetActive(false);
     }
 
 }

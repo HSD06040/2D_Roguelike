@@ -53,7 +53,12 @@ public class FloatStat
         this.value = value;
         isChanged = true;
     }
-   
+
+    public void ClearEvent()
+    {
+        foreach (Action<float> action in OnChanged.GetInvocationList())
+            OnChanged -= action;
+    }
 
     public void Clear() => modifiers.Clear();
 }

@@ -24,7 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
+        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;        
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
@@ -45,7 +45,7 @@ public class PlayerWeaponController : MonoBehaviour
             SetProjectile(currentWeapon);
             if (currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = true;
+                Manager.Game.IsPress.Value = true;
             }
         }
         else
@@ -53,7 +53,7 @@ public class PlayerWeaponController : MonoBehaviour
             SetProjectile(defaultWeapon);
         }
 
-        Manager.Game.OnPlayerAttack?.Invoke();
+        
     }
 
     private void CancelAttack(InputAction.CallbackContext ctx)
@@ -62,7 +62,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if(currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = false;
+                Manager.Game.IsPress.Value = false;
             }
         }
     }
@@ -82,7 +82,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (currentWeapon != null && currentWeapon.WeaponData.ID == 5)
         {
-            Manager.Game.IsPress = false; // 강제로 레이저 끄기
+            Manager.Game.IsPress.Value = false; // 강제로 레이저 끄기
         }
         currentWeapon = weaponSlots[_idx];
         Debug.Log($"WeaponSwitch{currentWeapon}");
@@ -129,11 +129,10 @@ public class PlayerWeaponController : MonoBehaviour
     
     IEnumerator AttackCor(MusicWeapon musicWeapon)
     {
+        Manager.Game.OnPlayerAttack?.Invoke();
         musicWeapon.Attack(GetMousePos());
-        Debug.Log($"1 : {canAttack}");
         canAttack = false;
 
-        Debug.Log($"2 : {canAttack}");
         if(musicWeapon.WeaponData.ID == 1)
         {
             yield return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] * 
@@ -145,9 +144,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        Debug.Log($"3 : {canAttack}");
         canAttack = true;
-        Debug.Log($"4 : {canAttack}");
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();

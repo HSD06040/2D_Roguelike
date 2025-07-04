@@ -9,16 +9,24 @@ public class PassiveEffectController : MonoBehaviour
     private Coroutine invincibleRoutine;
     private static readonly Dictionary<string, Coroutine> effectCoroutineDic = new Dictionary<string, Coroutine>();
 
-    public OrbitController orbitController;
+    private OrbitController _orbitController;
+    public OrbitController orbitController
+    {
+        get
+        {
+            if (_orbitController == null)
+                _orbitController = FindObjectOfType<OrbitController>();
+
+            return _orbitController;
+        }
+    }
 
     private Accessories[] accessories;
 
     private void Start()
     {
-        accessories = Manager.Data.PlayerStatus.PlayerAccessories;
-
-        orbitController = FindObjectOfType<OrbitController>();
-    }
+        accessories = Manager.Data.PlayerStatus.PlayerAccessories;        
+    }    
 
     public void PlayerInvincible(float delay)
     {
@@ -49,7 +57,7 @@ public class PassiveEffectController : MonoBehaviour
     public void StartSkillCoroutine(GameObject prefab, string key, float interval, int count, float delay, float damage, float radius)
     {
         Coroutine newCoroutine = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));
-        effectCoroutineDic[key] = newCoroutine;
+        effectCoroutineDic.Add(key, newCoroutine);
     }
 
     public void StopSkillCoroutine(string key)

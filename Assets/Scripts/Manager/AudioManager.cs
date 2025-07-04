@@ -33,6 +33,7 @@ public class AudioManager : Singleton<AudioManager>
         sfxGroup = audioMixer.FindMatchingGroups("SFX")[0];
           
         audioParent = new GameObject("Audio").transform;
+        audioParent.parent = transform;
         GameObject bgm = new GameObject("BGM_Source");
         bgm.transform.parent = audioParent;
         bgmSource = bgm.AddComponent<AudioSource>();

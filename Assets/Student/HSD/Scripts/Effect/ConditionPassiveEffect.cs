@@ -5,7 +5,8 @@
 //[CreateAssetMenu(menuName = "Effect/Condition")]
 //public class ConditionPassiveEffect : ItemEffect
 //{
-//    [Tooltip("OnHit(피격 시), OnAttack(공격 시), OnTime(일정시간 마다), OnKill(처치 했을 때)")]
+//    [Tooltip("OnHit(피격 시),
+//    (공격 시), OnTime(일정시간 마다), OnKill(처치 했을 때)")]
 //    public PassiveTriggerType passiveTriggerType;
 
 //    public bool IsDiff;
