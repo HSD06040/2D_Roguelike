@@ -29599,6 +29599,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2061733710199069006, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: fullHeart
+      value: 
+      objectReference: {fileID: -1682215090, guid: beebedc609693be4b95d877f744ec71a, type: 3}
+    - target: {fileID: 2061733710199069006, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: emptyHeart
+      value: 
+      objectReference: {fileID: 612606693, guid: beebedc609693be4b95d877f744ec71a, type: 3}
     - target: {fileID: 7878077736366537517, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: defaultWeapon
       value: 
