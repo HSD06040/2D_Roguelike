@@ -53,5 +53,11 @@ public class IntStat
         isChanged = true;
     }
 
+    public void ClearEvent()
+    {
+        foreach (Action<int> action in OnChanged.GetInvocationList())
+            OnChanged -= action;
+    }
+
     public void Clear() => modifiers.Clear();
 }

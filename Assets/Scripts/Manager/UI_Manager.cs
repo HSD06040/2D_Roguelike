@@ -13,10 +13,28 @@ public class UI_Manager : Singleton<UI_Manager>
     public ShopView ShopView;
     public FadeScreen Fade;
     public PopupText PopupText;
-    public PlayerDie PlayerDie;
     public BoxRewardUI BoxReward;
 
     private void Awake()
+    {
+        InitUI();
+    }
+
+    public void ResetUI()
+    {
+        Destroy(MainCanvas.gameObject);
+
+        MainCanvas = Instantiate(Resources.Load<Canvas>("UI/MainCanvas"));
+        MainCanvas.transform.parent = transform;
+
+        AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
+        ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
+        Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
+        PopupText = MainCanvas.GetComponentInChildren<PopupText>(true);
+        BoxReward = MainCanvas.GetComponentInChildren<BoxRewardUI>(true);
+    }
+
+    private void InitUI()
     {
         WorldCanvas = Instantiate(Resources.Load<Canvas>("UI/WorldCanvas"));
         WorldCanvas.transform.parent = transform;
@@ -43,11 +61,6 @@ public class UI_Manager : Singleton<UI_Manager>
     public void OpenAccessoriesChangepanel(Accessories ac)
     {
         AccessoriesChangePanel.OpenChangePanel(ac);
-    }
-
-    public void OpenDieMessage()
-    {
-        PlayerDie.gameObject.SetActive(true);
     }
 
     public T ShowPopUp<T>() where T : BaseUI //스크립트 이름과 UI이름 동일해야함

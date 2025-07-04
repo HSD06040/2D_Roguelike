@@ -22,15 +22,15 @@ public class FadeScreen : MonoBehaviour
             Color color = fadeImage.color;
             color.a = Mathf.Lerp(0f, 1f, timer / _fadeTime);
             fadeImage.color = color;
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
         Color fullVisible = fadeImage.color;
         fullVisible.a = 1f;
         fadeImage.color = fullVisible;
-
-        yield return Utile.GetDelay(_delay);
+        
+        yield return Utile.GetRealTimeDelay(_delay);
 
         timer = 0f;
 
@@ -39,7 +39,7 @@ public class FadeScreen : MonoBehaviour
             Color color = fadeImage.color;
             color.a = Mathf.Lerp(1f, 0f, timer / _fadeTime);
             fadeImage.color = color;
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 

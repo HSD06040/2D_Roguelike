@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public Action OnMonsterKill;
     public Action OnMonsterHit;
     public Action OnPlayerAttack;
+    public Action OnRetry;
 
     //Violin위한 이벤트
     private bool isPress;
@@ -18,7 +19,7 @@ public class GameManager : Singleton<GameManager>
     public event Action<bool> OnPress; 
     
     //플레이어 죽었을 때 이벤트
-    public bool isDead;
+    private bool isDead;
     public bool IsDead { get { return isDead; } set { isDead = value; OnDead?.Invoke(isDead); } }
     public event Action<bool> OnDead;
 
@@ -39,24 +40,10 @@ public class GameManager : Singleton<GameManager>
 
     #region Pause
 
-    private PlayerController playerController;
-
-    private void Start()
-    {
-        playerController = FindObjectOfType<PlayerController>();
-    }
-
     private void OnEnable()
     {
         OnPause += Pause;
         OnDead += PlayerDead;
-
-    }
-
-    private void OnDisable()
-    {
-        OnPause -= Pause;
-        OnDead -= PlayerDead;
     }
 
     private void Update()
@@ -73,13 +60,11 @@ public class GameManager : Singleton<GameManager>
         if(_isPause)
         {
             TimeStop();
-            playerController.enabled = false;
             Manager.UI.ShowPopUp<PausePopUp>();
         }
         else
         {
             TimeRestart();
-            playerController.enabled = true;
             Manager.UI.ClosePopUp();
         }
     }
@@ -89,7 +74,6 @@ public class GameManager : Singleton<GameManager>
         if(_isDead)
         {
             TimeStop();
-            playerController.enabled = false;
             Manager.UI.ShowPopUp<PlayerDie>();
         }
     }
