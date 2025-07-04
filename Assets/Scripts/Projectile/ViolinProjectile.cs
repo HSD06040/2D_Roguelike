@@ -30,14 +30,14 @@ public class ViolinProjectile : Projectile
     }
     private void OnEnable()
     {
-        Manager.Game.OnPress += PressLaser;
         electObj = Instantiate(elecParticle, transform);
+        Manager.Game.IsPress.AddEvent(PressLaser);
     }
 
     private void OnDisable()
     {
+        Manager.Game.IsPress.RemoveEvent(PressLaser);
         Destroy(electObj);
-        Manager.Game.OnPress -= PressLaser;
     }
 
 
@@ -74,9 +74,8 @@ public class ViolinProjectile : Projectile
 
     private void UpdateLaser()
     {
-        if (!Manager.Game.IsPress)
+        if (!Manager.Game.IsPress.Value)
         {
-            Destroy(gameObject);
             return;
         }
 

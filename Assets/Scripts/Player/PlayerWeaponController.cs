@@ -45,7 +45,7 @@ public class PlayerWeaponController : MonoBehaviour
             SetProjectile(currentWeapon);
             if (currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = true;
+                Manager.Game.IsPress.Value = true;
             }
         }
         else
@@ -62,7 +62,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if(currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = false;
+                Manager.Game.IsPress.Value = false;
             }
         }
     }
@@ -82,7 +82,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (currentWeapon != null && currentWeapon.WeaponData.ID == 5)
         {
-            Manager.Game.IsPress = false; // 강제로 레이저 끄기
+            Manager.Game.IsPress.Value = false; // 강제로 레이저 끄기
         }
         currentWeapon = weaponSlots[_idx];
         Debug.Log($"WeaponSwitch{currentWeapon}");
