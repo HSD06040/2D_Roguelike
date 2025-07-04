@@ -18,6 +18,7 @@ public class GoldPanel : MonoBehaviour
     private void OnEnable()
     {
         goldPresenter.AddEvent();
+        UpdateGold(Manager.Data.Gold.Value);
     }
 
     private void OnDisable()

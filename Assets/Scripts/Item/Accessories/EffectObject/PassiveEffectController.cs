@@ -16,7 +16,11 @@ public class PassiveEffectController : MonoBehaviour
     private void Start()
     {
         accessories = Manager.Data.PlayerStatus.PlayerAccessories;
+        Find();
+    }
 
+    public void Find()
+    {
         orbitController = FindObjectOfType<OrbitController>();
     }
 

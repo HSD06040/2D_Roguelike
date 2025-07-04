@@ -7,7 +7,7 @@ public class UI_Manager : Singleton<UI_Manager>
 {
     public Canvas WorldCanvas;
     public Canvas MainCanvas;
-    public Canvas PopUpCanvas;
+    public Canvas PopUpCanvas;    
 
     public AccessoriesChangePanel AccessoriesChangePanel;
     public ShopView ShopView;
@@ -22,17 +22,9 @@ public class UI_Manager : Singleton<UI_Manager>
 
     public void ResetUI()
     {
-        Destroy(MainCanvas.gameObject);
-
-        MainCanvas = Instantiate(Resources.Load<Canvas>("UI/MainCanvas"));
-        MainCanvas.transform.parent = transform;
-
-        AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
-        ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
-        Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
-        PopupText = MainCanvas.GetComponentInChildren<PopupText>(true);
-        BoxReward = MainCanvas.GetComponentInChildren<BoxRewardUI>(true);
-    }
+        MainCanvas.gameObject.SetActive(false);
+        MainCanvas.gameObject.SetActive(true);
+    }   
 
     private void InitUI()
     {
@@ -44,9 +36,12 @@ public class UI_Manager : Singleton<UI_Manager>
 
         AccessoriesChangePanel = MainCanvas.GetComponentInChildren<AccessoriesChangePanel>(true);
         ShopView = MainCanvas.GetComponentInChildren<ShopView>(true);
-        Fade = MainCanvas.GetComponentInChildren<FadeScreen>(true);
         PopupText = MainCanvas.GetComponentInChildren<PopupText>(true);
         BoxReward = MainCanvas.GetComponentInChildren<BoxRewardUI>(true);
+
+        Canvas fadeCanvas = Instantiate(Resources.Load<Canvas>("UI/FadeCanvas"));
+        fadeCanvas.transform.parent = transform;
+        Fade = fadeCanvas.GetComponentInChildren<FadeScreen>(true);
 
         PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
         PopUpCanvas.transform.parent = transform;
