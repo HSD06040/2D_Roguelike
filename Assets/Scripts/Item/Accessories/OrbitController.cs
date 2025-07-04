@@ -8,7 +8,7 @@ public class OrbitController : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float rotSpeed;
     private float angle;
-    [SerializeField] private GameObject[] objs;
+    public GameObject[] objs;
 
     public void Init(GameObject[] _objs)
     {

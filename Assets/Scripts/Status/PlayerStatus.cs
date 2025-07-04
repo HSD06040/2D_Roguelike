@@ -315,7 +315,7 @@ public class PlayerStatus
             CurtHp.Value += amount;
     }
 
-    public void ResetItems()
+    public void ResetItemUI()
     {
         for (int i = 0; i < weaponCount; i++)
         {
