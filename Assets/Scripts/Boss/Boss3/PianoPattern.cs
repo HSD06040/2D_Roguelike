@@ -12,7 +12,7 @@ public class PianoPattern : BossPattern
     private static readonly Vector3 blackScale = new Vector3(0.9431068f, 2.204891f, 1);
     private static readonly Vector3 whiteScale = new Vector3(1.235714f, 4.5f, 1);
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         if(type == PianoPatternType.WhiteAttak)
         {

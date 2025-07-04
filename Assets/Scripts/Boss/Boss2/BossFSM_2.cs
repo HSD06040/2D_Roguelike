@@ -16,8 +16,9 @@ public class BossFSM_2 : BossMonsterFSM
     public BossCrossState_1 cross { get; private set; }
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         StateMachine = new BossStateMachine<BossFSM_2>();
     }
 
@@ -26,8 +27,8 @@ public class BossFSM_2 : BossMonsterFSM
         StateMachine.Update();
     }
 
-    private void Start()
+    protected override void Start()
     {
-
+        base.Start();
     }
 }

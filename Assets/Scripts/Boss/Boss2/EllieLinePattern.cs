@@ -37,7 +37,7 @@ public class EllieLinePattern : BossPattern
     [SerializeField] private float[] leftAngle;
     [SerializeField] private float[] rightAngle;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         Init();
         SetupLines();

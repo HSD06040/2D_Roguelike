@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossMonsterFSM : MonoBehaviour
 {
     public MonsterStat stat;
-    public Transform Player {  get; private set; }
+    [field: SerializeField] public Transform Player {  get; private set; }
     public Monster Owner;   
     public bool isPatternPlaying;
     public bool animFinish;

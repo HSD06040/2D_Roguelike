@@ -5,28 +5,36 @@ using UnityEngine;
 public class EllieLine : MonoBehaviour
 {
     private float timer;
+    private float duration = .3f;
+    private float deleteDelay;
+
+    public void Init(float _deleteDelay, float _duration)
+    {
+        duration = _duration;
+        deleteDelay = _deleteDelay;
+    }
 
     private void Start()
     {
-        StartCoroutine(Routine(.3f));
+        StartCoroutine(Routine());
     }
 
-    private IEnumerator Routine(float _duration)
+    private IEnumerator Routine()
     {
         Vector3 start = transform.localScale;
         Vector3 end = transform.localScale + new Vector3(0, 13, 0);
 
         timer = 0;
-        while (timer < _duration)
+        while (timer < duration)
         {
-            transform.localScale = Vector3.Lerp(start, end, Mathf.Clamp01(timer / _duration));
+            transform.localScale = Vector3.Lerp(start, end, Mathf.Clamp01(timer / duration));
             timer += Time.deltaTime;
             yield return null;
         }
 
         transform.localScale = end;
 
-        yield return Utile.GetDelay(12);
+        yield return Utile.GetDelay(deleteDelay);
 
         start = transform.localScale;
         end = new Vector3(0, transform.localScale.y, transform.localScale.z);
@@ -40,5 +48,10 @@ public class EllieLine : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }

@@ -161,7 +161,7 @@ public class PianoBlackState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
-        fsm.Pattern.PlayPianoBlacck();
+        fsm.Pattern.PlayPianoBlack();
     }
 }
 
