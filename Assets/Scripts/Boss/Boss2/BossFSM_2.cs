@@ -97,7 +97,8 @@ public class BossTeleportState_2 : BossBaseState<BossFSM_2>
         else
         {
             fsm.Pattern.PlayCenterTeleportPattern();
-        }
+            fsm.CreateShockWave();
+        } 
     }
 
     public override void Exit()

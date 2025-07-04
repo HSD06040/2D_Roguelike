@@ -10,6 +10,7 @@ public class BossMonsterFSM : MonoBehaviour
     public bool isPatternPlaying;
     public bool animFinish;
     [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject shockWave;
 
     #region AnimHash
     protected static readonly int idleHash = Animator.StringToHash("Idle");
@@ -49,5 +50,10 @@ public class BossMonsterFSM : MonoBehaviour
         portal.SetActive(true);
 
         Destroy(gameObject, 2);
+    }
+
+    public void CreateShockWave()
+    {
+        Instantiate(shockWave, transform.position, Quaternion.identity);
     }
 }

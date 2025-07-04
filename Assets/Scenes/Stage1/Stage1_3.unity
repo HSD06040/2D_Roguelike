@@ -197,15 +197,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2700711877291533395, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2700711877291533395, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2700711877291533395, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6116423329824656736, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
       propertyPath: portal
