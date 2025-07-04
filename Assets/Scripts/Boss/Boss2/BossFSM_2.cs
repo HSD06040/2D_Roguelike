@@ -42,6 +42,8 @@ public class BossFSM_2 : BossMonsterFSM
     protected override void Start()
     {
         base.Start();
+
+        StateMachine.Initialize(idle);
     }
 
     public void ChangeIdleState() => StateMachine.ChangeState(idle);
@@ -112,21 +114,23 @@ public class BossTeleportState_2 : BossBaseState<BossFSM_2>
     {
         if(beforeCenter)
         {
+            switch (Random.Range(0, 3))
+            {
+                case 0: fsm.StateMachine.ChangeState(fsm.explosion); break;
+                case 1: fsm.StateMachine.ChangeState(fsm.laser); break;
+                case 2: fsm.StateMachine.ChangeState(fsm.doubleShot); break;
+            }            
+        }
+        else
+        {
             switch (Random.Range(0, 2))
             {
                 case 0: fsm.StateMachine.ChangeState(fsm.cross); break;
                 case 1: fsm.StateMachine.ChangeState(fsm.crossRotate); break;
             }
         }
-        else
-        {
-            switch (Random.Range(0, 3))
-            {
-                case 0: fsm.StateMachine.ChangeState(fsm.explosion); break;
-                case 1: fsm.StateMachine.ChangeState(fsm.laser); break;
-                case 2: fsm.StateMachine.ChangeState(fsm.doubleShot); break;
-            }
-        }
+
+        beforeCenter = !beforeCenter;
     }
 }
 

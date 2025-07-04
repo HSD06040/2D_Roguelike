@@ -7788,6 +7788,7 @@ GameObject:
   - component: {fileID: 1975870278}
   - component: {fileID: 1975870279}
   - component: {fileID: 1975870280}
+  - component: {fileID: 1975870283}
   - component: {fileID: 1975870281}
   - component: {fileID: 1975870282}
   m_Layer: 0
@@ -7864,8 +7865,8 @@ MonoBehaviour:
   crossRotate: {fileID: 1975870277}
   cross: {fileID: 1975870278}
   explosion: {fileID: 1975870279}
-  centerTeleport: {fileID: 0}
-  sideTeleport: {fileID: 0}
+  centerTeleport: {fileID: 1975870283}
+  sideTeleport: {fileID: 1975870280}
   doubleShot: {fileID: 1975870281}
   laser: {fileID: 1975870282}
   test: {fileID: 1975870282}
@@ -7898,8 +7899,8 @@ MonoBehaviour:
     angleOffset: 0
     offset: 4
     count: 20
-    duration: 0.7
-    interval: 3.5
+    duration: 0.5
+    interval: 1
 --- !u!114 &1975870278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7928,8 +7929,8 @@ MonoBehaviour:
     totalAngle: 360
     angleOffset: 0
     offset: 4
-    count: 50
-    duration: 0.7
+    count: 30
+    duration: 0.5
     interval: 0.4
 --- !u!114 &1975870279
 MonoBehaviour:
@@ -7967,8 +7968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  interval: 0
-  duration: 0
+  interval: 1
+  duration: 1
   boss: {fileID: 1065011523}
   fsm: {fileID: 1065011524}
   center: {fileID: 1859295180}
@@ -7995,7 +7996,7 @@ MonoBehaviour:
   duration: 0.1
   boss: {fileID: 1065011523}
   fsm: {fileID: 1065011524}
-  count: 3
+  count: 12
   burstCount: 3
   spacing: 0.4
   projectileInterval: 0.1
@@ -8021,6 +8022,30 @@ MonoBehaviour:
   count: 24
   deleteDelay: 0.1
   laserDelay: 0.1
+--- !u!114 &1975870283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975870273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fef4b28aea40c47b82a84feec23898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  interval: 1
+  duration: 1
+  boss: {fileID: 1065011523}
+  fsm: {fileID: 1065011524}
+  center: {fileID: 1859295180}
+  sides:
+  - {fileID: 308796368}
+  - {fileID: 1920221275}
+  - {fileID: 975130831}
+  - {fileID: 1081590260}
+  isCenter: 1
 --- !u!1 &2103146838
 GameObject:
   m_ObjectHideFlags: 0

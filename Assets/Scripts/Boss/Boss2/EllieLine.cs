@@ -6,7 +6,7 @@ public class EllieLine : MonoBehaviour
 {
     private float timer;
     private float duration = .3f;
-    private float deleteDelay;
+    private float deleteDelay = 12f;
 
     public void Init(float _deleteDelay, float _duration)
     {
