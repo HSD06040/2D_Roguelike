@@ -5,32 +5,54 @@ using UnityEngine.UI;
 
 public class AccessoriesSlot : MonoBehaviour
 {
-    [SerializeField] protected Image icon;    
+    [SerializeField] private Image background;
+    [SerializeField] protected Image icon;
+    [SerializeField] private Sprite filledSlot;
+    [SerializeField] private Sprite emptySlot;
+
+
     [SerializeField] protected Accessories accessories;    
 
     public void UpdateSlot(Accessories ac)
     {
-        if (ac == null)
+        accessories = ac;
+        //if (ac == null)
+        //{
+        //    icon.sprite = null;
+        //    icon.color = Color.clear;
+        //    return;
+        //}
+
+        if(ac == null)
         {
-            icon.sprite = null;
-            icon.color = Color.clear;
+            icon.gameObject.SetActive(false);
+            background.sprite = emptySlot;
             return;
         }
-
-        accessories = ac;
+        background.sprite = filledSlot;
         icon.sprite = accessories.icon;
-        icon.color = Color.white;
+        icon.gameObject.SetActive(true);
+        //icon.color = Color.white;
     }
     public void UpdateSlot()
     {
         if (accessories == null)
         {
-            icon.sprite = null;
-            icon.color = Color.clear;
-            return;
-        }        
 
+            icon.gameObject.SetActive(false);
+            background.sprite = emptySlot;
+            //return;
+
+            icon.sprite = null;
+            //icon.color = Color.clear;
+            return;
+        }
+
+        //background.sprite = filledSlot;
         icon.sprite = accessories.icon;
-        icon.color = Color.white;
+        icon.gameObject.SetActive(true);
+        
+
+        //icon.color = Color.white;
     }
 }

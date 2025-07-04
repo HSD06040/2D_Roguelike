@@ -57,7 +57,7 @@ public class PassiveEffectController : MonoBehaviour
     public void StartSkillCoroutine(GameObject prefab, string key, float interval, int count, float delay, float damage, float radius)
     {
         Coroutine newCoroutine = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));
-        effectCoroutineDic[key] = newCoroutine;
+        effectCoroutineDic.Add(key, newCoroutine);
     }
 
     public void StopSkillCoroutine(string key)
