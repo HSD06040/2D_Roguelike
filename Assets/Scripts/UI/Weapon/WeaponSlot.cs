@@ -37,8 +37,12 @@ public class WeaponSlot : MonoBehaviour
 
     public void UpdateWeaponSlot(int _idx, MusicWeapon _weapon)
     {
-        if (_weapon == null) return;
-        
+        if (_weapon == null)
+        {
+            weaponImages[_idx].sprite = null;
+            weaponImages[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.clear;
+            return;
+        }
         weaponImages[_idx].sprite = _weapon.WeaponData.icon;
         weaponImages[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.clear;
     }

@@ -27,13 +27,19 @@ public class DataManager : Singleton<DataManager>
         PassiveCon.transform.parent = transform;
 
         downloader = new DataDownloader();
-        StartCoroutine(downloader.DownloadData());
-
-        SetupPlayerStat();
+        StartCoroutine(downloader.DownloadData());        
     }
 
-    private void SetupPlayerStat()
+    private void Start()
     {
+        ResetPlayerStat();
+    }
+
+    public void ResetPlayerStat()
+    {
+        Gold.Value = 0;
+        PlayerStatus = new();
+
         PlayerStatus.MaxHp.SetBaseStat(10);
         PlayerStatus.Speed.SetBaseStat(5);
         PlayerStatus.SpeedMultiply.SetBaseStat(1);
@@ -41,12 +47,15 @@ public class DataManager : Singleton<DataManager>
         PlayerStatus.Damage.SetBaseStat(10);
         PlayerStatus.AttackSpeed.SetBaseStat(1);
         PlayerStatus.Evasion.SetBaseStat(0);
-    }
 
-    private void Start()
-    {
+        GoldStat.InitGoldStat();
         PlayerStatus.AddBindEvent();
-    }
+        Manager.UI.ResetUI();
+        PlayerStatus.ResetItems();
+
+        Manager.Pool.ResetPool();
+        PassiveCon.Find();
+    } 
 
     public bool IsHaveGold(int amount)
     {

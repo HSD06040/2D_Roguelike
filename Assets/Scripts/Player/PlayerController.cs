@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
 
     private void LookAtMouse()
     {
+        if (Manager.Game.IsDead) return;
+
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
         Vector2 dir = MousePos - (Vector2)transform.position; //플레이어에서 마우스 방향
 
