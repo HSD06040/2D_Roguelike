@@ -15,6 +15,8 @@ public class PlayerWeaponController : MonoBehaviour
     Coroutine attackDelayCor;
     private bool canAttack = true;
 
+    Coroutine showStatusCor;
+    Property<bool> isShowStatus = new();
     private void Start()
     {       
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
@@ -28,6 +30,9 @@ public class PlayerWeaponController : MonoBehaviour
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
+        Manager.Input.GetPlayerBind("Status").AddStartedEvent(ShowStatus);
+        Manager.Input.GetPlayerBind("Status").AddCanceledEvent(CloseStatus);
+        isShowStatus.AddEvent(ShowStatusView);
     }
 
     private void OnDisable()
@@ -36,6 +41,33 @@ public class PlayerWeaponController : MonoBehaviour
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").RemoveStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").RemoveCanceledEvent(CancelAttack);
+        Manager.Input.GetPlayerBind("Status").RemoveStartedEvent(ShowStatus);
+        Manager.Input.GetPlayerBind("Status").RemoveCanceledEvent(CloseStatus);
+        isShowStatus.RemoveEvent(ShowStatusView);
+    }
+
+    private void ShowStatus(InputAction.CallbackContext ctx)
+    {
+        if (!Manager.Game.IsDead && gameObject != null)
+            isShowStatus.Value = true;
+    }
+
+    private void CloseStatus(InputAction.CallbackContext ctx)
+    {
+        if(isShowStatus.Value && gameObject != null)
+            isShowStatus.Value = false;
+    }
+
+    private void ShowStatusView(bool value)
+    {
+        if(value)
+        {
+            Manager.UI.StatusView.gameObject.SetActive(true);
+        }
+        else
+        {
+            Manager.UI.StatusView.gameObject.SetActive(false);
+        }
     }
 
     private void Attack(InputAction.CallbackContext ctx)
