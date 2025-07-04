@@ -41,9 +41,7 @@ public class ShopView : AnimationUI_Base
             slotUIs[i].SetData(items[i], i, this);
             slotUIs[i].Selected(false);
      
-        }
-        
-        
+        }            
     }
 
     public void onSlotSelected(int index)

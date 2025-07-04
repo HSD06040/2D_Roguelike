@@ -20,11 +20,11 @@ MonoBehaviour:
   triggerTypes: 05000000
   goldCount: 320000003c0000004b00000064000000
   stats:
-  - statType: 7
-    value: 10
-  - statType: 7
-    value: 15
-  - statType: 7
-    value: 25
-  - statType: 7
-    value: 40
+  - statType: 6
+    value: 0.1
+  - statType: 6
+    value: 0.2
+  - statType: 6
+    value: 0.3
+  - statType: 6
+    value: 0.4
