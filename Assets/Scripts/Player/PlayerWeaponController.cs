@@ -26,7 +26,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;        
+        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
+        Debug.Log("Add Event");
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
@@ -102,8 +103,9 @@ public class PlayerWeaponController : MonoBehaviour
     #region List<string>형식으로 weapon받아오기
     public void AddMusicWeapon(int idx, MusicWeapon _musicWeapon)
     {
+        Debug.Log("Invoke Event");
         if (_musicWeapon == null) return;
-
+        Debug.Log("Not Return Event");
         MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);        
         weaponSlots[idx] = weapon;
         weapon.Init(transform);
