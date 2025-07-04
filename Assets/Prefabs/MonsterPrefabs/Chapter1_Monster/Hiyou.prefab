@@ -275,7 +275,7 @@ MonoBehaviour:
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
   interval: 0
   duration: 0
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   isRotate: 0
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
@@ -326,7 +326,7 @@ MonoBehaviour:
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
   interval: 0
   duration: 0
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
@@ -357,7 +357,7 @@ MonoBehaviour:
   prefab: {fileID: 742442879696141984, guid: 48bdff3b6ec0b7e49a80c3720d785e67, type: 3}
   interval: 0.4
   duration: 1
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   effect: {fileID: 1888330866102894556, guid: e983fb7ddc36ddd4bb5337200d62c757, type: 3}
   attackEffect: {fileID: 7475459639825081966, guid: c98787e93d6b6fd4a94a48d60bb43a2d, type: 3}
@@ -380,7 +380,7 @@ MonoBehaviour:
   prefab: {fileID: 5305079132343703868, guid: c4dd5ef807ed0a348a8122d70a0c34f0, type: 3}
   interval: 0
   duration: 1
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   spawnPoints:
   - {fileID: 1239786329705157202}
@@ -400,7 +400,7 @@ MonoBehaviour:
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
   interval: 0
   duration: 0
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
@@ -431,7 +431,7 @@ MonoBehaviour:
   prefab: {fileID: 7431734696087755504, guid: 8b8a7156050cbc646b49b2a4568f1662, type: 3}
   interval: 0
   duration: 0
-  Boss: {fileID: 1785076859981665504}
+  boss: {fileID: 0}
   fsm: {fileID: 6116423329824656736}
   isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
@@ -529,7 +529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7809236192987518534
 Transform:
   m_ObjectHideFlags: 0
@@ -566,6 +566,7 @@ MonoBehaviour:
   hitEffectDuration: 0.15
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
+  FacingDirection: 0
   spriteRenderer: {fileID: 1237115332692381881}
   Invincible: 0
 --- !u!114 &6116423329824656736
@@ -581,10 +582,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 11400000, guid: 7c2548d4c9caf124a8238d302d69dcfb, type: 2}
+  <Player>k__BackingField: {fileID: 0}
   Owner: {fileID: 1785076859981665504}
   isPatternPlaying: 0
   animFinish: 0
   portal: {fileID: 0}
+  shockWave: {fileID: 7005016606267636598, guid: 0936495f70ffb19488eb8971a8b58473, type: 3}
   Pattern: {fileID: 8376687299898749226}
 --- !u!50 &576527943305160168
 Rigidbody2D:
@@ -734,15 +737,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2547606700633601281, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2547606700633601281, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2547606700633601281, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5083910985547538081, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_Pivot.x

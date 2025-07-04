@@ -37,7 +37,7 @@ public class EllieLinePattern : BossPattern
     [SerializeField] private float[] leftAngle;
     [SerializeField] private float[] rightAngle;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         Init();
         SetupLines();
@@ -55,6 +55,8 @@ public class EllieLinePattern : BossPattern
             Instantiate(prefab, lineInfos[i].position, Quaternion.Euler(0, 0, lineInfos[i].rotationZ));
             yield return Utile.GetDelay(interval);
         }
+
+        OnComplated?.Invoke();
     }
 
     private void SetupLines()

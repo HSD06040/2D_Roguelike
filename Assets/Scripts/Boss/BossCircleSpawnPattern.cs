@@ -18,7 +18,7 @@ public class BossCircleSpawnPattern : BossPattern
     [SerializeField] private Transform[] transforms;
     [SerializeField] private TargetType targetType;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         Instantiate(effect, boss.transform.position, Quaternion.identity);
 

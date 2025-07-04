@@ -7,7 +7,7 @@ public class BossLinePattern : BossPattern
     [SerializeField] private BossPatternObject[] objs;
     [SerializeField] private float delay;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         yield return Utile.GetDelay(delay);
 
@@ -22,5 +22,7 @@ public class BossLinePattern : BossPattern
             objs[i].Setup(duration, prefab, Vector2.zero, false);
             yield return Utile.GetDelay(interval);
         }
+
+        OnComplated?.Invoke();
     }    
 }

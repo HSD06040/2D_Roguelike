@@ -106,6 +106,7 @@ public class BossTeleportState_1 : PatternState
         base.Enter();
         fsm.Owner.Invincible = true;
         fsm.StartCoroutine(FadeOutCoroutine());
+        fsm.CreateShockWave();
     }
 
     private void ChangeState() => fsm.StateMachine.ChangeState(fsm.idle);
@@ -194,6 +195,7 @@ public class BossDoubleCrossState_1 : PatternState
         base.Enter();
 
         fsm.Pattern.PlayDoubleCross();
+        fsm.CreateShockWave();
     }
 
     public override void Exit()

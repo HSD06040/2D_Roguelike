@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9003612798119972602}
   - component: {fileID: 3500162821987041824}
   - component: {fileID: 143454104761595046}
-  - component: {fileID: 4208030361084659315}
+  - component: {fileID: 6023918001748983613}
   m_Layer: 0
-  m_Name: Line
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7792489968630464945}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.7123154, w: 0.70185953}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7123139, w: 0.701861}
   m_LocalPosition: {x: -7.79, y: 10.2, z: 0}
-  m_LocalScale: {x: -0.08, y: 0, z: 1}
+  m_LocalScale: {x: 0.16, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,11 +72,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 783316077
-  m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingLayerID: -132688399
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: efc65169ace592c43b1cd12c9dac7198, type: 3}
-  m_Color: {r: 0.6792453, g: 0.0993236, b: 0.0993236, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26574bcba9f9a174fab88894caa4c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &4208030361084659315
+--- !u!61 &6023918001748983613
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
