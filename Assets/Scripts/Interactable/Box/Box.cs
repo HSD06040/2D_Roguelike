@@ -30,7 +30,7 @@ public class Box : MonoBehaviour, IInteractable
         {
             hasOpended = true;
             animator.SetTrigger("Open");
-            Debug.Log("상자열림");
+            //Debug.Log("상자열림");
             UiOff();
 
             RamdomBoxRewardItem();
