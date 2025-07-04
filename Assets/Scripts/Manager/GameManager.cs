@@ -14,9 +14,6 @@ public class GameManager : Singleton<GameManager>
     public Action OnRetry;
 
     //Violin위한 이벤트
-    //private bool isPress;
-    //public bool IsPress { get { return isPress; } set { isPress = value; OnPress?.Invoke(isPress); } }
-    //public event Action<bool> OnPress; 
     public Property<bool> IsPress = new();
     
     //플레이어 죽었을 때 이벤트
