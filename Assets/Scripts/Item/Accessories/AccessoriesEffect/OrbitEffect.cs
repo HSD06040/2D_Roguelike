@@ -46,6 +46,7 @@ public class OrbitEffect : AccessoriesEffect
                 Destroy(obj);
         }
         orbitObjs.Clear();
+        Manager.Data.PassiveCon.orbitController.objs = new GameObject[0];
     }
 
     private void CreateOrbitObject(int count)

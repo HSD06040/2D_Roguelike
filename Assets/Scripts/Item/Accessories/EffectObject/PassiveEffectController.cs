@@ -9,20 +9,24 @@ public class PassiveEffectController : MonoBehaviour
     private Coroutine invincibleRoutine;
     private static readonly Dictionary<string, Coroutine> effectCoroutineDic = new Dictionary<string, Coroutine>();
 
-    public OrbitController orbitController;
+    private OrbitController _orbitController;
+    public OrbitController orbitController
+    {
+        get
+        {
+            if (_orbitController == null)
+                _orbitController = FindObjectOfType<OrbitController>();
+
+            return _orbitController;
+        }
+    }
 
     private Accessories[] accessories;
 
     private void Start()
     {
-        accessories = Manager.Data.PlayerStatus.PlayerAccessories;
-        Find();
-    }
-
-    public void Find()
-    {
-        orbitController = FindObjectOfType<OrbitController>();
-    }
+        accessories = Manager.Data.PlayerStatus.PlayerAccessories;        
+    }    
 
     public void PlayerInvincible(float delay)
     {

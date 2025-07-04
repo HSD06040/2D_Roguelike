@@ -49,12 +49,11 @@ public class DataManager : Singleton<DataManager>
         PlayerStatus.Evasion.SetBaseStat(0);
 
         GoldStat.InitGoldStat();
-        PlayerStatus.AddBindEvent();
         Manager.UI.ResetUI();
-        PlayerStatus.ResetItems();
+        PlayerStatus.ResetItemUI();
+        PlayerStatus.AddBindEvent();
 
         Manager.Pool.ResetPool();
-        PassiveCon.Find();
     } 
 
     public bool IsHaveGold(int amount)

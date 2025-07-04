@@ -24,7 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
+        Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;        
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
