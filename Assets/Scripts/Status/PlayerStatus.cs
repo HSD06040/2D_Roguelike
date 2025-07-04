@@ -170,7 +170,7 @@ public class PlayerStatus
         {
             if (item == null) continue;
 
-            if(item.itemName == accessories.itemName)
+            if(item.ID == accessories.ID)
             {
                 match = item;
                 break;
