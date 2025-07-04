@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             interactableTarget = interactable;
             interactableTarget.UiOn();
-            Debug.Log("E키로 상호작용 가능한 타겟: ");
+            //Debug.Log("E키로 상호작용 가능한 타겟: ");
         }
     }
 
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
             {
                 interactableTarget.UiOff();
                 interactableTarget = null;
-                Debug.Log("멀어져서 상호작용 불가능해진 타겟: ");
+                //Debug.Log("멀어져서 상호작용 불가능해진 타겟: ");
             }
             
         }
