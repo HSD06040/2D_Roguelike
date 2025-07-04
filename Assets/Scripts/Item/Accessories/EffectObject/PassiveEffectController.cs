@@ -26,31 +26,48 @@ public class PassiveEffectController : MonoBehaviour
     private void Start()
     {
         accessories = Manager.Data.PlayerStatus.PlayerAccessories;        
-    }    
-
-    public void PlayerInvincible(float delay)
-    {
-        if (invincibleRoutine != null)
-        {
-            StopCoroutine(invincibleRoutine);
-            invincibleRoutine = null;
-        }
-        invincibleRoutine = StartCoroutine(PlayerInvincibleRoutine(delay));
     }
 
-    public void StopPlayerInvincible()
+    public void PlayerInvincible(float invincibleDuration, float interval, string key, GameObject effectPrefab = null)
     {
-        if (invincibleRoutine != null)
+        if (effectCoroutineDic.ContainsKey(key))
         {
-            StopCoroutine(invincibleRoutine);
-            invincibleRoutine = null;
+            StopCoroutine(effectCoroutineDic[key]);
+            effectCoroutineDic.Remove(key);
+        }
+
+        Coroutine routine = StartCoroutine(PlayerInvincibleLoopRoutine(invincibleDuration, interval, effectPrefab));
+        effectCoroutineDic.Add(key, routine);
+    }
+
+    private IEnumerator PlayerInvincibleLoopRoutine(float invincibleDuration, float interval, GameObject effectPrefab)
+    {
+        while (true)
+        {
+            Manager.Data.PlayerStatus.Invincible = true;
+
+            if (effectPrefab != null)
+            {
+                GameObject fx = Instantiate(effectPrefab, orbitController.transform.position, Quaternion.identity);
+                fx.transform.SetParent(orbitController.transform);
+            }
+
+            yield return Utile.GetDelay(invincibleDuration);
+
+            Manager.Data.PlayerStatus.Invincible = false;
+
+            yield return Utile.GetDelay(interval - invincibleDuration);
         }
     }
 
-    private IEnumerator PlayerInvincibleRoutine(float delay)
+    public void StopPlayerInvincible(string key)
     {
-        Manager.Data.PlayerStatus.Invincible = true;
-        yield return Utile.GetDelay(delay);
+        if (effectCoroutineDic.ContainsKey(key))
+        {
+            StopCoroutine(effectCoroutineDic[key]);
+            effectCoroutineDic.Remove(key);
+        }
+
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
@@ -83,15 +100,4 @@ public class PassiveEffectController : MonoBehaviour
             yield return Utile.GetDelay(interval);
         }
     }
-
-    //public void TriggerPassiveEffects(PassiveTriggerType triggerType)
-    //{
-    //    if (accessories.Length <= 0) return;
-
-    //    for (int i = 0; i < accessories.Length; i++)
-    //    {
-    //        if (accessories[i].Effect.passiveTriggerType == triggerType)
-    //            accessories[i].Effect.Execute(accessories[i].itemName, accessories[i].UpgradeIdx);
-    //    }
-    //}
 }
