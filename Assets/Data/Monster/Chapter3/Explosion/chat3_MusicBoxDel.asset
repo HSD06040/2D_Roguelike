@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a9cc493114ced340a5bf8b68251f585, type: 3}
-  m_Name: chat3_MusicBox
+  m_Name: chat3_MusicBoxDel
   m_EditorClassIdentifier: 
+  ID: 0
+  monsterName: 
+  monsterDescription: 
   health: 5
   attackPower: 10
   moveSpeed: 2
@@ -21,8 +24,8 @@ MonoBehaviour:
   attackRange: 3
   chargeTime: 2
   chargeSpeedMultiplier: 2
-  explosionDelay: 1.5
-  explosionRadius: 2.72
+  explosionDelay: 0.7
+  explosionRadius: 2.7
   explosionScaleX: 5.5
   explosionScaleY: 2.2
   explosionIndicatorPrefab: {fileID: 7289602380074475487, guid: 3c71c59571b6172419ba1d3de32f9b83, type: 3}

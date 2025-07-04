@@ -43,7 +43,8 @@ public class ExplosionMonsterFSM : MonsterFSM
         base.Update();
         if (Owner.CurrentHealth <= 0 && !(StateMachine.CurrentState is Explosion_ExplodeState))
         {
-            StateMachine.ChangeState(ExplodeState);
+            //  StateMachine.ChangeState(ExplodeState);
+            Destroy(gameObject);
         }
     }
 
@@ -201,7 +202,6 @@ public class Explosion_ExplodeState : BaseState
 
     public override void Enter()
     {
-        _explosionMonsterFSM.Agent.isStopped = true;
         GameObject indicator = Object.Instantiate(_explosionMonsterFSM.SO.explosionIndicatorPrefab, _explosionMonsterFSM.transform.position, Quaternion.identity, _explosionMonsterFSM.transform);
         indicator.GetComponent<ExplosionIndicatorController>()?.SetSize(_explosionMonsterFSM.SO.explosionRadius, _explosionMonsterFSM.SO.explosionScaleX, _explosionMonsterFSM.SO.explosionScaleY);
 
