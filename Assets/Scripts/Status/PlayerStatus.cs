@@ -14,17 +14,17 @@ public enum StatType
 [Serializable]
 public class PlayerStatus
 {
-    // 플레이어스텟        
-    public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
+    // 플레이어스텟   
+    [field : SerializeField] public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
 
-    public FloatStat Damage { get; private set; } = new(); // 데미지 값
-    public FloatStat DamageMultiply { get; private set; } = new(); // 데미지 퍼센트
+    [field: SerializeField] public FloatStat Damage { get; private set; } = new(); // 데미지 값
+    [field: SerializeField] public FloatStat DamageMultiply { get; private set; } = new(); // 데미지 퍼센트
 
-    public FloatStat Speed { get; private set; } = new(); // 스피드 값
-    public FloatStat SpeedMultiply { get; private set; } = new(); // 스피드 값
+    [field: SerializeField] public FloatStat Speed { get; private set; } = new(); // 스피드 값
+    [field: SerializeField] public FloatStat SpeedMultiply { get; private set; } = new(); // 스피드 값
 
-    public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트    
-    public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
+    [field: SerializeField] public FloatStat AttackSpeed { get; private set; } = new(); // 발사체 연사속도 퍼센트    
+    [field: SerializeField] public FloatStat Evasion { get; private set; } = new(); // 회피율 퍼센트
      
     public Property<int> CurtHp = new Property<int>();
 
@@ -88,17 +88,18 @@ public class PlayerStatus
         MusicWeapon _weapon = Manager.Data.MusicWeapons[(int)musicWeaponType];
 
         if (_weapon == null) return;
-
         int idx = 0;
 
         if (!WeaponList.Contains(_weapon.WeaponData.Type))
         {
             WeaponList.Add(_weapon.WeaponData.Type);
             _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
+            _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
+            Debug.Log(idx);
             if (idx == -1) return;
 
-            OnChangedWeapon.Invoke(idx, _weapon);
+            OnChangedWeapon?.Invoke(idx, _weapon);
         }
         else
         {
@@ -169,7 +170,7 @@ public class PlayerStatus
         {
             if (item == null) continue;
 
-            if(item.itemName == accessories.itemName)
+            if(item.ID == accessories.ID)
             {
                 match = item;
                 break;
@@ -312,5 +313,18 @@ public class PlayerStatus
         }        
         else
             CurtHp.Value += amount;
+    }
+
+    public void ResetItemUI()
+    {
+        for (int i = 0; i < weaponCount; i++)
+        {
+            OnChangedWeapon?.Invoke(i, null);
+        }
+
+        for (int i = 0; i < accessoriesCount; i++)
+        {
+            OnAccessoriesChanged?.Invoke(i, null);
+        }
     }
 }

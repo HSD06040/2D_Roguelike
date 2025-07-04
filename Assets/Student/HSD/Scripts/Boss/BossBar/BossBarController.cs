@@ -12,10 +12,14 @@ public class BossBarController : MonoBehaviour
 
     private void OnEnable()
     {
-        bossName.text = _bossName;
-        bossBar.SetupMaxValue(boss.MaxHealth);
+        bossName.text = _bossName;        
         boss.OnHpChanged += bossBar.UpdateSlider;
         bossBar.UpdateSlider(boss.CurrentHealth);
+    }
+
+    private void Start()
+    {
+        bossBar.SetupMaxValue(boss.MaxHealth);
     }
 
     private void OnDisable()

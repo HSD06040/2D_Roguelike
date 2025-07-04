@@ -74,7 +74,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private void UnlockDoors()
     {
-        doors.SetActive(false);
+        doors.SetActive(false);         
     }
 
     public void MonsterDied()
@@ -92,8 +92,12 @@ public class MonsterSpawnTrigger : MonoBehaviour
             {
                 portal.SetActive(true);
             }
-
         }
+    }
+
+    private void OnDestroy()
+    {
+        Manager.Game.OnMonsterKill -= MonsterDied;
     }
 }    
 

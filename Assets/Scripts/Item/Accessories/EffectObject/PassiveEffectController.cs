@@ -9,47 +9,72 @@ public class PassiveEffectController : MonoBehaviour
     private Coroutine invincibleRoutine;
     private static readonly Dictionary<string, Coroutine> effectCoroutineDic = new Dictionary<string, Coroutine>();
 
-    public OrbitController orbitController;
+    private OrbitController _orbitController;
+    public OrbitController orbitController
+    {
+        get
+        {
+            if (_orbitController == null)
+                _orbitController = FindObjectOfType<OrbitController>();
+
+            return _orbitController;
+        }
+    }
 
     private Accessories[] accessories;
 
     private void Start()
     {
-        accessories = Manager.Data.PlayerStatus.PlayerAccessories;
-
-        orbitController = FindObjectOfType<OrbitController>();
+        accessories = Manager.Data.PlayerStatus.PlayerAccessories;        
     }
 
-    public void PlayerInvincible(float delay)
+    public void PlayerInvincible(float invincibleDuration, float interval, string key, GameObject effectPrefab = null)
     {
-        if (invincibleRoutine != null)
+        if (effectCoroutineDic.ContainsKey(key))
         {
-            StopCoroutine(invincibleRoutine);
-            invincibleRoutine = null;
+            StopCoroutine(effectCoroutineDic[key]);
+            effectCoroutineDic.Remove(key);
         }
-        invincibleRoutine = StartCoroutine(PlayerInvincibleRoutine(delay));
+
+        Coroutine routine = StartCoroutine(PlayerInvincibleLoopRoutine(invincibleDuration, interval, effectPrefab));
+        effectCoroutineDic.Add(key, routine);
     }
 
-    public void StopPlayerInvincible()
+    private IEnumerator PlayerInvincibleLoopRoutine(float invincibleDuration, float interval, GameObject effectPrefab)
     {
-        if (invincibleRoutine != null)
+        while (true)
         {
-            StopCoroutine(invincibleRoutine);
-            invincibleRoutine = null;
+            Manager.Data.PlayerStatus.Invincible = true;
+
+            if (effectPrefab != null)
+            {
+                GameObject fx = Instantiate(effectPrefab, orbitController.transform.position, Quaternion.identity);
+                fx.transform.SetParent(orbitController.transform);
+            }
+
+            yield return Utile.GetDelay(invincibleDuration);
+
+            Manager.Data.PlayerStatus.Invincible = false;
+
+            yield return Utile.GetDelay(interval - invincibleDuration);
         }
     }
 
-    private IEnumerator PlayerInvincibleRoutine(float delay)
+    public void StopPlayerInvincible(string key)
     {
-        Manager.Data.PlayerStatus.Invincible = true;
-        yield return Utile.GetDelay(delay);
+        if (effectCoroutineDic.ContainsKey(key))
+        {
+            StopCoroutine(effectCoroutineDic[key]);
+            effectCoroutineDic.Remove(key);
+        }
+
         Manager.Data.PlayerStatus.Invincible = false;
     }
 
     public void StartSkillCoroutine(GameObject prefab, string key, float interval, int count, float delay, float damage, float radius)
     {
         Coroutine newCoroutine = StartCoroutine(DelayRoutine(prefab, interval, count, delay, damage, radius));
-        effectCoroutineDic[key] = newCoroutine;
+        effectCoroutineDic.Add(key, newCoroutine);
     }
 
     public void StopSkillCoroutine(string key)
@@ -75,15 +100,4 @@ public class PassiveEffectController : MonoBehaviour
             yield return Utile.GetDelay(interval);
         }
     }
-
-    //public void TriggerPassiveEffects(PassiveTriggerType triggerType)
-    //{
-    //    if (accessories.Length <= 0) return;
-
-    //    for (int i = 0; i < accessories.Length; i++)
-    //    {
-    //        if (accessories[i].Effect.passiveTriggerType == triggerType)
-    //            accessories[i].Effect.Execute(accessories[i].itemName, accessories[i].UpgradeIdx);
-    //    }
-    //}
 }

@@ -20,20 +20,26 @@ public class DataManager : Singleton<DataManager>
 
     private void Awake()
     {
-        WeaponDatas = Resources.LoadAll<Weapon>("Data/Weapon");
+        WeaponDatas = Resources.LoadAll<Weapon>("Data/WeaponData");
         MusicWeapons = Resources.LoadAll<MusicWeapon>("Weapon");
 
         PassiveCon = new GameObject("PassiveCon").AddComponent<PassiveEffectController>();
         PassiveCon.transform.parent = transform;
 
         downloader = new DataDownloader();
-        StartCoroutine(downloader.DownloadData());
-
-        SetupPlayerStat();
+        StartCoroutine(downloader.DownloadData());        
     }
 
-    private void SetupPlayerStat()
+    private void Start()
     {
+        ResetPlayerStat();
+    }
+
+    public void ResetPlayerStat()
+    {
+        Gold.Value = 0;
+        PlayerStatus = new();
+
         PlayerStatus.MaxHp.SetBaseStat(10);
         PlayerStatus.Speed.SetBaseStat(5);
         PlayerStatus.SpeedMultiply.SetBaseStat(1);
@@ -41,12 +47,14 @@ public class DataManager : Singleton<DataManager>
         PlayerStatus.Damage.SetBaseStat(10);
         PlayerStatus.AttackSpeed.SetBaseStat(1);
         PlayerStatus.Evasion.SetBaseStat(0);
-    }
 
-    private void Start()
-    {
+        GoldStat.InitGoldStat();
+        Manager.UI.ResetUI();
+        PlayerStatus.ResetItemUI();
         PlayerStatus.AddBindEvent();
-    }
+
+        Manager.Pool.ResetPool();
+    } 
 
     public bool IsHaveGold(int amount)
     {

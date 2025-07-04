@@ -19,11 +19,11 @@ MonoBehaviour:
   intervals: []
   triggerTypes: 00000000
   stats:
-  - statType: 6
+  - statType: 5
     value: 5
-  - statType: 6
+  - statType: 5
     value: 10
-  - statType: 6
+  - statType: 5
     value: 20
-  - statType: 6
+  - statType: 5
     value: 35

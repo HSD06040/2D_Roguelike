@@ -5,13 +5,26 @@ using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
-    public Image[] weaponImages;
+    [SerializeField] private Image[] slots;   // �߰���!!! ���� ��� (ȸ��/���)
+    [SerializeField] private Image[] weaponIcons;        // �߰���!!! ������ ������
+
+    [SerializeField] private Sprite selectedSlotSprite;   // �߰���!!! ���õ� ���� ��� (���)
+    [SerializeField] private Sprite unselectedSlotSprite; // �߰���!!! ���� �ȵ� ��� (ȸ��)
 
     private WeaponSlotPresenter presenter;
 
     private void Awake()
     {
         presenter = new WeaponSlotPresenter(this);
+    }
+
+    private void Start()
+    {
+        for(int i = 0; i < slots.Length; i++)
+        {
+            slots[i].sprite = unselectedSlotSprite;   //������ ���� ��Ȱ��ȭ ��������Ʈ�� ����
+            weaponIcons[i].gameObject.SetActive(false); //�������� �� ����
+        }
     }
 
     private void OnEnable()
@@ -26,20 +39,28 @@ public class WeaponSlot : MonoBehaviour
 
     public void ChangeSlot(int _idx)
     {
-        for (int i = 0; i < weaponImages.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
-            if(i == _idx)
-                weaponImages[i].color = Color.white;
+            if( i == _idx )
+            {
+                slots[i].sprite = selectedSlotSprite; //���õȰ� ���
+            }
             else
-                weaponImages[i].color = Color.black;
+            {
+                slots[i].sprite = unselectedSlotSprite;
+            }
         }
     }
 
     public void UpdateWeaponSlot(int _idx, MusicWeapon _weapon)
     {
-        if (_weapon == null) return;
-        
-        weaponImages[_idx].sprite = _weapon.WeaponData.icon;
-        weaponImages[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.black;
+        if (_weapon == null)
+        {
+            weaponIcons[_idx].gameObject.SetActive(false); // ������ ������ ������ ��Ȱ��ȭ
+            return;
+        }
+
+        weaponIcons[_idx].gameObject.SetActive(true); // ������ ������ ������ Ȱ��ȭ
+        weaponIcons[_idx].sprite = _weapon.WeaponData.icon; // ������ ǥ��
     }
 }

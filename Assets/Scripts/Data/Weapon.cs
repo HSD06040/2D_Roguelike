@@ -8,13 +8,11 @@ public class Weapon : Item
 {
     [Header("Weapon")]
     public MusicWeaponType Type;
-    public float[] AttackDamage;
+    public float[] AttackDamage = new float[4];
     public float AttackSpeed;
     public AnimatorOverrideController WeaponOverride = null;
-    public float AttackRange;
-    public float AttackDelay { get; private set;}
-    public float AttackRadius;
-    public int WeaponMaxUpgrade;
+    public float[] AttackDelay = new float[4];
+    public int WeaponMaxUpgrade = 4;
     public GameObject[] WeaponParticle;
     public Projectile Projectile = null;
     public Projectile[] Projectiles = null;  

@@ -5,19 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private Camera cam;
-
     public Transform[] WeaponSpawnPos;
 
-    [Header("¹«±â")]
+    [Header("ë¬´ê¸°")]
     [SerializeField] private MusicWeapon defaultWeapon;
     private MusicWeapon[] weaponSlots;
     private MusicWeapon currentWeapon;
 
+    Coroutine attackDelayCor;
+    private bool canAttack = true;
 
+    Coroutine showStatusCor;
+    Property<bool> isShowStatus = new();
     private void Start()
-    {
-        cam = Camera.main;
+    {       
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
         defaultWeapon.Init(transform);
         weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;       
@@ -26,9 +27,13 @@ public class PlayerWeaponController : MonoBehaviour
     private void OnEnable()
     {
         Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
+        Debug.Log("Add Event");
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
+        Manager.Input.GetPlayerBind("Status").AddStartedEvent(ShowStatus);
+        Manager.Input.GetPlayerBind("Status").AddCanceledEvent(CloseStatus);
+        isShowStatus.AddEvent(ShowStatusView);
     }
 
     private void OnDisable()
@@ -37,6 +42,33 @@ public class PlayerWeaponController : MonoBehaviour
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged -= WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").RemoveStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").RemoveCanceledEvent(CancelAttack);
+        Manager.Input.GetPlayerBind("Status").RemoveStartedEvent(ShowStatus);
+        Manager.Input.GetPlayerBind("Status").RemoveCanceledEvent(CloseStatus);
+        isShowStatus.RemoveEvent(ShowStatusView);
+    }
+
+    private void ShowStatus(InputAction.CallbackContext ctx)
+    {
+        if (!Manager.Game.IsDead && gameObject != null)
+            isShowStatus.Value = true;
+    }
+
+    private void CloseStatus(InputAction.CallbackContext ctx)
+    {
+        if(isShowStatus.Value && gameObject != null)
+            isShowStatus.Value = false;
+    }
+
+    private void ShowStatusView(bool value)
+    {
+        if(value)
+        {
+            Manager.UI.StatusView.gameObject.SetActive(true);
+        }
+        else
+        {
+            Manager.UI.StatusView.gameObject.SetActive(false);
+        }
     }
 
     private void Attack(InputAction.CallbackContext ctx)
@@ -44,35 +76,36 @@ public class PlayerWeaponController : MonoBehaviour
         if (currentWeapon != null)
         {            
             SetProjectile(currentWeapon);
-            if (currentWeapon.WeaponData.itemName == "Violin")
+            if (currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = true;
+                Manager.Game.IsPress.Value = true;
             }
         }
         else
         {
-            defaultWeapon.Attack(GetMousePos());
+            SetProjectile(defaultWeapon);
         }
 
-        Manager.Game.OnPlayerAttack?.Invoke();
+        
     }
 
     private void CancelAttack(InputAction.CallbackContext ctx)
     {
         if(currentWeapon != null)
         {
-            if(currentWeapon.WeaponData.itemName == "Violin")
+            if(currentWeapon.WeaponData.ID == 5)
             {
-                Manager.Game.IsPress = false;
+                Manager.Game.IsPress.Value = false;
             }
         }
     }
 
-    #region List<string>Çü½ÄÀ¸·Î weapon¹Þ¾Æ¿À±â
+    #region List<string>í˜•ì‹ìœ¼ë¡œ weaponë°›ì•„ì˜¤ê¸°
     public void AddMusicWeapon(int idx, MusicWeapon _musicWeapon)
     {
+        Debug.Log("Invoke Event");
         if (_musicWeapon == null) return;
-
+        Debug.Log("Not Return Event");
         MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);        
         weaponSlots[idx] = weapon;
         weapon.Init(transform);
@@ -81,9 +114,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void WeaponSwitch(int _idx)
     {
-        if (currentWeapon != null && currentWeapon.WeaponData.itemName == "Violin")
+        if (currentWeapon != null && currentWeapon.WeaponData.ID == 5)
         {
-            Manager.Game.IsPress = false; // °­Á¦·Î ·¹ÀÌÀú ²ô±â
+            Manager.Game.IsPress.Value = false; // ê°•ì œë¡œ ë ˆì´ì € ë„ê¸°
         }
         currentWeapon = weaponSlots[_idx];
         Debug.Log($"WeaponSwitch{currentWeapon}");
@@ -94,13 +127,13 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (weaponSlots[index] != null)
         {
-            currentWeapon = weaponSlots[index];  //¼±ÅÃÇÑ ¹«±â = currentWeapon
-            Debug.Log((index + 1) + "¹ø ¹«±â »ç¿ëÁß.selectWeapon ÀÌ¸§: " + currentWeapon.name);
+            currentWeapon = weaponSlots[index];  //ì„ íƒí•œ ë¬´ê¸° = currentWeapon
+            Debug.Log((index + 1) + "ë²ˆ ë¬´ê¸° ì‚¬ìš©ì¤‘.selectWeapon ì´ë¦„: " + currentWeapon.name);
             
         }
         else
         {
-            Debug.Log((index + 1) + " ½½·ÔÀº ºñ¾îÀÖÀ½");
+            Debug.Log((index + 1) + " ìŠ¬ë¡¯ì€ ë¹„ì–´ìžˆìŒ");
         }
     }
 
@@ -112,8 +145,40 @@ public class PlayerWeaponController : MonoBehaviour
             return;
         }
 
-        if (!Manager.Game.IsPause)
-            musicWeapon.Attack(GetMousePos());
+        if (!Manager.Game.IsPause || !Manager.Game.IsDead)
+        {
+            
+            if(attackDelayCor == null && canAttack)
+            {
+                attackDelayCor = StartCoroutine(AttackCor(musicWeapon));
+            }
+            
+            if (attackDelayCor != null && canAttack)
+            {
+                StopCoroutine(attackDelayCor);
+                attackDelayCor = null;
+            }
+        }
+    }
+    
+    IEnumerator AttackCor(MusicWeapon musicWeapon)
+    {
+        Manager.Game.OnPlayerAttack?.Invoke();
+        musicWeapon.Attack(GetMousePos());
+        canAttack = false;
+
+        if(musicWeapon.WeaponData.ID == 1)
+        {
+            yield return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] * 
+                Manager.Data.PlayerStatus.AttackSpeed.Value);
+        }
+        else
+        {
+            yield return Utile.GetDelay(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        }
+
+        yield return new WaitForEndOfFrame();
+        canAttack = true;
     }
 
     private Vector2 GetMousePos() => Manager.Input.GetMousePosition();

@@ -31,11 +31,15 @@ public class BossPatternObject : MonoBehaviour
         {
             parentSr.color = pink;
             children.color = red;
+            parentSr.sortingOrder = 0;
+            children.sortingOrder = 1;
         }
         else
         {
             parentSr.color = gray;
             children.color = white;
+            parentSr.sortingOrder = 2;
+            children.sortingOrder = 3;
             target.localScale = Vector2.one;
         }
 

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class Box : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject interectionUI;
-    [SerializeField] private BoxRewardUI boxUIScript;
 
     private Animator animator;
     private bool hasOpended = false;
@@ -31,7 +29,7 @@ public class Box : MonoBehaviour, IInteractable
         {
             hasOpended = true;
             animator.SetTrigger("Open");
-            Debug.Log("상자열림");
+            //Debug.Log("상자열림");
             UiOff();
 
             RamdomBoxRewardItem();
@@ -80,14 +78,12 @@ public class Box : MonoBehaviour, IInteractable
             randomList.Add(weapon.WeaponData);
         }
 
-        randomList.AddRange(TableManager.GetInstance().GetAllItems());
+        randomList.AddRange(Manager.Table.GetAllItems());
 
         Item rewardItem = randomList[Random.Range(0, randomList.Count)];
 
-        boxUIScript.BoxRewardDisplay(rewardItem);
+        Manager.UI.BoxReward.BoxRewardDisplay(rewardItem);
         Manager.Data.PlayerStatus.AddItem(rewardItem);
         Debug.Log("아이템 지급 :" + rewardItem.name);
     }
-
-
 }

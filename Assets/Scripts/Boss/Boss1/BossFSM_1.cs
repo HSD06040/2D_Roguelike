@@ -20,8 +20,10 @@ public class BossFSM_1 : BossMonsterFSM
     public BossDieState_1 die { get; private set; }
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         StateMachine = new BossStateMachine<BossFSM_1>();
 
         idle = new BossIdleState_1(this, idleHash);
@@ -39,8 +41,9 @@ public class BossFSM_1 : BossMonsterFSM
         StateMachine.Update();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StateMachine.Initialize(idle);
     } 
 }
@@ -203,6 +206,8 @@ public class BossDoubleCrossState_1 : PatternState
 
 public class BossDieState_1 : BossBaseState<BossFSM_1>
 {
+    private bool isDead;
+
     public BossDieState_1(BossFSM_1 _fsm, int _animHash) : base(_fsm, _animHash)
     {
         
@@ -212,8 +217,13 @@ public class BossDieState_1 : BossBaseState<BossFSM_1>
     {
         base.Enter();
 
-        fsm.Owner.DropCoin(fsm.stat);
-        fsm.StartDieRoutine();       
+        if(!isDead)
+        {
+            isDead = true;
+            fsm.Pattern.CurrentBossPatternStop();
+            fsm.Owner.DropCoin(fsm.stat);
+            fsm.StartDieRoutine();
+        }        
     }
 
     public override void Exit()

@@ -9230,11 +9230,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8417638286664384569, guid: 9f60a932475ba7c44b544f3196f745c0, type: 3}
   m_PrefabInstance: {fileID: 1790963474}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &702107443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1739693839030740940, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-  m_PrefabInstance: {fileID: 8166321633115388306}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &800807516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12261,7 +12256,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7878077736366537517, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
   m_PrefabInstance: {fileID: 8166321633115388306}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702107443}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 196d307ab4b3c0746a5fed05de9255e5, type: 3}
@@ -12272,47 +12267,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 503594177276409252, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
   m_PrefabInstance: {fileID: 8166321633115388306}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702107443}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576aaa4a2ccde284aa2b6b4ef06c2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1080889334
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702107443}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.051203594, y: 0.4793027}
-  serializedVersion: 2
-  m_Radius: 0.60643715
 --- !u!1 &1141402122
 GameObject:
   m_ObjectHideFlags: 0
@@ -26554,7 +26514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 1839070380892803278}
   cameraMoveSpeed: 50
 --- !u!114 &1051266692168943500
@@ -28588,7 +28547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 7090996210359429414}
   cameraMoveSpeed: 50
 --- !u!114 &3928204131943292761
@@ -28808,7 +28766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 404838488207794802}
   cameraMoveSpeed: 50
 --- !u!222 &4185266214749606579
@@ -30218,7 +30175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 2643171928239592092}
   cameraMoveSpeed: 50
 --- !u!4 &7090996210359429414
@@ -30405,7 +30361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 4437857679171738345}
   cameraMoveSpeed: 50
 --- !u!1 &7240880830300977012
@@ -30959,10 +30914,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1739693839030740940, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1769882421811210885, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -31003,25 +30954,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4348666954052290104, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_Size.x
-      value: 0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 4348666954052290104, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_Size.y
-      value: 1.1196733
-      objectReference: {fileID: 0}
-    - target: {fileID: 4348666954052290104, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.7310798
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1739693839030740940, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1080889334}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
 --- !u!61 &8170787889805510032
 BoxCollider2D:
@@ -31099,7 +31035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 1992545611075640167}
   cameraMoveSpeed: 50
 --- !u!224 &8198000095646922069
@@ -31771,7 +31706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13c22fefd046e4ca789bd28f997759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 519420031}
   roomCenter: {fileID: 2275991524259509386}
   cameraMoveSpeed: 50
 --- !u!224 &9078479147226556529
@@ -31831,7 +31765,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!222 &9178971964292457840
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -4926,7 +4926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAttackPrefab: {fileID: 7431734696087755504, guid: 1ebc588959a787b41ba3847791faa248, type: 3}
-  pattern: {fileID: 666228602}
+  pattern: {fileID: 666228600}
   glissando: {fileID: 666228600}
   cross: {fileID: 666228602}
   pianoWhite: {fileID: 666228599}
@@ -4989,7 +4989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6436324989013520631, guid: aa2a3b2181e8d4cab882154bef5763ef, type: 3}
-  interval: 0.03
+  interval: 0.05
   duration: 2
   Boss: {fileID: 1803955167}
   fsm: {fileID: 1803955168}
@@ -8662,7 +8662,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801031537
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -10339,7 +10339,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -132688399
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1071979700, guid: 998c2df5ffdc7894c9d82ba38a12f18f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10399,6 +10399,7 @@ GameObject:
   - component: {fileID: 1803955166}
   - component: {fileID: 1803955167}
   - component: {fileID: 1803955168}
+  - component: {fileID: 1803955169}
   m_Layer: 0
   m_Name: Tobeben
   m_TagString: Untagged
@@ -10440,6 +10441,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 100
   <AttackPower>k__BackingField: 10
   spriteRenderer: {fileID: 1753432622}
+  Invincible: 0
 --- !u!114 &1803955168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10452,11 +10454,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ef65afe23b47b4bb4e64369d981d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  stat: {fileID: 0}
   Owner: {fileID: 1803955167}
   isPatternPlaying: 0
   animFinish: 0
+  portal: {fileID: 0}
   Pattern: {fileID: 666228598}
+--- !u!114 &1803955169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803955165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 0}
+  spriteRender: {fileID: 0}
 --- !u!1 &1919066481
 GameObject:
   m_ObjectHideFlags: 0

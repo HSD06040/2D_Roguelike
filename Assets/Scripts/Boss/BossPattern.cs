@@ -14,8 +14,10 @@ public abstract class BossPattern : MonoBehaviour
     [SerializeField] protected Monster Boss;
     [SerializeField] protected BossMonsterFSM fsm;
     public Action OnComplated;
+    private Coroutine pattern;
 
-    public virtual void Execute() => StartCoroutine(PatternRoutine(Boss));
+    public virtual void Execute() => pattern = StartCoroutine(PatternRoutine(Boss));
+    public void Stop() => StopCoroutine(pattern);
 
     protected abstract IEnumerator PatternRoutine(Monster boss);
 }

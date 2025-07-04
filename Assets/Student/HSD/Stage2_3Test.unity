@@ -3211,11 +3211,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &581165101 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1769882421811210885, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-  m_PrefabInstance: {fileID: 1887192432}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &595902310
 GameObject:
   m_ObjectHideFlags: 0
@@ -4681,6 +4676,7 @@ GameObject:
   - component: {fileID: 1065011523}
   - component: {fileID: 1065011524}
   - component: {fileID: 1065011525}
+  - component: {fileID: 1065011526}
   m_Layer: 0
   m_Name: Ellie
   m_TagString: Untagged
@@ -4736,10 +4732,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 0}
-  Player: {fileID: 581165101}
   Owner: {fileID: 1065011523}
   isPatternPlaying: 0
   animFinish: 0
+  portal: {fileID: 0}
   Pattern: {fileID: 1975870276}
 --- !u!70 &1065011525
 CapsuleCollider2D:
@@ -4776,6 +4772,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.11067003, y: 9.8363}
   m_Size: {x: 1.2654606, y: 2.89645}
   m_Direction: 0
+--- !u!114 &1065011526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065011521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupTextPrefab: {fileID: 0}
+  spriteRender: {fileID: 0}
 --- !u!1 &1097673309
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,7 +5076,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -132688399
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74dac08636fbd7e4bbbe0642bd770eac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

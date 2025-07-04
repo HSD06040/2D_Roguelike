@@ -8,7 +8,7 @@ using UnityEngine;
 public class ShopPresenter
 {
     private ShopView shopView;
-    private List<Item> items = new();
+    public List<Item> items = new();
     public event Action Purchased;
 
     public ShopPresenter(ShopView shopView)

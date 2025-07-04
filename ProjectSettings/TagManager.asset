@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Monster
   - Wall
+  - PlayerHead
+  - Portal
   layers:
   - Default
   - TransparentFX

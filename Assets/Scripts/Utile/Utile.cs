@@ -7,6 +7,7 @@ using UnityEngine;
 public static class Utile
 {
     private static readonly Dictionary<float, WaitForSeconds> effectDelayDic = new Dictionary<float, WaitForSeconds>();
+    private static readonly Dictionary<float, WaitForSecondsRealtime> realTimeDic = new Dictionary<float, WaitForSecondsRealtime>();
 
     public static WaitForSeconds GetDelay(float dealy)
     {
@@ -14,6 +15,13 @@ public static class Utile
             effectDelayDic[dealy] = new WaitForSeconds(dealy);
 
         return effectDelayDic[dealy];
+    }
+    public static WaitForSecondsRealtime GetRealTimeDelay(float delay)
+    {
+        if(!realTimeDic.ContainsKey(delay))
+            realTimeDic[delay] = new WaitForSecondsRealtime(delay);
+
+        return realTimeDic[delay];
     }
 
     private static readonly StringBuilder sb = new StringBuilder();

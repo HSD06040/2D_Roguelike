@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         afterimage = GetComponent<Afterimage>();
         bodyAnimator = GetComponent<Animator>();
+        Manager.Game.OnPlayerAttack += AttackAnim;
         //armAnimator = transform.Find("Arm").GetComponent<Animator>();
     }
 
@@ -52,10 +53,11 @@ public class PlayerController : MonoBehaviour
         PlayerInteraction();
         PlayerAnimation();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            armAnimator.SetTrigger("Attack");
-        }
+    }
+
+    private void AttackAnim()
+    {
+        armAnimator.SetTrigger("Attack");
     }
 
     private void FixedUpdate()
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void LookAtMouse()
     {
+        if (Manager.Game.IsDead) return;
+
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //마우스 포지션 
         Vector2 dir = MousePos - (Vector2)transform.position; //플레이어에서 마우스 방향
 
@@ -126,7 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             interactableTarget = interactable;
             interactableTarget.UiOn();
-            Debug.Log("E키로 상호작용 가능한 타겟: ");
+            //Debug.Log("E키로 상호작용 가능한 타겟: ");
         }
     }
 
@@ -138,7 +142,7 @@ public class PlayerController : MonoBehaviour
             {
                 interactableTarget.UiOff();
                 interactableTarget = null;
-                Debug.Log("멀어져서 상호작용 불가능해진 타겟: ");
+                //Debug.Log("멀어져서 상호작용 불가능해진 타겟: ");
             }
             
         }
@@ -156,5 +160,10 @@ public class PlayerController : MonoBehaviour
     {
         float currentSpeed = rigid.velocity.magnitude;
         bodyAnimator.SetBool("isWalking", currentSpeed > 0.1f && !isDashing);  //걷기 애니메이션
+    }
+
+    private void OnDestroy()
+    {
+        Manager.Game.OnPlayerAttack -= AttackAnim;
     }
 }

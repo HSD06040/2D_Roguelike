@@ -18,6 +18,8 @@ public class PlayerStatusController : StatusController
         heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
+        status.OnPlayerDead += Die;
+        Manager.Game.OnRetry += PlayerDestroy;
     }
 
     public override void TakeDamage(float damage)
@@ -27,6 +29,13 @@ public class PlayerStatusController : StatusController
 
     private void Die()
     {
+        Manager.Game.IsDead = true;
+    }
 
+    private void PlayerDestroy() => Destroy(gameObject);
+
+    private void OnDestroy()
+    {
+        Manager.Game.OnRetry -= PlayerDestroy;
     }
 }

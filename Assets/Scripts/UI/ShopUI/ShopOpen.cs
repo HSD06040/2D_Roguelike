@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ShopOpen : MonoBehaviour, IInteractable
 {
@@ -25,6 +26,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
         shopView.CloseButtonClicked += BoxClose;
         shopPresenter.Purchased += Purchased;
     }
+
     public void Interact()
     {
         if (!hasOpended)
@@ -32,7 +34,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
             hasOpended = true;
             animator.SetTrigger("Open");
             //Debug.Log("상자열림");
-            Manager.Data.AddGold(1000); //테스트용
+            //Manager.Data.AddGold(1000); //테스트용
             //Debug.Log("잔액:" + Manager.Data.Gold.Value);//테스트용
             UiOff();
 
@@ -49,6 +51,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
         {
             animator.SetTrigger("Open");
             UiOff();
+            shopView.DisplayItems(shopPresenter.items.ToArray());
             shopView.Open();
         }
     }
