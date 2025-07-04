@@ -20,8 +20,8 @@ public class SheetMusicMonsterFSM : MonsterFSM
     {
         base.Awake();
 
+        Agent.stoppingDistance = 0.1f;
         Agent.speed = SO.moveSpeed;
-        Agent.stoppingDistance = SO.meleeAttackRange;
         Owner.SetStats(SO.health, SO.attackPower);
 
         ChaseRangeSqr = SO.chaseRange * SO.chaseRange;
@@ -69,7 +69,6 @@ public class SheetMusicMonsterFSM : MonsterFSM
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, SO.chaseRange);
 
-#if UNITY_EDITOR // 이 코드는 유니티 에디터에서만 실행
 
         Handles.color = new Color(1, 0, 0, 0.2f);
 
@@ -88,7 +87,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
         Handles.color = new Color(1, 0.2f, 0.2f, 0.5f);
         Handles.DrawWireArc(transform.position, Vector3.forward, startAngle, SO.meleeAttackAngle, SO.meleeAttackRange, 2f);
 
-#endif
+
     }
 }
 
@@ -102,7 +101,7 @@ public class SheetMusic_IdleState : BaseState
     }
     public override void Enter()
     {
-        _sheetFSM.Agent.isStopped = true;
+
         _sheetFSM.Owner.Animator.SetBool("IsChasing", false);
     }
 
@@ -142,7 +141,6 @@ public class SheetMusic_ChaseState : BaseState
 
         if (sqrDistance <= _sheetFSM.AttackRangeSqr)
         {
-            _sheetFSM.Agent.isStopped = true;
             _sheetFSM.Owner.Animator.SetBool("IsChasing", false);
 
             if (Time.time >= _sheetFSM.lastAttackTime + _sheetFSM.SO.meleeAttackCooldown)
@@ -152,7 +150,6 @@ public class SheetMusic_ChaseState : BaseState
         }
         else
         {
-            _sheetFSM.Agent.isStopped = false;
             _sheetFSM.Owner.Animator.SetBool("IsChasing", true);
             _sheetFSM.Agent.SetDestination(_sheetFSM.Player.position);
 
@@ -162,10 +159,7 @@ public class SheetMusic_ChaseState : BaseState
             }
         }
     }
-    public override void Exit()
-    {
-        _sheetFSM.Agent.isStopped = true;
-    }
+
 }
 public class SheetMusic_MeleeAttackState : BaseState
 {
@@ -177,7 +171,6 @@ public class SheetMusic_MeleeAttackState : BaseState
 
     public override void Enter()
     {
-        _sheetFSM.Agent.isStopped = true;
         _sheetFSM.lastAttackTime = Time.time;
         _sheetFSM.Owner.Animator.SetTrigger("Attack");
         if (_sheetFSM.Player != null)
@@ -218,13 +211,7 @@ public class SheetMusic_MeleeAttackState : BaseState
 
     }
 
-    public override void Exit()
-    {
-        if (_sheetFSM.Agent.isActiveAndEnabled)
-        {
-            _sheetFSM.Agent.isStopped = false;
-        }
-    }
+
 }
 public class SheetMusic_DieState : BaseState
 {

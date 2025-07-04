@@ -17,7 +17,7 @@ public class Monster : MonoBehaviour, IDamagable
     public EntityFX fx { get; protected set; }
     public Animator Animator { get; private set; }
     public Rigidbody2D Rb { get; private set; }
-    public int FacingDirection { get; protected set; }
+    public int FacingDirection;
 
     public SpriteRenderer spriteRenderer;
     private Color originalColor;

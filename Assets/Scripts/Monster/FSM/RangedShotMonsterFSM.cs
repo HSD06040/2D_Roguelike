@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -57,21 +55,34 @@ public class RangedShotMonsterFSM : MonsterFSM
     public void FindAndSetNewWanderPosition()
     {
         if (Player == null) return;
-        for (int i = 0; i < 10; i++)
+
+        // 현재 NavMeshAgent가 이동할 수 있는 영역 마스크를 가져옵니다.
+        // 이를 통해 몬스터가 현재 서 있는 'walkable'한 NavMesh 영역 내에서만 새 위치를 찾으려고 시도합니다.
+        int walkableMask = Agent.areaMask;
+
+        for (int i = 0; i < 10; i++) // 유효한 위치를 찾기 위해 10번 시도합니다.
         {
             float randomAngle = Random.Range(0, 2 * Mathf.PI);
             float randomDistance = Random.Range(SO.minRepositionDistance, SO.maxRepositionDistance);
 
-            Vector2 offset = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * randomDistance;
-            Vector3 randomPoint = Player.position + (Vector3)offset;
+            // 몬스터의 현재 위치를 기준으로 무작위 지점을 계산합니다.
+            Vector3 randomPoint = transform.position + new Vector3(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle), 0) * randomDistance;
 
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas))
+            // NavMesh.SamplePosition을 사용하여 무작위 지점에서 가장 가까운 걷기 가능한 NavMesh 지점을 찾습니다.
+            // 'walkableMask'를 사용하여 걷기 가능한 영역으로 샘플링을 제한합니다.
+            if (NavMesh.SamplePosition(randomPoint, out hit, 0.5f, walkableMask))
             {
-                Agent.SetDestination(hit.position);
-                return;
+                // 찾은 위치가 플레이어로부터 최소 거리를 유지하는지 확인합니다.
+                if (Vector3.Distance(hit.position, Player.position) > SO.minRepositionDistance)
+                {
+                    Agent.SetDestination(hit.position);
+                    return; // 유효한 위치를 찾아 설정했으므로 메서드를 종료합니다.
+                }
             }
         }
+        Agent.ResetPath();
+        StateMachine.ChangeState(IdleState);
     }
 
     private void OnDrawGizmosSelected()
@@ -79,13 +90,13 @@ public class RangedShotMonsterFSM : MonsterFSM
         if (SO == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, SO.detectionRange);
-        if (Application.isPlaying && Player != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(Player.position, SO.minRepositionDistance);
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(Player.position, SO.maxRepositionDistance);
-        }
+
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, SO.minRepositionDistance);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, SO.maxRepositionDistance);
+
     }
 }
 
@@ -97,13 +108,24 @@ public class RangedShotMonster_IdleState : BaseState
     public override void Enter()
     {
         _rangedShotMonsterFSM.Owner.Animator.SetBool("IsChasing", false);
+        _rangedShotMonsterFSM.Agent.isStopped = true;
+        _rangedShotMonsterFSM.Agent.ResetPath();
+        _rangedShotMonsterFSM.Owner.Flip(_rangedShotMonsterFSM.Player);
+
     }
 
     public override void Update()
     {
         if (_rangedShotMonsterFSM.GetSqrDistanceToPlayer() <= _rangedShotMonsterFSM.SO.detectionRange * _rangedShotMonsterFSM.SO.detectionRange)
         {
-            _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.RepositionState);
+            if (Time.time >= _rangedShotMonsterFSM.lastAttackTime + _rangedShotMonsterFSM.SO.attackCooldown)
+            {
+                _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.AttackState);
+            }
+        }
+        else
+        {
+            _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.IdleState);
         }
     }
 }
@@ -122,20 +144,30 @@ public class RangedShot_RepositionState : BaseState
 
     public override void Update()
     {
-        if (!_rangedShotMonsterFSM.Agent.pathPending && _rangedShotMonsterFSM.Agent.remainingDistance > _rangedShotMonsterFSM.Agent.stoppingDistance)
-        {
-            _rangedShotMonsterFSM.Owner.Flip(_rangedShotMonsterFSM.Player);
-        }
-
-        else if (!_rangedShotMonsterFSM.Agent.pathPending && _rangedShotMonsterFSM.Agent.remainingDistance <= _rangedShotMonsterFSM.Agent.stoppingDistance)
+        if (Time.time >= _rangedShotMonsterFSM.lastAttackTime + _rangedShotMonsterFSM.SO.attackCooldown)
         {
             _rangedShotMonsterFSM.Agent.isStopped = true;
-            _rangedShotMonsterFSM.Owner.Animator.SetBool("IsChasing", false);
+            _rangedShotMonsterFSM.Agent.ResetPath();
+            _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.AttackState);
+            return;
+        }
 
+        if (!_rangedShotMonsterFSM.Agent.pathPending && _rangedShotMonsterFSM.Agent.remainingDistance <= _rangedShotMonsterFSM.Agent.stoppingDistance)
+        {
+            _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.IdleState);
+            return;
+        }
 
-            if (Time.time >= _rangedShotMonsterFSM.lastAttackTime + _rangedShotMonsterFSM.SO.attackCooldown)
+        if (!_rangedShotMonsterFSM.Agent.pathPending && _rangedShotMonsterFSM.Agent.remainingDistance > _rangedShotMonsterFSM.Agent.stoppingDistance)
+        {
+            if (Mathf.Abs(_rangedShotMonsterFSM.Agent.velocity.x) > 0.1f)
             {
-                _rangedShotMonsterFSM.StateMachine.ChangeState(_rangedShotMonsterFSM.AttackState);
+                int moveDirection = _rangedShotMonsterFSM.Agent.velocity.x > 0 ? 1 : -1;
+                if (_rangedShotMonsterFSM.Owner.FacingDirection != moveDirection)
+                {
+                    _rangedShotMonsterFSM.Owner.FacingDirection = moveDirection;
+                    _rangedShotMonsterFSM.Owner.transform.localScale = new Vector3(moveDirection, 1, 1);
+                }
             }
         }
     }
@@ -152,12 +184,8 @@ public class RangedShotMonster_AttackState : BaseState
     {
         _rangedShotMonsterFSM.Agent.isStopped = true;
         _rangedShotMonsterFSM.Agent.ResetPath();
-        
-        _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Attack");
-    }
 
-    public override void Update()
-    { 
+        _rangedShotMonsterFSM.Owner.Animator.SetTrigger("Attack");
         _rangedShotMonsterFSM.Owner.Flip(_rangedShotMonsterFSM.Player);
     }
 
@@ -259,8 +287,8 @@ public class RangedShotMonster_AttackState : BaseState
             {
                 projectile.transform.position = _rangedShotMonsterFSM.firePoint.position;
                 projectile.GetComponent<Projectile_Controller>().Initialize(
-                    fireDirection,                    
-                    _rangedShotMonsterFSM.SO.projectileSpeed,               
+                    fireDirection,
+                    _rangedShotMonsterFSM.SO.projectileSpeed,
                     _rangedShotMonsterFSM.Owner.AttackPower,
                     projectileTag
                     );
