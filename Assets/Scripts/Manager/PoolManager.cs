@@ -27,7 +27,10 @@ public class PoolManager : Singleton<PoolManager>
     public void Start()
     {
         ResetPool();
-        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());       
+        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());
+
+        popupParent = new GameObject("PopupTextParent").transform;
+        popupParent.parent = Manager.UI.WorldCanvas.transform;
     }
 
     public void ResetPool()
@@ -37,9 +40,6 @@ public class PoolManager : Singleton<PoolManager>
         lastUseTimeDic = new();
 
         parent = new GameObject("Pools").transform;
-
-        popupParent = new GameObject("PopupTextParent").transform;
-        popupParent.parent = Manager.UI.WorldCanvas.transform;
     }
 
     private ObjectPool<GameObject> CreatePopUpTextPool(GameObject popUp)

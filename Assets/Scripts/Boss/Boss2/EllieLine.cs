@@ -7,6 +7,7 @@ public class EllieLine : MonoBehaviour
     private float timer;
     private float duration = .3f;
     private float deleteDelay = 12f;
+    [SerializeField] private Collider2D col;
 
     public void Init(float _deleteDelay, float _duration)
     {
@@ -35,6 +36,7 @@ public class EllieLine : MonoBehaviour
         transform.localScale = end;
 
         yield return Utile.GetDelay(deleteDelay);
+        col.enabled = false;
 
         start = transform.localScale;
         end = new Vector3(0, transform.localScale.y, transform.localScale.z);

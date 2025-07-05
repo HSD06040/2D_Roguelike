@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5761333708212017991}
   - component: {fileID: 8188244595434632953}
   - component: {fileID: -1182481053546319568}
-  - component: {fileID: 8738574760737213187}
+  - component: {fileID: 3691907534422167556}
   m_Layer: 0
   m_Name: BossCirclePattern
   m_TagString: Untagged
@@ -100,21 +100,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2714547817373117417}
-  col: {fileID: 8738574760737213187}
+  col: {fileID: 3691907534422167556}
   red: {r: 0.9150943, g: 0.10791205, b: 0.10791205, a: 1}
   pink: {r: 1, g: 0.3820755, b: 0.3820755, a: 0.2784314}
   gray: {r: 1, g: 1, b: 1, a: 0.29803923}
   white: {r: 1, g: 1, b: 1, a: 1}
   parentSr: {fileID: 8188244595434632953}
   children: {fileID: 2052768546675757570}
---- !u!58 &8738574760737213187
+--- !u!58 &3691907534422167556
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742442879696141984}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

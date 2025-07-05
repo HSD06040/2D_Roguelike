@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   bossBar: {fileID: 6002231619368477691}
-  _bossName: 
+  _bossName: "\uD1A0\uBCA0\uBCA4"
   bossName: {fileID: 2723486330589595110}
 --- !u!114 &6002231619368477691
 MonoBehaviour:
