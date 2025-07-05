@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         movemoent.x = Input.GetAxisRaw("Horizontal");
         movemoent.y = Input.GetAxisRaw("Vertical");
-        rigid.velocity = movemoent.normalized * statusCon.status.Speed.Value;
+        rigid.velocity = movemoent.normalized * statusCon.status.TotalSpeed;
     }   
 
     private void LookAtMouse()

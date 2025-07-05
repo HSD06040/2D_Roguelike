@@ -47,6 +47,15 @@ public class TitleCanvas : BaseUI
             Manager.UI.ClosePopUp();
             SceneManager.LoadSceneAsync(1);
         };
+
+        GetEvent("Test").Click += data =>
+        {
+            if (Manager.Game.IsDead)
+                Manager.Game.IsDead = false;
+
+            Manager.UI.ClosePopUp();
+            SceneManager.LoadSceneAsync(2);
+        };
         NotPress();
         count++;
     }

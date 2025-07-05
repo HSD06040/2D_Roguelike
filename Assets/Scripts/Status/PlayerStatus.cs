@@ -266,13 +266,14 @@ public class PlayerStatus
     {
         switch (type)
         {
-            case StatType.MaxHp: MaxHp.AddModifier((int)amount, source); break;
+            case StatType.MaxHp: MaxHp.AddModifier((int)amount, source); CurtHp.Value += (int)amount; break;
             case StatType.Damage: Damage.AddModifier(amount, source); break;
             case StatType.AttackSpeed: AttackSpeed.AddModifier(amount, source); break;
             case StatType.Speed: Speed.AddModifier(amount, source); break;
             case StatType.Evasion: Evasion.AddModifier(amount, source); break;
             case StatType.DamageMultiply: DamageMultiply.AddModifier(amount, source); break;
             case StatType.SpeedMultiply: SpeedMultiply.AddModifier(amount, source); break;
+            case StatType.CurrentHP: CurtHp.Value += (int)amount; break;
         }
     }
 

@@ -27,14 +27,7 @@ public class PoolManager : Singleton<PoolManager>
     public void Start()
     {
         ResetPool();
-
-        parent = new GameObject("Pools").transform;
-
-        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());
-
-        popupCanvas = Manager.UI.WorldCanvas.transform;
-        popupParent = new GameObject("PopupTextParent").transform;
-        popupParent.parent = popupCanvas;
+        poolCleanupRoutine = StartCoroutine(PoolCleanupRoutine());       
     }
 
     public void ResetPool()
@@ -42,6 +35,11 @@ public class PoolManager : Singleton<PoolManager>
         poolDic = new();
         parentDic = new();
         lastUseTimeDic = new();
+
+        parent = new GameObject("Pools").transform;
+
+        popupParent = new GameObject("PopupTextParent").transform;
+        popupParent.parent = Manager.UI.WorldCanvas.transform;
     }
 
     private ObjectPool<GameObject> CreatePopUpTextPool(GameObject popUp)
@@ -78,11 +76,9 @@ public class PoolManager : Singleton<PoolManager>
 
     IEnumerator PoolCleanupRoutine()
     {
-        YieldInstruction delay = new WaitForSeconds(poolCleanupDelay);
-
         while (true)
         {
-            yield return delay;
+            yield return Utile.GetDelay(poolCleanupDelay);
 
             float now = Time.time;
             List<string> removePoolKeys = new List<string>();
