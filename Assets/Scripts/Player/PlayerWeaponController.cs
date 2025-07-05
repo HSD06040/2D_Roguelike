@@ -58,6 +58,7 @@ public class PlayerWeaponController : MonoBehaviour
             isShowStatus.Value = false;
     }
 
+    //V키 누를 시 플레이어 스탯창
     private void ShowStatusView(bool value)
     {
         if(value)
@@ -73,15 +74,15 @@ public class PlayerWeaponController : MonoBehaviour
     private void Attack(InputAction.CallbackContext ctx)
     {
         if (currentWeapon != null)
-        {            
+        {
+            Debug.Log("Attack");
+            Manager.Game.IsPress.Value = true;
             SetProjectile(currentWeapon);
-            if (currentWeapon.WeaponData.ID == 5)
-            {
-                Manager.Game.IsPress.Value = true;
-            }
+            
         }
         else
         {
+            Manager.Game.IsPress.Value = true;
             SetProjectile(defaultWeapon);
         }
 
@@ -92,12 +93,15 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if(currentWeapon != null)
         {
-            if(currentWeapon.WeaponData.ID == 5)
-            {
-                Manager.Game.IsPress.Value = false;
-            }
+            Manager.Game.IsPress.Value = false;
         }
-    }
+
+        if (attackDelayCor != null)
+        {
+            StopCoroutine(attackDelayCor);
+            attackDelayCor = null;
+        }
+    } 
 
     #region List<string>형식으로 weapon받아오기
     public void AddMusicWeapon(int idx, MusicWeapon _musicWeapon)
@@ -143,41 +147,72 @@ public class PlayerWeaponController : MonoBehaviour
             return;
         }
 
-        if (!Manager.Game.IsPause || !Manager.Game.IsDead)
+        if (Manager.Game.IsPause || Manager.Game.IsDead)
+            return;
+
+        if (attackDelayCor != null)
+            return;
+
+        if (musicWeapon.WeaponData.Type == MusicWeaponType.Violin)
         {
-            
-            if(attackDelayCor == null && canAttack)
-            {
-                attackDelayCor = StartCoroutine(AttackCor(musicWeapon));
-            }
-            
-            if (attackDelayCor != null && canAttack)
-            {
-                StopCoroutine(attackDelayCor);
-                attackDelayCor = null;
-            }
+            attackDelayCor = StartCoroutine(ViolinAttack(musicWeapon));
+        }
+        else
+        {
+            attackDelayCor = StartCoroutine(AttackCor(musicWeapon));
         }
     }
-    
+
+    #region 일반무기 공격속도
     IEnumerator AttackCor(MusicWeapon musicWeapon)
+    {
+        canAttack = false;
+        while (Manager.Game.IsPress.Value)
+        {
+            Manager.Game.OnPlayerAttack?.Invoke();
+            musicWeapon.Attack(GetMousePos());
+
+            yield return AttackDelay(musicWeapon);
+
+        }
+        yield return AttackDelay(musicWeapon);
+        canAttack = true;
+        attackDelayCor = null;
+        yield return null;
+    }
+    #endregion
+
+    #region 바이올린 공격속도
+    IEnumerator ViolinAttack(MusicWeapon musicWeapon)
     {
         Manager.Game.OnPlayerAttack?.Invoke();
         musicWeapon.Attack(GetMousePos());
         canAttack = false;
 
-        if(musicWeapon.WeaponData.ID == 1)
+        yield return Utile.GetDelay(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+        
+        canAttack = true;
+        attackDelayCor = null;
+        yield return null;
+    }
+    #endregion
+
+    private Vector2 GetMousePos() => Manager.Input.GetMousePosition();
+
+
+    #region 무기 공속
+    private WaitForSeconds AttackDelay(MusicWeapon musicWeapon)
+    {
+        if (musicWeapon.WeaponData.ID == 1)
         {
-            yield return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] * 
+            return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] *
                 Manager.Data.PlayerStatus.AttackSpeed.Value);
         }
         else
         {
-            yield return Utile.GetDelay(1/musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
+            return Utile.GetDelay(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
         }
-
-        yield return new WaitForEndOfFrame();
-        canAttack = true;
     }
+#endregion
 
-    private Vector2 GetMousePos() => Manager.Input.GetMousePosition();
 }
