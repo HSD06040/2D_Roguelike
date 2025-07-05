@@ -25,7 +25,7 @@ public class BossMonsterFSM : MonoBehaviour
     }
     protected virtual void Start()
     {
-        Player ??= GameObject.FindGameObjectWithTag("Player").transform;
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void AnimFinish() => animFinish = true;

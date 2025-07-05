@@ -82,7 +82,7 @@ public class BossPatternObject : MonoBehaviour
     private void Attack(GameObject obj, bool isDestroy)
     {
         Destroy(Instantiate(obj, transform.position, Quaternion.identity),3);
-        col.enabled = true; 
+        col.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
