@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8322308032326515858}
   - component: {fileID: 3068793717469211980}
   - component: {fileID: 7488264513582482820}
-  - component: {fileID: 8627703480107503960}
+  - component: {fileID: 295070271268239580}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -228,6 +228,8 @@ MonoBehaviour:
   playerDamageCoolDown: 0
   heartUI: {fileID: 2061733710199069006}
   status:
+    <MaxHp>k__BackingField:
+      value: 0
     Invincible: 0
     PlayerAccessories:
     - {fileID: 0}
@@ -275,7 +277,9 @@ MonoBehaviour:
   - {fileID: 4416008173384263011}
   - {fileID: 7013757159242751693}
   - {fileID: 8590227809496450227}
-  defaultWeapon: {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  defaultWeapon: {fileID: 8918021019879298176}
+  weaponSlots: []
+  currentWeapon: {fileID: 0}
 --- !u!50 &5357449895272487411
 Rigidbody2D:
   serializedVersion: 4
@@ -310,7 +314,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739693839030740940}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -399,14 +403,14 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &8627703480107503960
-CircleCollider2D:
+--- !u!70 &295070271268239580
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739693839030740940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -428,12 +432,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.051203594, y: 0.4793027}
-  serializedVersion: 2
-  m_Radius: 0.60643715
+  m_Offset: {x: -0.045851164, y: -0.7124498}
+  m_Size: {x: 0.7054964, y: 1.0934632}
+  m_Direction: 0
 --- !u!1 &2178248927887227601
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +804,14 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3590276297380165917, guid: fba4c187699bb1a41b0c915cdb89a92d, type: 3}
+      propertyPath: fullHeart
+      value: 
+      objectReference: {fileID: -1682215090, guid: beebedc609693be4b95d877f744ec71a, type: 3}
+    - target: {fileID: 3590276297380165917, guid: fba4c187699bb1a41b0c915cdb89a92d, type: 3}
+      propertyPath: emptyHeart
+      value: 
+      objectReference: {fileID: 612606693, guid: beebedc609693be4b95d877f744ec71a, type: 3}
     - target: {fileID: 4676956578075486073, guid: fba4c187699bb1a41b0c915cdb89a92d, type: 3}
       propertyPath: m_Name
       value: HeartUI
@@ -982,6 +994,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+--- !u!114 &8918021019879298176 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  m_PrefabInstance: {fileID: 4784862761852599215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54de136fd8da9d142bcc4d2e225641d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9129696760378293498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4383143188099368789, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
