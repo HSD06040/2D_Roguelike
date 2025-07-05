@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnPattern : BossPattern
 {
     [SerializeField] private Transform[] spawnPoints;
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         yield return Utile.GetDelay(duration);
 

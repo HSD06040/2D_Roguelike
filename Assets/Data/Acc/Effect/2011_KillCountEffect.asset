@@ -20,11 +20,11 @@ MonoBehaviour:
   triggerTypes: 04000000
   monsterCounts: 0a0000000a0000000a0000000a000000
   statEffects:
-  - statType: 5
+  - statType: 6
     value: 0.05
-  - statType: 5
+  - statType: 6
     value: 0.1
-  - statType: 5
+  - statType: 6
     value: 0.2
-  - statType: 5
+  - statType: 6
     value: 0.3

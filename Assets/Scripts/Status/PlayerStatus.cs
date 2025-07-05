@@ -14,7 +14,7 @@ public enum StatType
 [Serializable]
 public class PlayerStatus
 {
-    // 플레이어스텟        
+    // 플레이어스텟   
     [field : SerializeField] public IntStat MaxHp { get; private set; } = new(); // 최대 체력 값
 
     [field: SerializeField] public FloatStat Damage { get; private set; } = new(); // 데미지 값
@@ -88,7 +88,6 @@ public class PlayerStatus
         MusicWeapon _weapon = Manager.Data.MusicWeapons[(int)musicWeaponType];
 
         if (_weapon == null) return;
-
         int idx = 0;
 
         if (!WeaponList.Contains(_weapon.WeaponData.Type))
@@ -97,9 +96,10 @@ public class PlayerStatus
             _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
             _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
+            Debug.Log(idx);
             if (idx == -1) return;
 
-            OnChangedWeapon.Invoke(idx, _weapon);
+            OnChangedWeapon?.Invoke(idx, _weapon);
         }
         else
         {

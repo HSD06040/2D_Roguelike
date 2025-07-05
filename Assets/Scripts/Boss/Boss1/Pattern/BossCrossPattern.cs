@@ -30,7 +30,7 @@ public class BossCrossPattern : BossPattern
 
     private Coroutine rotateRoutine;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         yield return Utile.GetDelay(duration);
 

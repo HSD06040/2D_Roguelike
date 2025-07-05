@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8690f118d641b134aa683bd85dcc833a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SO>k__BackingField: {fileID: 11400000, guid: de198d02bfcb157478efe1b50e248ac7, type: 2}
+  <SO>k__BackingField: {fileID: 11400000, guid: 4ef06790d88e406479603cba16a804d0, type: 2}
   firePoint: {fileID: 5036577013928803666}
   lastAttackTime: 0
 --- !u!114 &317920961533538457

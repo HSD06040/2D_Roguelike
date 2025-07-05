@@ -8,7 +8,7 @@ public class GlissandoPattern : BossPattern
     [SerializeField] private float delay;
     private int random;
 
-    protected override IEnumerator PatternRoutine(Monster boss)
+    protected override IEnumerator PatternRoutine()
     {
         random = Random.Range(6, objs.Length - 6);
 
@@ -35,5 +35,9 @@ public class GlissandoPattern : BossPattern
 
             yield return Utile.GetDelay(interval);
         }
+
+        yield return Utile.GetDelay(delay);
+
+        OnComplated?.Invoke();
     }
 }

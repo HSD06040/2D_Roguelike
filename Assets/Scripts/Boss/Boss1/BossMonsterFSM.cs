@@ -5,16 +5,17 @@ using UnityEngine;
 public class BossMonsterFSM : MonoBehaviour
 {
     public MonsterStat stat;
-    public Transform Player {  get; private set; }
+    [field: SerializeField] public Transform Player {  get; private set; }
     public Monster Owner;   
     public bool isPatternPlaying;
     public bool animFinish;
     [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject shockWave;
 
     #region AnimHash
     protected static readonly int idleHash = Animator.StringToHash("Idle");
     protected static readonly int attackHash = Animator.StringToHash("Attack");
-    protected static readonly int runHash = Animator.StringToHash("Run");
+    protected static readonly int moveHash = Animator.StringToHash("Move");
     protected static readonly int dieHash = Animator.StringToHash("Dead");
     #endregion   
 
@@ -49,5 +50,10 @@ public class BossMonsterFSM : MonoBehaviour
         portal.SetActive(true);
 
         Destroy(gameObject, 2);
+    }
+
+    public void CreateShockWave()
+    {
+        Instantiate(shockWave, transform.position, Quaternion.identity);
     }
 }
