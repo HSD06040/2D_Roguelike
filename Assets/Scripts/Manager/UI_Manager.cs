@@ -16,6 +16,8 @@ public class UI_Manager : Singleton<UI_Manager>
     public BoxRewardUI BoxReward;
     public StatusPopUp StatusView;
 
+    //맨처음 스페이스바
+    //public Property<bool> OnPress = new();
     private void Awake()
     {
         InitUI();
@@ -72,6 +74,11 @@ public class UI_Manager : Singleton<UI_Manager>
     public void ClosePopUp()
     {
         PopUpCanvas.GetComponent<PopUpCanvas>().RemoveUI();
+    }
+
+    public void ShowTitle()
+    {
+        PopUpCanvas.GetComponent<PopUpCanvas>().Showtitle();
     }
 }
 

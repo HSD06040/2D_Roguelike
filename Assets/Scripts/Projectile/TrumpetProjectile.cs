@@ -20,9 +20,9 @@ public class TrumpetProjectile : Projectile
 
     private void Start()
     {
-        gameObject.transform.localScale = new Vector2(0.05f, 0.05f);
+        gameObject.transform.localScale = new Vector2(0.2f, 0.2f);
         data = Manager.Data.PassiveCon.orbitController.transform.position;
-        maxValue = ((Vector2)targetPos - data).magnitude;
+        maxValue = 20;
 
         if (sizeCor == null)
         {
@@ -33,18 +33,12 @@ public class TrumpetProjectile : Projectile
 
     private IEnumerator UpSizeCor(float _maxValue)
     {
-        float t = 4 / maxValue;
+        float t = 4 / _maxValue;
         
-        while(transform.localScale.x <= 2)
+        while(transform.localScale.x <= 1)
         {
             yield return delay;
             transform.localScale += new Vector3(t, t, 0);
-        }
-
-        if(sizeCor != null)
-        {
-            StopCoroutine(sizeCor);
-            sizeCor = null;
         }
     }
 

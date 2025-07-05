@@ -39,14 +39,14 @@ public class PlayerStatus
     public Action<int, Accessories> OnAccessoriesChanged;
 
     [Header("Weapon")]
-    private MusicWeapon weapon;
+    //private MusicWeapon weapon;
     public int currentWeaponIdx;
     public MusicWeapon curWeapon => PlayerWeapons[currentWeaponIdx];
     public MusicWeapon[] PlayerWeapons = new MusicWeapon[weaponCount];
     private List<MusicWeaponType> WeaponList = new List<MusicWeaponType>(4);
 
     public Action<int, MusicWeapon> OnChangedWeapon;
-    public Action<int> OnCurrentWeaponChanged;
+    public event Action<int> OnCurrentWeaponChanged;
 
     public Action OnPlayerDead;
 
@@ -96,7 +96,9 @@ public class PlayerStatus
             _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
             _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
+            PlayerWeapons[idx] = _weapon; //이부분이 없어서 slot에 안 들어갔음
             Debug.Log(idx);
+
             if (idx == -1) return;
 
             OnChangedWeapon?.Invoke(idx, _weapon);
@@ -108,7 +110,7 @@ public class PlayerStatus
                 if (PlayerWeapons[i].WeaponData.Type == _weapon.WeaponData.Type)
                 {
                     idx = i;
-                    weapon = PlayerWeapons[i];
+                    //weapon = PlayerWeapons[i];
                     break;
                 }
                 else
@@ -116,12 +118,12 @@ public class PlayerStatus
                     continue;
                 }
             }
-
-            if (weapon.Level <= weapon.WeaponData.WeaponMaxUpgrade)
+            Debug.Log($"Add : {idx}");
+            if (PlayerWeapons[idx].Level <= PlayerWeapons[idx].WeaponData.WeaponMaxUpgrade)
             {
-                Debug.Log($"{weapon.WeaponData.itemName} LevelUp");
-                weapon.Level++;
-                weapon.OnUpgrade?.Invoke(weapon.Level);
+                Debug.Log($"{PlayerWeapons[idx].WeaponData.itemName} LevelUp");
+                PlayerWeapons[idx].Level++;
+                PlayerWeapons[idx].OnUpgrade?.Invoke(PlayerWeapons[idx].Level);
             }
         }
     }
@@ -144,7 +146,7 @@ public class PlayerStatus
     private void WeaponChanged(int _idx)
     {
         if (PlayerWeapons[_idx] == null) return;
-
+        Debug.Log($"WeaponChanged : {_idx}");
         currentWeaponIdx = _idx;
         OnCurrentWeaponChanged?.Invoke(_idx);
     }
