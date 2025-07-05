@@ -7,9 +7,20 @@ public class Portal : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject interectionUI;
 
+    private bool isActivated;
+
+    private void Start()
+    {
+        isActivated = false;
+    }
     public void Interact()
     {
-        StartCoroutine(ScreenFade());
+        if(!isActivated)
+        {
+            isActivated=true;
+            StartCoroutine(ScreenFade());
+        }
+        
     }
 
     private IEnumerator ScreenFade()
