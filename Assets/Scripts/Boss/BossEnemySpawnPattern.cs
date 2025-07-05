@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnPattern : BossPattern
+public class BossEnemySpawnPattern : BossPattern
 {
     [SerializeField] private Transform[] spawnPoints;
     protected override IEnumerator PatternRoutine()
@@ -13,7 +13,7 @@ public class EnemySpawnPattern : BossPattern
         {
             Instantiate(prefab, spawnPoints[i].position, Quaternion.identity);
             
-            for (int j = 0; j < Random.Range(2,4); j++)
+            for (int j = 0; j < 1; j++)
             {
                 Instantiate(Manager.Table.RandomMonsterSpawn(1), spawnPoints[i].position, Quaternion.identity);
             }
