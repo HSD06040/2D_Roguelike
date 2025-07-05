@@ -9,8 +9,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("무기")]
     [SerializeField] private MusicWeapon defaultWeapon;
-    private MusicWeapon[] weaponSlots;
-    private MusicWeapon currentWeapon;
+    public MusicWeapon[] weaponSlots;
+    public MusicWeapon currentWeapon;
 
     Coroutine attackDelayCor;
     private bool canAttack = true;
@@ -27,7 +27,6 @@ public class PlayerWeaponController : MonoBehaviour
     private void OnEnable()
     {
         Manager.Data.PlayerStatus.OnChangedWeapon += AddMusicWeapon;
-        Debug.Log("Add Event");
         Manager.Data.PlayerStatus.OnCurrentWeaponChanged += WeaponSwitch;
         Manager.Input.GetPlayerBind("Attack").AddStartedEvent(Attack);
         Manager.Input.GetPlayerBind("Attack").AddCanceledEvent(CancelAttack);
@@ -63,11 +62,11 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if(value)
         {
-            Manager.UI.StatusView.gameObject.SetActive(true);
+            //Manager.UI.StatusView.gameObject.SetActive(true);
         }
         else
         {
-            Manager.UI.StatusView.gameObject.SetActive(false);
+            //Manager.UI.StatusView.gameObject.SetActive(false);
         }
     }
 
@@ -105,10 +104,10 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Debug.Log("Invoke Event");
         if (_musicWeapon == null) return;
-        Debug.Log("Not Return Event");
-        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);        
-        weaponSlots[idx] = weapon;
+        Debug.Log("Not Return Event");     
+        MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);
         weapon.Init(transform);
+        weaponSlots[idx] = weapon;
     }
     #endregion
 
@@ -119,7 +118,6 @@ public class PlayerWeaponController : MonoBehaviour
             Manager.Game.IsPress.Value = false; // 강제로 레이저 끄기
         }
         currentWeapon = weaponSlots[_idx];
-        Debug.Log($"WeaponSwitch{currentWeapon}");
     }
 
 

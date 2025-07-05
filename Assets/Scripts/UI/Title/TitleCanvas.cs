@@ -21,6 +21,12 @@ public class TitleCanvas : BaseUI
     private WaitForSeconds delay = new WaitForSeconds(0.4f);
 
     private bool isPress;
+    private int count;
+    private void OnDestroy()
+    {
+        if(gameObject != null)
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -32,21 +38,25 @@ public class TitleCanvas : BaseUI
         {
             Manager.UI.ShowPopUp<SettingPopUp>();
         };
-
         //이부분에 초기화작업 해줘야함
         GetEvent("PressGameStartButton").Click += data =>
         {
-            if(Manager.Game.IsDead)
+            if (Manager.Game.IsDead)
                 Manager.Game.IsDead = false;
 
+            Manager.UI.ClosePopUp();
             SceneManager.LoadSceneAsync(1);
         };
+        NotPress();
+        count++;
+    }
 
+    private void NotPress()
+    {
         pressSpaceButton.SetActive(true);
         pressGameStartButton.gameObject.SetActive(false);
         pressOptionButton.gameObject.SetActive(false);
         pressExitButton.gameObject.SetActive(false);
-
         StartCoroutine(PressSpaceTitle());
     }
 

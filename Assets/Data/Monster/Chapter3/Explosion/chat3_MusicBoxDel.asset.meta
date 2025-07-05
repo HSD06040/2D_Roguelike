@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Data/Monster/Chapter3/Explosion/chat3_MusicBoxDel.asset.meta
 guid: 3d13d232fd00ba246a217a477dbfea8f
+========
+guid: 092c7a55958c4f04ab062058261d20d6
+>>>>>>>> Stashed changes:Assets/Data/Monster/Chapter3/Explosion/chat3_MusicBox.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

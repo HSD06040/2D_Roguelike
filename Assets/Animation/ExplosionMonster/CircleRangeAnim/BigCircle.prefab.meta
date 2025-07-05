@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Animation/ExplosionMonster/CircleRangeAnim/BigCircle.prefab.meta
 guid: fa6499815bfd3f34d9a290cdf4b97b67
+========
+guid: 358f6705b420e334bb556c38010e4ab3
+>>>>>>>> Stashed changes:Assets/Prefabs/MonsterPrefabs/Chapter1_Monster/chat1_Zombie.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
