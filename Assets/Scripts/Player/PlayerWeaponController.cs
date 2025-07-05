@@ -14,6 +14,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     Coroutine attackDelayCor;
     private bool canAttack = true;
+    private float delay = 0;
+    private float maxCount => currentWeapon.curAttackDelay;
+    private float defaultMaxCount => defaultWeapon.curAttackDelay;
 
     Coroutine showStatusCor;
     Property<bool> isShowStatus = new();
@@ -46,6 +49,37 @@ public class PlayerWeaponController : MonoBehaviour
         isShowStatus.RemoveEvent(ShowStatusView);
     }
 
+    private void Update()
+    {
+        #region 버튼 연속으로 누름방지
+        //코루틴에서 셜정이 잘 안돼서 누를때 제외 연속으로 버튼 누를시 계속나오는거 방지
+        if (currentWeapon != null)
+        {
+            if (delay < maxCount)
+            {
+                delay += Time.deltaTime;
+                canAttack = false;
+            }
+            else
+            {
+                canAttack = true; ;
+            }
+        }
+        else
+        {
+            if (delay < defaultMaxCount)
+            {
+                delay += Time.deltaTime;
+                canAttack = false;
+            }
+            else
+            {
+                canAttack = true; ;
+            }
+        }
+        #endregion
+    }
+
     private void ShowStatus(InputAction.CallbackContext ctx)
     {
         if (!Manager.Game.IsDead && gameObject != null)
@@ -73,12 +107,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext ctx)
     {
+        if (!canAttack) return;
+
         if (currentWeapon != null)
         {
-            Debug.Log("Attack");
             Manager.Game.IsPress.Value = true;
             SetProjectile(currentWeapon);
-            
         }
         else
         {
@@ -100,6 +134,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             StopCoroutine(attackDelayCor);
             attackDelayCor = null;
+            delay = 0;
         }
     } 
 
@@ -166,17 +201,14 @@ public class PlayerWeaponController : MonoBehaviour
     #region 일반무기 공격속도
     IEnumerator AttackCor(MusicWeapon musicWeapon)
     {
-        canAttack = false;
         while (Manager.Game.IsPress.Value)
         {
             Manager.Game.OnPlayerAttack?.Invoke();
             musicWeapon.Attack(GetMousePos());
 
             yield return AttackDelay(musicWeapon);
-
         }
         yield return AttackDelay(musicWeapon);
-        canAttack = true;
         attackDelayCor = null;
         yield return null;
     }
@@ -187,11 +219,9 @@ public class PlayerWeaponController : MonoBehaviour
     {
         Manager.Game.OnPlayerAttack?.Invoke();
         musicWeapon.Attack(GetMousePos());
-        canAttack = false;
 
         yield return Utile.GetDelay(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
         
-        canAttack = true;
         attackDelayCor = null;
         yield return null;
     }
