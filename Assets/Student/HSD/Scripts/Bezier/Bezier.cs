@@ -49,7 +49,6 @@ public class BezierProjectile2D : MonoBehaviour
 
             Vector2 pos = CalculateQuadraticBezierPoint(t, start, control, target.position);
             rb.MovePosition(pos);
-
         }
     }
 

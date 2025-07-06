@@ -123,6 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 4435134049199277297}
   speed: 5
+  bezierDuration: 1
+  postBezierSpeed: 10
+  x: 0.5
+  y: 1
 --- !u!50 &8020740214230897006
 Rigidbody2D:
   serializedVersion: 4

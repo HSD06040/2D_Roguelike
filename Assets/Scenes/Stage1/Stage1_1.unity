@@ -6638,7 +6638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   Accessories:
-  - {fileID: 11400000, guid: b8e272277fca91a4fbc3b1182f23a077, type: 2}
+  - {fileID: 11400000, guid: 4645c52474a256d4481c4d3fd6942354, type: 2}
 --- !u!4 &456824855
 Transform:
   m_ObjectHideFlags: 0
