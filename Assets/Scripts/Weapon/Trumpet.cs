@@ -12,8 +12,6 @@ public class Trumpet : MusicWeapon
         Vector2 pos = (mousePosition - (Vector2)player.position).normalized;
         if (weaponCor == null)
         {
-            Debug.Log($"{gameObject.name}");
-            Debug.Log($"{gameObject.activeSelf}");
             weaponCor = StartCoroutine(WeaponCor(pos));
         }
     }
