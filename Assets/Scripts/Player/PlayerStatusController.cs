@@ -18,6 +18,7 @@ public class PlayerStatusController : StatusController
         heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
+        status.MaxHp.OnChanged += heartUI.InicialHearts;//
         status.OnPlayerDead += Die;
         Manager.Game.OnRetry += PlayerDestroy;
     }
@@ -38,4 +39,14 @@ public class PlayerStatusController : StatusController
     {
         Manager.Game.OnRetry -= PlayerDestroy;
     }
+
+   //private void Update()
+   //{
+   //    if (Input.GetKeyDown(KeyCode.P))
+   //    {
+   //        status.AddStat(StatType.MaxHp, 1, "Test");
+   //        Debug.Log($"MaxHp 증가: {status.MaxHp.Value}, 현재 체력: {status.CurtHp.Value}");
+   //    }
+   //}
+
 }
