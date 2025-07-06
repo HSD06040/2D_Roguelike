@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
-    [SerializeField] private Image[] slots;   // �߰���!!! ���� ��� (ȸ��/���)
-    [SerializeField] private Image[] weaponIcons;        // �߰���!!! ������ ������
+    [SerializeField] private Image[] slots;
+    [SerializeField] private Image[] weaponIcons;
 
-    [SerializeField] private Sprite selectedSlotSprite;   // �߰���!!! ���õ� ���� ��� (���)
-    [SerializeField] private Sprite unselectedSlotSprite; // �߰���!!! ���� �ȵ� ��� (ȸ��)
+    [SerializeField] private Sprite selectedSlotSprite;
+    [SerializeField] private Sprite unselectedSlotSprite;
 
     private WeaponSlotPresenter presenter;
 
@@ -22,8 +22,8 @@ public class WeaponSlot : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            slots[i].sprite = unselectedSlotSprite;   //������ ���� ��Ȱ��ȭ ��������Ʈ�� ����
-            weaponIcons[i].gameObject.SetActive(false); //�������� �� ����
+            slots[i].sprite = unselectedSlotSprite;
+            weaponIcons[i].gameObject.SetActive(false);
         }
     }
 
@@ -43,7 +43,7 @@ public class WeaponSlot : MonoBehaviour
         {
             if( i == _idx )
             {
-                slots[i].sprite = selectedSlotSprite; //���õȰ� ���
+                slots[i].sprite = selectedSlotSprite;
             }
             else
             {
@@ -56,11 +56,11 @@ public class WeaponSlot : MonoBehaviour
     {
         if (_weapon == null)
         {
-            weaponIcons[_idx].gameObject.SetActive(false); // ������ ������ ������ ��Ȱ��ȭ
+            weaponIcons[_idx].gameObject.SetActive(false);
             return;
         }
 
-        weaponIcons[_idx].gameObject.SetActive(true); // ������ ������ ������ Ȱ��ȭ
-        weaponIcons[_idx].sprite = _weapon.WeaponData.icon; // ������ ǥ��
+        weaponIcons[_idx].gameObject.SetActive(true);
+        weaponIcons[_idx].sprite = _weapon.WeaponData.icon;
     }
 }

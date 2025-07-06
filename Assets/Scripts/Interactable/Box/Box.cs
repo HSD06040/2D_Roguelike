@@ -31,7 +31,7 @@ public class Box : MonoBehaviour, IInteractable
             animator.SetTrigger("Open");
             //Debug.Log("상자열림");
             UiOff();
-
+            Manager.Audio.PlaySFX("Box/Box_Open", transform.position);
             RamdomBoxRewardItem();
             
         }

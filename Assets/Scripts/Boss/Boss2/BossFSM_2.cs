@@ -186,7 +186,7 @@ public class BossDoubleShotState_2 : BossBaseState<BossFSM_2>
 {
     public BossDoubleShotState_2(BossFSM_2 _fsm, int _animHash) : base(_fsm, _animHash)
     {
-        fsm.Pattern.AddExplosionEvent(fsm.ChangeIdleState);
+        fsm.Pattern.AddDoubleShotEvent(fsm.ChangeIdleState);
     }
 
     public override void Enter()
