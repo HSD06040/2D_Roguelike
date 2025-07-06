@@ -92,7 +92,7 @@ public class ViolinProjectile : Projectile
 
         float angle = Mathf.Atan2(directionNormal.y, directionNormal.x) * Mathf.Rad2Deg;
         electObj.transform.localRotation = Quaternion.Euler(0, 0, angle);
-        electObj.transform.localScale = new Vector2(Mathf.Abs(direction.x), electObj.transform.localScale.y);
+
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -121,8 +121,16 @@ public class ViolinProjectile : Projectile
                     obj.transform.position = hit.point;
                     particleDelay = 0;
                 }
+
+                float distance = Vector2.Distance(start, hit.point);
+                electObj.transform.localScale = new Vector2(distance, electObj.transform.localScale.y);
+
+                break;
             }
+            
         }
+
+
     }
 
 

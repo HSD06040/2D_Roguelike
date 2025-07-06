@@ -19,6 +19,7 @@ public class PlayerStatusController : StatusController
         heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
+        status.MaxHp.OnChanged += heartUI.InicialHearts;//
         status.OnPlayerDead += Die;
         Manager.Game.OnRetry += PlayerDestroy;
     }
