@@ -24,7 +24,7 @@ MonoBehaviour:
   triggerTypes: 03000000
   isInvincible: 1
   invincibleTime: 5
-  prefab: {fileID: 0}
+  prefab: {fileID: 106386, guid: 831c85159903ac84399ac3c3e1d5c5ad, type: 3}
   counts: 01000000010000000100000001000000
   damages: []
   radius: []

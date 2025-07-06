@@ -17,6 +17,17 @@ public class AccessoriesChangeSlot : AccessoriesSlot, IPointerEnterHandler, IPoi
         num = _num;
     }
 
+    public override void UpdateSlot()
+    {
+        
+    }
+
+    public override void UpdateSlot(Accessories ac)
+    {
+        accessories = ac;
+        icon.sprite = ac.icon;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (accessories == null) return;

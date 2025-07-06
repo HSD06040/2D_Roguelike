@@ -8,6 +8,7 @@ public class PlayerStatusController : StatusController
     [SerializeField] private HealthHeart heartUI;
 
     public PlayerStatus status;
+    public bool invincible;
 
     private new void Start()
     {
@@ -25,7 +26,9 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(float damage)
     {
+        if (invincible) return;
         Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
+        StartCoroutine(InvincibleRoutine(1));
     }
 
     private void Die()
@@ -40,13 +43,10 @@ public class PlayerStatusController : StatusController
         Manager.Game.OnRetry -= PlayerDestroy;
     }
 
-   //private void Update()
-   //{
-   //    if (Input.GetKeyDown(KeyCode.P))
-   //    {
-   //        status.AddStat(StatType.MaxHp, 1, "Test");
-   //        Debug.Log($"MaxHp 증가: {status.MaxHp.Value}, 현재 체력: {status.CurtHp.Value}");
-   //    }
-   //}
-
+    private IEnumerator InvincibleRoutine(float _delay)
+    {
+        invincible = true;
+        yield return Utile.GetDelay(_delay);
+        invincible = false;
+    }
 }

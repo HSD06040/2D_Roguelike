@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public enum SoundType
 {
@@ -44,6 +46,21 @@ public class AudioManager : Singleton<AudioManager>
         effect.transform.parent = audioParent;
         sfxSource = effect.AddComponent<AudioSource>();
         sfxSource.outputAudioMixerGroup = sfxGroup;
+
+        ResetCached();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetCached();
+    }
+
+    public void ResetCached()
+    {
+        sfxCached = new();
+        audioSourceCached = new();
     }
 
     public void PlaySFX(string name, Vector3 position, float volume = 1, float pitch = 1)
@@ -51,14 +68,14 @@ public class AudioManager : Singleton<AudioManager>
         if (string.IsNullOrEmpty(name)) return;
 
         if(!sfxCached.TryGetValue(name, out var clip))
-            clip = LoadClip(name, SoundType.SFX);                    
+            clip = LoadClip(name, SoundType.SFX);
 
         GameObject audioObj = Manager.Resources.Instantiate<GameObject>("SFX_Obj", position, true);
 
-        if(!audioSourceCached.TryGetValue(audioObj.GetInstanceID(), out var audio))
+        if (!audioSourceCached.TryGetValue(audioObj.GetInstanceID(), out var audio))
         {
-            audio = audioObj.GetComponent<AudioSource>();
-
+            audio = audioObj.GetOrAddComponent<AudioSource>();
+            Debug.Log(audio == null);
             if (audio != null)
                 audioSourceCached[audioObj.GetInstanceID()] = audio;
         }

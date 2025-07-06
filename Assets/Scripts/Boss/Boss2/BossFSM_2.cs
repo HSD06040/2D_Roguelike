@@ -12,7 +12,6 @@ public class BossFSM_2 : BossMonsterFSM
     public BossIdleState_2 idle {  get; private set; }
     public BossTeleportState_2 telpo {  get; private set; }
     public BossDoubleShotState_2 doubleShot { get; private set; }
-    public BossExplosionPatternState_2 explosion { get; private set; }
     public BossCrossState_2 cross { get; private set; }
     public BossCrossRotateState_2 crossRotate { get; private set; }
     public BossLaserState_2 laser { get; private set; }
@@ -27,7 +26,6 @@ public class BossFSM_2 : BossMonsterFSM
         idle = new BossIdleState_2(this, idleHash);
         telpo = new BossTeleportState_2(this, moveHash);
         doubleShot = new BossDoubleShotState_2(this, attackHash);
-        explosion = new BossExplosionPatternState_2(this, attackHash);
         cross = new BossCrossState_2(this, attackHash);
         crossRotate = new BossCrossRotateState_2(this, attackHash);
         laser = new BossLaserState_2(this, attackHash);
@@ -119,7 +117,6 @@ public class BossTeleportState_2 : BossBaseState<BossFSM_2>
         {
             switch (Random.Range(0, 3))
             {
-                case 0: fsm.StateMachine.ChangeState(fsm.explosion); break;
                 case 1: fsm.StateMachine.ChangeState(fsm.laser); break;
                 case 2: fsm.StateMachine.ChangeState(fsm.doubleShot); break;
             }            
@@ -180,22 +177,8 @@ public class BossLaserState_2 : BossBaseState<BossFSM_2>
     {
         base.Enter();
 
-        fsm.Pattern.PlayLaserPattern();
-    }
-}
-
-public class BossExplosionPatternState_2 : BossBaseState<BossFSM_2>
-{
-    public BossExplosionPatternState_2(BossFSM_2 _fsm, int _animHash) : base(_fsm, _animHash)
-    {
-        fsm.Pattern.AddExplosionEvent(fsm.ChangeIdleState);
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-
         fsm.Pattern.PlayExplosionPattern();
+        fsm.Pattern.PlayLaserPattern();
     }
 }
 
@@ -209,7 +192,8 @@ public class BossDoubleShotState_2 : BossBaseState<BossFSM_2>
     public override void Enter()
     {
         base.Enter();
-
+        
+        fsm.Pattern.PlayExplosionPattern();
         fsm.Pattern.PlayDoubleShotPattern();
     }
 }

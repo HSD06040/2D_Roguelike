@@ -5,6 +5,7 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 
 public class PoolManager : Singleton<PoolManager>
 {
@@ -31,6 +32,8 @@ public class PoolManager : Singleton<PoolManager>
 
         popupParent = new GameObject("PopupTextParent").transform;
         popupParent.parent = Manager.UI.WorldCanvas.transform;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void ResetPool()
@@ -40,6 +43,10 @@ public class PoolManager : Singleton<PoolManager>
         lastUseTimeDic = new();
 
         parent = new GameObject("Pools").transform;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetPool();
     }
 
     private ObjectPool<GameObject> CreatePopUpTextPool(GameObject popUp)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UI_Manager : Singleton<UI_Manager>
 {
@@ -15,12 +16,14 @@ public class UI_Manager : Singleton<UI_Manager>
     public PopupText PopupText;
     public BoxRewardUI BoxReward;
     public StatusPopUp StatusView;
+    public GameObject InfoPanel;
 
     //맨처음 스페이스바
     //public Property<bool> OnPress = new();
     private void Awake()
     {
         InitUI();
+        SetupUIBind();
     }
 
     public void ResetUI()
@@ -43,6 +46,12 @@ public class UI_Manager : Singleton<UI_Manager>
         BoxReward = MainCanvas.GetComponentInChildren<BoxRewardUI>(true);
         StatusView = MainCanvas.GetComponentInChildren<StatusPopUp>(true);
 
+        Transform infoPanelTransform = MainCanvas.transform.Find("InfoPanel");
+        if (infoPanelTransform != null)
+        {
+            InfoPanel = infoPanelTransform.gameObject;
+        }
+
         Canvas fadeCanvas = Instantiate(Resources.Load<Canvas>("UI/FadeCanvas"));
         fadeCanvas.transform.parent = transform;
         Fade = fadeCanvas.GetComponentInChildren<FadeScreen>(true);
@@ -50,6 +59,19 @@ public class UI_Manager : Singleton<UI_Manager>
         PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
         PopUpCanvas.transform.parent = transform;
         PopUpCanvas.GetOrAddComponent<PopUpCanvas>();
+    }
+
+    private void SetupUIBind()
+    {
+        Manager.Input.GetUIBind("Info").AddStartedEvent(InfoPanelChange);
+    }
+
+    private void InfoPanelChange(InputAction.CallbackContext ctx)
+    {
+        if(InfoPanel.activeSelf)
+            InfoPanel.SetActive(false);
+        else
+            InfoPanel.SetActive(true);
     }
 
     public void OpenShop()

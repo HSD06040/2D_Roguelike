@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fadac3cfa154e8f9bc7b373e8e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
   target: {fileID: 2714547817373117417}
   col: {fileID: 3691907534422167556}
   red: {r: 0.9150943, g: 0.10791205, b: 0.10791205, a: 1}
@@ -114,7 +115,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742442879696141984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BossPatternObject : MonoBehaviour
 {
+    [SerializeField] private int damage;
     [SerializeField] private Transform target;
     [SerializeField] private Collider2D col;
     [SerializeField] private Color red;
@@ -21,27 +22,49 @@ public class BossPatternObject : MonoBehaviour
         targetScale = target.localScale;
     }
 
-    public void Setup(float _duration, GameObject obj, Vector3 scale, bool isDestroy, bool _isAttack = true)
+    public void Setup(float _duration, GameObject obj, Vector3 scale, bool isDestroy, bool _isAttack = true, bool _isBlack = false)
     {
         gameObject.SetActive(true);
 
         isAttack = _isAttack;
 
-        if (isAttack)
+        if(_isBlack)
         {
-            parentSr.color = pink;
-            children.color = red;
-            parentSr.sortingOrder = 0;
-            children.sortingOrder = 1;
+            if (isAttack)
+            {
+                parentSr.color = pink;
+                children.color = red;
+                parentSr.sortingOrder = 2;
+                children.sortingOrder = 3;
+            }
+            else
+            {
+                parentSr.color = gray;
+                children.color = white;
+                parentSr.sortingOrder = 0;
+                children.sortingOrder = 1;
+                target.localScale = Vector2.one;
+            }
         }
         else
         {
-            parentSr.color = gray;
-            children.color = white;
-            parentSr.sortingOrder = 2;
-            children.sortingOrder = 3;
-            target.localScale = Vector2.one;
+            if (isAttack)
+            {
+                parentSr.color = pink;
+                children.color = red;
+                parentSr.sortingOrder = 0;
+                children.sortingOrder = 1;
+            }
+            else
+            {
+                parentSr.color = gray;
+                children.color = white;
+                parentSr.sortingOrder = 2;
+                children.sortingOrder = 3;
+                target.localScale = Vector2.one;
+            }
         }
+        
 
         if(scale != Vector3.zero)
             transform.localScale = scale;
@@ -71,6 +94,8 @@ public class BossPatternObject : MonoBehaviour
 
         target.localScale = targetScale;
 
+        yield return Utile.GetDelay(.1f);
+
         if (isDestroy)
             Destroy(gameObject, .1f);
         else
@@ -89,7 +114,7 @@ public class BossPatternObject : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            collision.GetComponent<IDamagable>().TakeDamage(1);
+            collision.GetComponent<IDamagable>().TakeDamage(damage);
         }
     }
 }

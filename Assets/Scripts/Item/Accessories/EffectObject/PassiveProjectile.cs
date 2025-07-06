@@ -1,53 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PassiveProjectile : PassiveObject
-{
-    private Rigidbody2D rb;
+{    
     [SerializeField] private Animator anim;
     [SerializeField] private float speed;
+
+    private Rigidbody2D rb;
     private Collider2D[] cols;
+    private Transform target;
+
+    private Vector2 start;
+    private Vector3 dir;
+    private bool isHit;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        start = transform.position;
     }
 
     public override void Init(float _damage, float _radius)
     {
         base.Init(_damage, _radius);
 
-        Transform target = FindClosestEnemy();
+        target = FindClosestEnemy();
+
         if (target == null)
         {
             Destroy(gameObject);
             return;
+        }        
+    }
+
+    private void Update()
+    {
+        if (isHit) return;
+
+        if(target == null)
+        {
+            rb.velocity = dir;
+            return;
         }
-        Vector3 dir = (target.position - transform.position).normalized;
-        transform.right = dir;
+
+        dir = (target.position - transform.position).normalized;
         rb.velocity = dir * speed;
+        dir.x = 0;
+        dir.y = 0;
+        transform.right = dir;
     }
 
     private Transform FindClosestEnemy()
     {
-        int count = Physics2D.OverlapCircleNonAlloc(transform.position, 30f, cols, 1 << 6);
-        if (count == 0) return null;
+        cols = Physics2D.OverlapCircleAll(transform.position, 30f, 1 << 6);
 
         Transform closest = null;
-        float minDistSq = float.MaxValue;
-        Vector2 selfPos = transform.position;
+        float min = float.MaxValue;
 
-        for (int i = 0; i < count; i++)
+        foreach (Collider2D col in cols)
         {
-            float distSq = ((Vector2)cols[i].transform.position - selfPos).sqrMagnitude;
-            if (distSq < minDistSq)
+            float distance = Vector2.Distance(col.transform.position, transform.position);
+            if (distance < min)
             {
-                minDistSq = distSq;
-                closest = cols[i].transform;
+                min = distance;
+                closest = col.transform;
             }
         }
-
         return closest;
     }
 
@@ -58,6 +78,7 @@ public class PassiveProjectile : PassiveObject
             collision.GetComponent<IDamagable>().TakeDamage(damage);
 
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            isHit = true;
             anim.SetTrigger("Hit");
         }
     }

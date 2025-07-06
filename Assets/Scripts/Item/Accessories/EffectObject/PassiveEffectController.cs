@@ -45,16 +45,19 @@ public class PassiveEffectController : MonoBehaviour
         while (true)
         {
             Manager.Data.PlayerStatus.Invincible = true;
-
+            GameObject fx = null;
             if (effectPrefab != null)
             {
-                GameObject fx = Instantiate(effectPrefab, orbitController.transform.position, Quaternion.identity);
+                fx = Instantiate(effectPrefab, orbitController.transform.position, Quaternion.identity);
                 fx.transform.SetParent(orbitController.transform);
             }
 
             yield return Utile.GetDelay(invincibleDuration);
 
             Manager.Data.PlayerStatus.Invincible = false;
+
+            if(fx != null)
+                Destroy(fx);
 
             yield return Utile.GetDelay(interval - invincibleDuration);
         }
