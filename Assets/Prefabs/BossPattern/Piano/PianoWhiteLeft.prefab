@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fadac3cfa154e8f9bc7b373e8e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
   target: {fileID: 296209988063438167}
   col: {fileID: 3399046369632356358}
   red: {r: 0.91372555, g: 0.10980393, b: 0.10980393, a: 1}

@@ -29,11 +29,11 @@ public class PianoPattern : BossPattern
         {
             for (int i = 0; i < white.Length; i++)
             {
-                white[i].Setup(duration, prefab, whiteScale, false, false);
+                white[i].Setup(duration, prefab, whiteScale, false, false, true);
             }
             for (int i = 0; i < black.Length; i++)
             {
-                black[i].Setup(duration, prefab, blackScale, false);
+                black[i].Setup(duration, prefab, blackScale, false, true ,true);
             }
         }
 

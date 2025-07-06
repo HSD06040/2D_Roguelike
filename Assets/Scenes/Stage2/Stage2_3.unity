@@ -8701,10 +8701,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ellie
       objectReference: {fileID: 0}
-    - target: {fileID: 8283763614233018246, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

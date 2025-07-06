@@ -8,6 +8,7 @@ public class PlayerStatusController : StatusController
     [SerializeField] private HealthHeart heartUI;
 
     public PlayerStatus status;
+    public bool invincible;
 
     private new void Start()
     {
@@ -24,7 +25,9 @@ public class PlayerStatusController : StatusController
 
     public override void TakeDamage(float damage)
     {
+        if (invincible) return;
         Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
+        StartCoroutine(InvincibleRoutine(1));
     }
 
     private void Die()
@@ -37,5 +40,12 @@ public class PlayerStatusController : StatusController
     private void OnDestroy()
     {
         Manager.Game.OnRetry -= PlayerDestroy;
+    }
+
+    private IEnumerator InvincibleRoutine(float _delay)
+    {
+        invincible = true;
+        yield return Utile.GetDelay(_delay);
+        invincible = false;
     }
 }

@@ -593,16 +593,16 @@ MonoBehaviour:
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
   pivot: {fileID: 6659991245418420472}
   crossInfos:
-  - projectileSpeed: 4
-    rotSpeed: 50
+  - projectileSpeed: 5
+    rotSpeed: 36
     dirCount: 8
     isTotalAngleRandom: 0
     totalAngle: 360
     angleOffset: 0
     offset: 4
-    count: 20
+    count: 40
     duration: 0.5
-    interval: 1
+    interval: 0.25
 --- !u!114 &7007271988597799503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,20 +620,20 @@ MonoBehaviour:
   duration: 0
   boss: {fileID: 8491873795092739339}
   fsm: {fileID: 3794450848522873560}
-  isRotate: 0
+  isRotate: 1
   warningLine: {fileID: 5885332304536905115, guid: eb6cb91fb4371a04987b47cd346587cc, type: 3}
   pivot: {fileID: 6659991245418420472}
   crossInfos:
   - projectileSpeed: 5
-    rotSpeed: 0
+    rotSpeed: 15
     dirCount: 12
     isTotalAngleRandom: 0
     totalAngle: 360
     angleOffset: 0
     offset: 4
-    count: 30
+    count: 40
     duration: 0.5
-    interval: 0.4
+    interval: 0.25
 --- !u!114 &3443379739396937291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,9 +993,9 @@ GameObject:
   - component: {fileID: 7175944941030304179}
   - component: {fileID: 90098835216324339}
   - component: {fileID: 1757790650532400390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ellie
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
