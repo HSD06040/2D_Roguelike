@@ -13,16 +13,27 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
     public GameObject ParticlePrefab;
+    public string[] StartAudioSound = null;
+    public string[] TrigAudioSound = null;
+    public int rand;
 
     private void Start()
     {
         StartCoroutine(SpawnTime());
+
+        if (StartAudioSound.Length > 0)
+        {
+            rand = Random.Range(0, StartAudioSound.Length);
+            Manager.Audio.PlaySFX(StartAudioSound[rand], transform.position);
+            Debug.Log($"StartAudioSound : {StartAudioSound[rand]}");
+        }
     }
 
     public virtual void Init(Vector2 _targetPos, float _damage, float _speed)
     {        
         damage = Manager.Data.PlayerStatus.TotalDamage;        
         rigid.velocity = _targetPos * _speed;
+
     }
 
 
@@ -39,7 +50,14 @@ public class Projectile : MonoBehaviour
             if (ParticlePrefab == null) return;
             GameObject obj = Instantiate(ParticlePrefab);
             obj.transform.position = collision.transform.position;
-            Destroy(obj,0.4f);
+
+            Destroy(obj, 0.4f);
+
+            if(TrigAudioSound.Length > 0)
+            {
+                Manager.Audio.PlaySFX(TrigAudioSound[rand], collision.transform.position);
+                Debug.Log($"TrigAudioSound : {TrigAudioSound[rand]}");
+            }
         }
 
         if (collision.CompareTag("Wall"))
