@@ -9,6 +9,7 @@ public class ToolTip : MonoBehaviour
     [SerializeField] private Image itemIcon;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private TMP_Text itemStat;
+    [SerializeField] private TMP_Text itemUpgradeIdx;
     [SerializeField] private TMP_Text description;
 
     public void OpenToolTip(Accessories accessories)
@@ -21,6 +22,9 @@ public class ToolTip : MonoBehaviour
         itemName.text = accessories.itemName;
         itemStat.text = accessories.GetStatText();
         description.text = accessories.description;
+
+        if (itemUpgradeIdx != null)
+            itemUpgradeIdx.text = $"현재 단계 : {accessories.UpgradeIdx + 1}";
     }
 
     public void CloseToolTip()
