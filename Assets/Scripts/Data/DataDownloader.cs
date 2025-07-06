@@ -61,7 +61,6 @@ public class DataDownloader
                 stat.attackPower = int.Parse(row[3]);
                 stat.moveSpeed = float.Parse(row[4]);
                 stat.GetCoinAmount = int.Parse(row[5]);
-                stat.monsterDescription = row[6];
             }
         }
     }

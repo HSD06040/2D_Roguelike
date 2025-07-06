@@ -10,18 +10,11 @@ public class AccessoriesSlot : MonoBehaviour
     [SerializeField] private Sprite filledSlot;
     [SerializeField] private Sprite emptySlot;
 
-
     [SerializeField] protected Accessories accessories;    
 
-    public void UpdateSlot(Accessories ac)
+    public virtual void UpdateSlot(Accessories ac)
     {
         accessories = ac;
-        //if (ac == null)
-        //{
-        //    icon.sprite = null;
-        //    icon.color = Color.clear;
-        //    return;
-        //}
 
         if(ac == null)
         {
@@ -29,30 +22,23 @@ public class AccessoriesSlot : MonoBehaviour
             background.sprite = emptySlot;
             return;
         }
+
         background.sprite = filledSlot;
         icon.sprite = accessories.icon;
         icon.gameObject.SetActive(true);
-        //icon.color = Color.white;
     }
-    public void UpdateSlot()
+    public virtual void UpdateSlot()
     {
         if (accessories == null)
         {
-
             icon.gameObject.SetActive(false);
             background.sprite = emptySlot;
-            //return;
 
             icon.sprite = null;
-            //icon.color = Color.clear;
             return;
         }
 
-        //background.sprite = filledSlot;
         icon.sprite = accessories.icon;
         icon.gameObject.SetActive(true);
-        
-
-        //icon.color = Color.white;
     }
 }

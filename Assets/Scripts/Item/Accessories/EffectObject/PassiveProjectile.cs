@@ -31,20 +31,18 @@ public class PassiveProjectile : PassiveObject
 
     private Transform FindClosestEnemy()
     {
-        int count = Physics2D.OverlapCircleNonAlloc(transform.position, 30f, cols, 1 << 6);
-        if (count == 0) return null;
+        cols = Physics2D.OverlapCircleAll(transform.position, 30f, 1 << 6);
 
         Transform closest = null;
-        float minDistSq = float.MaxValue;
-        Vector2 selfPos = transform.position;
+        float min = float.MaxValue;
 
-        for (int i = 0; i < count; i++)
+        foreach (Collider2D col in cols)
         {
-            float distSq = ((Vector2)cols[i].transform.position - selfPos).sqrMagnitude;
-            if (distSq < minDistSq)
+            float distance = Vector2.Distance(col.transform.position, transform.position);
+            if (distance < min)
             {
-                minDistSq = distSq;
-                closest = cols[i].transform;
+                min = distance;
+                closest = col.transform;
             }
         }
 
