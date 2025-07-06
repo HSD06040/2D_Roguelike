@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 305960425
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f70c6cbf15fd37b48ae16b436057885c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,6 +103,9 @@ MonoBehaviour:
   IsPass: 0
   rigid: {fileID: -3077913776961787904}
   ParticlePrefab: {fileID: 6781558560145943571, guid: 9446463854303284cbb9c36eeec061c5, type: 3}
+  AudioSoundClip:
+  - Stick
+  startAudio: 0
 --- !u!50 &-3077913776961787904
 Rigidbody2D:
   serializedVersion: 4

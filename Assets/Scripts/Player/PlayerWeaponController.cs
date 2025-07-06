@@ -15,8 +15,8 @@ public class PlayerWeaponController : MonoBehaviour
     Coroutine attackDelayCor;
     private bool canAttack = true;
     private float delay = 0;
-    private float maxCount => currentWeapon.curAttackDelay;
-    private float defaultMaxCount => defaultWeapon.curAttackDelay;
+    private float maxCount => 1 / currentWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value;
+    private float defaultMaxCount => 1 / defaultWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value;
 
     Coroutine showStatusCor;
     Property<bool> isShowStatus = new();
@@ -62,7 +62,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
             else
             {
-                canAttack = true; ;
+                canAttack = true;
             }
         }
         else
@@ -74,7 +74,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
             else
             {
-                canAttack = true; ;
+                canAttack = true;
             }
         }
         #endregion
