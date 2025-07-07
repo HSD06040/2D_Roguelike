@@ -50,7 +50,7 @@ public class TitleCanvas : BaseUI
             SceneManager.LoadSceneAsync(1);
         };
 
-        Test();
+        //Test();
         NotPress();
         count++;
     }
