@@ -60,7 +60,6 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (delay < maxCount)
             {
-                Debug.Log("curWeapon");
                 delay += Time.deltaTime;
                 canAttack = false;
             }
@@ -73,14 +72,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (delay < defaultMaxCount)
             {
-                Debug.Log("defaultWeapon");
-                Debug.Log($"defaultMaxCount : {defaultMaxCount}");
                 delay += Time.deltaTime;
                 canAttack = false;
             }
             else
             {
-                Debug.Log("defaultWeapon can");
                 canAttack = true;
             }
         }
