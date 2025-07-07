@@ -50,7 +50,7 @@ public class AccessoriesChangePanel : AnimationUI_Base
         background.SetActive(true);
         newAccessories = newAc;
         newSlot.UpdateSlot(newAc);
-
+        Manager.Input.ChangeCursor(CursorType.Defualt);
         for (int i = 0; i < oldSlot.Length; i++)
         {
             oldSlot[i].UpdateSlot(Manager.Data.PlayerStatus.PlayerAccessories[i]);
@@ -67,6 +67,7 @@ public class AccessoriesChangePanel : AnimationUI_Base
     public override void Close()
     {
         base.Close();
+        Manager.Input.ChangeCursor(CursorType.Attack);
         Manager.Audio.PlaySFX("Button/SelectButton", transform.position);////////////
         background.SetActive(false);
 

@@ -14,16 +14,7 @@ public class BossPatternController_2 : MonoBehaviour
     [SerializeField] private BossPattern doubleShot;
     [SerializeField] private BossPattern laser;
 
-    [Header("Test")]
-    [SerializeField] private BossPattern test;
-
     private List<BossPattern> curPatterns = new();
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-            test.Execute();
-    }
 
     // ==== 이벤트 등록 메서드들 ====
     public void AddLineEvent(Action action) => line.OnComplated += action;

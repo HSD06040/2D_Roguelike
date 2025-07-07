@@ -71,14 +71,21 @@ public class UI_Manager : Singleton<UI_Manager>
     private void InfoPanelChange(InputAction.CallbackContext ctx)
     {
         if(InfoPanel.activeSelf)
+        {
             InfoPanel.SetActive(false);
+            Manager.Input.ChangeCursor(CursorType.Attack);
+        }
         else
+        {
             InfoPanel.SetActive(true);
+            Manager.Input.ChangeCursor(CursorType.Defualt);
+        }
     }
 
     public void OpenShop()
     {
         ShopView.Open();
+        Manager.Input.ChangeCursor(CursorType.Defualt);
     }
 
     public void OpenAccessoriesChangepanel(Accessories ac)
@@ -91,18 +98,20 @@ public class UI_Manager : Singleton<UI_Manager>
         T prefab = Resources.Load<T>($"UI/PopUpUI/{typeof(T).Name}");
         T instance = Instantiate(prefab, PopUpCanvas.transform);
         PopUpCanvas.GetComponent<PopUpCanvas>().AddUI(instance);
-
+        Manager.Input.ChangeCursor(CursorType.Defualt);
         return instance;
     }
 
     public void ClosePopUp()
     {
         PopUpCanvas.GetComponent<PopUpCanvas>().RemoveUI();
+        Manager.Input.ChangeCursor(CursorType.Attack);
     }
 
     public void ShowTitle()
     {
         PopUpCanvas.GetComponent<PopUpCanvas>().Showtitle();
+        Manager.Input.ChangeCursor(CursorType.Defualt);
     }
 }
 

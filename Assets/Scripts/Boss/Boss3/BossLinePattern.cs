@@ -23,12 +23,6 @@ public class BossLinePattern : BossPattern_Sound
             yield return Utile.GetDelay(interval);
         }
 
-        for (int i = objs.Length -2; i >= 0; i--)
-        {
-            objs[i].Setup(duration, prefab, Vector2.zero, false);
-            yield return Utile.GetDelay(interval);
-        }
-
         OnComplated?.Invoke();
     }    
 }
