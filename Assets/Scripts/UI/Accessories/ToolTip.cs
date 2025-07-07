@@ -17,6 +17,7 @@ public class ToolTip : MonoBehaviour
         if (accessories == null) return;
 
         Manager.Audio.PlaySFX("Button/MoveButton", transform.position);////////////
+        Debug.Log("소리나는중");
         gameObject.SetActive(true);
 
         itemIcon.sprite = accessories.icon;
