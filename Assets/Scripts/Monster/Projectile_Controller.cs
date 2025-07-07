@@ -7,6 +7,14 @@ public class Projectile_Controller : MonoBehaviour
     private Rigidbody2D _rb;
     private int damage;
     private Coroutine _returnToPoolCoroutine;
+    private float _speed;
+    private Transform _playerTransform;
+
+    [Header("유도 발사체 설정")]
+    [SerializeField] private bool _isHoming = false; 
+    [SerializeField] private float _homingStrength = 5f;
+
+    [Header("발사체 수명")]
     [SerializeField] public float delay = 3f;
 
     private void Awake()
@@ -18,12 +26,38 @@ public class Projectile_Controller : MonoBehaviour
     public void Initialize(Vector2 direction, float speed, int damage, string tag)
     {
         this.damage = damage;
+        _speed = speed;
+        _rb.velocity = direction.normalized * _speed;
 
-        _rb.velocity = direction.normalized * speed;
-        transform.up = direction;
+        if (direction.sqrMagnitude > 0) // Zero 벡터일 경우 transform.up 설정 시 오류 방지
+        {
+            transform.up = direction;
+        }
 
         if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
-        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(delay)); // 수명 5초로 변경
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(delay)); 
+
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            _playerTransform = playerObject.transform;
+        }
+    }
+    private void FixedUpdate() 
+    {
+        if (_isHoming && _playerTransform != null)
+        {
+            Vector2 targetDirection = (_playerTransform.position - transform.position).normalized;
+
+            Vector2 currentVelocityDirection = _rb.velocity.normalized;
+            Vector2 newDirection = Vector2.MoveTowards(currentVelocityDirection, targetDirection, _homingStrength * Time.fixedDeltaTime);
+            _rb.velocity = newDirection * _speed;
+
+            if (_rb.velocity.sqrMagnitude > 0)
+            {
+                transform.up = _rb.velocity.normalized;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
