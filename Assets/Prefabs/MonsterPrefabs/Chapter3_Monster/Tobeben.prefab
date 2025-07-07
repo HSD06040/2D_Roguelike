@@ -74,7 +74,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2521463231327914986
 Transform:
   m_ObjectHideFlags: 0
@@ -280,7 +280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAttackPrefab: {fileID: 7431734696087755504, guid: 4cc1c86553df33b46be1442a67b543a9, type: 3}
-  pattern: {fileID: 8495090808003997754}
   glissando: {fileID: 5081308751692188836}
   cross: {fileID: 6654401696159928149}
   pianoWhite: {fileID: 2122931930629040398}
@@ -2843,6 +2842,14 @@ PrefabInstance:
     - target: {fileID: 2547606700633601281, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124509620517248897, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124509620517248897, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5083910985547538081, guid: 8d10309eb3c00bc46825dd6bbd345889, type: 3}
       propertyPath: m_Pivot.x

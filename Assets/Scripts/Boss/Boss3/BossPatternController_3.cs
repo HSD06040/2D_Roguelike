@@ -52,20 +52,12 @@ public class BossPatternController_3 : MonoBehaviour
         curPatterns.Add(line);
     }
 
-    public void PlayPattern()
-    {
-        curPatterns.Clear();
-        pattern.Execute();
-        curPatterns.Add(pattern);
-    }
-
     // === 이벤트 등록 ===
     public void AddLineEvent(Action action) => line.OnComplated += action;
     public void AddCrossEvent(Action action) => cross.OnComplated += action;
     public void AddGlissandoEvent(Action action) => glissando.OnComplated += action;
     public void AddPianoBlackEvent(Action action) => pianoBlack.OnComplated += action;
     public void AddPianoWhiteEvent(Action action) => pianoWhite.OnComplated += action;
-    public void AddPatternEvent(Action action) => pattern.OnComplated += action;
 
     // === 패턴 정지 ===
     public void CurrentBossPatternStop()

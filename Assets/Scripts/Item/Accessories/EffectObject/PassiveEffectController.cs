@@ -59,7 +59,7 @@ public class PassiveEffectController : MonoBehaviour
             if(fx != null)
                 Destroy(fx);
 
-            yield return Utile.GetDelay(interval - invincibleDuration);
+            yield return Utile.GetDelay(interval);
         }
     }
 

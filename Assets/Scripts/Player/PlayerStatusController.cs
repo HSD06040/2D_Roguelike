@@ -31,10 +31,19 @@ public class PlayerStatusController : StatusController
             Debug.Log("무적으로 데미지 안받음");
             return;
         }
-        Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
+
+        if (Manager.Data.PlayerStatus.DecreaseHealth((int)damage))
+        {
+            if(!Manager.Data.PlayerStatus.Invincible)
+                fx.CreatePopupText("회피", Color.yellow);
+            else
+                fx.CreatePopupText("무적", Color.cyan);
+            return;
+        }
+
         fx.CreateTakeDamageMaterial();
         StartCoroutine(InvincibleRoutine(1));
-        Manager.Audio.PlaySFX("Player/PlayerDamage", transform.position);//////////
+        Manager.Audio.PlaySFX("Player/PlayerDamage", transform.position);
     }
 
     private void Die()

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5415146962979480918}
+  - component: {fileID: 3177999753851987902}
   m_Layer: 0
   m_Name: PostProcessing
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 5258349154306782460}
   m_Father: {fileID: 1769882421811210885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3177999753851987902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290704981919429845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96bcb22af85ef634b963e7ae4b568113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508062456333855329
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +324,7 @@ MonoBehaviour:
   - {fileID: 4416008173384263011}
   - {fileID: 7013757159242751693}
   - {fileID: 8590227809496450227}
-  defaultWeapon: {fileID: 1205461360452273176, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  defaultWeapon: {fileID: 9006666233226704775, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
   weaponSlots: []
   currentWeapon: {fileID: 0}
 --- !u!50 &5357449895272487411
@@ -414,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c15f54d787d3040b3c081fc0cee571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupTextPrefab: {fileID: 0}
+  popupTextPrefab: {fileID: 1269424475384348620, guid: b66682bab94b62744a723f69da46efff, type: 3}
   spriteRender: {fileID: 5460843364196822057}
 --- !u!95 &7488264513582482820
 Animator:

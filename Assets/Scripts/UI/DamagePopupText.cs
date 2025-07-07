@@ -17,9 +17,13 @@ public class DamagePopupText : MonoBehaviour
     private Vector3 startPos;
     private Vector3 endPos;
 
-    public void Init(string text)
+    public void Init(string text, Color c = default)
     {
-        damageText.color = color;
+        if(c != default)
+            damageText.color = c;
+        else
+            damageText.color = color;
+
         damageText.text = text;
         startPos = transform.position;
         endPos = startPos + moveOffset;

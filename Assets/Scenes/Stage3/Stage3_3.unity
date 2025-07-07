@@ -9759,12 +9759,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933973565351831575, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4933973565351831575, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5961848606203474206, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
+      propertyPath: DialogueBoss
+      value: 
+      objectReference: {fileID: 468498403}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
