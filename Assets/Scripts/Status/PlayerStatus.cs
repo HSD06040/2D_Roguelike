@@ -296,6 +296,8 @@ public class PlayerStatus
 
     public bool DecreaseHealth(int amount)
     {
+        if (Invincible) return false;
+
         if (Evasion.Value != 0)
         {
             if (UnityEngine.Random.Range(0, 100) < Evasion.Value)

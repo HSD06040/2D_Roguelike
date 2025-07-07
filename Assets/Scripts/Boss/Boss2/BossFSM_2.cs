@@ -116,10 +116,10 @@ public class BossTeleportState_2 : BossBaseState<BossFSM_2>
     {
         if(beforeCenter)
         {
-            switch (Random.Range(0, 3))
+            switch (Random.Range(0, 2))
             {
-                case 1: fsm.StateMachine.ChangeState(fsm.laser); break;
-                case 2: fsm.StateMachine.ChangeState(fsm.doubleShot); break;
+                case 0: fsm.StateMachine.ChangeState(fsm.laser); break;
+                case 1: fsm.StateMachine.ChangeState(fsm.doubleShot); break;
             }            
         }
         else

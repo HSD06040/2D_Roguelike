@@ -59,7 +59,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
     {
         StateMachine.ChangeState(ChaseState);
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         if (SO == null) return;
@@ -89,6 +89,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
 
 
     }
+#endif
 }
 
 public class SheetMusic_IdleState : BaseState

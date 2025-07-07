@@ -33,6 +33,11 @@ public class GameManager : Singleton<GameManager>
 
     #region Pause
 
+    private void Start()
+    {
+        Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
+    }
+
     private void OnEnable()
     {
         OnPause += Pause;

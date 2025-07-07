@@ -22,7 +22,6 @@ public enum MusicWeaponType
 {
     Cymbals = 0,
     Flute = 1,
-    Gun = 2,
-    Trumpet = 3,
-    Violin = 4
+    Trumpet = 2,
+    Violin = 3
 }

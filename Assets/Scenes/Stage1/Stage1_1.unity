@@ -31334,14 +31334,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2856044849119622755, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.8999634
-      objectReference: {fileID: 0}
-    - target: {fileID: 5357449895272487411, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 7878077736366537517, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 9006666233226704775, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
