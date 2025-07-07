@@ -67,13 +67,13 @@ GameObject:
   - component: {fileID: 4918393522142021953}
   - component: {fileID: 5961848606203474206}
   - component: {fileID: 1172186624646800206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tobeben
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2521463231327914986
 Transform:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   duration: 1
   boss: {fileID: 4918393522142021953}
   fsm: {fileID: 5961848606203474206}
+  clip: {fileID: 8300000, guid: 5dab1fd2a2f1f3046bc0f247ed0751a7, type: 3}
   type: 0
   white:
   - {fileID: 6836621122119283386}
@@ -298,6 +299,7 @@ MonoBehaviour:
   duration: 1
   boss: {fileID: 4918393522142021953}
   fsm: {fileID: 5961848606203474206}
+  clip: {fileID: 8300000, guid: decccbdb76d71654e8b7b44c2a695080, type: 3}
   type: 1
   white:
   - {fileID: 6836621122119283386}
@@ -342,6 +344,7 @@ MonoBehaviour:
   duration: 2
   boss: {fileID: 4918393522142021953}
   fsm: {fileID: 5961848606203474206}
+  clip: {fileID: 8300000, guid: 81d741f8b809f324da50b08278bdf3f7, type: 3}
   objs:
   - {fileID: 6836621122119283386}
   - {fileID: 4672597846086170842}
@@ -368,6 +371,7 @@ MonoBehaviour:
   - {fileID: 1407000460860784168}
   - {fileID: 5523559280832377737}
   delay: 2
+  downScale: {fileID: 8300000, guid: edf995206f678354d84ae05e28408329, type: 3}
 --- !u!114 &8495090808003997754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +389,7 @@ MonoBehaviour:
   duration: 1
   boss: {fileID: 4918393522142021953}
   fsm: {fileID: 5961848606203474206}
+  clip: {fileID: 8300000, guid: 67a87bc0099e3d140830a1d1300f2ba9, type: 3}
   objs:
   - {fileID: 1273856991339023946}
   - {fileID: 6802724566600874204}

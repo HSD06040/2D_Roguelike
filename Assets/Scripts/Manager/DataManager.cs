@@ -17,7 +17,6 @@ public class DataManager : Singleton<DataManager>
 
     private DataDownloader downloader;
 
-
     private void Awake()
     {
         WeaponDatas = Resources.LoadAll<Weapon>("Data/WeaponData");
@@ -46,7 +45,7 @@ public class DataManager : Singleton<DataManager>
         PlayerStatus.DamageMultiply.SetBaseStat(1);
         PlayerStatus.Damage.SetBaseStat(10);
         PlayerStatus.AttackSpeed.SetBaseStat(1);
-        PlayerStatus.Evasion.SetBaseStat(100);
+        PlayerStatus.Evasion.SetBaseStat(0);
 
         GoldStat.InitGoldStat();
         Manager.UI.ResetUI();

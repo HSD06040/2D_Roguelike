@@ -146,6 +146,8 @@ public class AudioManager : Singleton<AudioManager>
         return Manager.Resources.Load<AudioClip>($"{SOUND_PATH}{type}/{name}");
     }
 
+    public void StopBGM() => bgmSource.Stop();
+
     public void SetVolume(SoundType type, float volume)
     {
         if (type == SoundType.SFX)

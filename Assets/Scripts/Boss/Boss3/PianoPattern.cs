@@ -4,17 +4,19 @@ using UnityEngine;
 
 enum PianoPatternType { WhiteAttak, BlackAttack }
 
-public class PianoPattern : BossPattern
+public class PianoPattern : Boss3_Pattern
 {
     [SerializeField] private PianoPatternType type;
     [SerializeField] private BossPatternObject[] white;
-    [SerializeField] private BossPatternObject[] black;
+    [SerializeField] private BossPatternObject[] black;    
     private static readonly Vector3 blackScale = new Vector3(0.9431068f, 2.204891f, 1);
     private static readonly Vector3 whiteScale = new Vector3(1.235714f, 4.5f, 1);
 
     protected override IEnumerator PatternRoutine()
     {
-        if(type == PianoPatternType.WhiteAttak)
+        base.PatternRoutine();
+
+        if (type == PianoPatternType.WhiteAttak)
         {
             for(int i = 0; i < white.Length; i ++)
             {
@@ -36,6 +38,9 @@ public class PianoPattern : BossPattern
                 black[i].Setup(duration, prefab, blackScale, false, true ,true);
             }
         }
+
+        if (isFirst)
+            StartCoroutine(SoundRoutine());
 
         yield return null;
         OnComplated?.Invoke();

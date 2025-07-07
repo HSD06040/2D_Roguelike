@@ -41,6 +41,8 @@ public class BossFSM_3 : BossMonsterFSM
         base.Start();
 
         StateMachine.Initialize(Idle);
+        Manager.Audio.PlayBGM("Chapter3/BossChapter3");
+        
     }
 
     private void Update()
@@ -142,6 +144,7 @@ public class GlissandoState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap3/TobebenGlissando", fsm.Owner.transform.position);
         fsm.Pattern.PlayGlissando();
     }
 }
@@ -156,6 +159,7 @@ public class CrossState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap3/Tobeben54", fsm.Owner.transform.position);
         fsm.Pattern.PlayCross();
     }
 }
@@ -170,6 +174,7 @@ public class PianoBlackState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap3/TobebenBlackWhite", fsm.Owner.transform.position);
         fsm.Pattern.PlayPianoBlack();
     }
 }
@@ -184,6 +189,7 @@ public class PianoWhiteState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap3/TobebenBlackWhite", fsm.Owner.transform.position);
         fsm.Pattern.PlayPianoWhite();
     }
 }
@@ -198,6 +204,7 @@ public class LinePatternState_3 : TobebenBaseState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap3/Tobeben12321", fsm.Owner.transform.position);
         fsm.Pattern.PlayLine();
     }
 }
@@ -217,6 +224,8 @@ public class BossDieState_3 : BossBaseState<BossFSM_3>
         if (!isDead)
         {
             isDead = true;
+            Manager.Audio.StopBGM();
+            Manager.Audio.PlaySFX("Boss/BossChap3/Boss3Died", fsm.Owner.transform.position);
             fsm.Pattern.CurrentBossPatternStop();
             fsm.Owner.DropCoin(fsm.stat);
             fsm.StartDieRoutine();

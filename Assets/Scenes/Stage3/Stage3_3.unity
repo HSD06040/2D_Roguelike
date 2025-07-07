@@ -9249,34 +9249,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tobeben
       objectReference: {fileID: 0}
-    - target: {fileID: 3624828642322097003, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624828642322097003, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624828642322097003, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_TagString
-      value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511958344210154135, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511958344210154135, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5511958344210154135, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5961848606203474206, guid: e19d387d0bc6f864fb6f1ea6d399ea7b, type: 3}
-      propertyPath: <Player>k__BackingField
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
