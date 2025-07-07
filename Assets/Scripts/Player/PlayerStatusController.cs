@@ -29,11 +29,14 @@ public class PlayerStatusController : StatusController
         if (invincible) return;
         Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
         StartCoroutine(InvincibleRoutine(1));
+        Manager.Audio.PlaySFX("Player/PlayerDamage", transform.position);//////////
     }
 
     private void Die()
     {
         Manager.Game.IsDead = true;
+        Manager.Audio.PlaySFX("GameOver", transform.position);//////////////
+        Manager.Audio.PlayBGM("Ending");
     }
 
     private void PlayerDestroy() => Destroy(gameObject);

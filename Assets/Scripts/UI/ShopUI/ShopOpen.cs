@@ -36,6 +36,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
             //Debug.Log("상자열림");
             //Manager.Data.AddGold(1000); //테스트용
             //Debug.Log("잔액:" + Manager.Data.Gold.Value);//테스트용
+            Manager.Audio.PlaySFX("Box/Box_Open", transform.position);
             UiOff();
 
             
@@ -50,6 +51,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
         if (hasOpended && !hasPurchased)
         {
             animator.SetTrigger("Open");
+            Manager.Audio.PlaySFX("Box/Box_Open", transform.position);
             UiOff();
             shopView.DisplayItems(shopPresenter.items.ToArray());
             shopView.Open();
@@ -59,6 +61,7 @@ public class ShopOpen : MonoBehaviour, IInteractable
     public void BoxClose()
     {
         animator.SetTrigger("Close");
+        Manager.Audio.PlaySFX("Box/Box_Close", transform.position);
         UiOn();
 
     }
