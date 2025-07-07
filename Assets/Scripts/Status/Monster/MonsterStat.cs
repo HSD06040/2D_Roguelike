@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterStat : ScriptableObject
 {
+
     public int ID;
     public string monsterName;
     public string monsterDescription;
@@ -15,4 +16,14 @@ public class MonsterStat : ScriptableObject
 
     public GameObject CoinPrefab;
     public int GetCoinAmount;
+
+    [Header("사운드 설정")] 
+    public MonsterSoundType deathSoundType;
+}
+public enum MonsterSoundType
+{
+    CreatureDied,
+    HumanDied,
+    ExplosionMonsterDied, 
+    SlimeDied
 }

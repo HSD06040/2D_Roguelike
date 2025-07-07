@@ -110,7 +110,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext ctx)
     {
-        Debug.Log($"canattack : {canAttack}");
+        //Debug.Log($"canattack : {canAttack}");
         if (!canAttack) return;
 
         if (currentWeapon != null)
