@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,14 +74,16 @@ public class Box : MonoBehaviour, IInteractable
     {
         List<Item> randomList = new();
 
-        foreach(var weapon in Manager.Data.MusicWeapons)
+        var availableWeapons = Array.FindAll(Manager.Data.MusicWeapons, w => w.WeaponData.ID != 1); // id 1¹ø»©°í ´Ù½Ã ¹è¿­¸¸µë
+
+        foreach (var weapon in availableWeapons)
         {
             randomList.Add(weapon.WeaponData);
         }
 
         randomList.AddRange(Manager.Table.GetAllItems());
 
-        Item rewardItem = randomList[Random.Range(0, randomList.Count)];
+        Item rewardItem = randomList[UnityEngine.Random.Range(0, randomList.Count)];
 
         Manager.UI.BoxReward.BoxRewardDisplay(rewardItem);
         Manager.Data.PlayerStatus.AddItem(rewardItem);
