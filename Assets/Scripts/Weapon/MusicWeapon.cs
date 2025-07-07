@@ -43,7 +43,12 @@ public class MusicWeapon : MonoBehaviour
 
     public void Init(Transform playerTransform) => player = playerTransform;
 
-
+    public void Init(Transform _playerTransform, float _curAttackDamage, float _curAttackDelay)
+    {
+        player = _playerTransform;
+        curAttackDamage = _curAttackDamage;
+        curAttackDelay = _curAttackDelay;
+    }
     public void SetUpgradeWeapon(int num)
     {
         if (Level > WeaponData.WeaponMaxUpgrade) return;
