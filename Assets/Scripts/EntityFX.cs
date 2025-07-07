@@ -18,6 +18,12 @@ public class EntityFX : MonoBehaviour
         obj.GetComponent<DamagePopupText>().Init(damage.ToString("F1"));
     }
 
+    public void CreatePopupText(string str, Color color)
+    {
+        GameObject obj = Manager.Pool.GetPopup(popupTextPrefab, transform.position + new Vector3(Random.Range(-.5f, .5f), Random.Range(-.2f, .2f)));
+        obj.GetComponent<DamagePopupText>().Init(str, color);        
+    }
+
     public void CreateTakeDamageMaterial()
     {
         if(playerTakeDamageCor == null)
