@@ -55,4 +55,14 @@ public class StatusPopUp : MonoBehaviour
         PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.ToString();
     }
 
+    public void UpgradeWeapon(int _idx, MusicWeapon _weapon)
+    {
+        if(_idx == 0)
+        {
+            return;
+        }
+        WeaponSlotNames[_idx].text = _weapon.WeaponData.itemName;
+        WeaponSlotDamage[_idx].text = _weapon.WeaponData.AttackDamage.ToString();
+    }
+
 }

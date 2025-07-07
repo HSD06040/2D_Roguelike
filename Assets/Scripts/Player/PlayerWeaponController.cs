@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool canAttack = true;
     private float delay = 0;
     private float maxCount => 1 / currentWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value;
-    private float defaultMaxCount => 1 / defaultWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value;
+    private float defaultMaxCount;
 
     Coroutine showStatusCor;
     Property<bool> isShowStatus = new();
@@ -24,8 +25,10 @@ public class PlayerWeaponController : MonoBehaviour
     {       
         defaultWeapon = GetComponentInChildren<MusicWeapon>();
         defaultWeapon.Init(transform);
-        weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;       
+        weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;
+        defaultMaxCount = 1/defaultWeapon.WeaponData.AttackDelay[0] * Manager.Data.PlayerStatus.AttackSpeed.Value;
     }
+
 
     private void OnEnable()
     {
@@ -57,6 +60,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (delay < maxCount)
             {
+                Debug.Log("curWeapon");
                 delay += Time.deltaTime;
                 canAttack = false;
             }
@@ -69,11 +73,14 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (delay < defaultMaxCount)
             {
+                Debug.Log("defaultWeapon");
+                Debug.Log($"defaultMaxCount : {defaultMaxCount}");
                 delay += Time.deltaTime;
                 canAttack = false;
             }
             else
             {
+                Debug.Log("defaultWeapon can");
                 canAttack = true;
             }
         }
@@ -97,16 +104,17 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if(value)
         {
-            //Manager.UI.StatusView.gameObject.SetActive(true);
+            Manager.UI.StatusView.gameObject.SetActive(true);
         }
         else
         {
-            //Manager.UI.StatusView.gameObject.SetActive(false);
+            Manager.UI.StatusView.gameObject.SetActive(false);
         }
     }
 
     private void Attack(InputAction.CallbackContext ctx)
     {
+        Debug.Log($"canattack : {canAttack}");
         if (!canAttack) return;
 
         if (currentWeapon != null)
@@ -208,7 +216,6 @@ public class PlayerWeaponController : MonoBehaviour
 
             yield return AttackDelay(musicWeapon);
         }
-        yield return AttackDelay(musicWeapon);
         attackDelayCor = null;
         yield return null;
     }

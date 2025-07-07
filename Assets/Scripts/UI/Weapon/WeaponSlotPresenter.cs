@@ -33,12 +33,14 @@ public class WeaponSlotPresenter
 
     public void AddStatusEvent()
     {
-        Manager.Data.PlayerStatus.OnChangedWeapon += statusPopUp.UpdateWeaponData;
+        Manager.Data.PlayerStatus.OnAddWeapon += statusPopUp.UpdateWeaponData;
+        Manager.Data.PlayerStatus.OnUpgradedWeapon += statusPopUp.UpgradeWeapon;
     }
 
     public void RemoveStatusEvent()
     {
-        Manager.Data.PlayerStatus.OnChangedWeapon -= statusPopUp.UpdateWeaponData;
+        Manager.Data.PlayerStatus.OnAddWeapon -= statusPopUp.UpdateWeaponData;
+        Manager.Data.PlayerStatus.OnUpgradedWeapon -= statusPopUp.UpgradeWeapon;
     }
 
     #endregion
