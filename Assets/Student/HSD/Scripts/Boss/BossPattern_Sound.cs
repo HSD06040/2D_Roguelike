@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss3_Pattern : BossPattern
+public class BossPattern_Sound : BossPattern
 {
     protected bool isFirst;
     [SerializeField] private AudioClip clip;
@@ -22,7 +22,7 @@ public class Boss3_Pattern : BossPattern
         {
             Manager.Audio.PlaySFX(audio, transform.position);
         }   
-        else
+        else if(clip != null)
         {
             Manager.Audio.PlaySFX(clip, transform.position);
         }        

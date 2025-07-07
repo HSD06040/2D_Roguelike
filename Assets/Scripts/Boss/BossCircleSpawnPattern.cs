@@ -7,7 +7,7 @@ public enum TargetType
     Transform, Player
 }
 
-public class BossCircleSpawnPattern : BossPattern
+public class BossCircleSpawnPattern : BossPattern_Sound
 {
     [Header("Effect")]
     [SerializeField] private GameObject effect;
@@ -29,6 +29,7 @@ public class BossCircleSpawnPattern : BossPattern
             for (int i = 0; i < count; i++)
             {
                 Instantiate(prefab, fsm.Player.position, Quaternion.identity).GetComponent<BossPatternObject>().Setup(duration, attackEffect, size, true);
+                StartCoroutine(SoundRoutine());
                 yield return Utile.GetDelay(interval);
             }
         }

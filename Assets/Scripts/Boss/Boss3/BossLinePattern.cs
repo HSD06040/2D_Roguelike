@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossLinePattern : Boss3_Pattern
+public class BossLinePattern : BossPattern_Sound
 {
     [SerializeField] private BossPatternObject[] objs;
     [SerializeField] private float delay;

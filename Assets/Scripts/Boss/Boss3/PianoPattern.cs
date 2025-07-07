@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum PianoPatternType { WhiteAttak, BlackAttack }
 
-public class PianoPattern : Boss3_Pattern
+public class PianoPattern : BossPattern_Sound
 {
     [SerializeField] private PianoPatternType type;
     [SerializeField] private BossPatternObject[] white;

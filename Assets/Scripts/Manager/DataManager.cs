@@ -17,6 +17,11 @@ public class DataManager : Singleton<DataManager>
 
     private DataDownloader downloader;
 
+    private const int defaultDamage = 4;
+    private const int defaultHp = 5;
+    private const int defaultSpeed = 4;
+    private const int defaultAttackSpeed = 1;
+
     private void Awake()
     {
         WeaponDatas = Resources.LoadAll<Weapon>("Data/WeaponData");
@@ -39,13 +44,13 @@ public class DataManager : Singleton<DataManager>
         Gold.Value = 0;
         PlayerStatus = new();
 
-        PlayerStatus.MaxHp.SetBaseStat(10);
-        PlayerStatus.Speed.SetBaseStat(5);
-        PlayerStatus.SpeedMultiply.SetBaseStat(1);
+        PlayerStatus.MaxHp.SetBaseStat(defaultHp);
+        PlayerStatus.Damage.SetBaseStat(defaultDamage);
         PlayerStatus.DamageMultiply.SetBaseStat(1);
-        PlayerStatus.Damage.SetBaseStat(10);
-        PlayerStatus.AttackSpeed.SetBaseStat(1);
-        PlayerStatus.Evasion.SetBaseStat(0);
+        PlayerStatus.Speed.SetBaseStat(defaultSpeed);
+        PlayerStatus.SpeedMultiply.SetBaseStat(1);
+        PlayerStatus.AttackSpeed.SetBaseStat(defaultAttackSpeed);
+        PlayerStatus.Evasion.SetBaseStat(100);
 
         GoldStat.InitGoldStat();
         Manager.UI.ResetUI();

@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5650201876127435073, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 879e730a6ca97ae4898f59711107f5eb, type: 3}
     - target: {fileID: 6116423329824656736, guid: 1311e9b0adfa8dc45bdb5e4752a54114, type: 3}
       propertyPath: portal
       value: 

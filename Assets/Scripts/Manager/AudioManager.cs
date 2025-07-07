@@ -82,7 +82,7 @@ public class AudioManager : Singleton<AudioManager>
 
         audio.clip = clip;
         audio.pitch = pitch;
-        audio.volume = volume;
+        audio.volume = volume * 2;
         audio.spatialBlend = 1;
         audio.outputAudioMixerGroup = sfxGroup;
 
@@ -104,7 +104,7 @@ public class AudioManager : Singleton<AudioManager>
 
         audio.clip = clip;
         audio.pitch = pitch;
-        audio.volume = volume;
+        audio.volume = volume * 2;
         audio.spatialBlend = 1;
         audio.outputAudioMixerGroup = sfxGroup;
 
