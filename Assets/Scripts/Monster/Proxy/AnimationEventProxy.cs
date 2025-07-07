@@ -51,7 +51,7 @@ public class AnimationEventProxy : MonoBehaviour
             return GetSoundPathFromType(sheetFSM.SO.deathSoundType);
         }
 
-        return "Monster/CreatureDied"; 
+        return "Monster/CreatuerDied"; 
     }
 
     private string GetSoundPathFromType(MonsterSoundType type)
@@ -59,15 +59,15 @@ public class AnimationEventProxy : MonoBehaviour
         switch (type)
         {
             case MonsterSoundType.CreatureDied:
-                return "Monster/CreatuerDied";
+                return "Monster/Died/CreatuerDied";
             case MonsterSoundType.HumanDied:
-                return "Monster/HumanDied";
+                return "Monster/Died/HumanDied";
             case MonsterSoundType.ExplosionMonsterDied:
                 return "Monster/ExplosionMonster"; 
             case MonsterSoundType.SlimeDied:
-                return "Monster/SlimeDied";
+                return "Monster/Died/SlimeDied";
             default:
-                return "Monster/CreatureDied"; 
+                return "Monster/Died/CreatuerDied"; 
         }
     }
 }
