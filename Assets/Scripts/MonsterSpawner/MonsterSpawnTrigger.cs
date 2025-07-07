@@ -9,7 +9,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
     [SerializeField] private GameObject portal;
     [SerializeField] private bool isLastRoomOfStage = false;
 
-    [SerializeField] private float monsterSpawnDelayTime = 2f;
+
     
 
     private MonsterSpawnerManager monsterSpawnerManager;
@@ -29,14 +29,6 @@ public class MonsterSpawnTrigger : MonoBehaviour
         doors.SetActive(false);
     }
 
-   // private void Update()  //테스트용 
-   //{
-   //    if(Input.GetKeyDown(KeyCode.K) && hasMonsterSpawned && !isRoomCleared)
-   //    {
-   //        MonsterDied();
-   //    }    
-   //}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player"))
@@ -48,7 +40,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
             Manager.Game.OnMonsterKill += MonsterDied;
             hasMonsterSpawned = true;
             LockDoors();
-            StartCoroutine(MonsterSpawnStart());
+            MonsterSpawnStart();
         }
         else
         {
@@ -56,10 +48,9 @@ public class MonsterSpawnTrigger : MonoBehaviour
             return;
         }           
     }
-    
-    private IEnumerator MonsterSpawnStart()
+
+    private void MonsterSpawnStart()
     {
-        yield return new WaitForSeconds(monsterSpawnDelayTime);
         monsterSpawnerManager = GetComponent<MonsterSpawnerManager>();
         monsterSpawnerManager.SpawnMonsters();
 

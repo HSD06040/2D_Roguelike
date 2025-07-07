@@ -51,7 +51,7 @@ public class MusicWeapon : MonoBehaviour
     }
     public void SetUpgradeWeapon(int num)
     {
-        if (Level > WeaponData.WeaponMaxUpgrade) return;
+        if (Level >= WeaponData.WeaponMaxUpgrade) return;
         if (curParticle != null)
         {
             Destroy(curParticle);

@@ -29,6 +29,14 @@ public class TrumpetProjectile : Projectile
             sizeCor = StartCoroutine(UpSizeCor(maxValue));
         }
 
+        if (isStart)
+        {
+            if (SFXAudioSound[rand] == "")
+                return;
+
+            Manager.Audio.PlaySFX($"Weapon/{SFXAudioSound[rand]}", transform.position);
+        }
+
     }
 
     private IEnumerator UpSizeCor(float _maxValue)

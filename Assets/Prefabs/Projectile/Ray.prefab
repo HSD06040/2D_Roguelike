@@ -50,12 +50,25 @@ MonoBehaviour:
   maxTime: 0
   IsPass: 1
   rigid: {fileID: 6089548101021931945}
+  ParticlePrefab: {fileID: 0}
+  SFXAudioSound: []
+  isStart: 0
+  rand: 0
   laser: {fileID: 508632435648979993}
   targetLayer:
     serializedVersion: 2
     m_Bits: 576
   elecParticle: {fileID: 2284323219530198305, guid: 64f084b6c6c3b8a4397e1d972b9ae6e5, type: 3}
   trigParticle: {fileID: 3713865803119324823, guid: 2b8893a9d363bba4b89785a779a4df7b, type: 3}
+  violinSFX:
+  - {fileID: 8300000, guid: 2eb2be07330aefe4984aafb8b376191d, type: 3}
+  - {fileID: 8300000, guid: a834be25a0cd64f4ca1b69fcca7295a1, type: 3}
+  - {fileID: 8300000, guid: e38c903633f80c841b1b21101be2bf0c, type: 3}
+  - {fileID: 8300000, guid: 537c5f2ad5f2a714da44a253b032210c, type: 3}
+  - {fileID: 8300000, guid: eeb9a399e81cd7e4bbd5b48f59213039, type: 3}
+  - {fileID: 8300000, guid: 61c39fe6753325745a9ccc39759fdf53, type: 3}
+  - {fileID: 8300000, guid: c47259cdfdbc4984fb204254792f2fe9, type: 3}
+  - {fileID: 8300000, guid: fedcfe10748250643a9dc6ce3147b252, type: 3}
   maxCount: 0.5
   particleMaxCount: 0.3
 --- !u!50 &6089548101021931945
