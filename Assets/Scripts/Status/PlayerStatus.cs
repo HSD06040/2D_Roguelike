@@ -48,6 +48,9 @@ public class PlayerStatus
     public Action<int, MusicWeapon> OnChangedWeapon;
     public event Action<int> OnCurrentWeaponChanged;
 
+    public Action<int, MusicWeapon> OnUpgradedWeapon;
+    public Action<int, MusicWeapon> OnAddWeapon;
+
     public Action OnPlayerDead;
 
     public float TotalDamage => (weaponDamage + Damage.Value) * DamageMultiply.Value;
@@ -93,7 +96,7 @@ public class PlayerStatus
         if (!WeaponList.Contains(_weapon.WeaponData.Type))
         {
             WeaponList.Add(_weapon.WeaponData.Type);
-            _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0]; // 아닐수도있음
+            _weapon.curAttackDamage = _weapon.WeaponData.AttackDamage[0];
             _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
             PlayerWeapons[idx] = _weapon; //이부분이 없어서 slot에 안 들어갔음
@@ -102,6 +105,7 @@ public class PlayerStatus
             if (idx == -1) return;
 
             OnChangedWeapon?.Invoke(idx, _weapon);
+            OnAddWeapon?.Invoke(idx, _weapon);
         }
         else
         {
@@ -124,6 +128,7 @@ public class PlayerStatus
                 Debug.Log($"{PlayerWeapons[idx].WeaponData.itemName} LevelUp");
                 PlayerWeapons[idx].Level++;
                 PlayerWeapons[idx].OnUpgrade?.Invoke(PlayerWeapons[idx].Level);
+                OnUpgradedWeapon?.Invoke(idx, _weapon);
             }
         }
     }
