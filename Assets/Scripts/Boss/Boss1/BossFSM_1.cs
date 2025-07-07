@@ -45,6 +45,7 @@ public class BossFSM_1 : BossMonsterFSM
     {
         base.Start();
         StateMachine.Initialize(idle);
+        Manager.Audio.PlayBGM("Chapter1/BossChapter1");
     } 
 }
 public class BossIdleState_1 : BossBaseState<BossFSM_1>
@@ -57,6 +58,7 @@ public class BossIdleState_1 : BossBaseState<BossFSM_1>
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap1/Patten_Basic", fsm.Owner.transform.position);
         fsm.Pattern.PlayDefaultPattern();
     }
 
@@ -114,6 +116,7 @@ public class BossTeleportState_1 : PatternState
     private IEnumerator FadeOutCoroutine()
     {
         fsm.Pattern.PlayCirclePattern();
+        Manager.Audio.PlaySFX("Boss/BossChap1/Patten_TeleportAndSpawn", fsm.Owner.transform.position);
         float elapsed = 0f;
         Color originalColor = fsm.Owner.spriteRenderer.color;
 
@@ -151,6 +154,7 @@ public class BossEnemySpawnState_1 : PatternState
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap1/Patten_TeleportAndSpawn", fsm.Owner.transform.position);
         fsm.Pattern.PlayEnemySpawnPattern();
     }
 
@@ -172,6 +176,7 @@ public class BossCrossState_1 : BossBaseState<BossFSM_1>
     public override void Enter()
     {
         base.Enter();
+        Manager.Audio.PlaySFX("Boss/BossChap1/Patten_360AndDouble", fsm.Owner.transform.position);
         fsm.Pattern.PlayCrossRotatePattern();
     }
 
@@ -194,6 +199,7 @@ public class BossDoubleCrossState_1 : PatternState
     {
         base.Enter();
 
+        Manager.Audio.PlaySFX("Boss/BossChap1/Patten_360AndDouble", fsm.Owner.transform.position);
         fsm.Pattern.PlayDoubleCross();
         fsm.CreateShockWave();
     }
@@ -222,6 +228,8 @@ public class BossDieState_1 : BossBaseState<BossFSM_1>
         if(!isDead)
         {
             isDead = true;
+            Manager.Audio.StopBGM();
+            Manager.Audio.PlaySFX("Boss/BossChap1/Boss1Died", fsm.Owner.transform.position);
             fsm.Pattern.CurrentBossPatternStop();
             fsm.Owner.DropCoin(fsm.stat);
             fsm.StartDieRoutine();

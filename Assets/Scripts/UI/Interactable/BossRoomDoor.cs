@@ -17,6 +17,7 @@ public class BossRoomDoor : MonoBehaviour, IInteractable
     public void Interact()
     {
         playerStransform.position = moveToPos.position;
+        Manager.Audio.PlaySFX("EnterBossRoom", playerStransform.position);//////////////////
     }
 
     public void UiOn()

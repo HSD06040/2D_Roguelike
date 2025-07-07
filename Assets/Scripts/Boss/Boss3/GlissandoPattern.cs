@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlissandoPattern : BossPattern
+public class GlissandoPattern : BossPattern_Sound
 {
     [SerializeField] private BossPatternObject[] objs;
     [SerializeField] private float delay;
+    [SerializeField] private AudioClip downScale;
     private int random;
 
     protected override IEnumerator PatternRoutine()
     {
+        base.PatternRoutine();
+
+        yield return Utile.GetDelay(delay);
+
         random = Random.Range(6, objs.Length - 6);
 
         for (int i = 0; i < objs.Length; i++)
@@ -19,10 +24,15 @@ public class GlissandoPattern : BossPattern
             else
                 objs[i].Setup(duration, prefab, Vector3.zero, false);
 
+            if (isFirst)
+                StartCoroutine(SoundRoutine());
+
             yield return Utile.GetDelay(interval);
         }
 
         yield return Utile.GetDelay(delay);
+
+        isFirst = true;
 
         random = Random.Range(6, objs.Length - 6);
 
@@ -32,6 +42,9 @@ public class GlissandoPattern : BossPattern
                 objs[i].Setup(duration, prefab, Vector3.zero, false, false);
             else
                 objs[i].Setup(duration, prefab, Vector3.zero, false);
+
+            if (isFirst)
+                StartCoroutine(SoundRoutine(downScale));
 
             yield return Utile.GetDelay(interval);
         }

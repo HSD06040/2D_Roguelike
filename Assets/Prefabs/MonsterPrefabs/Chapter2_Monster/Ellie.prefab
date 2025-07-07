@@ -169,8 +169,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5499915340737270606}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.1605835, y: 0.000017166138}
   m_SizeDelta: {x: -0.3186, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -651,8 +651,9 @@ MonoBehaviour:
   duration: 1
   boss: {fileID: 8491873795092739339}
   fsm: {fileID: 3794450848522873560}
-  effect: {fileID: 149344, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
-  attackEffect: {fileID: 149344, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
+  clip: {fileID: 8300000, guid: 879e730a6ca97ae4898f59711107f5eb, type: 3}
+  effect: {fileID: 195360, guid: a3c24a5ae068ed44d950af671f99cc21, type: 3}
+  attackEffect: {fileID: 193062, guid: 01949c12a89de284792dc4b7b7128404, type: 3}
   size: {x: 3, y: 3, z: 3}
   count: 10
   transforms: []
@@ -744,6 +745,7 @@ MonoBehaviour:
   duration: 0.3
   boss: {fileID: 8491873795092739339}
   fsm: {fileID: 3794450848522873560}
+  clip: {fileID: 8300000, guid: a125fb2a019ee1e49aa28fbc97be0f8d, type: 3}
   warningLine: {fileID: 8173824689752125809, guid: 1f5b788545c4890468193c5e438160dd, type: 3}
   count: 24
   deleteDelay: 0.1
@@ -1035,7 +1037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2176481474734738745
 Transform:
   m_ObjectHideFlags: 0

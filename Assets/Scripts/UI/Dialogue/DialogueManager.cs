@@ -36,6 +36,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject skipButton;
 
     [Header("클릭유도버튼")]
+    [SerializeField] private Transform clickIconCenterPos;
+    [SerializeField] private Transform clickIconBottomPos;
     [SerializeField] private GameObject ClickIcon;
 
     private TMP_Text currentText;
@@ -122,6 +124,7 @@ public class DialogueManager : MonoBehaviour
         {
             centerPanel.SetActive(true);
             bottomPanel.SetActive(false);
+            ClickIcon.transform.position = clickIconCenterPos.transform.position;
             currentText = centerDialogueText;
         }
         else
@@ -129,6 +132,7 @@ public class DialogueManager : MonoBehaviour
             centerPanel.SetActive(false);
             bottomPanel.SetActive(true);
             currentText = bottomDialogueText;
+            ClickIcon.transform.position = clickIconBottomPos.transform.position;
         }
 
         if(curEffect == DialogueEffect.FadeIn)  //이팩트가 페이드인이라면
