@@ -18,7 +18,7 @@ public class DataManager : Singleton<DataManager>
     private DataDownloader downloader;
 
     private const int defaultDamage = 4;
-    private const int defaultHp = 5;
+    private const int defaultHp = 10;
     private const int defaultSpeed = 4;
     private const int defaultAttackSpeed = 1;
 
@@ -50,7 +50,7 @@ public class DataManager : Singleton<DataManager>
         PlayerStatus.Speed.SetBaseStat(defaultSpeed);
         PlayerStatus.SpeedMultiply.SetBaseStat(1);
         PlayerStatus.AttackSpeed.SetBaseStat(defaultAttackSpeed);
-        PlayerStatus.Evasion.SetBaseStat(100);
+        PlayerStatus.Evasion.SetBaseStat(0);
 
         GoldStat.InitGoldStat();
         Manager.UI.ResetUI();

@@ -23,7 +23,6 @@ public class PlayerWeaponController : MonoBehaviour
     private void Start()
     {
         currentWeapon = Instantiate(defaultWeapon, transform);
-        currentWeapon = GetComponentInChildren<MusicWeapon>();
         currentWeapon.Init(transform, currentWeapon.WeaponData.AttackDamage[0], currentWeapon.WeaponData.AttackDelay[0]);
         weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;
     }
