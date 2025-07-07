@@ -3333,6 +3333,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 8561745575463633423, guid: b41b51f7e0fc68d4eabb474d4843d0ff, type: 3}
 --- !u!114 &197075692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,7 +3351,6 @@ MonoBehaviour:
   doors: {fileID: 1376552969}
   portal: {fileID: 0}
   isLastRoomOfStage: 0
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &197075693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7108,6 +7110,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 0}
 --- !u!114 &386289559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7123,7 +7128,6 @@ MonoBehaviour:
   doors: {fileID: 818086467}
   portal: {fileID: 600012433}
   isLastRoomOfStage: 1
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &386289560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7429,6 +7433,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 0}
 --- !u!114 &507099056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7444,7 +7451,6 @@ MonoBehaviour:
   doors: {fileID: 1750822726}
   portal: {fileID: 0}
   isLastRoomOfStage: 0
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &507099057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14762,6 +14768,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 0}
 --- !u!114 &1093724358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14777,7 +14786,6 @@ MonoBehaviour:
   doors: {fileID: 232375373}
   portal: {fileID: 0}
   isLastRoomOfStage: 0
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &1093724359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15740,6 +15748,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 0}
 --- !u!114 &1272522997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15755,7 +15766,6 @@ MonoBehaviour:
   doors: {fileID: 928662601}
   portal: {fileID: 0}
   isLastRoomOfStage: 0
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &1272522998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27542,6 +27552,9 @@ MonoBehaviour:
   - {fileID: 5150256697075869641, guid: fd186a45a6e279a408cd2193522b826b, type: 3}
   - {fileID: 846162098407709350, guid: f3234bd467a208f47bd64246a2cb8c30, type: 3}
   margin: 0.5
+  monsterSpawnDelayTime: 2
+  ParticleDelayTime: 1
+  spawnParticle: {fileID: 0}
 --- !u!114 &2082305985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27557,7 +27570,6 @@ MonoBehaviour:
   doors: {fileID: 315327625}
   portal: {fileID: 0}
   isLastRoomOfStage: 0
-  monsterSpawnDelayTime: 0.5
 --- !u!114 &2082305986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31332,6 +31344,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1769882421811210885, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049922632154091074, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357449895272487411, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373852799880399484, guid: 4185dd9d7340c73429448c7376e904d1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
