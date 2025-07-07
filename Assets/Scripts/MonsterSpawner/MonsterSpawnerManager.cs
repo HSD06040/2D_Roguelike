@@ -55,7 +55,7 @@ public class MonsterSpawnerManager : MonoBehaviour
     {
         for (int i = 0; i < spawnNum; i++) //스폰 수만큼 반복
         {
-            GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentStage);//랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
+            GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentChapter);//랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
 
             Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정
             Instantiate(spawnMonster, spawnPoint, Quaternion.identity); //몬스터 스폰

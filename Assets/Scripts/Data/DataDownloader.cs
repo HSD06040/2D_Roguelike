@@ -9,7 +9,7 @@ public class DataDownloader
 {
     private const string URL = "https://docs.google.com/spreadsheets/d/10QfD3I1AbOf_yOnV5AEE4zut2KNPh1pmiAEeALIUZzA/export?format=csv&range=B66:C66";
     // gid=2097254203 
-    private const string MonsterURL = "https://docs.google.com/spreadsheets/d/1LZaGVufTNxyyq0qzsyR9IY6TX2c_TVH0/export?format=csv&gid=2097254203";
+    private const string MonsterURL = "https://docs.google.com/spreadsheets/d/1J6JrHTDnkcCYHN-F3i22qT15ako3L43B/export?format=csv&gid=2015635146";
     // gid=17471850
     private const string WeaponURL = "https://docs.google.com/spreadsheets/d/1J6JrHTDnkcCYHN-F3i22qT15ako3L43B/export?format=csv&gid=17471850";
 

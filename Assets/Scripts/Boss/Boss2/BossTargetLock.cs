@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class BossTargetLock : BossPattern
+public class BossTargetLock : BossPattern_Sound
 {
     [Header("TargetLock")]
     [SerializeField] private GameObject warningLine;
@@ -20,6 +19,7 @@ public class BossTargetLock : BossPattern
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
             Instantiate(warningLine, transform.position, targetRotation).GetComponent<WarningLine>().Init(duration);
+            StartCoroutine(SoundRoutine());
 
             yield return Utile.GetDelay(interval);
 

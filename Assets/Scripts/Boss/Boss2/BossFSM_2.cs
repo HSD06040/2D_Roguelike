@@ -44,6 +44,7 @@ public class BossFSM_2 : BossMonsterFSM
         base.Start();
 
         StateMachine.Initialize(idle);
+        Manager.Audio.PlayBGM("Chapter2/BossChapter2");
     }
 
     public void ChangeIdleState() => StateMachine.ChangeState(idle);
@@ -145,6 +146,7 @@ public class BossCrossState_2 : BossBaseState<BossFSM_2>
     {
         base.Enter();
 
+        Manager.Audio.PlaySFX("Boss/BossChap2/Patten_Center", fsm.Owner.transform.position);
         fsm.Pattern.PlayLinePattern();
         fsm.Pattern.PlayCrossPattern();
     }
@@ -161,6 +163,7 @@ public class BossCrossRotateState_2 : BossBaseState<BossFSM_2>
     {
         base.Enter();
 
+        Manager.Audio.PlaySFX("Boss/BossChap2/Patten_Center", fsm.Owner.transform.position);
         fsm.Pattern.PlayLinePattern();
         fsm.Pattern.PlayCrossRotatePattern();
     }
@@ -177,6 +180,7 @@ public class BossLaserState_2 : BossBaseState<BossFSM_2>
     {
         base.Enter();
 
+        Manager.Audio.PlaySFX("Boss/BossChap2/Patten_Side", fsm.Owner.transform.position);
         fsm.Pattern.PlayExplosionPattern();
         fsm.Pattern.PlayLaserPattern();
     }
@@ -192,7 +196,8 @@ public class BossDoubleShotState_2 : BossBaseState<BossFSM_2>
     public override void Enter()
     {
         base.Enter();
-        
+
+        Manager.Audio.PlaySFX("Boss/BossChap2/Patten_Side", fsm.Owner.transform.position);
         fsm.Pattern.PlayExplosionPattern();
         fsm.Pattern.PlayDoubleShotPattern();
     }
@@ -213,6 +218,8 @@ public class BossDieState_2 : BossBaseState<BossFSM_2>
         if (!isDead)
         {
             isDead = true;
+            Manager.Audio.StopBGM();
+            Manager.Audio.PlayBGM("Boss/BossChap2/Boss2Died");
             fsm.Pattern.CurrentBossPatternStop();
             fsm.Owner.DropCoin(fsm.stat);
             fsm.StartDieRoutine();

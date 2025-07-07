@@ -9435,29 +9435,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3443379739396937291, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: effect
+      propertyPath: clip
       value: 
-      objectReference: {fileID: 195360, guid: a3c24a5ae068ed44d950af671f99cc21, type: 3}
-    - target: {fileID: 3443379739396937291, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: attackEffect
-      value: 
-      objectReference: {fileID: 193062, guid: 01949c12a89de284792dc4b7b7128404, type: 3}
-    - target: {fileID: 3794450848522873560, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: <Player>k__BackingField
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7327142714211320995, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7327142714211320995, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7327142714211320995, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 8220d0c23788fdb42845ff4f7f832d6a, type: 3}
     - target: {fileID: 7684394118642866925, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
       propertyPath: center
       value: 
@@ -9481,10 +9461,6 @@ PrefabInstance:
     - target: {fileID: 8283763614233018246, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
       propertyPath: m_Name
       value: Ellie
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283763614233018246, guid: d44c76844436aaa49999a566ccf97bcc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
