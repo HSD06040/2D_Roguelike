@@ -29,7 +29,7 @@ public class DataManager : Singleton<DataManager>
 
         PassiveCon = new GameObject("PassiveCon").AddComponent<PassiveEffectController>();
         PassiveCon.transform.parent = transform;
-
+        
         downloader = new DataDownloader();
         StartCoroutine(downloader.DownloadData());        
     }
