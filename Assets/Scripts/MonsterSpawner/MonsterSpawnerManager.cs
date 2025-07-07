@@ -30,9 +30,13 @@ public class MonsterSpawnerManager : MonoBehaviour
     private int spawnCount;
     public int SpawnCount => spawnCount;
 
-    public void SpawnMonsters()
+    public int SpawnMonsters()
     {
         spawnCount = 0;
+
+        int totalCount = fixedSpawnPositions.Length;
+        for (int i = 0; i < randomSpawnMonsterNum.Length; i++)
+            totalCount += randomSpawnMonsterNum[i];
 
         SpawnFixedPosMonsters();
 
@@ -41,6 +45,7 @@ public class MonsterSpawnerManager : MonoBehaviour
             int spawnNum = randomSpawnMonsterNum[i]; // 인덱스에 넣은 소환할 몬스터 숫자
             SpawnRandomPosMonsters(randomSpawnAreas[i], spawnNum); // 각각 영역별로 소환할 숫자전달
         }
+        return totalCount;
     }
 
     private void SpawnFixedPosMonsters()  //고정위치 몬스터 소환파티클
@@ -56,7 +61,8 @@ public class MonsterSpawnerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(ParticleDelayTime);
 
-        GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
+        //GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
+        GameObject particle = Manager.Resources.Instantiate<GameObject>("MonsterSpawn/spawnParticle", spawnPoint, Quaternion.identity, true);
         Manager.Resources.Destroy(particle, monsterSpawnDelayTime);
 
         yield return new WaitForSeconds(monsterSpawnDelayTime);
@@ -84,8 +90,8 @@ public class MonsterSpawnerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(ParticleDelayTime);
 
-        GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true);
-        //GameObject particle = Manager.Resources.Instantiate<GameObject>("aaa/spawnParticle", spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
+        //GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true);
+        GameObject particle = Manager.Resources.Instantiate<GameObject>("MonsterSpawn/spawnParticle", spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
         Manager.Resources.Destroy(particle, monsterSpawnDelayTime + 0.5f);
 
         yield return new WaitForSeconds(monsterSpawnDelayTime);
