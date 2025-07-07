@@ -8,17 +8,22 @@ public class FadeScreen : MonoBehaviour
     [SerializeField] private Image fadeImage;
     float timer;
 
-    public void PlayFade(float _fadeTime, float _delay)
+    public void PlayFade(float _fadeTime, float _delay, Color c = default)
     {
-        StartCoroutine(FadeRoutine(_fadeTime, _delay));
+        if (c == default)
+            c = Color.black;       
+       
+        StartCoroutine(FadeRoutine(_fadeTime, _delay, c));
     }
 
-    private IEnumerator FadeRoutine(float _fadeTime, float _delay)
+    private IEnumerator FadeRoutine(float _fadeTime, float _delay, Color _color)
     {
         timer = 0f;
 
+        fadeImage.color = _color;
+
         while (timer < _fadeTime)
-        {
+        {            
             Color color = fadeImage.color;
             color.a = Mathf.Lerp(0f, 1f, timer / _fadeTime);
             fadeImage.color = color;
