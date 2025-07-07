@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bcb22af85ef634b963e7ae4b568113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume: {fileID: 8950514201176007470}
 --- !u!1 &508062456333855329
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ Transform:
   - {fileID: 6615602199460839046}
   - {fileID: 8700449223171901777}
   - {fileID: 5415146962979480918}
-  - {fileID: 4459809898146579552}
+  - {fileID: 1355079346627790172}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5460843364196822057
@@ -274,6 +275,7 @@ MonoBehaviour:
   currentHp: 0
   playerDamageCoolDown: 0
   heartUI: {fileID: 2061733710199069006}
+  postProcessing: {fileID: 3177999753851987902}
   status:
     <MaxHp>k__BackingField:
       value: 0
@@ -325,7 +327,7 @@ MonoBehaviour:
   - {fileID: 4416008173384263011}
   - {fileID: 7013757159242751693}
   - {fileID: 8590227809496450227}
-  defaultWeapon: {fileID: 9006666233226704775, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  defaultWeapon: {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
   weaponSlots: []
   currentWeapon: {fileID: 0}
 --- !u!50 &5357449895272487411
@@ -353,7 +355,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4348666954052290104
 BoxCollider2D:
@@ -502,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1941395447746865410
 Transform:
   m_ObjectHideFlags: 0
@@ -938,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5258349154306782460
 Transform:
   m_ObjectHideFlags: 0
@@ -1157,8 +1159,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
---- !u!4 &4459809898146579552 stripped
+--- !u!4 &1355079346627790172 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1440682960065758825, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4383143188099368789, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
   m_PrefabInstance: {fileID: 3322030337846002185}
   m_PrefabAsset: {fileID: 0}
