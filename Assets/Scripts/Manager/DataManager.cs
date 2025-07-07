@@ -34,6 +34,21 @@ public class DataManager : Singleton<DataManager>
         StartCoroutine(downloader.DownloadData());        
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+            PlayerStatus.Evasion.AddModifier(100, "Test");
+
+        if (Input.GetKeyDown(KeyCode.X))
+            PlayerStatus.Damage.AddModifier(5, "Test");
+
+        if (Input.GetKeyDown(KeyCode.C))
+            Gold.Value += 100;
+
+        if (Input.GetKeyDown(KeyCode.V))
+            PlayerStatus.CurtHp.Value += 3;
+    }
+
     private void Start()
     {
         ResetPlayerStat();
