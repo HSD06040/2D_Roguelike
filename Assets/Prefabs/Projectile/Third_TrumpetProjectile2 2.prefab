@@ -104,8 +104,11 @@ MonoBehaviour:
   IsPass: 1
   rigid: {fileID: 747377143171295564}
   ParticlePrefab: {fileID: 6591944233282869360, guid: 8f25f60efa3baa0439d70bbefe4bf959, type: 3}
-  StartAudioSound: []
-  TrigAudioSound: []
+  SFXAudioSound:
+  - 
+  - 
+  - 
+  isStart: 1
   rand: 0
 --- !u!50 &747377143171295564
 Rigidbody2D:

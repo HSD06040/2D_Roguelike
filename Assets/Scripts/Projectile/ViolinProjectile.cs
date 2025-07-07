@@ -9,6 +9,7 @@ public class ViolinProjectile : Projectile
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private ParticleSystem elecParticle;
     [SerializeField] private GameObject trigParticle;
+    [SerializeField] private AudioClip[] violinSFX;
 
     private ParticleSystem electObj;
     private RaycastHit2D[] hits;
@@ -22,12 +23,13 @@ public class ViolinProjectile : Projectile
     private float particleDelay = 0;
     private bool particleCountFull;
 
-    
+    private GameObject curSFX;
+
 
     public override void Init(Vector2 _targetPos, float _damage, float _speed)
     {
+        base.Init(targetPos, Manager.Data.PlayerStatus.TotalDamage,0);
         targetPos = _targetPos;
-        damage = _damage;
     }
     private void OnEnable()
     {
@@ -41,6 +43,25 @@ public class ViolinProjectile : Projectile
         Destroy(electObj);
     }
 
+    private void Start()
+    {
+        StartCoroutine(SFXPlay());
+    }
+
+    private IEnumerator SFXPlay()
+    {
+        while(Manager.Game.IsPress.Value)
+        {
+            while(true)
+            {
+                rand = Random.Range(0, violinSFX.Length);
+                Manager.Audio.PlaySFX($"Weapon/Violin/{violinSFX[rand].name}", transform.position);
+                yield return Utile.GetDelay(violinSFX[rand].length);
+                continue;
+            }
+        }
+        yield return null;
+    }
 
     private void Update()
     {
@@ -68,10 +89,10 @@ public class ViolinProjectile : Projectile
         }
         #endregion
 
+
         targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         UpdateLaser();
     }
-
 
     private void UpdateLaser()
     {
@@ -133,12 +154,10 @@ public class ViolinProjectile : Projectile
 
     }
 
-
     private void PressLaser(bool value)
     {
         if(value)
         {
-            Debug.Log("Violin On");
             laser.SetActive(true);
         }
         else
