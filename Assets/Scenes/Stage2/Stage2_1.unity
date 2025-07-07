@@ -14090,7 +14090,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -30358,7 +30358,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 990265115}
-  m_Father: {fileID: 1269857494}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1475399979
 MonoBehaviour:
@@ -37876,7 +37876,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1269857494}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2795683246964954514, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
       propertyPath: m_Name
@@ -37975,11 +37975,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
---- !u!224 &1996714785 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4445494937909353262, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
-  m_PrefabInstance: {fileID: 1996714784}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1996714786 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5729430234026888793, guid: f127ce2d439e82e4693ac4ad97da5cac, type: 3}
@@ -38783,3 +38778,5 @@ SceneRoots:
   - {fileID: 1616415605}
   - {fileID: 328358281}
   - {fileID: 1269076743}
+  - {fileID: 1475399978}
+  - {fileID: 1996714784}
