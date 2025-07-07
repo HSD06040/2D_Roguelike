@@ -101,7 +101,7 @@ public class Monster : MonoBehaviour, IDamagable
 
     public void DropCoin(MonsterStat monsterStat)
     {
-        Debug.Log("DropCoin 메소드를 호출");
+        //Debug.Log("DropCoin 메소드를 호출");
         if (monsterStat.CoinPrefab != null && monsterStat.GetCoinAmount > 0)
         {
             GameObject coinObject = Instantiate(

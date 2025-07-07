@@ -11,7 +11,7 @@ public class AnimationEventProxy : MonoBehaviour
         _monsterFSM = GetComponentInParent<MonsterFSM>();
         if (_monsterFSM == null)
         {
-            Debug.LogError("부모 오브젝트에서 MonsterFSM을 구현한 컴포넌트를 찾을 수 없습니다", gameObject);
+            //Debug.LogError("부모 오브젝트에서 MonsterFSM을 구현한 컴포넌트를 찾을 수 없습니다", gameObject);
         }
     }
 

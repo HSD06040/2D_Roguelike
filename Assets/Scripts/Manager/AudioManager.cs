@@ -75,7 +75,7 @@ public class AudioManager : Singleton<AudioManager>
         if (!audioSourceCached.TryGetValue(audioObj.GetInstanceID(), out var audio))
         {
             audio = audioObj.GetOrAddComponent<AudioSource>();
-            Debug.Log(audio == null);
+            //Debug.Log(audio == null);
             if (audio != null)
                 audioSourceCached[audioObj.GetInstanceID()] = audio;
         }
