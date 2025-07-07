@@ -97,7 +97,7 @@ public class PlayerWeaponController : MonoBehaviour
     private void Attack(InputAction.CallbackContext ctx)
     {
         if (!canAttack) return;
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         Manager.Game.IsPress.Value = true;
         SetProjectile(currentWeapon);
     }
