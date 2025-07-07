@@ -17,16 +17,15 @@ public class PlayerWeaponController : MonoBehaviour
     private bool canAttack = true;
     private float delay = 0;
     private float maxCount => 1 / currentWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value;
-    private float defaultMaxCount;
 
     Coroutine showStatusCor;
     Property<bool> isShowStatus = new();
     private void Start()
-    {       
-        defaultWeapon = GetComponentInChildren<MusicWeapon>();
-        defaultWeapon.Init(transform);
+    {
+        currentWeapon = Instantiate(defaultWeapon, transform);
+        currentWeapon = GetComponentInChildren<MusicWeapon>();
+        currentWeapon.Init(transform, currentWeapon.WeaponData.AttackDamage[0], currentWeapon.WeaponData.AttackDelay[0]);
         weaponSlots = Manager.Data.PlayerStatus.PlayerWeapons;
-        defaultMaxCount = 1/defaultWeapon.WeaponData.AttackDelay[0] * Manager.Data.PlayerStatus.AttackSpeed.Value;
     }
 
 
@@ -68,18 +67,6 @@ public class PlayerWeaponController : MonoBehaviour
                 canAttack = true;
             }
         }
-        else
-        {
-            if (delay < defaultMaxCount)
-            {
-                delay += Time.deltaTime;
-                canAttack = false;
-            }
-            else
-            {
-                canAttack = true;
-            }
-        }
         #endregion
     }
 
@@ -110,21 +97,10 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Attack(InputAction.CallbackContext ctx)
     {
-        //Debug.Log($"canattack : {canAttack}");
         if (!canAttack) return;
-
-        if (currentWeapon != null)
-        {
-            Manager.Game.IsPress.Value = true;
-            SetProjectile(currentWeapon);
-        }
-        else
-        {
-            Manager.Game.IsPress.Value = true;
-            SetProjectile(defaultWeapon);
-        }
-
-        
+        Debug.Log("Attack");
+        Manager.Game.IsPress.Value = true;
+        SetProjectile(currentWeapon);
     }
 
     private void CancelAttack(InputAction.CallbackContext ctx)
@@ -145,9 +121,7 @@ public class PlayerWeaponController : MonoBehaviour
     #region List<string>형식으로 weapon받아오기
     public void AddMusicWeapon(int idx, MusicWeapon _musicWeapon)
     {
-        Debug.Log("Invoke Event");
-        if (_musicWeapon == null) return;
-        Debug.Log("Not Return Event");     
+        if (_musicWeapon == null) return; 
         MusicWeapon weapon = Instantiate(_musicWeapon, WeaponSpawnPos[idx]);
         weapon.Init(transform);
         weaponSlots[idx] = weapon;
@@ -168,8 +142,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (weaponSlots[index] != null)
         {
-            currentWeapon = weaponSlots[index];  //선택한 무기 = currentWeapon
-            Debug.Log((index + 1) + "번 무기 사용중.selectWeapon 이름: " + currentWeapon.name);
+            currentWeapon = weaponSlots[index];
             
         }
         else
@@ -236,16 +209,8 @@ public class PlayerWeaponController : MonoBehaviour
     #region 무기 공속
     private WaitForSeconds AttackDelay(MusicWeapon musicWeapon)
     {
-        if (musicWeapon.WeaponData.ID == 1)
-        {
-            return Utile.GetDelay(1 / musicWeapon.WeaponData.AttackDelay[0] *
-                Manager.Data.PlayerStatus.AttackSpeed.Value);
-        }
-        else
-        {
-            return Utile.GetDelay(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
-        }
+        return Utile.GetDelay(1 / musicWeapon.curAttackDelay * Manager.Data.PlayerStatus.AttackSpeed.Value);
     }
-#endregion
+    #endregion
 
 }
