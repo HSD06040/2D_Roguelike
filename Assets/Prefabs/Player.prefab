@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bcb22af85ef634b963e7ae4b568113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume: {fileID: 8950514201176007470}
 --- !u!1 &508062456333855329
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   currentHp: 0
   playerDamageCoolDown: 0
   heartUI: {fileID: 2061733710199069006}
+  postProcessing: {fileID: 3177999753851987902}
   status:
     <MaxHp>k__BackingField:
       value: 0
@@ -324,7 +326,7 @@ MonoBehaviour:
   - {fileID: 4416008173384263011}
   - {fileID: 7013757159242751693}
   - {fileID: 8590227809496450227}
-  defaultWeapon: {fileID: 9006666233226704775, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
+  defaultWeapon: {fileID: 4153466242158079791, guid: d5b7b053bdb4e8947b1e440564f5a911, type: 3}
   weaponSlots: []
   currentWeapon: {fileID: 0}
 --- !u!50 &5357449895272487411

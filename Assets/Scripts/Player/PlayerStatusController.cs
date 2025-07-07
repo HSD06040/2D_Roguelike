@@ -6,7 +6,7 @@ public class PlayerStatusController : StatusController
 {
     [SerializeField] private float playerDamageCoolDown;
     [SerializeField] private HealthHeart heartUI;
-
+    [SerializeField] private PostProcessing_Controller postProcessing;
     public PlayerStatus status;
     public bool invincible;
 
@@ -42,6 +42,7 @@ public class PlayerStatusController : StatusController
         }
 
         fx.CreateTakeDamageMaterial();
+        postProcessing.HitScreenRoutine();
         StartCoroutine(InvincibleRoutine(1));
         Manager.Audio.PlaySFX("Player/PlayerDamage", transform.position);
     }
