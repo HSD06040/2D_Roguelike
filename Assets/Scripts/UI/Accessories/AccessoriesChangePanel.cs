@@ -39,6 +39,8 @@ public class AccessoriesChangePanel : AnimationUI_Base
     private void ChangeAccessories()
     {
         Manager.Data.PlayerStatus.ChangeAccessories(newAccessories, selectSlot);
+        Manager.Audio.PlaySFX("Button/SelectButton", transform.position);////////////
+   
         Close();
     }
 
@@ -65,7 +67,7 @@ public class AccessoriesChangePanel : AnimationUI_Base
     public override void Close()
     {
         base.Close();
-
+        Manager.Audio.PlaySFX("Button/SelectButton", transform.position);////////////
         background.SetActive(false);
 
         changeButton.interactable = false;
