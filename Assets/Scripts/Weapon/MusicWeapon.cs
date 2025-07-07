@@ -19,6 +19,8 @@ public class MusicWeapon : MonoBehaviour
 
     public Action<int> OnUpgrade;
 
+    protected float mouseOffset = 0.5f;
+
     private void OnEnable()
     {
         OnUpgrade += SetUpgradeWeapon;

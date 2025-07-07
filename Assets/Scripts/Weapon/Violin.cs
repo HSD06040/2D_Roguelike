@@ -6,7 +6,7 @@ public class Violin : MusicWeapon
 {
     public override void Attack(Vector2 mousePosition)
     {
-        Projectile obj = Instantiate(WeaponData.Projectile, player.position, Quaternion.identity);
+        Projectile obj = Instantiate(WeaponData.Projectile, (Vector2)player.position + mousePosition * mouseOffset, Quaternion.identity);
         obj.Init(mousePosition, curAttackDamage, WeaponData.AttackSpeed);
     }
 }
