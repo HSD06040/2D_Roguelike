@@ -92,5 +92,6 @@ public class ShopView : AnimationUI_Base
     private void ItemPurchased()
     {
         buyButton.enabled = false;
+        Manager.Audio.PlaySFX("Coin/PayCoin", transform.position);///////////
     }
 }

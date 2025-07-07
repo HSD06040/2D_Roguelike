@@ -45,6 +45,7 @@ public class TitleCanvas : BaseUI
                 Manager.Game.IsDead = false;
 
             Manager.Audio.PlayBGM("Chapter1/StageChapter1"); //////////////////
+            //Manager.Audio.PlaySFX("Button/SelectButton", transform.position);////////////
             Manager.UI.ClosePopUp();
             SceneManager.LoadSceneAsync(1);
         };

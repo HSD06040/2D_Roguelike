@@ -29,6 +29,14 @@ public class Portal : MonoBehaviour, IInteractable
         Manager.UI.Fade.PlayFade(1f, 2f);  //페이드 효과
         yield return new WaitForSeconds(2);
 
+        if (currentSenen + 1 == 3 || currentSenen + 1 == 4)
+        {
+            Manager.Audio.PlayBGM("Chapter1/StageChapter1");//////////
+        }
+        if (currentSenen + 1 == 5 || currentSenen + 1 == 6 || currentSenen + 1 == 7)
+        {
+            Manager.Audio.PlayBGM("Chapter2/StageChapter2");//////////
+        }
         if (currentSenen + 1 == 8 || currentSenen + 1 == 9 || currentSenen + 1 == 10)
         {
             Manager.Audio.PlayBGM("Chapter3/StageChapter3");//////////
