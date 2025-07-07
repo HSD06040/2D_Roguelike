@@ -6,8 +6,8 @@ using UnityEngine;
 public class MonsterSpawnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject doors;
-    [SerializeField] private GameObject portal;
-    [SerializeField] private bool isLastRoomOfStage = false;
+    [SerializeField] private GameObject reward;
+    [SerializeField] private bool rewardRoom = false;
 
 
     
@@ -21,9 +21,9 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     private void Start()
     {
-        if(portal != null)
+        if(reward != null)
         {
-            portal.SetActive(false);
+            reward.SetActive(false);
         }
 
         doors.SetActive(false);
@@ -37,6 +37,7 @@ public class MonsterSpawnTrigger : MonoBehaviour
         }
         if (!hasMonsterSpawned && !isRoomCleared)
         {
+            Manager.Game.OnMonsterKill -= MonsterDied;
             Manager.Game.OnMonsterKill += MonsterDied;
             hasMonsterSpawned = true;
             LockDoors();
@@ -52,9 +53,8 @@ public class MonsterSpawnTrigger : MonoBehaviour
     private void MonsterSpawnStart()
     {
         monsterSpawnerManager = GetComponent<MonsterSpawnerManager>();
-        monsterSpawnerManager.SpawnMonsters();
 
-        monsterLeft = monsterSpawnerManager.SpawnCount; //남은 몬스터 수 매니져에서 가져옴
+        monsterLeft = monsterSpawnerManager.SpawnMonsters(); //남은 몬스터 수 매니져에서 가져옴
         Debug.Log("소환된 몬스터 수:" + monsterLeft);
         
     }
@@ -70,18 +70,20 @@ public class MonsterSpawnTrigger : MonoBehaviour
 
     public void MonsterDied()
     {
+
         monsterLeft--;
         Debug.Log("남은 몬스터 수:" + monsterLeft);
 
         if (monsterLeft <= 0)
         {
             Debug.Log("방 클리어");
+            Manager.Game.OnMonsterKill -= MonsterDied;
             isRoomCleared = true;
             UnlockDoors();
 
-            if(isLastRoomOfStage)
+            if(rewardRoom)
             {
-                portal.SetActive(true);
+                reward.SetActive(true);
             }
         }
     }
