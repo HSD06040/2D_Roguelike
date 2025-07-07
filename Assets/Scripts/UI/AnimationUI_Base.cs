@@ -25,6 +25,7 @@ public abstract class AnimationUI_Base : MonoBehaviour
     {
         anim.ResetTrigger(inHash);
         anim.SetTrigger(outHash);
+        Manager.Input.ChangeCursor(CursorType.Attack);
     }
 
     public void SetActiveFalse() => gameObject.SetActive(false);

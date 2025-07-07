@@ -9,7 +9,7 @@ public class BossFSM_3 : BossMonsterFSM
 
     public BossStateMachine<BossFSM_3> StateMachine;
 
-
+    public DialogueBoss DialogueBoss;
     #region States
     public BossIdleState_3 Idle { get; private set; }
     public LinePatternState_3 Line { get; private set; }
@@ -229,6 +229,7 @@ public class BossDieState_3 : BossBaseState<BossFSM_3>
             fsm.Pattern.CurrentBossPatternStop();
             fsm.Owner.DropCoin(fsm.stat);
             fsm.StartDieRoutine();
+            fsm.DialogueBoss.DialogueFinal();
         }
     }
 

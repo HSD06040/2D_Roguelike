@@ -44,7 +44,7 @@ public class TitleCanvas : BaseUI
             if (Manager.Game.IsDead)
                 Manager.Game.IsDead = false;
 
-            StartCoroutine(GameStartRoutine());
+            Manager.Game.StartCoroutine(GameStartRoutine());
         };
 
         //Test();
@@ -101,7 +101,6 @@ public class TitleCanvas : BaseUI
         Manager.UI.MainCanvas.gameObject.SetActive(true);
 
         yield return Utile.GetDelay(2f);
-
         Manager.Audio.PlayBGM("Chapter1/StageChapter1");
     }
 

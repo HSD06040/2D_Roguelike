@@ -7,8 +7,6 @@ public class BossPatternController_3 : MonoBehaviour
 {
     public GameObject defaultAttackPrefab;
 
-    [SerializeField] private BossPattern pattern;
-
     [SerializeField] private BossPattern glissando;
     [SerializeField] private BossPattern cross;
     [SerializeField] private BossPattern pianoWhite;
@@ -16,12 +14,6 @@ public class BossPatternController_3 : MonoBehaviour
     [SerializeField] private BossPattern line;
 
     private List<BossPattern> curPatterns = new();
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-            pattern.Execute();
-    }
 
     // === 패턴 실행 ===
     public void PlayCross()
