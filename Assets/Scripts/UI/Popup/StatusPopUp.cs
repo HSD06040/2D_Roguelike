@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StatusPopUp : MonoBehaviour
 {
-    public Image[] weaponSlots;
+    public Image[] WeaponSlots;
     public TextMeshProUGUI[] WeaponSlotNames;
     public TextMeshProUGUI[] WeaponSlotDamage;
     public TextMeshProUGUI PlayerSpeedText;
@@ -27,42 +29,40 @@ public class StatusPopUp : MonoBehaviour
         presenter.RemoveStatusEvent();
     }
 
-    void Start()
+    private void Start()
     {
-        weaponSlots = new Image[4];
-        WeaponSlotNames = new TextMeshProUGUI[4];
-        WeaponSlotDamage = new TextMeshProUGUI[4];
+        for (int i = 0; i < WeaponSlots.Length; i++)
+        {
+            WeaponSlots[i].color = Color.clear;
+            WeaponSlotNames[i].text = "";
+            WeaponSlotDamage[i].text = "";
+        }
+
+        PlayerSpeedText.text = Manager.Data.PlayerStatus.TotalSpeed.ToString();
+        PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.Value.ToString();
     }
 
+    #region 무기 Status
     public void UpdateWeaponData(int _idx, MusicWeapon _weapon)
     {
-        Debug.Log($"{_idx}에 {_weapon.WeaponData.itemName}추가");
-        if (_weapon == null)
-        {
-            weaponSlots[_idx].sprite = null;
-            weaponSlots[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.clear;
-            return;
-        }
-        weaponSlots[_idx].sprite = _weapon.WeaponData.icon;
-        weaponSlots[_idx].color = Manager.Data.PlayerStatus.currentWeaponIdx == _idx ? Color.white : Color.clear;
+        WeaponSlots[_idx].sprite = _weapon.WeaponData.icon;
+        WeaponSlots[_idx].color = WeaponSlots[_idx].sprite != null ? Color.white : Color.clear;
+        
         WeaponSlotNames[_idx].text = _weapon.WeaponData.itemName;
-        WeaponSlotDamage[_idx].text = _weapon.WeaponData.AttackDamage.ToString();
-    }
-
-    public void UpdatePlayerStatus()
-    {
-        PlayerSpeedText.text = Manager.Data.PlayerStatus.Speed.ToString();
-        PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.ToString();
+        WeaponSlotDamage[_idx].text = _weapon.WeaponData.AttackDamage[Manager.Data.PlayerStatus.PlayerWeapons[_idx].Level].ToString();
     }
 
     public void UpgradeWeapon(int _idx, MusicWeapon _weapon)
     {
-        if(_idx == 0)
-        {
-            return;
-        }
-        WeaponSlotNames[_idx].text = _weapon.WeaponData.itemName;
-        WeaponSlotDamage[_idx].text = _weapon.WeaponData.AttackDamage.ToString();
+        WeaponSlotDamage[_idx].text = 
+            _weapon.WeaponData.AttackDamage[Manager.Data.PlayerStatus.PlayerWeapons[_idx].Level].ToString();
+    }
+    #endregion
+
+    public void UpdatePlayerStatus(int _idx)
+    {
+        PlayerSpeedText.text = Manager.Data.PlayerStatus.TotalSpeed.ToString();
+        PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.Value.ToString();
     }
 
 }
