@@ -203,7 +203,7 @@ Transform:
   - {fileID: 6615602199460839046}
   - {fileID: 8700449223171901777}
   - {fileID: 5415146962979480918}
-  - {fileID: 4459809898146579552}
+  - {fileID: 1355079346627790172}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5460843364196822057
@@ -355,7 +355,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4348666954052290104
 BoxCollider2D:
@@ -504,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1941395447746865410
 Transform:
   m_ObjectHideFlags: 0
@@ -940,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5258349154306782460
 Transform:
   m_ObjectHideFlags: 0
@@ -1159,8 +1159,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
---- !u!4 &4459809898146579552 stripped
+--- !u!4 &1355079346627790172 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1440682960065758825, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4383143188099368789, guid: 5e997af1ba354a6468e16adcc01f0eeb, type: 3}
   m_PrefabInstance: {fileID: 3322030337846002185}
   m_PrefabAsset: {fileID: 0}
