@@ -44,10 +44,7 @@ public class TitleCanvas : BaseUI
             if (Manager.Game.IsDead)
                 Manager.Game.IsDead = false;
 
-            Manager.Audio.PlayBGM("Chapter1/StageChapter1"); //////////////////
-            //Manager.Audio.PlaySFX("Button/SelectButton", transform.position);////////////
-            Manager.UI.ClosePopUp();
-            SceneManager.LoadSceneAsync(1);
+            StartCoroutine(GameStartRoutine());
         };
 
         //Test();
@@ -92,7 +89,21 @@ public class TitleCanvas : BaseUI
         pressExitButton.gameObject.SetActive(true);
     }
 
+    private IEnumerator GameStartRoutine()
+    {
+        Manager.UI.Fade.PlayFade(1,2);
 
+        yield return Utile.GetDelay(1.1f);
+
+        SceneManager.LoadSceneAsync(1);
+
+        Manager.UI.ClosePopUp();
+        Manager.UI.MainCanvas.gameObject.SetActive(true);
+
+        yield return Utile.GetDelay(2f);
+
+        Manager.Audio.PlayBGM("Chapter1/StageChapter1");
+    }
 
     private void Update()
     {

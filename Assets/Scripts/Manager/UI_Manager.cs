@@ -59,6 +59,8 @@ public class UI_Manager : Singleton<UI_Manager>
         PopUpCanvas = Instantiate(Resources.Load<Canvas>("UI/PopUpCanvas"));
         PopUpCanvas.transform.parent = transform;
         PopUpCanvas.GetOrAddComponent<PopUpCanvas>();
+
+        MainCanvas.gameObject.SetActive(false);
     }
 
     private void SetupUIBind()
