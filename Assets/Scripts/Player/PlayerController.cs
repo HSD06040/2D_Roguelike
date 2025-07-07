@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && canDash && !isDashing && movemoent != Vector2.zero)
         {
             StartCoroutine(DashCoroutine());
+            Manager.Audio.PlaySFX("Player/Dash", transform.position);///////////
         }
     }
 
