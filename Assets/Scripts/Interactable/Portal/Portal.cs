@@ -20,7 +20,6 @@ public class Portal : MonoBehaviour, IInteractable
             isActivated=true;
             StartCoroutine(ScreenFade());
         }
-        
     }
 
     private IEnumerator ScreenFade()
@@ -29,21 +28,13 @@ public class Portal : MonoBehaviour, IInteractable
         int currentSenen = SceneManager.GetActiveScene().buildIndex;
         Manager.UI.Fade.PlayFade(1f, 2f);  //페이드 효과
         yield return new WaitForSeconds(2);
-        SceneManager.LoadSceneAsync(currentSenen + 1);
 
-        if (currentSenen == 3 || currentSenen == 4)
-        {
-            Manager.Audio.PlayBGM("Chapter1/StageChapter1");//////////
-        }
-        if (currentSenen == 5 || currentSenen == 6 || currentSenen == 7)
-        {
-            Manager.Audio.PlayBGM("Chapter2/StageChapter2");//////////
-        }
-        if (currentSenen == 8 || currentSenen == 9 || currentSenen == 10)
+        if (currentSenen + 1 == 8 || currentSenen + 1 == 9 || currentSenen + 1 == 10)
         {
             Manager.Audio.PlayBGM("Chapter3/StageChapter3");//////////
         }
 
+        SceneManager.LoadSceneAsync(currentSenen + 1);
         Debug.Log("다음씬 이동");
     }
 

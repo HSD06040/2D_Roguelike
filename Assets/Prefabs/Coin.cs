@@ -28,6 +28,7 @@ public class Coin : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             Manager.Data.AddGold(CoinNum);
+            Manager.Audio.PlaySFX("Coin/GetCoin", collision.transform.position);/////////////
             Destroy(gameObject);
         }
 

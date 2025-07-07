@@ -30,7 +30,7 @@ public class StartDialogue : MonoBehaviour
             new DialogueData("<color=yellow>???</color>", "광장이라고 들었습니다.. 많이 위험할 거예요..", DialoguePosition.Bottom, DialogueEffect.Typing, DialogueAdvanceType.Manual),
             new DialogueData("<color=blue>나</color>", "걱정 마세요.", DialoguePosition.Bottom, DialogueEffect.Typing, DialogueAdvanceType.Manual),
         };
-        dialogueManager.ShowDialogue(lines, true);
+        dialogueManager.ShowDialogue(lines, false);
     }
 
     //private void StartStory2()
