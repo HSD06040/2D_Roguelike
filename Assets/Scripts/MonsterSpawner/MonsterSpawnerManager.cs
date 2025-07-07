@@ -22,6 +22,11 @@ public class MonsterSpawnerManager : MonoBehaviour
     [Header("범위 태두리 여유공간")]
     [SerializeField] public float margin = 0.5f;
 
+    [Header("파티클, 딜레이시간")]
+    [SerializeField] private float monsterSpawnDelayTime = 2f;
+    [SerializeField] private float ParticleDelayTime = 1f;
+    [SerializeField] private GameObject spawnParticle;
+
     private int spawnCount;
     public int SpawnCount => spawnCount;
 
@@ -38,31 +43,60 @@ public class MonsterSpawnerManager : MonoBehaviour
         }
     }
 
-    private void SpawnFixedPosMonsters()  //고정위치 몬스터 소환
+    private void SpawnFixedPosMonsters()  //고정위치 몬스터 소환파티클
     {
         for (int i = 0; i < fixedSpawnPositions.Length; i++)
         {
-            int random = Random.Range(0, fixedPosMonsterprefabs.Length);
-            GameObject spawnMonster = fixedPosMonsterprefabs[random];
-
-            Instantiate(spawnMonster, fixedSpawnPositions[i].position, Quaternion.identity);
-            spawnCount++;
-            Debug.Log("현재 몬스터 수: " + spawnCount);
+            Vector3 spawnPoint = fixedSpawnPositions[i].position;
+            StartCoroutine(SpawnFixedMonsterWithDelay(spawnPoint));
         }
     }
 
-    public void SpawnRandomPosMonsters(RectTransform spawnArea, int spawnNum)  //랜덤위치 몬스터 소환
+    private IEnumerator SpawnFixedMonsterWithDelay(Vector3 spawnPoint) //고정위치 몬스터 소환
+    {
+        yield return new WaitForSeconds(ParticleDelayTime);
+
+        GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
+        Manager.Resources.Destroy(particle, monsterSpawnDelayTime);
+
+        yield return new WaitForSeconds(monsterSpawnDelayTime);
+
+        int random = Random.Range(0, fixedPosMonsterprefabs.Length);
+        GameObject spawnMonster = fixedPosMonsterprefabs[random];
+
+        Instantiate(spawnMonster, spawnPoint, Quaternion.identity);
+        spawnCount++;
+        Debug.Log("현재 몬스터 수: " + spawnCount);
+    }
+
+
+    public void SpawnRandomPosMonsters(RectTransform spawnArea, int spawnNum)  //몬스터 스폰위치에 파티클 생성
     {
         for (int i = 0; i < spawnNum; i++) //스폰 수만큼 반복
         {
-            GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentChapter);//랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
-
             Vector3 spawnPoint = RandomPosition(spawnArea); //스폰할 spawnArea와 스폰 포인트 설정
-            Instantiate(spawnMonster, spawnPoint, Quaternion.identity); //몬스터 스폰
-            spawnCount++;
-            Debug.Log("현재 몬스터 수: " + spawnCount);
+            GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentChapter);
+            StartCoroutine(SpawnMonsterWithDelay(spawnPoint));
+            
         }
     }
+    private IEnumerator SpawnMonsterWithDelay(Vector3 spawnPoint) //랜덤위치 몬스터 소환
+    {
+        yield return new WaitForSeconds(ParticleDelayTime);
+
+        GameObject particle = Manager.Resources.Instantiate(spawnParticle, spawnPoint, Quaternion.identity, true);
+        //GameObject particle = Manager.Resources.Instantiate<GameObject>("aaa/spawnParticle", spawnPoint, Quaternion.identity, true); //스폰 파티클 //////
+        Manager.Resources.Destroy(particle, monsterSpawnDelayTime + 0.5f);
+
+        yield return new WaitForSeconds(monsterSpawnDelayTime);
+
+        //랜덤하게 나온 숫자의 index에 해당하는 몬스터 프리팹
+        GameObject spawnMonster = Manager.Table.RandomMonsterSpawn(Manager.Game.currentChapter); //몬스터 스폰
+        Instantiate(spawnMonster, spawnPoint, Quaternion.identity);
+        spawnCount++;
+        Debug.Log("현재 몬스터 수: " + spawnCount);
+    }
+
 
     private Vector3 RandomPosition(RectTransform spawnArea)
     {

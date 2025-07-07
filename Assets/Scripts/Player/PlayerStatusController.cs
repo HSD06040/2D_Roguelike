@@ -19,15 +19,20 @@ public class PlayerStatusController : StatusController
         heartUI.InicialHearts(status.MaxHp.Value);
         status.CurtHp.Value = status.MaxHp.Value;
         status.CurtHp.AddEvent(heartUI.HeartUpdate);
-        status.MaxHp.OnChanged += heartUI.InicialHearts;//
+        status.MaxHp.OnChanged += heartUI.InicialHearts;
         status.OnPlayerDead += Die;
         Manager.Game.OnRetry += PlayerDestroy;
     }
 
     public override void TakeDamage(float damage)
     {
-        if (invincible) return;
+        if (invincible)
+        {
+            Debug.Log("무적으로 데미지 안받음");
+            return;
+        }
         Manager.Data.PlayerStatus.DecreaseHealth((int)damage);
+        fx.CreateTakeDamageMaterial();
         StartCoroutine(InvincibleRoutine(1));
         Manager.Audio.PlaySFX("Player/PlayerDamage", transform.position);//////////
     }

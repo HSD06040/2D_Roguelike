@@ -22,11 +22,11 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 308943938, guid: 1b2b205516e193547a01642b3614255c, type: 3}
-    - time: 0.25
+    - time: 0.16666667
       value: {fileID: 1342316025, guid: 1b2b205516e193547a01642b3614255c, type: 3}
-    - time: 0.5
+    - time: 0.33333334
       value: {fileID: -171622606, guid: 1b2b205516e193547a01642b3614255c, type: 3}
-    - time: 0.75
+    - time: 0.5
       value: {fileID: -462859136, guid: 1b2b205516e193547a01642b3614255c, type: 3}
     attribute: m_Sprite
     path: 
@@ -59,7 +59,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.85
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,7 +79,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.85
+  - time: 0.48333332
+    functionName: OnDeathSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
     functionName: OnDeathAnimationEnd
     data: 
     objectReferenceParameter: {fileID: 0}

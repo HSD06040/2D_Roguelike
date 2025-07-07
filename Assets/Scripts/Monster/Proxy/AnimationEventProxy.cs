@@ -25,15 +25,18 @@ public class AnimationEventProxy : MonoBehaviour
     {
         _monsterFSM?.OnAttackAnimationFinished();
     }
+
+    public void OnDeathSound()
+    {
+        string soundPath = GetDeathSoundPath(_monsterFSM);
+        Manager.Audio.PlaySFX(soundPath, _monsterFSM.transform.position);
+        Debug.Log($"{_monsterFSM.name} 사운드 출력");
+    }
+
     public void OnDeathAnimationEnd()
     {
         _monsterFSM?.DestroyMonster();
         Manager.Game.OnMonsterKill?.Invoke();
-        string soundPath = GetDeathSoundPath(_monsterFSM); 
-
-        Manager.Audio.PlaySFX(soundPath, _monsterFSM.transform.position);
-
-        
     }
 
     private string GetDeathSoundPath(MonsterFSM fsm)

@@ -12,6 +12,7 @@ public class StartDialogue : MonoBehaviour
 
     public void ConversationStart()
     {
+        Manager.Input.ChangeCursor(CursorType.Defualt);
         dialogueManager.dialogueOver += DialogueOver;
         StartStory1();
     }
@@ -30,7 +31,7 @@ public class StartDialogue : MonoBehaviour
             new DialogueData("<color=yellow>???</color>", "광장이라고 들었습니다.. 많이 위험할 거예요..", DialoguePosition.Bottom, DialogueEffect.Typing, DialogueAdvanceType.Manual),
             new DialogueData("<color=blue>나</color>", "걱정 마세요.", DialoguePosition.Bottom, DialogueEffect.Typing, DialogueAdvanceType.Manual),
         };
-        dialogueManager.ShowDialogue(lines, false);
+        dialogueManager.ShowDialogue(lines, true);
     }
 
     //private void StartStory2()
@@ -72,10 +73,10 @@ public class StartDialogue : MonoBehaviour
     private IEnumerator ScreenFadeAndThenNextScene()
     {
         int currentSenen = SceneManager.GetActiveScene().buildIndex;
-        //Manager.UI.Fade.PlayFade(1f, 1f);  //페이드 효과
-        yield return new WaitForSeconds(0);
+        Manager.UI.Fade.PlayFade(1f, 2f);
+        yield return Utile.GetDelay(1.1f);
         SceneManager.LoadSceneAsync(currentSenen + 1);
-        Debug.Log("다음씬 이동");
-
+        yield return Utile.GetDelay(1.9f);
+        Manager.Input.ChangeCursor(CursorType.Attack);
     }
 }
