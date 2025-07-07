@@ -45,7 +45,7 @@ public class DataManager : Singleton<DataManager>
         if (Input.GetKeyDown(KeyCode.C))
             Gold.Value += 100;
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Q))
             PlayerStatus.CurtHp.Value += 3;
     }
 
