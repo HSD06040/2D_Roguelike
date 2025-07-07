@@ -29,13 +29,13 @@ public class MonsterSpawnTrigger : MonoBehaviour
         doors.SetActive(false);
     }
 
-    private void Update()  //테스트용 
-   {
-       if(Input.GetKeyDown(KeyCode.K) && hasMonsterSpawned && !isRoomCleared)
-       {
-           MonsterDied();
-       }    
-   }
+   // private void Update()  //테스트용 
+   //{
+   //    if(Input.GetKeyDown(KeyCode.K) && hasMonsterSpawned && !isRoomCleared)
+   //    {
+   //        MonsterDied();
+   //    }    
+   //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
