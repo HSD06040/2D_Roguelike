@@ -27,8 +27,47 @@ public class AnimationEventProxy : MonoBehaviour
     }
     public void OnDeathAnimationEnd()
     {
-        // MonsterFSM에 있는 DestroyMonster 함수를 직접 호출
         _monsterFSM?.DestroyMonster();
         Manager.Game.OnMonsterKill?.Invoke();
+        string soundPath = GetDeathSoundPath(_monsterFSM); 
+
+        Manager.Audio.PlaySFX(soundPath, _monsterFSM.transform.position);
+
+        
+    }
+
+    private string GetDeathSoundPath(MonsterFSM fsm)
+    {
+        if (fsm is ExplosionMonsterFSM explosionFSM)
+        {
+            return GetSoundPathFromType(explosionFSM.SO.deathSoundType);
+        }
+        else if (fsm is RangedShotMonsterFSM rangedFSM)
+        {
+            return GetSoundPathFromType(rangedFSM.SO.deathSoundType);
+        }
+        else if (fsm is SheetMusicMonsterFSM sheetFSM)
+        {
+            return GetSoundPathFromType(sheetFSM.SO.deathSoundType);
+        }
+
+        return "Monster/CreatureDied"; 
+    }
+
+    private string GetSoundPathFromType(MonsterSoundType type)
+    {
+        switch (type)
+        {
+            case MonsterSoundType.CreatureDied:
+                return "Monster/CreatuerDied";
+            case MonsterSoundType.HumanDied:
+                return "Monster/HumanDied";
+            case MonsterSoundType.ExplosionMonsterDied:
+                return "Monster/ExplosionMonster"; 
+            case MonsterSoundType.SlimeDied:
+                return "Monster/SlimeDied";
+            default:
+                return "Monster/CreatureDied"; 
+        }
     }
 }
