@@ -225,7 +225,11 @@ MonoBehaviour:
   - {fileID: 1810601225}
   - {fileID: 2090545309}
   randomSpawnMonsterNum: 040000000200000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -8231,7 +8235,11 @@ MonoBehaviour:
   - {fileID: 1072423905}
   - {fileID: 311815207}
   randomSpawnMonsterNum: 020000000200000004000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -9140,7 +9148,11 @@ MonoBehaviour:
   - {fileID: 1262104167}
   - {fileID: 2001601259}
   randomSpawnMonsterNum: 020000000400000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -20037,7 +20049,11 @@ MonoBehaviour:
   randomSpawnAreas:
   - {fileID: 360343622}
   randomSpawnMonsterNum: 04000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -33565,7 +33581,11 @@ MonoBehaviour:
   randomSpawnAreas:
   - {fileID: 1478703025}
   randomSpawnMonsterNum: 04000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -34038,7 +34058,11 @@ MonoBehaviour:
   - {fileID: 1852910742}
   - {fileID: 1482461840}
   randomSpawnMonsterNum: 0200000006000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -38078,7 +38102,11 @@ MonoBehaviour:
   - {fileID: 1583026512}
   - {fileID: 1776341020}
   randomSpawnMonsterNum: 0600000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -38472,7 +38500,11 @@ MonoBehaviour:
   - {fileID: 518073795}
   - {fileID: 130332550}
   randomSpawnMonsterNum: 040000000200000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -41421,7 +41453,11 @@ MonoBehaviour:
   - {fileID: 1097954567}
   - {fileID: 199722417}
   randomSpawnMonsterNum: 0600000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -41597,7 +41633,11 @@ MonoBehaviour:
   - {fileID: 826376055}
   - {fileID: 217728927}
   randomSpawnMonsterNum: 040000000200000002000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
@@ -43047,7 +43087,11 @@ MonoBehaviour:
   - {fileID: 1649007561}
   - {fileID: 621894225}
   randomSpawnMonsterNum: 020000000200000004000000
-  fixedPosMonsterprefabs: []
+  fixedPosMonsterprefabs:
+  - {fileID: 7176006584917392869, guid: e4262f2060118b84a8a788f9ac400b68, type: 3}
+  - {fileID: 243111886184348243, guid: 25c461473fabeb44db66d20009bd2b45, type: 3}
+  - {fileID: 5844089656990135398, guid: 2f7b13a11763912439893dbfb9df29af, type: 3}
+  - {fileID: 8254587018065761998, guid: d52de747750e2d840aeb199ec30f7be1, type: 3}
   randomePosMonsterprefabs:
   - {fileID: 8657471127520735300, guid: f2bae001b45fc9140b4e6cd526f2522b, type: 3}
   - {fileID: 3255413510883159644, guid: 44655cd9233f55945839c35044f2fd39, type: 3}
