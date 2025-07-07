@@ -13,19 +13,24 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     protected Vector3 targetPos;
     public GameObject ParticlePrefab;
-    public string[] StartAudioSound = null;
-    public string[] TrigAudioSound = null;
+    public string[] SFXAudioSound = null;
+    public bool isStart;
     public int rand;
 
     private void Start()
     {
         StartCoroutine(SpawnTime());
 
-        if (StartAudioSound.Length > 0)
+        rand = Random.Range(0, SFXAudioSound.Length);
+        Debug.Log($"rand : {rand}");
+
+
+        if (isStart)
         {
-            rand = Random.Range(0, StartAudioSound.Length);
-            Manager.Audio.PlaySFX(StartAudioSound[rand], transform.position);
-            Debug.Log($"StartAudioSound : {StartAudioSound[rand]}");
+            if (SFXAudioSound[rand] == null)
+                return;
+
+            Manager.Audio.PlaySFX($"Weapon/{SFXAudioSound[rand]}", transform.position);
         }
     }
 
@@ -53,10 +58,11 @@ public class Projectile : MonoBehaviour
 
             Destroy(obj, 0.4f);
 
-            if(TrigAudioSound.Length > 0)
+            if(!isStart)
             {
-                Manager.Audio.PlaySFX(TrigAudioSound[rand], collision.transform.position);
-                Debug.Log($"TrigAudioSound : {TrigAudioSound[rand]}");
+                if (SFXAudioSound[rand] == null)
+                    return;
+                Manager.Audio.PlaySFX($"Weapon/{SFXAudioSound[rand]}", collision.transform.position);
             }
         }
 
@@ -65,7 +71,14 @@ public class Projectile : MonoBehaviour
             if (ParticlePrefab == null) return;
             GameObject obj = Instantiate(ParticlePrefab);
             obj.transform.position = gameObject.transform.position;
+
             Destroy(obj, 0.4f);
+            if (!isStart)
+            {
+                if (SFXAudioSound[rand] == null)
+                    return;
+                Manager.Audio.PlaySFX($"Weapon/{SFXAudioSound[rand]}", collision.transform.position);
+            }
             Destroy(gameObject);
         }
     }

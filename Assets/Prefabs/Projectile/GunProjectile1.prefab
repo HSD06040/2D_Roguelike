@@ -103,9 +103,10 @@ MonoBehaviour:
   IsPass: 0
   rigid: {fileID: -3077913776961787904}
   ParticlePrefab: {fileID: 6781558560145943571, guid: 9446463854303284cbb9c36eeec061c5, type: 3}
-  AudioSoundClip:
+  SFXAudioSound:
   - Stick
-  startAudio: 0
+  isStart: 0
+  rand: 0
 --- !u!50 &-3077913776961787904
 Rigidbody2D:
   serializedVersion: 4
