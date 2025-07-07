@@ -151,7 +151,6 @@ Transform:
   m_Children:
   - {fileID: 4598092673895037633}
   - {fileID: 9052822179968150682}
-  - {fileID: 9129696760378293498}
   - {fileID: 4805698811618276107}
   - {fileID: 7009496423910802803}
   - {fileID: 6615602199460839046}
@@ -279,7 +278,7 @@ MonoBehaviour:
   - {fileID: 4416008173384263011}
   - {fileID: 7013757159242751693}
   - {fileID: 8590227809496450227}
-  defaultWeapon: {fileID: 8918021019879298176}
+  defaultWeapon: {fileID: 0}
   weaponSlots: []
   currentWeapon: {fileID: 0}
 --- !u!50 &5357449895272487411
