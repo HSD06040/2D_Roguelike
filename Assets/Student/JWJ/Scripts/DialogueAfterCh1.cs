@@ -11,7 +11,7 @@ public class DialogueAfterCh1 : MonoBehaviour
     private void Start()
     {
         DialogueAfterChapter1();
-        Manager.Audio.PlayBGM("Chapter2/StageChapter2");/////////////
+        //Manager.Audio.PlayBGM("Chapter2/StageChapter2");/////////////
         player = GameObject.FindWithTag("Player");
         player.SetActive(false);
     }
