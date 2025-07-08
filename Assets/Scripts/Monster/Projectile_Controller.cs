@@ -82,7 +82,7 @@ public class Projectile_Controller : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Wall")) 
+        if (other.CompareTag("Boundary")) 
         {
             Manager.Resources.Destroy(gameObject);
         }

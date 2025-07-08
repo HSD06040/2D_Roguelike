@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 5962893}
   m_Layer: 9
   m_Name: Room7
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9858,7 +9858,7 @@ GameObject:
   - component: {fileID: 399687608}
   m_Layer: 9
   m_Name: Room10
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17788,7 +17788,7 @@ GameObject:
   - component: {fileID: 568097388}
   m_Layer: 9
   m_Name: Room2
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18461,7 +18461,7 @@ GameObject:
   - component: {fileID: 772091002}
   m_Layer: 9
   m_Name: Room5 (StartRoom)
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19205,7 +19205,7 @@ GameObject:
   - component: {fileID: 903798053}
   m_Layer: 9
   m_Name: Room11
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22669,7 +22669,7 @@ GameObject:
   - component: {fileID: 984791385}
   m_Layer: 9
   m_Name: Room9
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23011,7 +23011,7 @@ GameObject:
   - component: {fileID: 1040999657}
   m_Layer: 9
   m_Name: Room8(PortalRoom)
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25058,7 +25058,7 @@ GameObject:
   - component: {fileID: 1239071669}
   m_Layer: 9
   m_Name: Room1
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28396,7 +28396,7 @@ GameObject:
   - component: {fileID: 1289125473}
   m_Layer: 9
   m_Name: Room4
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44324,7 +44324,7 @@ GameObject:
   - component: {fileID: 1907552665}
   m_Layer: 9
   m_Name: Room6
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45437,7 +45437,7 @@ GameObject:
   - component: {fileID: 2014529016}
   m_Layer: 9
   m_Name: Room3
-  m_TagString: Wall
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
