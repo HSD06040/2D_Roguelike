@@ -44,6 +44,7 @@ public class ExplosionMonsterFSM : MonsterFSM
         if (Owner.CurrentHealth <= 0 && !(StateMachine.CurrentState is Explosion_ExplodeState))
         {
             //  StateMachine.ChangeState(ExplodeState);
+            Owner.DropCoin(SO);
             Manager.Game.OnMonsterKill?.Invoke();
             Destroy(gameObject);
         }
