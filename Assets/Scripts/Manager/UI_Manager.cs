@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UI_Manager : Singleton<UI_Manager>
 {
@@ -10,13 +11,14 @@ public class UI_Manager : Singleton<UI_Manager>
     public Canvas MainCanvas;
     public Canvas PopUpCanvas;    
 
-    public AccessoriesChangePanel AccessoriesChangePanel;
+    public AccessoriesChangePanel AccessoriesChangePanel;   
     public ShopView ShopView;
     public FadeScreen Fade;
     public PopupText PopupText;
     public BoxRewardUI BoxReward;
     public StatusPopUp StatusView;
     public GameObject InfoPanel;
+    public GameObject InGamePanel;
 
     //맨처음 스페이스바
     //public Property<bool> OnPress = new();
@@ -48,9 +50,11 @@ public class UI_Manager : Singleton<UI_Manager>
 
         Transform infoPanelTransform = MainCanvas.transform.Find("InfoPanel");
         if (infoPanelTransform != null)
-        {
             InfoPanel = infoPanelTransform.gameObject;
-        }
+
+        Transform ingamePanelTransform = MainCanvas.transform.Find("InGame");
+        if (ingamePanelTransform != null)
+            InGamePanel = ingamePanelTransform.gameObject;
 
         Canvas fadeCanvas = Instantiate(Resources.Load<Canvas>("UI/FadeCanvas"));
         fadeCanvas.transform.parent = transform;
@@ -60,11 +64,11 @@ public class UI_Manager : Singleton<UI_Manager>
         PopUpCanvas.transform.parent = transform;
         PopUpCanvas.GetOrAddComponent<PopUpCanvas>();
 
-        MainCanvas.gameObject.SetActive(false);
+        InGamePanel.SetActive(false);
     }
 
     private void SetupUIBind()
-    {
+    {        
         Manager.Input.GetUIBind("Info").AddStartedEvent(InfoPanelChange);
     }
 
@@ -73,7 +77,9 @@ public class UI_Manager : Singleton<UI_Manager>
         if(InfoPanel.activeSelf)
         {
             InfoPanel.SetActive(false);
-            Manager.Input.ChangeCursor(CursorType.Attack);
+
+            if(Manager.Game.currentGameState == GameState.InGame)
+                Manager.Input.ChangeCursor(CursorType.Attack);
         }
         else
         {
@@ -105,7 +111,9 @@ public class UI_Manager : Singleton<UI_Manager>
     public void ClosePopUp()
     {
         PopUpCanvas.GetComponent<PopUpCanvas>().RemoveUI();
-        Manager.Input.ChangeCursor(CursorType.Attack);
+
+        if (Manager.Game.currentGameState == GameState.InGame)
+            Manager.Input.ChangeCursor(CursorType.Attack);
     }
 
     public void ShowTitle()

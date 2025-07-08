@@ -75,8 +75,12 @@ public class StartDialogue : MonoBehaviour
         int currentSenen = SceneManager.GetActiveScene().buildIndex;
         Manager.UI.Fade.PlayFade(1f, 2f);
         yield return Utile.GetDelay(1.1f);
-        SceneManager.LoadSceneAsync(currentSenen + 1);
-        yield return Utile.GetDelay(1.9f);
-        Manager.Input.ChangeCursor(CursorType.Attack);
+        AsyncOperation op = SceneManager.LoadSceneAsync(currentSenen + 1);
+
+        op.completed += (op) => 
+        {
+            Manager.Game.currentGameState = GameState.InGame;
+            Manager.Input.ChangeCursor(CursorType.Attack);
+        };                
     }
 }

@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+public enum GameState
+{
+    InGame, Title
+}
+
 public class GameManager : Singleton<GameManager>
 {
     public int currentChapter = 1;
@@ -13,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     public Action OnMonsterHit;
     public Action OnPlayerAttack;
     public Action OnRetry;
-
+    
     //Violin위한 이벤트
     public Property<bool> IsPress = new();
     
@@ -27,6 +32,8 @@ public class GameManager : Singleton<GameManager>
     public bool IsPause { get { return isPause; } set { isPause = value; OnPause.Invoke(isPause); } }
     public event Action<bool> OnPause;
     #endregion
+
+    public GameState currentGameState = GameState.Title;
 
     public void TimeStop() => Time.timeScale = 0;
     public void TimeRestart() => Time.timeScale = 1;

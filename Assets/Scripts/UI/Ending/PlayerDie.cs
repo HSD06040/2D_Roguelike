@@ -45,7 +45,7 @@ public class PlayerDie : BaseUI
         Manager.Game.OnRetry?.Invoke();
         Manager.Data.ResetPlayerStat();
         SceneManager.LoadSceneAsync(2);
-
+        Manager.Input.ChangeCursor(CursorType.Attack);
         Manager.Game.TimeRestart();
         routine = null;
     }
@@ -55,13 +55,14 @@ public class PlayerDie : BaseUI
         Manager.UI.Fade.PlayFade(1, 1.5f);
         yield return Utile.GetRealTimeDelay(1f);
 
+        Manager.Game.currentGameState = GameState.Title;
         Manager.UI.ClosePopUp();
         Manager.Game.OnRetry?.Invoke();
         Manager.Data.ResetPlayerStat();
         SceneManager.LoadSceneAsync(0);
-
         Manager.Game.TimeRestart();
         Manager.UI.ShowTitle();
+        Manager.Input.ChangeCursor(CursorType.Defualt);
         routine = null;
     }
 }
