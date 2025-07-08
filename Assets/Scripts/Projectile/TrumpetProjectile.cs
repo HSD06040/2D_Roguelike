@@ -23,6 +23,8 @@ public class TrumpetProjectile : Projectile
         gameObject.transform.localScale = new Vector2(0.2f, 0.2f);
         data = Manager.Data.PassiveCon.orbitController.transform.position;
         maxValue = 20;
+        rand = Random.Range(0, SFXAudioSound.Length);
+        Debug.Log($"{rand}");
 
         if (sizeCor == null)
         {
