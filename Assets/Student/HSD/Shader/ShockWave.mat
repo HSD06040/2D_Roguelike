@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ShockWaveStrength: 0.3
+    - _ShockWaveStrength: 0.06
     - _Size: 0.05
-    - _WaveDistanceFromCenter: -0
+    - _WaveDistanceFromCenter: 1
     - _xSizeRatio: 0
     m_Colors:
     - _RingSpawnPosition: {r: 0.5, g: 0.5, b: 0, a: 0}

@@ -98,10 +98,10 @@ public class TitleCanvas : BaseUI
         SceneManager.LoadSceneAsync(1);
 
         Manager.UI.ClosePopUp();
-        Manager.UI.MainCanvas.gameObject.SetActive(true);
-
-        yield return Utile.GetDelay(2f);
+        
         Manager.Audio.PlayBGM("Chapter1/StageChapter1");
+        yield return Utile.GetDelay(2f);
+        Manager.UI.InGamePanel.SetActive(true);
     }
 
     private void Update()
