@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class DialogueBoss : MonoBehaviour
@@ -9,10 +10,13 @@ public class DialogueBoss : MonoBehaviour
     [SerializeField] GameObject panel;
     private bool hasSeenFinal = false;
     private bool isEnding = false;
+    [SerializeField] private GameObject theEndButton;
+    private GameObject player => GameObject.FindWithTag("Player");
 
     public void DialogueFinal()
     {
         dialogueManager.dialogueOver += DialogueOver;
+        Destroy(player);
         PrintLines();
     }
 
@@ -72,9 +76,16 @@ public class DialogueBoss : MonoBehaviour
     private IEnumerator FinalEffect()
     {
         Manager.UI.Fade.PlayFade(2f, 2f, Color.white);
-        Debug.Log("内风凭矫累");
-        yield return new WaitForSeconds(6);
-        Debug.Log("内风凭场");
+        yield return new WaitForSeconds(6.5f);
+        theEndButton.SetActive(true);
+    }
+
+    public void OnTheEndButtonPressed()
+    {
+        //theEndButton.SetActive(false);
+        //panel.SetActive(false);
+        SceneManager.LoadScene("TitleScene");
+        //Manager.UI.ShowPopUp<TitleCanvas>();
     }
 
 }
