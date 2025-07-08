@@ -19,7 +19,7 @@ public class ExplosionMonsterFSM : MonsterFSM
     {
         base.Awake();
 
-        Agent.stoppingDistance = 0.1f;
+        Agent.stoppingDistance = 0.5f;
         Owner.SetStats(SO.health, SO.attackPower);
         Agent.speed = SO.moveSpeed;
 

@@ -45,6 +45,7 @@ public class PlayerDie : BaseUI
         Manager.Game.OnRetry?.Invoke();
         Manager.Data.ResetPlayerStat();
         SceneManager.LoadSceneAsync(2);
+        Manager.Audio.PlayBGM("Chapter1/StageChapter1");
         Manager.Input.ChangeCursor(CursorType.Attack);
         Manager.Game.TimeRestart();
         routine = null;

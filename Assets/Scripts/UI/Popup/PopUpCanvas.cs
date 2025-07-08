@@ -16,7 +16,7 @@ public class PopUpCanvas : MonoBehaviour
         if (popUpStack.Count > 0)
         {
             BaseUI top = popUpStack.Peek();
-            top.gameObject.SetActive(false);
+            //top.gameObject.SetActive(false);
         }
 
         popUpStack.Push(ui);
