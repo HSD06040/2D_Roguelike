@@ -17199,8 +17199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.701, y: 26.316}
-  m_SizeDelta: {x: -97.353, y: -52.633}
+  m_AnchoredPosition: {x: -37.701, y: 29.611}
+  m_SizeDelta: {x: -97.353, y: -59.222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556767504
 MonoBehaviour:
@@ -36985,6 +36985,7 @@ MonoBehaviour:
   fixedSpawnPositions: []
   randomSpawnAreas:
   - {fileID: 457966640}
+  - {fileID: 1198795170}
   randomSpawnMonsterNum: 0500000003000000
   fixedPosMonsterprefabs:
   - {fileID: 7686534597527296780, guid: c98604c70420fff48a263e5f49f4244a, type: 3}

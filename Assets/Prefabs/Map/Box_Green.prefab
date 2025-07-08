@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 45244751
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1437974067, guid: 521e01ead62035542a827fb6c7d77358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,7 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interectionUI: {fileID: 1693967787784387809}
-  boxUIScript: {fileID: 0}
 --- !u!95 &2224867110278352375
 Animator:
   serializedVersion: 5
@@ -314,6 +313,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613071588181755490, guid: f89dc95c2ac3ccd4fa056a12792c8ec7, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7198847364260817754, guid: f89dc95c2ac3ccd4fa056a12792c8ec7, type: 3}
+      propertyPath: m_OverrideSorting
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7552521391611248896, guid: f89dc95c2ac3ccd4fa056a12792c8ec7, type: 3}
