@@ -21,14 +21,14 @@ public class Afterimage : MonoBehaviour
     }
     public void DashAfterImageOn()
     {
-        if(playerController.spriteRenderer.flipX)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
+        //if(playerController.spriteRenderer.flipX)
+        //{
+        //    spriteRenderer.flipX = true;
+        //}
+        //else
+        //{
+        //    spriteRenderer.flipX = false;
+        //}
 
         StartCoroutine(AfterImageOnCoroutine());
     }
@@ -40,8 +40,11 @@ public class Afterimage : MonoBehaviour
         for (int i = 0; i < numberOfImages; i++)
         {
             yield return new WaitForSeconds(smoothness);
-            //GameObject afterImage = Instantiate(spritePrefab, playerPos.position, Quaternion.identity);
+
             GameObject afterImage = Manager.Resources.Instantiate(spritePrefab, playerPos.position, Quaternion.identity, true);
+
+            SpriteRenderer imagerender = afterImage.GetComponent<SpriteRenderer>();
+            imagerender.flipX = playerController.spriteRenderer.flipX;
 
             StartCoroutine(FadeOutCoroutine(afterImage));
         }
