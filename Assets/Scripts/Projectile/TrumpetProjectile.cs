@@ -14,8 +14,7 @@ public class TrumpetProjectile : Projectile
     public override void Init(Vector2 _targetPos, float _damage, float _speed)
     {
         base.Init(_targetPos, _damage, _speed);
-        targetPos = _targetPos;
-        transform.right = targetPos.normalized;
+        transform.right = _targetPos;
     }
 
     private void Start()

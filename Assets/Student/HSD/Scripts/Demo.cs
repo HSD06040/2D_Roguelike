@@ -18,8 +18,8 @@ public class Demo : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
             Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Violin);
 
-        //if (Input.GetKeyDown(KeyCode.V))
-        //    Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Cymbals);
+        if (Input.GetKeyDown(KeyCode.M))
+            Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Trumpet);
 
         if (Input.GetKeyDown(KeyCode.Q))
             Manager.Data.PlayerStatus.TryEquipAccessories(Accessories[Random.Range(0, Accessories.Length)]);
