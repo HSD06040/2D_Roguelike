@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile_Controller : MonoBehaviour
@@ -11,11 +10,12 @@ public class Projectile_Controller : MonoBehaviour
     private Transform _playerTransform;
 
     [Header("유도 발사체 설정")]
-    [SerializeField] private bool _isHoming = false; 
+    [SerializeField] private bool _isHoming = false;
     [SerializeField] private float _homingStrength = 5f;
 
     [Header("발사체 수명")]
     [SerializeField] public float delay = 3f;
+
 
     private void Awake()
     {
@@ -29,13 +29,13 @@ public class Projectile_Controller : MonoBehaviour
         _speed = speed;
         _rb.velocity = direction.normalized * _speed;
 
-        if (direction.sqrMagnitude > 0) // Zero 벡터일 경우 transform.up 설정 시 오류 방지
+        if (direction.sqrMagnitude > 0)
         {
             transform.up = direction;
         }
 
         if (_returnToPoolCoroutine != null) StopCoroutine(_returnToPoolCoroutine);
-        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(delay)); 
+        _returnToPoolCoroutine = StartCoroutine(ReturnToPoolAfterTime(delay));
 
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
@@ -43,7 +43,7 @@ public class Projectile_Controller : MonoBehaviour
             _playerTransform = playerObject.transform;
         }
     }
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         if (_isHoming && _playerTransform != null)
         {
@@ -58,6 +58,7 @@ public class Projectile_Controller : MonoBehaviour
                 transform.up = _rb.velocity.normalized;
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -74,19 +75,12 @@ public class Projectile_Controller : MonoBehaviour
             }
         }
 
-        // 몬스터나 플레이어가 아닌 벽 같은 곳에 닿았을 때
-        //if ((1 << 9 & (1 << other.gameObject.layer)) != 0 || (1 << 10 & (1 << other.gameObject.layer)) != 0)
-        //{
-        //    Manager.Resources.Destroy(gameObject);
-        //}
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Boundary")) 
+        if ((1 << 9 & (1 << other.gameObject.layer)) != 0 || (1 << 10 & (1 << other.gameObject.layer)) != 0)
         {
             Manager.Resources.Destroy(gameObject);
         }
     }
+
     private IEnumerator ReturnToPoolAfterTime(float delay)
     {
         yield return Utile.GetDelay(delay);

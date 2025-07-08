@@ -3237,7 +3237,7 @@ GameObject:
   - component: {fileID: 197075692}
   - component: {fileID: 197075691}
   - component: {fileID: 197075690}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room2
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -7207,7 +7207,7 @@ GameObject:
   - component: {fileID: 386289559}
   - component: {fileID: 386289558}
   - component: {fileID: 386289557}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room4
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -7515,7 +7515,7 @@ GameObject:
   - component: {fileID: 507099056}
   - component: {fileID: 507099055}
   - component: {fileID: 507099054}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room6
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -15325,7 +15325,7 @@ GameObject:
   - component: {fileID: 1093724358}
   - component: {fileID: 1093724357}
   - component: {fileID: 1093724356}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room3
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -16305,7 +16305,7 @@ GameObject:
   - component: {fileID: 1272522997}
   - component: {fileID: 1272522996}
   - component: {fileID: 1272522995}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room1
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -28443,7 +28443,7 @@ GameObject:
   - component: {fileID: 2082305985}
   - component: {fileID: 2082305984}
   - component: {fileID: 2082305983}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Room5
   m_TagString: Boundary
   m_Icon: {fileID: 0}
