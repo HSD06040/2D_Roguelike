@@ -48,8 +48,8 @@ public class PlayerStatus
     public Action<int, MusicWeapon> OnChangedWeapon;
     public event Action<int> OnCurrentWeaponChanged;
 
-    public Action<int, MusicWeapon> OnUpgradedWeapon;
-    public Action<int, MusicWeapon> OnAddWeapon;
+    public event Action<int, MusicWeapon> OnUpgradedWeapon;
+    public event Action<int, MusicWeapon> OnAddWeapon;
 
     public Action OnPlayerDead;
 
@@ -100,10 +100,9 @@ public class PlayerStatus
             _weapon.curAttackDelay = _weapon.WeaponData.AttackDelay[0];
             idx = EmptyWeaponSlot();
             PlayerWeapons[idx] = _weapon; //이부분이 없어서 slot에 안 들어갔음
-            Debug.Log(idx);
 
             if (idx == -1) return;
-
+            Debug.Log($"AddWeapon : {_weapon.WeaponData.name}");
             OnChangedWeapon?.Invoke(idx, _weapon);
             OnAddWeapon?.Invoke(idx, _weapon);
         }
@@ -122,7 +121,7 @@ public class PlayerStatus
                     continue;
                 }
             }
-            Debug.Log($"Add : {idx}");
+
             if (PlayerWeapons[idx].Level <= PlayerWeapons[idx].WeaponData.WeaponMaxUpgrade)
             {
                 Debug.Log($"{PlayerWeapons[idx].WeaponData.itemName} LevelUp");

@@ -9,17 +9,17 @@ public class Demo : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //    Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Gun);
+        if (Input.GetKeyDown(KeyCode.Z))
+            Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Flute);
 
         if (Input.GetKeyDown(KeyCode.X))
-            Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Trumpet);
+            Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Cymbals);
 
         if (Input.GetKeyDown(KeyCode.C))
             Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Violin);
 
-        if (Input.GetKeyDown(KeyCode.Z))
-            Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Cymbals);
+        //if (Input.GetKeyDown(KeyCode.V))
+        //    Manager.Data.PlayerStatus.AddWeapon(MusicWeaponType.Cymbals);
 
         if (Input.GetKeyDown(KeyCode.Q))
             Manager.Data.PlayerStatus.TryEquipAccessories(Accessories[Random.Range(0, Accessories.Length)]);

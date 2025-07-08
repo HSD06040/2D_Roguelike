@@ -22,8 +22,6 @@ public class Projectile : MonoBehaviour
         StartCoroutine(SpawnTime());
 
         rand = Random.Range(0, SFXAudioSound.Length);
-        Debug.Log($"rand : {rand}");
-
 
         if (isStart)
         {
@@ -73,12 +71,6 @@ public class Projectile : MonoBehaviour
             obj.transform.position = gameObject.transform.position;
 
             Destroy(obj, 0.4f);
-            if (!isStart)
-            {
-                if (SFXAudioSound[rand] == null)
-                    return;
-                Manager.Audio.PlaySFX($"Weapon/{SFXAudioSound[rand]}", collision.transform.position);
-            }
             Destroy(gameObject);
         }
     }

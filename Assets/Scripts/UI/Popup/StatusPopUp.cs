@@ -22,6 +22,30 @@ public class StatusPopUp : MonoBehaviour
     private void OnEnable()
     {
         presenter.AddStatusEvent();
+        RefreshAllWeaponData();
+    }
+
+    public void RefreshAllWeaponData()
+    {
+        for (int i = 0; i < WeaponSlots.Length; i++)
+        {
+            var weapon = Manager.Data.PlayerStatus.PlayerWeapons[i];
+
+            if (weapon != null)
+            {
+                UpdateWeaponData(i, weapon);
+            } 
+            else
+            {
+                WeaponSlots[i].sprite = null;
+                WeaponSlots[i].color = Color.clear;
+                WeaponSlotNames[i].text = "";
+                WeaponSlotDamage[i].text = "";
+            }
+        }
+
+        // 스탯도 같이 반영
+        UpdatePlayerStatus(0);
     }
 
     private void OnDisable()
@@ -45,6 +69,7 @@ public class StatusPopUp : MonoBehaviour
     #region 무기 Status
     public void UpdateWeaponData(int _idx, MusicWeapon _weapon)
     {
+        Debug.Log($"UpdateWeaponDAta : {_weapon.WeaponData.itemName}");
         WeaponSlots[_idx].sprite = _weapon.WeaponData.icon;
         WeaponSlots[_idx].color = WeaponSlots[_idx].sprite != null ? Color.white : Color.clear;
         
