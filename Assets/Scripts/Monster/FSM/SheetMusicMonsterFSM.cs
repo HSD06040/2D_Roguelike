@@ -20,7 +20,7 @@ public class SheetMusicMonsterFSM : MonsterFSM
     {
         base.Awake();
 
-        Agent.stoppingDistance = 0.1f;
+        Agent.stoppingDistance = 1f;
         Agent.speed = SO.moveSpeed;
         Owner.SetStats(SO.health, SO.attackPower);
 
