@@ -30,6 +30,7 @@ public class TitleCanvas : BaseUI
 
     private void Start()
     {
+        Manager.Game.IsGameStart = false;
         if (Manager.Audio.bgmSource == null)
             Manager.Audio.bgmSource.clip = Manager.Resources.Load<AudioClip>($"Sound/BGM/Title");
 
@@ -38,7 +39,7 @@ public class TitleCanvas : BaseUI
         {
             Manager.UI.ShowPopUp<SettingPopUp>();
         };
-        //이부분에 초기화작업 해줘야함
+
         GetEvent("PressGameStartButton").Click += data =>
         {
             if (Manager.Game.IsDead)
@@ -47,22 +48,10 @@ public class TitleCanvas : BaseUI
             Manager.Game.StartCoroutine(GameStartRoutine());
         };
 
-        //Test();
         NotPress();
         count++;
     }
 
-    private void Test()
-    {
-        GetEvent("Test").Click += data =>
-        {
-            if (Manager.Game.IsDead)
-                Manager.Game.IsDead = false;
-
-            Manager.UI.ClosePopUp();
-            SceneManager.LoadSceneAsync(2);
-        };
-    }
 
     private void NotPress()
     {
@@ -94,6 +83,8 @@ public class TitleCanvas : BaseUI
         Manager.UI.Fade.PlayFade(1,2);
 
         yield return Utile.GetDelay(1.1f);
+
+        Manager.Game.IsGameStart = true;
 
         SceneManager.LoadSceneAsync(1);
 

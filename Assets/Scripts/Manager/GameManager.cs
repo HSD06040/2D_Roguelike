@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
 
     public GameState currentGameState = GameState.Title;
 
+    public bool IsGameStart;
     public void TimeStop() => Time.timeScale = 0;
     public void TimeRestart() => Time.timeScale = 1;
 
@@ -55,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!isDead)
+            if(!isDead && IsGameStart)
                 IsPause = !IsPause;
         }
     }
