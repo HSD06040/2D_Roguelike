@@ -77,6 +77,7 @@ public class DialogueBoss : MonoBehaviour
     {
         Manager.UI.Fade.PlayFade(2f, 2f, Color.white);
         yield return new WaitForSeconds(6.5f);
+        Manager.Audio.PlayBGM("Ending");
         theEndButton.SetActive(true);
     }
 
