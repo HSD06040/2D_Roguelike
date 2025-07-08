@@ -11,7 +11,7 @@ public class CymbalsProjectile : Projectile
 
     public override void Init(Vector2 _targetPos, float _damage, float _speed)
     { 
-        damage = _damage; 
+        base.Init(targetPos, _damage, _speed);
         speed = _speed;
     }
 
