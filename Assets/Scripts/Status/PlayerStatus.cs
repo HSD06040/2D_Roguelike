@@ -49,7 +49,7 @@ public class PlayerStatus
     public event Action<int> OnCurrentWeaponChanged;
 
     public event Action<int, MusicWeapon> OnUpgradedWeapon;
-    public event Action<int, MusicWeapon> OnAddWeapon;
+    public Action<int, MusicWeapon> OnAddWeapon;
 
     public Action OnPlayerDead;
 
@@ -103,7 +103,6 @@ public class PlayerStatus
 
             if (idx == -1) return;
             OnChangedWeapon?.Invoke(idx, _weapon);
-            OnAddWeapon?.Invoke(idx, _weapon);
         }
         else
         {

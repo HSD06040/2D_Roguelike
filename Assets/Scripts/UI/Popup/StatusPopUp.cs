@@ -33,7 +33,7 @@ public class StatusPopUp : MonoBehaviour
 
             if (weapon != null)
             {
-                UpdateWeaponData(i, weapon);
+                Manager.Data.PlayerStatus.OnAddWeapon?.Invoke(i, weapon);
             } 
             else
             {
