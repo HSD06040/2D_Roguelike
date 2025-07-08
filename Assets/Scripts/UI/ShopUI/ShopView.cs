@@ -94,4 +94,14 @@ public class ShopView : AnimationUI_Base
         buyButton.enabled = false;
         Manager.Audio.PlaySFX("Coin/PayCoin", transform.position);///////////
     }
+
+    public void ClearSelection() 
+    {
+        if (selectedIndex != -1)
+        {
+            slotUIs[selectedIndex].Selected(false);
+            selectedIndex = -1;
+        }
+    }
+
 }
