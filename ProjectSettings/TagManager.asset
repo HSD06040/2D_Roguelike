@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - PlayerHead
   - Portal
+  - Missile
+  - ManaSprite
+  - HealthSprite
+  - Boundary
   layers:
   - Default
   - TransparentFX
