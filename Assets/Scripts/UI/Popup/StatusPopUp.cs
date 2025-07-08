@@ -44,26 +44,12 @@ public class StatusPopUp : MonoBehaviour
             }
         }
 
-        // 스탯도 같이 반영
-        UpdatePlayerStatus(0);
+        UpdatePlayerStatus();
     }
 
     private void OnDisable()
     {
         presenter.RemoveStatusEvent();
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < WeaponSlots.Length; i++)
-        {
-            WeaponSlots[i].color = Color.clear;
-            WeaponSlotNames[i].text = "";
-            WeaponSlotDamage[i].text = "";
-        }
-
-        PlayerSpeedText.text = Manager.Data.PlayerStatus.TotalSpeed.ToString();
-        PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.Value.ToString();
     }
 
     #region 무기 Status
@@ -84,7 +70,7 @@ public class StatusPopUp : MonoBehaviour
     }
     #endregion
 
-    public void UpdatePlayerStatus(int _idx)
+    public void UpdatePlayerStatus()
     {
         PlayerSpeedText.text = Manager.Data.PlayerStatus.TotalSpeed.ToString();
         PlayerAttackSpeedText.text = Manager.Data.PlayerStatus.AttackSpeed.Value.ToString();

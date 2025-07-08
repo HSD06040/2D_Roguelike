@@ -102,7 +102,6 @@ public class PlayerStatus
             PlayerWeapons[idx] = _weapon; //이부분이 없어서 slot에 안 들어갔음
 
             if (idx == -1) return;
-            Debug.Log($"AddWeapon : {_weapon.WeaponData.name}");
             OnChangedWeapon?.Invoke(idx, _weapon);
             OnAddWeapon?.Invoke(idx, _weapon);
         }
